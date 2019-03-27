@@ -1,5 +1,8 @@
 package test;
 
+import entities.Group;
+import entities.Student;
+import entities.Teacher;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

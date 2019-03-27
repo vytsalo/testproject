@@ -1,5 +1,9 @@
 package test;
 
+import entities.Group;
+import entities.Human;
+import entities.Student;
+import entities.Teacher;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

@@ -1,4 +1,4 @@
-package test;
+package entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,10 +11,13 @@ public class Teacher extends Human{
     @ManyToMany
     public ArrayList<Group> groups = new ArrayList();
 
+    @ManyToMany
     public ArrayList<Group> getGroups() {
         return groups;
     }
 
+
+    //не связано
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
     }

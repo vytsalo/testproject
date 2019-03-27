@@ -29,9 +29,9 @@
 		<property name="format_sql">true</property> <!-- Show SQL formatted -->
 		<property name="hibernate.current_session_context_class">thread</property>
 
-		<mapping class="test.Student"/><!-- -->
-		<mapping class="test.Teacher"/><!-- -->
-		<mapping class="test.Group"/><!-- -->
+		<mapping class="entities.Student"/><!-- -->
+		<mapping class="entities.Teacher"/><!-- -->
+		<mapping class="entities.Group"/><!-- -->
 
 
 
