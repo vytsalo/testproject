@@ -19,7 +19,7 @@ public class HibernateTest {
     public static void main(String[] args) {
 
 //мапу аккаунты
-
+//
         ArrayList<Teacher> teachersList= new ArrayList();
 
         ArrayList<Student> studentsList= new ArrayList();
