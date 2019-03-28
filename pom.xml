@@ -42,11 +42,7 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.3.7.Final</version>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.3.7.Final</version>
-        </dependency>
+
 
         <!-- The tutorials use the PostgreSQL 9.3.5 database -->
         <dependency>
@@ -61,11 +57,7 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.1</version>
-        </dependency>
+
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
@@ -102,8 +94,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
+                    <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>

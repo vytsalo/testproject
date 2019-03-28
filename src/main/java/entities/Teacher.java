@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="teacher")
@@ -33,4 +34,6 @@ public class Teacher extends Human{
                 "groups=" + groups +
                 "} " + super.toString();
     }
+
+    public Teacher(){}
 }
