@@ -8,6 +8,7 @@ import java.util.List;
 @Table(name="teacher")
 public class Teacher extends Human{
 
+    //порядок связи?
     //список групп, в которых преподает
     @ManyToMany
     public ArrayList<Group> groups = new ArrayList();

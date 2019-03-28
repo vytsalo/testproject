@@ -10,7 +10,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.List;
 
-
+//Как отслеживать изменения в бд (тригер хук)
 //обязательно все должен реализовывать
 public class TeacherDaoImlp implements TeacherDao {
 
