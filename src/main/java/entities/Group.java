@@ -47,4 +47,6 @@ public class Group implements Serializable {
                 ", students=" + students +
                 '}';
     }
+
+    public Group() {}
 }
