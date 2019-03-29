@@ -10,10 +10,25 @@ public class Teacher extends Human{
 
     //порядок связи?
     //список групп, в которых преподает
+
+
+    //Унивальные, правила именования
+    @Id
+    @Column
+    private long id;
+
+    //связь мени ту мени
     @ManyToMany
+    //новая таблица - связи группы и тичера
+    @JoinTable(name="teacher_group",
+            joinColumns=
+                    @JoinColumn (name="id_teacher"),//имена свои или существующие
+            inverseJoinColumns=
+                    @JoinColumn(name="id_group"))
     public ArrayList<Group> groups = new ArrayList();
 
-    @ManyToMany
+
+
     public ArrayList<Group> getGroups() {
         return groups;
     }

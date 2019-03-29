@@ -31,7 +31,14 @@ public class Group implements Serializable {
     private String title;
 
     //Список преподавателей в этой группе
+
+    //поменяли местами груп и тичер айди
     @ManyToMany
+    @JoinTable(name="teacher_group",
+            joinColumns=
+            @JoinColumn (name="id_group"),//имена свои или существующие
+            inverseJoinColumns=
+            @JoinColumn(name="id_teacher"))
     ArrayList<Teacher> teachers = new ArrayList();
 
 

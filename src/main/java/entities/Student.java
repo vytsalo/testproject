@@ -5,6 +5,12 @@ import javax.persistence.*;
 @Entity
 public class Student extends Human  {
 
+
+
+    @Id
+    @Column
+    private long id;
+
     //Группа, в которой учится студент
     @Column
     @ManyToOne
