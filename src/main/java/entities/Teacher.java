@@ -11,12 +11,14 @@ public class Teacher extends Human{
     //порядок связи?
     //список групп, в которых преподает
 
-
-    //Унивальные, правила именования
+    //Уникальные, правила именования
     @Id
     @Column
     private long id;
 
+
+    //Почему нельзя арей лист сразу. почему с листа начинать?
+    //ерей лист - коллекция
     //связь мени ту мени
     @ManyToMany
     //новая таблица - связи группы и тичера
@@ -25,11 +27,11 @@ public class Teacher extends Human{
                     @JoinColumn (name="id_teacher"),//имена свои или существующие
             inverseJoinColumns=
                     @JoinColumn(name="id_group"))
-    public ArrayList<Group> groups = new ArrayList();
+    private List<Group> groups = new ArrayList();
 
 
 
-    public ArrayList<Group> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 

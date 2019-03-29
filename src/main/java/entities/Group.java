@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="group")
@@ -39,12 +40,12 @@ public class Group implements Serializable {
             @JoinColumn (name="id_group"),//имена свои или существующие
             inverseJoinColumns=
             @JoinColumn(name="id_teacher"))
-    ArrayList<Teacher> teachers = new ArrayList();
+    private List<Teacher> teachers = new ArrayList();
 
 
     @OneToMany(mappedBy = "group") //мапедбай - переменная из другого класса
     //Список студентов группы мени ту уан
-    ArrayList<Student> students = new ArrayList();
+    private List<Student> students = new ArrayList();
 
     @Override
     public String toString() {

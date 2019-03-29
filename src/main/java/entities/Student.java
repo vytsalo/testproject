@@ -6,13 +6,11 @@ import javax.persistence.*;
 public class Student extends Human  {
 
 
-
     @Id
     @Column
     private long id;
 
     //Группа, в которой учится студент
-    @Column
     @ManyToOne
     @JoinColumn(name="FK_groups")//имя - любое присоединяемое
     private Group group;

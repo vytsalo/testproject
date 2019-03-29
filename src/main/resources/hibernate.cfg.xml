@@ -3,20 +3,26 @@
 		<!-- Дефолтные данные: драйвер, через который подключаемся, адрес, порт, имя бд -->
 		<!-- testDB -->
 
-		<property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property> <!-- BD Mane -->
+		<property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <!-- Название драйвера -->
-        <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
 
-        <!-- Логин и пароль -->
+		<property name="hibernate.default_schema">myschema</property><!-- NEW CRAP -->
+
+		<!-- Логин и пароль -->
         <property name="connection.username">postgres</property> <!-- DB User -->
    		<property name="connection.password">Disturbed_1</property> <!-- DB Password -->
    		<property name="connection.pool_size">20</property> <!-- DB Password -->
 
-   		<property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property> <!-- DB Dialect -->
+		<property name="dialect">org.hibernate.dialect.PostgreSQL95Dialect</property>
 
 		<!--
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property> ДЕПРИКЕЙТЕД
 
-			При создании
+		-->
+
+		<!--
+		При создании
 			UPDATE чтобы добавлять записи повторяющиеся - обновляет базу
 		 	CREATE - каждый раз создает новую базу
 			create-drop - удаляет таблицу после работы(завершения сессии) когда сешшон фактори клозед
