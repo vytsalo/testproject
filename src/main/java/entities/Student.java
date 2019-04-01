@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Student extends Human  {
 
 
+
     @Id
     @Column
     private long id;

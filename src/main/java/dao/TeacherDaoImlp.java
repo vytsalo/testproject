@@ -2,12 +2,13 @@ package dao;
 
 import entities.Teacher;
 import org.hibernate.Criteria;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 //Как отслеживать изменения в бд (тригер хук)
@@ -18,7 +19,7 @@ public class TeacherDaoImlp implements TeacherDao {
     private EntityManager em;
 
     //добавление записи в конец бд
-    @Transactional
+   @Transactional
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
@@ -45,7 +46,7 @@ public class TeacherDaoImlp implements TeacherDao {
         //че-то делает
     }
 
-    @Transactional//чтение
+   // @Transactional//чтение
     @Override
     public List<Teacher> getTeachersList(){
         CriteriaQuery<Teacher> criteriaQuery = em.getCriteriaBuilder().createQuery(Teacher.class);

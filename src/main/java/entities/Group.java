@@ -7,8 +7,6 @@ import java.util.List;
 
 @Entity
 @Table(name="group")
-//дописать
-//+связи
 public class Group implements Serializable {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -16,7 +14,6 @@ public class Group implements Serializable {
         this.teachers = teachers;
         this.students = students;
     }
-
 
     public Group(String title) {
         this.title = title;
@@ -43,7 +40,7 @@ public class Group implements Serializable {
     private List<Teacher> teachers = new ArrayList();
 
 
-    @OneToMany(mappedBy = "group") //мапедбай - переменная из другого класса
+    @OneToMany(mappedBy = "group", targetEntity = Student.class) //мапедбай - переменная из другого класса
     //Список студентов группы мени ту уан
     private List<Student> students = new ArrayList();
 

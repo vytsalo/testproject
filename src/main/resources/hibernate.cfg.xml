@@ -3,7 +3,7 @@
 		<!-- Дефолтные данные: драйвер, через который подключаемся, адрес, порт, имя бд -->
 		<!-- testDB -->
 
-		<property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+	    <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <!-- Название драйвера -->
         <property name="connection.driver_class">org.postgresql.Driver</property>
 
