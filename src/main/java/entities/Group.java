@@ -24,7 +24,6 @@ public class Group implements Serializable  {
     @GeneratedValue
     private long id;
 
-
     //Название группы
     @Column
     private String title;
