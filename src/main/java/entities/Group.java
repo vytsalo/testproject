@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="group")
-public class Group implements Serializable {
+public class Group implements Serializable  {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
         this.title = title;
@@ -29,20 +29,24 @@ public class Group implements Serializable {
     @Column
     private String title;
 
+    /*
+    @ManyToMany(cascade = CascadeType.ALL,targetEntity = Teacher.class)
+    @JoinTable(name = "groups_teacher",
+            //имя колонки id с этой таблицы
+            joinColumns = { @JoinColumn(name = "group_id") },
+            //имя колонки id со второй таблицы (внешний ключ)
+            inverseJoinColumns = { @JoinColumn(name = "teacher_id") })*/
+
+
     //Список преподавателей в этой группе
 
-    //поменяли местами груп и тичер айди
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="teacher_group",
-            joinColumns=
-            @JoinColumn (name="id_group"),//имена свои или существующие
-            inverseJoinColumns=
-            @JoinColumn(name="id_teacher"))
+    //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups")
     private List<Teacher> teachers = new ArrayList();
 
-
-    @OneToMany(mappedBy = "group", targetEntity = Student.class) //мапедбай - переменная из другого класса
-    //Список студентов группы мени ту уан
+    //group - из другой таблицы
+    //мапедбай - переменная из другого класса
+    @OneToMany(mappedBy = "group", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
 
     @Override

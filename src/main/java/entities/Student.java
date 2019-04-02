@@ -1,14 +1,11 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="human")
-public class Student extends Human  {
-
-
-//id удалить
-
+public class Student extends Human implements Serializable {
 
 
     @Id
@@ -17,7 +14,7 @@ public class Student extends Human  {
     private long id;
 
     //Группа, в которой учится студент
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     private Group group;
 
