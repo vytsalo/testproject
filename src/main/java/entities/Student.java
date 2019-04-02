@@ -3,17 +3,22 @@ package entities;
 import javax.persistence.*;
 
 @Entity
+@Table(name="human")
 public class Student extends Human  {
+
+
+//id удалить
 
 
 
     @Id
-    @Column
+    @Column(name="student_id")
+    @GeneratedValue
     private long id;
 
     //Группа, в которой учится студент
     @ManyToOne
-    @JoinColumn(name="FK_groups")//имя - любое присоединяемое
+    @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     private Group group;
 
     public Student() {}

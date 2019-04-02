@@ -20,7 +20,8 @@ public class Group implements Serializable {
     }
 
     @Id
-    @Column
+    @Column(name="group_id")
+    @GeneratedValue
     private long id;
 
 
@@ -31,7 +32,7 @@ public class Group implements Serializable {
     //Список преподавателей в этой группе
 
     //поменяли местами груп и тичер айди
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="teacher_group",
             joinColumns=
             @JoinColumn (name="id_group"),//имена свои или существующие

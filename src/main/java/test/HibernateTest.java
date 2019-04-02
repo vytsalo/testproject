@@ -18,8 +18,6 @@ public class HibernateTest {
 
     public static void main(String[] args) {
 
-//мапу аккаунты
-//
         ArrayList<Teacher> teachersList= new ArrayList();
 
         ArrayList<Student> studentsList= new ArrayList();
@@ -67,7 +65,6 @@ public class HibernateTest {
                 cr.saveOrUpdate(groupsList.get(i));
             }
 
-
             //Создаем критерию
             CriteriaBuilder builder = cr.getCriteriaBuilder();
             CriteriaQuery<Student> query = builder.createQuery(Student.class);
@@ -90,8 +87,6 @@ public class HibernateTest {
             else
                 for (int i = 0; i < list.size(); i++)
                     System.out.println(list.get(i).toString() + "\n");
-
-
 
             cr.flush();
 
