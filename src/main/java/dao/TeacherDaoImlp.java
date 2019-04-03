@@ -17,6 +17,7 @@ public class TeacherDaoImlp implements TeacherDao {
 
     //CREATE READ UPDATE DELETE
 
+    //Так воть
     @PersistenceContext
     private EntityManager em;
 
@@ -25,25 +26,12 @@ public class TeacherDaoImlp implements TeacherDao {
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
-    /*  for (int i = 0; i < teachersList.size(); i++) {
-                cr.saveOrUpdate(teachersList.get(i));
-        }*/
     }
-
-
-
-
-/*
-    @Transactional
-    public List<Teacher> getAll(){
-
-    }
-*/
 
     //зачем?
     @Transactional
     @Override
-    public Teacher find(String krit){
+    public Teacher findById(String krit){
         //находим
         return new Teacher();
     }
@@ -60,7 +48,6 @@ public class TeacherDaoImlp implements TeacherDao {
         //че-то делает
     }
 
-   // @Transactional//чтение
     @Override
     @Transactional
     public List<Teacher> getTeachersList(){

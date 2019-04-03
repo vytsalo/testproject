@@ -21,7 +21,7 @@ public interface TeacherDao {
     void update(List<Teacher> teachers);
 
     //поиск
-    Teacher find(String krit);
+    Teacher findById(String krit);
 
     //список всех тичеров, имеющихся в бд
     List<Teacher> getTeachersList();
