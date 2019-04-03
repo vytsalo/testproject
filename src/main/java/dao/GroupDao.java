@@ -6,5 +6,5 @@ import java.util.List;
 public interface GroupDao {
 
     //список всех групп
-    List<Group> getGroupsList();
+    void setGroupsList(List<Group> p);
 }

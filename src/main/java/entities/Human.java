@@ -73,7 +73,6 @@ public abstract class Human{
         this.phone_number = phone_number;
     }
 
-
     public Human() {}
 
     public Human(String fam, String name, String otch, String date_of_birth, String phone_number) {

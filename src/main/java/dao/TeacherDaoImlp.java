@@ -15,16 +15,30 @@ import java.util.List;
 //обязательно все должен реализовывать
 public class TeacherDaoImlp implements TeacherDao {
 
+    //CREATE READ UPDATE DELETE
+
     @PersistenceContext
     private EntityManager em;
 
     //добавление записи в конец бд
-   @Transactional
+    @Transactional
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
+    /*  for (int i = 0; i < teachersList.size(); i++) {
+                cr.saveOrUpdate(teachersList.get(i));
+        }*/
     }
 
+
+
+
+/*
+    @Transactional
+    public List<Teacher> getAll(){
+
+    }
+*/
 
     //зачем?
     @Transactional
@@ -48,6 +62,7 @@ public class TeacherDaoImlp implements TeacherDao {
 
    // @Transactional//чтение
     @Override
+    @Transactional
     public List<Teacher> getTeachersList(){
         CriteriaQuery<Teacher> criteriaQuery = em.getCriteriaBuilder().createQuery(Teacher.class);
         Root<Teacher> root = criteriaQuery.from(Teacher.class);
