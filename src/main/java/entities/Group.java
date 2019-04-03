@@ -7,6 +7,8 @@ import java.util.List;
 
 @Entity
 //груп переименовать - зарезервированное и отовсюду убрать
+
+//не существует?
 @Table(name="gruppa", schema = "myschema")
 public class Group implements Serializable  {
 
@@ -37,7 +39,7 @@ public class Group implements Serializable  {
 
     //group - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "group", targetEntity = Student.class, cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
 
     @Override

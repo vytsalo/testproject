@@ -64,15 +64,15 @@ public class HibernateTest {
                 cr.saveOrUpdate(studentsList.get(i));
             }
 
-/*
+
             //Добавляю тичерсов
             for (int i = 0; i < teachersList.size(); i++) {
                 cr.saveOrUpdate(teachersList.get(i));
             }
-            //добавляю группы
+           //добавляю группы
             for (int i = 0; i < groupsList.size(); i++) {
                 cr.saveOrUpdate(groupsList.get(i));
-            }*/
+            }
 
             //Создаем критерию
             CriteriaBuilder builder = cr.getCriteriaBuilder();
@@ -91,6 +91,11 @@ public class HibernateTest {
 
             System.out.println("_______________________");
             System.out.println("_______________________");
+            System.out.println("_______________________");
+            System.out.println("_______________________");
+            System.out.println("_______________________");
+            System.out.println("_______________________");
+            System.out.println("_______Результат_______");
 
             if (list.size()==0) System.out.println("Ничего не найдено");
             else
