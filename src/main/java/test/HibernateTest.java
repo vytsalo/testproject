@@ -22,9 +22,7 @@ public class HibernateTest {
 
         ArrayList<Student> studentsList= new ArrayList();
 
-        studentsList.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", new Group("281")));
-        studentsList.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545", new Group("328")));
-        studentsList.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955", new Group("148")));
+
 
         ArrayList<Group> groupsList = new ArrayList();
 
@@ -32,17 +30,28 @@ public class HibernateTest {
         groupsList.add(new Group("522"));
         groupsList.add(new Group("251"));
         groupsList.add(new Group("332"));
-        groupsList.add(new Group("342"));
-        groupsList.add(new Group("242"));
-        groupsList.add(new Group("212"));
-        groupsList.add(new Group("404"));
+
+// public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
+//
+
+        studentsList.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
+        studentsList.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
+        studentsList.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
 
         teachersList.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778", groupsList));
         teachersList.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778", groupsList));
         teachersList.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778", groupsList));
         teachersList.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778", groupsList));
 
+/*
+        for (int i = 0; i < groupsList.size(); i++) {
+            groupsList.get(i).setTeachers(teachersList);
+            groupsList.get(i).setStudents(studentsList);
+        }*/
+
         System.out.println(teachersList.get(0).toString());
+        System.out.println(studentsList.get(0).toString());
+        System.out.println(groupsList.get(0).toString());
 
         SessionFactory session = HibernateUtil.getSessionFactory();
         try {
@@ -55,7 +64,7 @@ public class HibernateTest {
                 cr.saveOrUpdate(studentsList.get(i));
             }
 
-
+/*
             //Добавляю тичерсов
             for (int i = 0; i < teachersList.size(); i++) {
                 cr.saveOrUpdate(teachersList.get(i));
@@ -63,7 +72,7 @@ public class HibernateTest {
             //добавляю группы
             for (int i = 0; i < groupsList.size(); i++) {
                 cr.saveOrUpdate(groupsList.get(i));
-            }
+            }*/
 
             //Создаем критерию
             CriteriaBuilder builder = cr.getCriteriaBuilder();

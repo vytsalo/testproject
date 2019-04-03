@@ -6,6 +6,7 @@ import javax.persistence.*;
 public abstract class Human{
 
     @Id
+    @Column
     @GeneratedValue
     private long id;
 

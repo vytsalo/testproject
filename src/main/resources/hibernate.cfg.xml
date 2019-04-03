@@ -9,6 +9,8 @@
 
 		<property name="hibernate.default_schema">myschema</property><!-- NEW CRAP -->
 
+
+
 		<!-- Логин и пароль -->
         <property name="connection.username">postgres</property> <!-- DB User -->
    		<property name="connection.password">Disturbed_1</property> <!-- DB Password -->
@@ -31,7 +33,7 @@
 
 		<property name="hbm2ddl.auto">create</property> <!-- create / create-drop / update -->
 
-		<property name="show_sql">false</property> <!-- Show SQL in console -->
+		<property name="show_sql">true</property> <!-- Show SQL in console -->
 		<property name="format_sql">true</property> <!-- Show SQL formatted -->
 		<property name="hibernate.current_session_context_class">thread</property>
 

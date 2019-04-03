@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="teacher")
+@Table(name="teacher", schema = "myschema")
 public class Teacher extends Human implements Serializable {
 
     //порядок связи?
     //список групп, в которых преподает
 
-    //Уникальные, правила именования
+
 
     //переопределять
     @Id
     @Column(name="teacher_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     //Почему нельзя арей лист сразу. почему с листа начинать?

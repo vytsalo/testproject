@@ -4,13 +4,19 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="human")
+
+//Фикс
+//@AttributeOverride id хьюмана или
+//Убрать из хьюмана ID
+@Table(name="student", schema = "myschema")
 public class Student extends Human implements Serializable {
 
-
+    //повторно ID?
     @Id
     @Column(name="student_id")
-    @GeneratedValue
+    //@AttributeOverride()
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
 
     //Группа, в которой учится студент

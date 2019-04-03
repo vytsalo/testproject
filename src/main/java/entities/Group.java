@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="group")
+//груп переименовать - зарезервированное и отовсюду убрать
+@Table(name="group", schema = "myschema")
 public class Group implements Serializable  {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -21,7 +22,8 @@ public class Group implements Serializable  {
 
     @Id
     @Column(name="group_id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
 
     //Название группы
@@ -55,6 +57,30 @@ public class Group implements Serializable  {
                 ", teachers=" + teachers +
                 ", students=" + students +
                 '}';
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
     public Group() {}
