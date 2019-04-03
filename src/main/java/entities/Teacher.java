@@ -12,8 +12,6 @@ public class Teacher extends Human implements Serializable {
     //порядок связи?
     //список групп, в которых преподает
 
-
-
     //переопределять
     @Id
     @Column(name="teacher_id")

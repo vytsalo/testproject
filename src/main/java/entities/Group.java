@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 //груп переименовать - зарезервированное и отовсюду убрать
-@Table(name="group", schema = "myschema")
+@Table(name="gruppa", schema = "myschema")
 public class Group implements Serializable  {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -23,21 +23,11 @@ public class Group implements Serializable  {
     @Id
     @Column(name="group_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
 
     //Название группы
     @Column
     private String title;
-
-    /*
-    @ManyToMany(cascade = CascadeType.ALL,targetEntity = Teacher.class)
-    @JoinTable(name = "groups_teacher",
-            //имя колонки id с этой таблицы
-            joinColumns = { @JoinColumn(name = "group_id") },
-            //имя колонки id со второй таблицы (внешний ключ)
-            inverseJoinColumns = { @JoinColumn(name = "teacher_id") })*/
-
 
     //Список преподавателей в этой группе
 

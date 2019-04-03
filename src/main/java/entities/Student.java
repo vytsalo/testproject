@@ -3,18 +3,26 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
 
-//Фикс
-//@AttributeOverride id хьюмана или
-//Убрать из хьюмана ID
+
+
+/*
+ * ошибка fk
+ * @AttributeOverride id хьюмана или
+ * Убрать из хьюмана ID
+ *
+ *
+ *
+ *
+ * */
+//схему убрать отовсюду?
+@Entity
 @Table(name="student", schema = "myschema")
 public class Student extends Human implements Serializable {
 
     //повторно ID?
     @Id
     @Column(name="student_id")
-    //@AttributeOverride()
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private long id;

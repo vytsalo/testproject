@@ -5,10 +5,10 @@ import javax.persistence.*;
 @MappedSuperclass
 public abstract class Human{
 
-    @Id
+  /*  @Id
     @Column
     @GeneratedValue
-    private long id;
+    private long id;*/
 
     @Column
     private String fam;
@@ -25,14 +25,14 @@ public abstract class Human{
     @Column
     private String phone_number;
 
-    public long getId() {
+   /* public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
-
+*/
     public String getFam() {
         return fam;
     }
