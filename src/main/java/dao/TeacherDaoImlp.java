@@ -31,20 +31,21 @@ public class TeacherDaoImlp implements TeacherDao {
     //зачем?
     @Transactional
     @Override
-    public Teacher findById(String krit){
+    public Teacher findById(int id){
         //находим
         return new Teacher();
     }
 
     @Transactional
     @Override
-    public void delete(String krit){
+    public void deleteById(int id){
         //удаляем из бд все записи по критерию
     }
 
     //Дроп и апдейт
     //изменение значения поля или целой записи
-    public void update(List<Teacher> teachers){
+    //+список 
+    public void updateById(int i){
         //че-то делает
     }
 

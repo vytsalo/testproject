@@ -15,10 +15,10 @@ public interface TeacherDao {
     void add(Teacher teacher);
 
     //удаление
-    void delete(String krit);
+    void deleteById(int id);
 
-    //
-    void update(List<Teacher> teachers);
+    //String Query
+    void updateById(int id);
 
     //поиск
     Teacher findById(String krit);
