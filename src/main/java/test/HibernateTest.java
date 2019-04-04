@@ -9,6 +9,7 @@ import entities.Teacher;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import service.StudentServiceImpl;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -149,7 +150,8 @@ public class HibernateTest {
             session.close();
         }
 
-
+        StudentServiceImpl ssi= new StudentServiceImpl();
+        System.out.println(ssi.getStudentslist().toString());
 
 
     }
