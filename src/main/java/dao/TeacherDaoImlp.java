@@ -29,6 +29,9 @@ public class TeacherDaoImlp implements TeacherDao {
     }
 
     //зачем?
+    //тупо из себя вызывает дао методы?
+
+
     @Transactional
     @Override
     public Teacher findById(int id){
@@ -44,7 +47,7 @@ public class TeacherDaoImlp implements TeacherDao {
 
     //Дроп и апдейт
     //изменение значения поля или целой записи
-    //+список 
+    //+список
     public void updateById(int i){
         //че-то делает
     }
