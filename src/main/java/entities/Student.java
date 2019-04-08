@@ -3,9 +3,6 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
-
-
 /*
  * ошибка fk
  * @AttributeOverride id хьюмана или
@@ -20,7 +17,7 @@ import java.io.Serializable;
 @Table(name="student", schema = "myschema")
 public class Student extends Human implements Serializable {
 
-    //повторно ID?
+    //повторно ID?...
     @Id
     @Column(name="student_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

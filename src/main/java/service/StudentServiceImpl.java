@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 //почему именно так
 //из сервисов вызывается ДАО
 
@@ -32,7 +31,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
 }
-
 
 /*
 @Service

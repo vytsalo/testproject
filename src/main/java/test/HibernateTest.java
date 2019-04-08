@@ -47,12 +47,20 @@ public class HibernateTest {
         System.out.println(studentsList.get(0).toString());
         System.out.println(groupsList.get(0).toString());
 
-
         //группу добавить
-
 
         //Beggining
         //Ending
+
+
+        //new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)
+
+
+        //из-за айди??
+        Student g=new Student("Antonov","Anton","Antonovich","30.12.1974","28848884884", groupsList.get(2));
+        StudentServiceImpl ssi= new StudentServiceImpl();
+        ssi.add(g);
+
 
         SessionFactory session = HibernateUtil.getSessionFactory();
 
@@ -60,37 +68,14 @@ public class HibernateTest {
             Session cr = session.getCurrentSession();
             Transaction tr = cr.beginTransaction();
 
-
             //Добавляю студентов
-          for (int i = 0; i < studentsList.size(); i++) {
-                cr.saveOrUpdate(studentsList.get(i));
-            }
-
-
+            for (int i = 0; i < studentsList.size(); i++) cr.saveOrUpdate(studentsList.get(i));
             //Добавляю тичерсов
-            for (int i = 0; i < teachersList.size(); i++) {
-                cr.saveOrUpdate(teachersList.get(i));
-            }
-
-
-
-
-
+            for (int i = 0; i < teachersList.size(); i++) cr.saveOrUpdate(teachersList.get(i));
 
            //добавляю группы
             GroupDaoImpl gr=new GroupDaoImpl();
             gr.setGroupsList(groupsList);
-
-
-
-
-
-
-
-
-            /*  for (int i = 0; i < groupsList.size(); i++) {
-                cr.saveOrUpdate(groupsList.get(i));
-            }*/
 
             //Создаем критерию
             CriteriaBuilder builder = cr.getCriteriaBuilder();
@@ -149,11 +134,6 @@ public class HibernateTest {
             //закрываем сессию
             session.close();
         }
-
-        StudentServiceImpl ssi= new StudentServiceImpl();
-        System.out.println(ssi.getStudentslist().toString());
-
-
     }
 
 }
