@@ -56,6 +56,9 @@ public class HibernateTest {
         //new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)
 
 
+
+        //spring configuration 
+
         //из-за айди??
         Student g=new Student("Antonov","Anton","Antonovich","30.12.1974","28848884884", groupsList.get(2));
         StudentServiceImpl ssi= new StudentServiceImpl();

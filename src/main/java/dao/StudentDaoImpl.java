@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public class StudentDaoImpl implements StudentDao{
 
-    @PersistenceContext(type=PersistenceContextType.TRANSACTION, unitName = "src.main.entities.Student")
-    EntityManager em;
+    @PersistenceContext//(type=PersistenceContextType.TRANSACTION, unitName = "src.main.entities.Student")
+    EntityManager em;//=javax.persistence.EntityManager.class.newInstance().getEntityManagerFactory();
 
     /*@PersistenceContext
     EntityManager em= getEntityManagerFactory().createEntityManager();
@@ -37,6 +37,7 @@ public class StudentDaoImpl implements StudentDao{
     @Override
     public void add(Student student) {
         //персисг генерирует id а мердж надо добавлять с генератором
+       // if (!student.equals(null))
         em.persist(student);
     }
 

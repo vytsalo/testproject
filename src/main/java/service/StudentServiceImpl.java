@@ -1,6 +1,7 @@
 package service;
 
 import dao.StudentDao;
+import dao.StudentDaoImpl;
 import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,13 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentDao st_dao;
+    //екземпляр интерфейса
+    private StudentDao st_dao;//studentdaoimpl
 
     @Transactional
     @Override
     public void add(Student student){
+       // if (!student.equals(null))
         st_dao.add(student);
     }
 

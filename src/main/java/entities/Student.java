@@ -3,16 +3,6 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/*
- * ошибка fk
- * @AttributeOverride id хьюмана или
- * Убрать из хьюмана ID
- *
- *
- *
- *
- * */
-//схему убрать отовсюду?
 @Entity
 @Table(name="student", schema = "myschema")
 public class Student extends Human implements Serializable {
