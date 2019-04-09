@@ -15,7 +15,7 @@
             <artifactId>spring-context</artifactId>
             <version>4.3.7.RELEASE</version>
         </dependency>
-        <!-- Spring ORM -->
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
@@ -33,9 +33,6 @@
             <artifactId>commons-dbcp2</artifactId>
             <version>2.1.1</version>
         </dependency>
-
-
-
 
         <dependency>
             <groupId>org.hibernate</groupId>

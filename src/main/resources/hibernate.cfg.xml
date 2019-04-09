@@ -9,8 +9,6 @@
 
 		<property name="hibernate.default_schema">myschema</property><!-- NEW CRAP -->
 
-
-
 		<!-- Логин и пароль -->
         <property name="connection.username">postgres</property> <!-- DB User -->
    		<property name="connection.password">Disturbed_1</property> <!-- DB Password -->

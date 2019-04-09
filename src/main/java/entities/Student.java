@@ -18,6 +18,7 @@ public class Student extends Human implements Serializable {
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     private Group gruppa;
 
+    @SuppressWarnings("unused")
     public Student() {}
 
     public Student(String fam, String name, String otch, String date_of_birth, String phone_number, Group gruppa) {
@@ -25,10 +26,17 @@ public class Student extends Human implements Serializable {
         this.gruppa = gruppa;
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
-        return "Student{" +
-                "gruppa=" + gruppa +
+        return "____________________________________\nStudent{" +
+                "id = " +  this.getId() +
+                "gruppa = " + gruppa.toString() +
                 "} " + super.toString();
     }
+
+
 }
