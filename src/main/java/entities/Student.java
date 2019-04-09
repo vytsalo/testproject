@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="student", schema = "myschema")
+@Table(name="student")
 public class Student extends Human implements Serializable {
 
     //повторно ID?...

@@ -5,11 +5,6 @@ import javax.persistence.*;
 @MappedSuperclass
 public abstract class Human{
 
-  /*  @Id
-    @Column
-    @GeneratedValue
-    private long id;*/
-
     @Column
     private String fam;
 

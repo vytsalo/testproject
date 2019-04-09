@@ -6,28 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="teacher", schema = "myschema")
+@Table(name="teacher")
 public class Teacher extends Human implements Serializable {
 
-    //порядок связи?
-    //список групп, в которых преподает
-
-
-
-    //переопределять
     @Id
     @Column(name="teacher_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    //Почему нельзя арей лист сразу. почему с листа начинать?
-    //ерей лист - коллекция
-    //связь мени ту мени
-
-//только с одной стороны работает?
-
-    // каскадирование и целевая сущность(вторая)
-    //переименовать в teachers_id и groups_id
 
     @ManyToMany(cascade = CascadeType.ALL,targetEntity = Group.class)
     @JoinTable(name = "teacher_groups",

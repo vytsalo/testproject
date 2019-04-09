@@ -9,7 +9,7 @@ import java.util.List;
 //груп переименовать - зарезервированное и отовсюду убрать
 
 //не существует?
-@Table(name="gruppa", schema = "myschema")
+@Table(name="gruppa")
 public class Group implements Serializable  {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -46,8 +46,8 @@ public class Group implements Serializable  {
     public String toString() {
         return "Group{" +
                 "title='" + title + '\'' +
-                ", teachers=" + teachers +
-                ", students=" + students +
+                ", teachers=" + teachers.toString() +
+                ", students=" + students.toString() +
                 '}';
     }
 
