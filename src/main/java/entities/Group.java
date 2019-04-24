@@ -34,7 +34,7 @@ public class Group implements Serializable  {
     //Список преподавателей в этой группе
 
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups")
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups", fetch=FetchType.EAGER)
     private List<Teacher> teachers = new ArrayList();
 
     //group - из другой таблицы
