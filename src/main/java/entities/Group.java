@@ -42,7 +42,8 @@ public class Group implements Serializable  {
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
 
- /*   @Override
+/*
+    @Override
     public String toString() {
         return "Group{" +
                 "title='" + this.getTitle() + '\'' +

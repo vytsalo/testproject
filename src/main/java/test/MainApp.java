@@ -54,82 +54,18 @@ public class MainApp {
         studentService.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
 
 
+        System.out.println("______________________________");
+        System.out.println("______________________________");
+        System.out.println("______________________________");
+
+
         List <Student> studentsList = studentService.getStudentslist();
+
+
         for (Student student: studentsList)
-            student.toString();
+            System.out.println(student.toString());
 
         context.close();
-
-
-        /*
-        System.out.println(teachersList.get(0).toString());
-        System.out.println(studentService.get(0).toString());
-        System.out.println(groupsList.get(0).toString());
-
-        Student g=new Student("Antonov","Anton","Antonovich","30.12.1974","28848884884", groupsList.get(2));
-        StudentServiceImpl ssi= new StudentServiceImpl();
-        ssi.add(g);
-
-        SessionFactory session = HibernateUtil.getSessionFactory();
-
-        try {
-            Session cr = session.getCurrentSession();
-            Transaction tr = cr.beginTransaction();
-
-            //Добавляю студентов
-            for (int i = 0; i < studentService.size(); i++) cr.saveOrUpdate(studentService.get(i));
-            //Добавляю тичерсов
-            for (int i = 0; i < teachersList.size(); i++) cr.saveOrUpdate(teachersList.get(i));
-
-           //добавляю группы
-            GroupDaoImpl gr=new GroupDaoImpl();
-            gr.setGroupsList(groupsList);
-
-            //Создаем критерию
-            CriteriaBuilder builder = cr.getCriteriaBuilder();
-            CriteriaQuery<Student> query = builder.createQuery(Student.class);
-            Root<Student> root = query.from(Student.class);
-            //from и тд
-            query.select(root);//тут
-
-            //Найти в классе поле равное 3(id)
-            query.where(builder.equal(root.get("fam"), "Sergeev"));
-
-            Query q=cr.createQuery(query);
-            List<Student> list = q.getResultList();
-
-            System.out.println("_______________________");
-            System.out.println("_______________________");
-            System.out.println("_______________________");
-            System.out.println("_______________________");
-            System.out.println("_______________________");
-            System.out.println("_______________________");
-            System.out.println("_______Результат_______");
-
-            if (list.size()==0) System.out.println("Ничего не найдено");
-            else
-                for (int i = 0; i < list.size(); i++)
-                    System.out.println(list.get(i).toString() + "\n");
-
-            cr.flush();
-
-            tr.commit();
-
-            System.out.println("It's all over");
-
-        }
-        catch(Exception ex)
-        {
-            System.out.println("Ошибка " + ex);
-        }
-        finally {
-            //закрываем сессию
-            session.close();
-        }*/
-
-
-
-
 
     }
 

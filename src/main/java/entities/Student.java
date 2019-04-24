@@ -28,15 +28,16 @@ public class Student extends Human implements Serializable {
     public long getId() {
         return id;
     }
-/*
+
     @Override
     public String toString() {
-        return "____________________________________\nStudent{" +
+        return "Student{" +
                 "id = " +  this.getId() +
-                "gruppa = " + this.getGruppa().toString() +
-                "} " + super.toString();
-    }*/
+                " gruppa = " + this.getGruppa().toString() +
+                super.toString() + "}\n";
+    }
 
+    //гетерами конструктор новый
     public void setId(long id) {
         this.id = id;
     }
