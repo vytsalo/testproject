@@ -78,7 +78,7 @@ public abstract class Human{
         this.phone_number = phone_number;
     }
 
-    @Override
+/*    @Override
     public String toString() {
         return "Human{" +
                 "fam='" + this.getFam() + '\'' +
@@ -87,6 +87,6 @@ public abstract class Human{
                 ", date_of_birth='" + this.getDate_of_birth() + '\'' +
                 ", phone_number='" + this.getPhone_number() + '\'' +
                 '}';
-    }
+    }*/
 
 }

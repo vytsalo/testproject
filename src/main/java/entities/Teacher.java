@@ -34,12 +34,12 @@ public class Teacher extends Human implements Serializable {
         this.groups = groups;
     }
 
-    @Override
+  /*  @Override
     public String toString() {
         return "Teacher{" +
                 "groups=" + this.getGroups().toString() +
                 "} " + super.toString();
     }
-
+*/
     public Teacher(){}
 }

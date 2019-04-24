@@ -2,13 +2,11 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.StringJoiner;
 
 @Entity
 @Table(name="student")
 public class Student extends Human implements Serializable {
 
-    //повторно ID?...
     @Id
     @Column(name="student_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,14 +28,14 @@ public class Student extends Human implements Serializable {
     public long getId() {
         return id;
     }
-
+/*
     @Override
     public String toString() {
         return "____________________________________\nStudent{" +
                 "id = " +  this.getId() +
                 "gruppa = " + this.getGruppa().toString() +
                 "} " + super.toString();
-    }
+    }*/
 
     public void setId(long id) {
         this.id = id;
@@ -47,6 +45,7 @@ public class Student extends Human implements Serializable {
         return gruppa;
     }
 
+    @SuppressWarnings("unused")
     public void setGruppa(Group gruppa) {
         this.gruppa = gruppa;
     }
