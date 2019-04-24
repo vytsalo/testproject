@@ -49,6 +49,17 @@ public class Teacher extends Human implements Serializable {
                 "} " + super.toString();
     }
 
+    public static String toStrung(List<Teacher> teachers) {
+        String str="";
+        for (int i = 0; i < teachers.size(); i++) {
+            str+= teachers.get(i).getFam() + " " +
+                  teachers.get(i).getName() + " " +
+                  teachers.get(i).getOtch() + " " +
+                  teachers.get(i).getDate_of_birth() + " " +
+                  teachers.get(i).getPhone_number() + "\n";
+        }
+        return str;
+    }
 
 
     public Teacher(){}

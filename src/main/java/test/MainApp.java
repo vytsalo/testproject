@@ -23,7 +23,10 @@ public class MainApp {
         groupsList.add(new Group("332"));
 
 
-/*---------------------------------------------------------------------------------------------------------*/
+
+
+
+        /*---------------------------------------------------------------------------------------------------------*/
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(config.AppConfig.class);//config.appconfig.class
 
@@ -78,12 +81,15 @@ public class MainApp {
         for (Teacher teacher: teacherList)
             System.out.println(teacher.toString());
 
-
-
-
-
-
         context.close();
+
+
+
+        for (Group group: groupsList)
+            System.out.println(group.toString());
+
+
+
 
     }
 

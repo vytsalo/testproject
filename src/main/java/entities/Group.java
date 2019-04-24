@@ -52,6 +52,39 @@ public class Group implements Serializable  {
                 '}';
     }
 */
+
+    //удалить группу из группы ту стринг
+
+    /*@Override
+    public String toString(){
+        return "Group{ " +
+               " title=" + this.getTitle() +
+               " teachers{" + teachers.toString() + "}";
+    }
+    */
+
+
+  /*  @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", teachers=" + teachers.toString() +
+                ", students=" + students.toString() +
+                '}';
+    }
+*/
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", teachers=" + Teacher.toStrung(this.getTeachers()) +
+                //   ", students=" + this.getStudents() +
+                '}';
+    }
+
     public String getTitle() {
         return title;
     }
