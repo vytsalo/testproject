@@ -37,7 +37,7 @@ public class Teacher extends Human implements Serializable {
     @Override
     public String toString() {
         return "Teacher{" +
-                "groups=" + groups +
+                "groups=" + this.getGroups().toString() +
                 "} " + super.toString();
     }
 

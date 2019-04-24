@@ -27,7 +27,10 @@
             <property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
 
 
-	 </properties>
+            <!-- fix error -->
+             <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+         
+     </properties>
 
   </persistence-unit>
 </persistence>

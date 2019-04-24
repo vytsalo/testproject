@@ -45,6 +45,7 @@ public class MainApp {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(config.AppConfig.class);//config.appconfig.class
 
+
         //.class
         StudentService studentService = context.getBean(StudentService.class);
 
