@@ -2,6 +2,7 @@ package dao;
 
 import entities.Teacher;
 import org.hibernate.Criteria;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
@@ -11,45 +12,18 @@ import javax.persistence.criteria.Root;
 
 import java.util.List;
 
-//Как отслеживать изменения в бд (тригер хук)
-//обязательно все должен реализовывать
+//CREATE READ UPDATE DELETE
+@Repository
 public class TeacherDaoImlp implements TeacherDao {
 
-    //CREATE READ UPDATE DELETE
-
-    //Так воть
     @PersistenceContext
-    private EntityManager em;
+    EntityManager em;
 
     //добавление записи в конец бд
     @Transactional
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
-    }
-
-    //зачем?
-    //тупо из себя вызывает дао методы?
-
-
-    @Transactional
-    @Override
-    public Teacher findById(int id){
-        //находим
-        return new Teacher();
-    }
-
-    @Transactional
-    @Override
-    public void deleteById(int id){
-        //удаляем из бд все записи по критерию
-    }
-
-    //Дроп и апдейт
-    //изменение значения поля или целой записи
-    //+список
-    public void updateById(int i){
-        //че-то делает
     }
 
     @Override

@@ -34,6 +34,13 @@ public class Teacher extends Human implements Serializable {
         this.groups = groups;
     }
 
+    @SuppressWarnings("unused")
+    public Teacher(String fam, String name, String otch, String date_of_birth, String phone_number) {
+        super(fam, name, otch, date_of_birth, phone_number);
+    }
+
+
+
     //тичер вызывает группу, а в группе есть тичер
     @Override
     public String toString() {
@@ -41,6 +48,8 @@ public class Teacher extends Human implements Serializable {
                 "groups=" + this.getGroups().toString() +
                 "} " + super.toString();
     }
+
+
 
     public Teacher(){}
 }

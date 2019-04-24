@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-//почему именно так
-//из сервисов вызывается ДАО
-
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -29,28 +26,8 @@ public class StudentServiceImpl implements StudentService {
     //зачем дополнительно прописывать ридонли, если оно и так ридонли?
     @Transactional(readOnly = true)
     @Override
-    public List<Student> getStudentslist(){
+    public List<Student> getStudentsList(){
         return st_dao.getStudentsList();
     }
 
 }
-
-/*
-@Service
-public class PersonServiceImp implements PersonService {
-
-   @Autowired
-   private PersonDao userDao;
-
-   @Transactional
-   @Override
-   public void add(Person person) {
-      userDao.add(person);
-   }
-
-   @Transactional(readOnly = true)
-   @Override
-   public List<Person> listPersons() {
-      return userDao.listPersons();
-   }
-*/
