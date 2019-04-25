@@ -24,8 +24,6 @@ public class MainApp {
 
 
 
-
-
         /*---------------------------------------------------------------------------------------------------------*/
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(config.AppConfig.class);//config.appconfig.class
@@ -45,6 +43,7 @@ public class MainApp {
         //В разных контекстах делать?
 
         //Преподаватели
+
         TeacherService teacherService = context.getBean(TeacherService.class);
 
         //костыль с нуловыми группами
@@ -53,13 +52,9 @@ public class MainApp {
         teacherService.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
         teacherService.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
 
-        //групп нет в бд?
-
-
         System.out.println("______________________________");
         System.out.println("_______Студенты_______________");
         System.out.println("______________________________");
-
 
         List <Student> studentsList = studentService.getStudentsList();
 
@@ -85,12 +80,22 @@ public class MainApp {
 
 
 
+        List<Teacher> tslist= new ArrayList();
+        tslist.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
+        tslist.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
+        tslist.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
+        tslist.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
+
+
+        groupsList.get(0).setTeachers(tslist);
+        groupsList.get(1).setTeachers(tslist);
+        groupsList.get(2).setTeachers(tslist);
+        groupsList.get(3).setTeachers(tslist);
+
         for (Group group: groupsList)
             System.out.println(group.toString());
 
-
-
-
+        
     }
 
 }

@@ -81,6 +81,9 @@ public class Group implements Serializable  {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", teachers=" + Teacher.toStrung(this.getTeachers()) +
+                //циклом список???
+                //this.getStudents().get(0).getId();
+                //this.getStudents().get(0).getName();
                 //   ", students=" + this.getStudents() +
                 '}';
     }
@@ -110,4 +113,11 @@ public class Group implements Serializable  {
     }
 
     public Group() {}
+
+    public Group(long id, String title, List<Teacher> teachers, List<Student> students) {
+        this.id = id;
+        this.title = title;
+        this.teachers = teachers;
+        this.students = students;
+    }
 }
