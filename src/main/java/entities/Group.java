@@ -7,8 +7,8 @@ import java.util.List;
 
 @Entity
 //груп переименовать - зарезервированное и отовсюду убрать
-
-//не существует?
+//зарезервированное в таблице
+//сделать рефактор gruppa - group
 @Table(name="gruppa")
 public class Group implements Serializable  {
 
@@ -32,7 +32,6 @@ public class Group implements Serializable  {
     private String title;
 
     //Список преподавателей в этой группе
-
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
     //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups", fetch=FetchType.EAGER)
@@ -43,25 +42,19 @@ public class Group implements Serializable  {
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
 
-
-
-
-      @Override
+    @Override
     public String toString() {
-        return "Group{" +
+        return  "__________________________\n" +
+                "Group{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", teachers={\n" + Teacher.toStrung(this.getTeachers()) + "\n}" +
-                ", students={'n" + Student.toStrung(this.getStudents()) + "\n}" +
-
-
-                //циклом список???
-                //this.getStudents().get(0).getId();
-                //this.getStudents().get(0).getName();
-                //   ", students=" + this.getStudents() +
-                '}';
+                "\n teachers:{\n" + Teacher.toStrung(this.getTeachers()) + "\n}" +
+                "\n students:{'\n" + Student.toStrung(this.getStudents()) + "\n}" +
+                "}\n" +
+                "__________________________\n";
     }
 
+    @SuppressWarnings("unused")
     public String getTitle() {
         return title;
     }
@@ -86,6 +79,7 @@ public class Group implements Serializable  {
         this.students = students;
     }
 
+    @SuppressWarnings("unused")
     public Group() {}
 
     public Group(long id, String title, List<Teacher> teachers, List<Student> students) {
