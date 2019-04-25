@@ -13,7 +13,7 @@ public interface TeacherDao {
     List<Teacher> getTeachersList();
 
     //обновление
-    void update(Teacher teacher);
+    void update(Long teacherId);
 
     //поиск объекта по айди
     Teacher findById(Long teacherId);

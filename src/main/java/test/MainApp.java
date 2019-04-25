@@ -52,6 +52,16 @@ public class MainApp {
         teacherService.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
         teacherService.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
 
+        //через файнд?
+        //teacherService.update();
+
+        //удаляем препода с Id=10
+        teacherService.delete(new Long(10));
+
+        //выводим препода с id = 9
+        System.out.println(teacherService.findById(new Long(9)).toString());
+
+
         System.out.println("______________________________");
         System.out.println("_______Студенты_______________");
         System.out.println("______________________________");
@@ -71,9 +81,11 @@ public class MainApp {
 
         List <Teacher> teacherList = teacherService.getTeachersList();
 
-
         for (Teacher teacher: teacherList)
             System.out.println(teacher.toString());
+
+
+
 
         context.close();
 

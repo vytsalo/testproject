@@ -37,8 +37,10 @@ public class TeacherDaoImlp implements TeacherDao {
 
     @Override
     @Transactional
-    public void update(Teacher teacher) {
-        //return em.merge(teacher);
+    public void update(Long teacherId) {
+        Teacher teacher = em.find(Teacher.class,teacherId);
+        if (teacher==null)
+            throw new EntityNotFoundException("Преподаватель с ID =" + teacherId + "не найден");
         em.merge(teacher);
     }
 

@@ -27,10 +27,11 @@ public class TeacherServiceImpl implements TeacherService {
         return teach_dao.getTeachersList();
     }
 
+    //добавить поиск по сущности
     @Override
     @Transactional
-    public void update(Teacher teacher) {
-        teach_dao.update(teacher);
+    public void update(Long teacherId) {
+        teach_dao.update(teacherId);
     }
 
     @Override

@@ -44,7 +44,7 @@ public class Teacher extends Human implements Serializable {
     //тичер вызывает группу, а в группе есть тичер
     @Override
     public String toString() {
-        return "Teacher{" +
+        return "Teacher{"  + this.getId() + " "+
                 "groups=" + this.getGroups().toString() +
                 "} " + super.toString();
     }
@@ -61,6 +61,13 @@ public class Teacher extends Human implements Serializable {
         return str;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public Teacher(){}
 }
