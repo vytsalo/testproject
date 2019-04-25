@@ -34,6 +34,7 @@ public class Group implements Serializable  {
     //Список преподавателей в этой группе
 
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
+    //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
     @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups", fetch=FetchType.EAGER)
     private List<Teacher> teachers = new ArrayList();
 
@@ -42,45 +43,18 @@ public class Group implements Serializable  {
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
 
-/*
-    @Override
-    public String toString() {
-        return "Group{" +
-                "title='" + this.getTitle() + '\'' +
-                ", teachers=" + teachers.toString() +
-                ", students=" + students.toString() +
-                '}';
-    }
-*/
-
-    //удалить группу из группы ту стринг
-
-    /*@Override
-    public String toString(){
-        return "Group{ " +
-               " title=" + this.getTitle() +
-               " teachers{" + teachers.toString() + "}";
-    }
-    */
 
 
-  /*  @Override
+
+      @Override
     public String toString() {
         return "Group{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", teachers=" + teachers.toString() +
-                ", students=" + students.toString() +
-                '}';
-    }
-*/
+                ", teachers={\n" + Teacher.toStrung(this.getTeachers()) + "\n}" +
+                ", students={'n" + Student.toStrung(this.getStudents()) + "\n}" +
 
-    @Override
-    public String toString() {
-        return "Group{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", teachers=" + Teacher.toStrung(this.getTeachers()) +
+
                 //циклом список???
                 //this.getStudents().get(0).getId();
                 //this.getStudents().get(0).getName();

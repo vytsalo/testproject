@@ -27,4 +27,19 @@ public class TeacherServiceImpl implements TeacherService {
         return teach_dao.getTeachersList();
     }
 
+    @Override
+    @Transactional
+    public void update(Teacher teacher) {
+        teach_dao.update(teacher);
+    }
+
+    @Override
+    public Teacher findById(Long teacherId) {
+        teach_dao.findById(teacherId);
+    }
+
+    @Override
+    public void delete(Long teacherId) {
+        teach_dao.delete(teacherId);
+    }
 }

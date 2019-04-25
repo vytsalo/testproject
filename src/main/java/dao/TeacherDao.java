@@ -12,5 +12,13 @@ public interface TeacherDao {
     //список всех тичеров, имеющихся в бд
     List<Teacher> getTeachersList();
 
-    //ретурнить список с удаленным?
+    //обновление
+    void update(Teacher teacher);
+
+    //поиск объекта по айди
+    Teacher findById(Long teacherId);
+
+    //удаление по объекту
+    void delete(Long teacherId);
+
 }

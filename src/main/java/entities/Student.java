@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="student")
@@ -50,4 +51,17 @@ public class Student extends Human implements Serializable {
     public void setGruppa(Group gruppa) {
         this.gruppa = gruppa;
     }
+
+    public static String toStrung(List<Student> students) {
+        String str="";
+        for (int i = 0; i < students.size(); i++) {
+            str+= students.get(i).getFam() + " " +
+                    students.get(i).getName() + " " +
+                    students.get(i).getOtch() + " " +
+                    students.get(i).getDate_of_birth() + " " +
+                    students.get(i).getPhone_number() + "\n";
+        }
+        return str;
+    }
+
 }

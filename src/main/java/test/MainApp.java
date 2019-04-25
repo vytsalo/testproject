@@ -64,7 +64,6 @@ public class MainApp {
 
 
 
-
         System.out.println("______________________________");
         System.out.println("_______Преподаватели__________");
         System.out.println("______________________________");
@@ -92,10 +91,23 @@ public class MainApp {
         groupsList.get(2).setTeachers(tslist);
         groupsList.get(3).setTeachers(tslist);
 
+
+        List<Student> stdlist= new ArrayList();
+
+        stdlist.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
+        stdlist.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
+        stdlist.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
+
+        groupsList.get(0).setStudents(stdlist);
+        groupsList.get(1).setStudents(stdlist);
+        groupsList.get(2).setStudents(stdlist);
+        groupsList.get(3).setStudents(stdlist);
+
+
         for (Group group: groupsList)
             System.out.println(group.toString());
 
-        
+
     }
 
 }
