@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+//Из дао транзакции убрать
 
 @Repository
 public class StudentDaoImpl implements StudentDao{
