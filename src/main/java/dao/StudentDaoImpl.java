@@ -16,7 +16,7 @@ public class StudentDaoImpl implements StudentDao{
     EntityManager em;
 
     
-    @Transactional//!!!
+    @Transactional
     @Override
     public void add(Student student) {
         em.persist(student);
@@ -33,5 +33,25 @@ public class StudentDaoImpl implements StudentDao{
     }
 
 
+    @Override
+    @Transactional
+    public void update(Student student){
+        em.merge(student);
+    }
+
+    @Transactional
+    @Override
+    public Student findById(Long studentId){
+        Student student=em.find(Student.class, studentId);
+        if (student==null)
+            throw new EntityNotFoundException("Студент с Id=" + studentId + " не найден");
+        return student;
+    }
+
+    public void delete(Long studentId){
+        Student student = em.find(Student.class, studentId);
+        if (student != null) em.remove(student);
+        else throw new EntityNotFoundException("Студент с Id=" + studentId + " не найден");
+    }
 
 }

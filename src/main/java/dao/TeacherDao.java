@@ -3,7 +3,7 @@ package dao;
 import entities.Teacher;
 import java.util.List;
 
-//CRUD
+//TEACHERS CRUD
 public interface TeacherDao {
 
     //добавление

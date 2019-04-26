@@ -41,7 +41,6 @@ public class Group implements Serializable  {
     //мапедбай - переменная из другого класса
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
-
     @Override
     public String toString() {
         return  "__________________________\n" +
@@ -88,4 +87,8 @@ public class Group implements Serializable  {
         this.teachers = teachers;
         this.students = students;
     }
+
+
+
+
 }

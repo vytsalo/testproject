@@ -33,8 +33,8 @@ public class Student extends Human implements Serializable {
     @Override
     public String toString() {
         return "Student{" +
-                "id = " +  this.getId() +
-                " gruppa = " + this.getGruppa().toString() +
+                "id = " +  id +
+                " gruppa = " + gruppa + //this.getGruppa().toString() +
                 super.toString() + "}\n";
     }
 

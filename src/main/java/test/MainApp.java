@@ -58,30 +58,33 @@ public class MainApp {
             teacherService.add(tslist.get(i));
         }
 
-        //костыль с нуловыми группами
-        /*teacherService.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
-        teacherService.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
-        teacherService.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
-        teacherService.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
-*/
-        //через файнд?
-        //teacherService.update();
+
+
+
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
 
 
         //Переименовываем Ивана во Владимира
         tslist.get(0).setName("Владимир");
         teacherService.update(tslist.get(0));
 
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+
         //удаляем препода с Id=10
         teacherService.delete(new Long(10));
 
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+
         //выводим препода с id = 9
-
-        System.out.println("________________________________");
-        System.out.println("________________________________");
-        System.out.println("________________________________");
-        System.out.println("________________________________");
-
         System.out.println(teacherService.findById(new Long(9)).toString());
 
         System.out.println("________________________________");
