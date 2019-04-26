@@ -46,20 +46,52 @@ public class MainApp {
 
         TeacherService teacherService = context.getBean(TeacherService.class);
 
+
+        List<Teacher> tslist= new ArrayList();
+        tslist.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
+        tslist.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
+        tslist.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
+        tslist.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
+
+
+        for (int i = 0; i < tslist.size(); i++) {
+            teacherService.add(tslist.get(i));
+        }
+
         //костыль с нуловыми группами
-        teacherService.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
+        /*teacherService.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
         teacherService.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
         teacherService.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
         teacherService.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
-
+*/
         //через файнд?
         //teacherService.update();
+
+
+        //Переименовываем Ивана во Владимира
+        tslist.get(0).setName("Владимир");
+        teacherService.update(tslist.get(0));
 
         //удаляем препода с Id=10
         teacherService.delete(new Long(10));
 
         //выводим препода с id = 9
+
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+
         System.out.println(teacherService.findById(new Long(9)).toString());
+
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+        System.out.println("________________________________");
+
+
+
+
 
 
         System.out.println("______________________________");
@@ -91,11 +123,6 @@ public class MainApp {
 
 
 
-        List<Teacher> tslist= new ArrayList();
-        tslist.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
-        tslist.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
-        tslist.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
-        tslist.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
 
 
         groupsList.get(0).setTeachers(tslist);
