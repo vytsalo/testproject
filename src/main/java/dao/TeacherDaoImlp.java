@@ -15,8 +15,10 @@ import java.util.List;
 
 //CREATE READ UPDATE DELETE
 @Repository
+@SuppressWarnings("unused")
 public class TeacherDaoImlp implements TeacherDao {
 
+    //почему в примере дао без транзакшоналов, а тут не работает
     @PersistenceContext
     EntityManager em;
 

@@ -26,10 +26,11 @@
 
             <property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
 
-
             <!-- fix error -->
-             <property name="hibernate.enable_lazy_load_no_trans" value="true" />
-
+         <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+<!--
+         <property name="current_session_context_class" value="thread" />
+-->
      </properties>
 
   </persistence-unit>

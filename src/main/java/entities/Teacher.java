@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name="teacher")
+@SuppressWarnings("unused")
 public class Teacher extends Human implements Serializable {
 
     @Id

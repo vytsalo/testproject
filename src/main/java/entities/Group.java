@@ -1,5 +1,9 @@
 package entities;
 
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.Proxy;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +14,8 @@ import java.util.List;
 //зарезервированное в таблице
 //сделать рефактор gruppa - group
 @Table(name="gruppa")
+//@Proxy(lazy=false)
+@SuppressWarnings("unused")
 public class Group implements Serializable  {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -41,7 +47,8 @@ public class Group implements Serializable  {
     //мапедбай - переменная из другого класса
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
     private List<Student> students = new ArrayList();
-    @Override
+
+   /* @Override
     public String toString() {
         return  "__________________________\n" +
                 "Group{" +
@@ -52,6 +59,30 @@ public class Group implements Serializable  {
                 "}\n" +
                 "__________________________\n";
     }
+*/
+
+
+   //контекст закрыт, а метод вызывается
+    @Override
+    //@Transactional
+    public String toString() {
+       /*
+        Hibernate.initialize(Group.class);
+        Hibernate.initialize(Student.class);
+        Hibernate.initialize(Teacher.class);
+     */
+
+     /*  Group group = new Group("ыыы");
+       group.getChilds().size();*/
+       return "Group{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", teachers=" + teachers.toString() +
+                ", students=" + students.toString() +
+                '}';
+   }
+
+    //мапедбай.гетКоммент инитиалайз.
 
     @SuppressWarnings("unused")
     public String getTitle() {

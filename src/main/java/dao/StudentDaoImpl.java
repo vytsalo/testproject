@@ -11,6 +11,7 @@ import java.util.List;
 //Из дао транзакции убрать
 
 @Repository
+@SuppressWarnings("unused")
 public class StudentDaoImpl implements StudentDao{
 
     @PersistenceContext
@@ -28,7 +29,6 @@ public class StudentDaoImpl implements StudentDao{
     @Transactional
     public List<Student> getStudentsList(){
         CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
-        //@SuppressWarnings("unused")
         Root<Student> root = criteriaQuery.from(Student.class);
         return em.createQuery(criteriaQuery).getResultList();
     }
@@ -49,6 +49,8 @@ public class StudentDaoImpl implements StudentDao{
         return student;
     }
 
+    @Transactional
+    @Override
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);
         if (student != null) em.remove(student);
