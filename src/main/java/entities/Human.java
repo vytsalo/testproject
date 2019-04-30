@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 
 @MappedSuperclass
+@SuppressWarnings("unused")
 public abstract class Human{
 
     @Column
@@ -20,14 +21,6 @@ public abstract class Human{
     @Column
     private String phone_number;
 
-   /* public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-*/
     public String getFam() {
         return fam;
     }

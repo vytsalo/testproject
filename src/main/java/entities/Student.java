@@ -2,7 +2,6 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Table(name="student")
@@ -15,7 +14,7 @@ public class Student extends Human implements Serializable {
     private long id;
 
     //Группа, в которой учится студент
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL)//-fetch
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     private Group gruppa;
 
@@ -53,7 +52,7 @@ public class Student extends Human implements Serializable {
         this.gruppa = gruppa;
     }
 
-    public static String toStrung(List<Student> students) {
+ /*   public static String toStrung(List<Student> students) {
         String str="";
         for (int i = 0; i < students.size(); i++) {
             str+= students.get(i).getFam() + " " +
@@ -64,5 +63,5 @@ public class Student extends Human implements Serializable {
         }
         return str;
     }
-
+*/
 }

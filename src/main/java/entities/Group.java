@@ -1,9 +1,5 @@
 package entities;
 
-import org.hibernate.Hibernate;
-import org.hibernate.annotations.Proxy;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,12 +36,12 @@ public class Group implements Serializable  {
     //Список преподавателей в этой группе
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
     //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
-    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups", fetch=FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,mappedBy = "groups", fetch = FetchType.LAZY)//, fetch=FetchType.EAGER)
     private List<Teacher> teachers = new ArrayList();
 
     //group - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, cascade=CascadeType.ALL, fetch = FetchType.LAZY)//-fetch
     private List<Student> students = new ArrayList();
 
    /* @Override
@@ -60,7 +56,6 @@ public class Group implements Serializable  {
                 "__________________________\n";
     }
 */
-
 
    //контекст закрыт, а метод вызывается
     @Override
@@ -118,8 +113,5 @@ public class Group implements Serializable  {
         this.teachers = teachers;
         this.students = students;
     }
-
-
-
 
 }

@@ -4,12 +4,14 @@ import entities.Group;
 import entities.Student;
 import entities.Teacher;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class MainApp {
 
     public static void main(String[] args) {
@@ -22,16 +24,11 @@ public class MainApp {
         groupsList.add(new Group("251"));
         groupsList.add(new Group("332"));
 
-
-
         /*---------------------------------------------------------------------------------------------------------*/
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(config.AppConfig.class);//config.appconfig.class
 
-
-
         //Студенты
-
 
         //.class
         StudentService studentService = context.getBean(StudentService.class);
@@ -94,9 +91,6 @@ public class MainApp {
 
 
 
-
-
-
         System.out.println("______________________________");
         System.out.println("_______Студенты_______________");
         System.out.println("______________________________");
@@ -121,18 +115,13 @@ public class MainApp {
 
 
 
-
-        context.close();
-
-
-
-
+        /*------------------------------------------------------------------------------------*/
+        /*----------------------Группа--------------------------------------------------------*/
 
         groupsList.get(0).setTeachers(tslist);
         groupsList.get(1).setTeachers(tslist);
         groupsList.get(2).setTeachers(tslist);
         groupsList.get(3).setTeachers(tslist);
-
 
         List<Student> stdlist= new ArrayList();
 
@@ -146,8 +135,23 @@ public class MainApp {
         groupsList.get(3).setStudents(stdlist);
 
 
-        for (Group group: groupsList)
+
+        GroupService groupService = context.getBean(GroupService.class);
+
+        groupService.add(groupsList.get(0));
+        groupService.add(groupsList.get(1));
+        groupService.add(groupsList.get(2));
+        groupService.add(groupsList.get(3));
+
+
+        List <Group> groupList = groupService.getGroupsList();
+
+        for (Group group: groupList)
             System.out.println(group.toString());
+
+
+        context.close();
+
 
 
     }
