@@ -7,11 +7,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class MainApp {
 
     public static void main(String[] args) {
