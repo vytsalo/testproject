@@ -2,8 +2,6 @@ package dao;
 
 import entities.Group;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
@@ -14,9 +12,9 @@ import java.util.List;
 @Repository
 @SuppressWarnings("unused")
 public class GroupDaoImpl implements GroupDao {
+
     @PersistenceContext
-    private//(type = PersistenceContextType.EXTENDED)
-    EntityManager em;
+    private EntityManager em;
 
     @Override
     public void add(Group group){

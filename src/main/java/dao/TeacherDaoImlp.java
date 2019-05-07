@@ -19,19 +19,16 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class TeacherDaoImlp implements TeacherDao {
 
-    //почему в примере дао без транзакшоналов, а тут не работает
-    @PersistenceContext//(type = PersistenceContextType.EXTENDED)
-    EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     //добавление записи в конец бд
-    //@Transactional
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
     }
 
     @Override
-    //@Transactional
     public List<Teacher> getTeachersList(){
         CriteriaQuery<Teacher> criteriaQuery = em.getCriteriaBuilder().createQuery(Teacher.class);
         Root<Teacher> root = criteriaQuery.from(Teacher.class);
@@ -39,16 +36,12 @@ public class TeacherDaoImlp implements TeacherDao {
     }
 
     @Override
-    //@Transactional
     public void update(Teacher teacher) {
    		em.merge(teacher);
     }
 
-
-    //не обязательно
     //ретурнит сущность по id
     @Override
-    //@Transactional
     public Teacher findById(Long teacherId) {
         Teacher teacher = em.find(Teacher.class,teacherId);
         if (teacher==null)
@@ -58,7 +51,6 @@ public class TeacherDaoImlp implements TeacherDao {
 
     //удаляет сущность по id
     @Override
-    //@Transactional
     public void delete(Long teacherId) {
        Teacher teacher = em.find(Teacher.class, teacherId);
        if (teacher != null) em.remove(teacher);

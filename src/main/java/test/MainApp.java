@@ -24,58 +24,79 @@ public class MainApp {
         groupsList.add(new Group("251"));
         groupsList.add(new Group("332"));
 
-        /*---------------------------------------------------------------------------------------------------------*/
-
-
-
-
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(config.AppConfig.class);//config.appconfig.class
-
-
-
-
-
-
-        GroupService groupService = context.getBean(GroupService.class);
-
-
-        groupService.add(groupsList.get(0));
-        groupService.add(groupsList.get(1));
-        groupService.add(groupsList.get(2));
-        groupService.add(groupsList.get(3));
-
-
-
-
-
-        //Студенты
-
-        //.class
-        StudentService studentService = context.getBean(StudentService.class);
-
-        studentService.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
-        studentService.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
-        studentService.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
-
-        //В разных контекстах делать?
-
-        //Преподаватели
-
-        TeacherService teacherService = context.getBean(TeacherService.class);
-
-
+        //Список преподавателей
         List<Teacher> tslist= new ArrayList();
         tslist.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
         tslist.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
         tslist.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
         tslist.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
 
+        //Список студентов
+        List<Student> stdlist= new ArrayList();
+        stdlist.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
+        stdlist.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
+        stdlist.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
 
-        for (int i = 0; i < tslist.size(); i++) {
+        //Циклом адекватно
+        //Передаем преподавателей в группу
+        groupsList.get(0).setTeachers(tslist);
+        groupsList.get(1).setTeachers(tslist);
+        groupsList.get(2).setTeachers(tslist);
+        groupsList.get(3).setTeachers(tslist);
+
+        //Передаем студентов в группу
+        groupsList.get(0).setStudents(stdlist);
+        groupsList.get(1).setStudents(stdlist);
+        groupsList.get(2).setStudents(stdlist);
+        groupsList.get(3).setStudents(stdlist);
+
+
+        /*-----------------------------Контексты------------------------------------------------------------------*/
+
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(config.AppConfig.class);
+
+        /*------------------------------------------------------------------------------------*/
+        /*----------------------Группа--------------------------------------------------------*/
+
+
+        /*fix object references an unsaved transient instance - save the transient instance
+        beforeQuery flushing : entities.Student.gruppa -> entities.Group]*/
+        GroupService groupService = context.getBean(GroupService.class);
+
+        groupService.add(groupsList.get(0));
+        groupService.add(groupsList.get(1));
+        groupService.add(groupsList.get(2));
+        groupService.add(groupsList.get(3));
+
+        //GroupService
+        List <Group> groupList = groupService.getGroupsList();
+
+
+        for (Group group: groupList)
+            System.out.println(group.toString());
+
+        /*------------------------------------------------------------------------------------*/
+        /*----------------------Студенты--------------------------------------------------------*/
+
+        StudentService studentService = context.getBean(StudentService.class);
+        //без группы добавить?
+        studentService.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
+        studentService.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
+        studentService.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
+
+        /*------------------------------------------------------------------------------------*/
+        /*----------------------Студенты--------------------------------------------------------*/
+
+        TeacherService teacherService = context.getBean(TeacherService.class);
+
+        for (int i = 0; i < tslist.size(); i++)
             teacherService.add(tslist.get(i));
-        }
 
+
+
+        /*------------------------------------------------------------------------------------*/
+        /*----------------------Проверки------------------------------------------------------*/
 
 
 
@@ -133,44 +154,6 @@ public class MainApp {
 
         for (Teacher teacher: teacherList)
             System.out.println(teacher.toString());
-
-
-
-        /*------------------------------------------------------------------------------------*/
-        /*----------------------Группа--------------------------------------------------------*/
-
-        //втф
-        groupsList.get(0).setTeachers(tslist);
-        groupsList.get(1).setTeachers(tslist);
-        groupsList.get(2).setTeachers(tslist);
-        groupsList.get(3).setTeachers(tslist);
-
-        List<Student> stdlist= new ArrayList();
-
-        stdlist.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
-        stdlist.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
-        stdlist.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
-
-        groupsList.get(0).setStudents(stdlist);
-        groupsList.get(1).setStudents(stdlist);
-        groupsList.get(2).setStudents(stdlist);
-        groupsList.get(3).setStudents(stdlist);
-
-
-
-
-
-
-
-
-
-
-        List <Group> groupList = groupService.getGroupsList();
-
-
-        for (Group group: groupList)
-            System.out.println(group.toString());
-
 
         context.close();
 
