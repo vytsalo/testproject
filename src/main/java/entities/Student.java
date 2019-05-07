@@ -1,7 +1,9 @@
 package entities;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 @Table(name="student")
@@ -14,10 +16,11 @@ public class Student extends Human implements Serializable {
     private long id;
 
     //Группа, в которой учится студент
-    @ManyToOne(cascade=CascadeType.ALL)//-fetch
+    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)//-fetch ЛЕЗИ?
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     private Group gruppa;
 
+    //new PersistentList()
     @SuppressWarnings("unused")
     public Student() {}
 
@@ -31,12 +34,28 @@ public class Student extends Human implements Serializable {
     }
 
     @Override
+    //@Transactional
+    //gruppa.getStudents().toString();
+    //gruppa.getTitle();
+    //gruppa.get...
+
     public String toString() {
         return "Student{" +
                 "id = " +  id +
-                " gruppa = " + gruppa + //this.getGruppa().toString() +
-                super.toString() + "}\n";
+                " gruppa = " + gruppa.toString() +
+                 super.toString() + "}\n";
+    }/*
+    public String toString() {
+        return "Student{" +
+                "id = " +  id +
+                " gruppa = " +
+                gruppa.getTitle() +
+                gruppa.getStudents().toString() +
+                gruppa.getTeachers().toString() +
+                 super.toString() + "}\n";
     }
+*/
+
 
     //гетерами конструктор новый
     public void setId(long id) {
@@ -64,4 +83,5 @@ public class Student extends Human implements Serializable {
         return str;
     }
 */
+
 }

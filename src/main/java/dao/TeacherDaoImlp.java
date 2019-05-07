@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -19,18 +20,18 @@ import java.util.List;
 public class TeacherDaoImlp implements TeacherDao {
 
     //почему в примере дао без транзакшоналов, а тут не работает
-    @PersistenceContext
+    @PersistenceContext//(type = PersistenceContextType.EXTENDED)
     EntityManager em;
 
     //добавление записи в конец бд
-    @Transactional
+    //@Transactional
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public List<Teacher> getTeachersList(){
         CriteriaQuery<Teacher> criteriaQuery = em.getCriteriaBuilder().createQuery(Teacher.class);
         Root<Teacher> root = criteriaQuery.from(Teacher.class);
@@ -38,7 +39,7 @@ public class TeacherDaoImlp implements TeacherDao {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void update(Teacher teacher) {
    		em.merge(teacher);
     }
@@ -47,7 +48,7 @@ public class TeacherDaoImlp implements TeacherDao {
     //не обязательно
     //ретурнит сущность по id
     @Override
-    @Transactional
+    //@Transactional
     public Teacher findById(Long teacherId) {
         Teacher teacher = em.find(Teacher.class,teacherId);
         if (teacher==null)
@@ -57,7 +58,7 @@ public class TeacherDaoImlp implements TeacherDao {
 
     //удаляет сущность по id
     @Override
-    @Transactional
+    //@Transactional
     public void delete(Long teacherId) {
        Teacher teacher = em.find(Teacher.class, teacherId);
        if (teacher != null) em.remove(teacher);

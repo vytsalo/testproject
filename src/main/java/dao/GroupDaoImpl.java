@@ -15,15 +15,14 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class GroupDaoImpl implements GroupDao {
     @PersistenceContext
+    private//(type = PersistenceContextType.EXTENDED)
     EntityManager em;
 
-    @Transactional
     @Override
     public void add(Group group){
         em.persist(group);
     }
 
-    @Transactional
     @Override
     public List<Group> getGroupsList(){
         CriteriaQuery<Group> criteriaQuery = em.getCriteriaBuilder().createQuery(Group.class);
@@ -32,13 +31,11 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    @Transactional
     public void update(Group group){
         em.merge(group);
     }
 
     @Override
-    @Transactional
     public Group findById(Long groupId) {
         Group group = em.find(Group.class,groupId);
         if (group==null)
@@ -48,7 +45,6 @@ public class GroupDaoImpl implements GroupDao {
 
     //удаляет сущность по id
     @Override
-    @Transactional
     public void delete(Long groupId) {
         Group group = em.find(Group.class, groupId);
         if (group != null) em.remove(group);

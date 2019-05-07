@@ -1,5 +1,7 @@
 package entities;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -71,10 +73,7 @@ public class Group implements Serializable  {
        group.getChilds().size();*/
        return "Group{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
-                ", teachers=" + teachers.toString() +
-                ", students=" + students.toString() +
-                '}';
+                ", title='" + title + '}';
    }
 
     //мапедбай.гетКоммент инитиалайз.
@@ -98,6 +97,10 @@ public class Group implements Serializable  {
 
     public List<Student> getStudents() {
         return students;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public void setStudents(List<Student> students) {

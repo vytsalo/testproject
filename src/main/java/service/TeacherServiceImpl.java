@@ -35,11 +35,13 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Transactional
     public Teacher findById(Long teacherId) {
         return teach_dao.findById(teacherId);
     }
 
     @Override
+    @Transactional
     public void delete(Long teacherId) {
         teach_dao.delete(teacherId);
     }

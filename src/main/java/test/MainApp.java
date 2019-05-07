@@ -135,7 +135,6 @@ public class MainApp {
         groupsList.get(3).setStudents(stdlist);
 
 
-
         GroupService groupService = context.getBean(GroupService.class);
 
         groupService.add(groupsList.get(0));
@@ -147,6 +146,7 @@ public class MainApp {
         List <Group> groupList = groupService.getGroupsList();
 
         for (Group group: groupList)
+
             System.out.println(group.toString());
 
 
@@ -155,5 +155,4 @@ public class MainApp {
 
 
     }
-
 }

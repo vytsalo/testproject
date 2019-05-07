@@ -14,11 +14,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class StudentDaoImpl implements StudentDao{
 
-    @PersistenceContext
+    @PersistenceContext//(type = PersistenceContextType.EXTENDED)
     EntityManager em;
 
     
-    @Transactional
+    //@Transactional
     @Override
     public void add(Student student) {
         em.persist(student);
@@ -26,7 +26,7 @@ public class StudentDaoImpl implements StudentDao{
 
 
     @Override
-    @Transactional
+    //@Transactional
     public List<Student> getStudentsList(){
         CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
         Root<Student> root = criteriaQuery.from(Student.class);
@@ -35,12 +35,12 @@ public class StudentDaoImpl implements StudentDao{
 
 
     @Override
-    @Transactional
+   //@Transactional
     public void update(Student student){
         em.merge(student);
     }
 
-    @Transactional
+   // @Transactional
     @Override
     public Student findById(Long studentId){
         Student student=em.find(Student.class, studentId);
@@ -49,7 +49,7 @@ public class StudentDaoImpl implements StudentDao{
         return student;
     }
 
-    @Transactional
+   // @Transactional
     @Override
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);
