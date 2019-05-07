@@ -10,7 +10,6 @@ import java.util.List;
 //зарезервированное в таблице
 //сделать рефактор gruppa - group
 @Table(name="gruppa")
-//@Proxy(lazy=false)
 @SuppressWarnings("unused")
 public class Group implements Serializable  {
 
@@ -44,37 +43,12 @@ public class Group implements Serializable  {
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.LAZY)//-fetch
     private List<Student> students = new ArrayList();
 
-   /* @Override
-    public String toString() {
-        return  "__________________________\n" +
-                "Group{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                "\n teachers:{\n" + Teacher.toStrung(this.getTeachers()) + "\n}" +
-                "\n students:{'\n" + Student.toStrung(this.getStudents()) + "\n}" +
-                "}\n" +
-                "__________________________\n";
-    }
-*/
-
-   //контекст закрыт, а метод вызывается
     @Override
-    //@Transactional
     public String toString() {
-       /*
-        Hibernate.initialize(Group.class);
-        Hibernate.initialize(Student.class);
-        Hibernate.initialize(Teacher.class);
-     */
-
-     /*  Group group = new Group("ыыы");
-       group.getChilds().size();*/
        return "Group{" +
                 "id=" + id +
                 ", title='" + title + '}';
    }
-
-    //мапедбай.гетКоммент инитиалайз.
 
     @SuppressWarnings("unused")
     public String getTitle() {

@@ -11,8 +11,9 @@ import java.util.List;
 @Service
 @SuppressWarnings("unused")
 public class TeacherServiceImpl implements TeacherService {
+
     @Autowired
-    //екземпляр интерфейса
+    //екземпляр интерфейса!
     private TeacherDao teach_dao;
 
     @Transactional

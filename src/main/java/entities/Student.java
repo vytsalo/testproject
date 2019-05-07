@@ -1,9 +1,7 @@
 package entities;
 
-
 import javax.persistence.*;
 import java.io.Serializable;
-
 
 @Entity
 @Table(name="student")
@@ -34,29 +32,13 @@ public class Student extends Human implements Serializable {
     }
 
     @Override
-    //@Transactional
-    //gruppa.getStudents().toString();
-    //gruppa.getTitle();
-    //gruppa.get...
     public String toString() {
         return "Student{" +
                 "id = " +  id +
                 " gruppa = " + gruppa.toString() +
                  super.toString() + "}\n";
-    }/*
-    public String toString() {
-        return "Student{" +
-                "id = " +  id +
-                " gruppa = " +
-                gruppa.getTitle() +
-                gruppa.getStudents().toString() +
-                gruppa.getTeachers().toString() +
-                 super.toString() + "}\n";
     }
-*/
 
-
-    //гетерами конструктор новый
     public void setId(long id) {
         this.id = id;
     }
@@ -69,18 +51,5 @@ public class Student extends Human implements Serializable {
     public void setGruppa(Group gruppa) {
         this.gruppa = gruppa;
     }
-
- /*   public static String toStrung(List<Student> students) {
-        String str="";
-        for (int i = 0; i < students.size(); i++) {
-            str+= students.get(i).getFam() + " " +
-                    students.get(i).getName() + " " +
-                    students.get(i).getOtch() + " " +
-                    students.get(i).getDate_of_birth() + " " +
-                    students.get(i).getPhone_number() + "\n";
-        }
-        return str;
-    }
-*/
 
 }

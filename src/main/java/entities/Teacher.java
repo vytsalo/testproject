@@ -40,25 +40,12 @@ public class Teacher extends Human implements Serializable {
         super(fam, name, otch, date_of_birth, phone_number);
     }
 
-    //тичер вызывает группу, а в группе есть тичер
     @Override
     public String toString() {
         return "Teacher{"  + id + " "+
                 "groups=" + groups +
                 "} " + super.toString();
     }
-
-/*    public static String toStrung(List<Teacher> teachers) {
-        String str="";
-        for (int i = 0; i < teachers.size(); i++) {
-            str+= teachers.get(i).getFam() + " " +
-                  teachers.get(i).getName() + " " +
-                  teachers.get(i).getOtch() + " " +
-                  teachers.get(i).getDate_of_birth() + " " +
-                  teachers.get(i).getPhone_number() + "\n";
-        }
-        return str;
-    }*/
 
     public long getId() {
         return id;
