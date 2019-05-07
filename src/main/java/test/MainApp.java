@@ -25,8 +25,29 @@ public class MainApp {
         groupsList.add(new Group("332"));
 
         /*---------------------------------------------------------------------------------------------------------*/
+
+
+
+
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(config.AppConfig.class);//config.appconfig.class
+
+
+
+
+
+
+        GroupService groupService = context.getBean(GroupService.class);
+
+
+        groupService.add(groupsList.get(0));
+        groupService.add(groupsList.get(1));
+        groupService.add(groupsList.get(2));
+        groupService.add(groupsList.get(3));
+
+
+
+
 
         //Студенты
 
@@ -118,6 +139,7 @@ public class MainApp {
         /*------------------------------------------------------------------------------------*/
         /*----------------------Группа--------------------------------------------------------*/
 
+        //втф
         groupsList.get(0).setTeachers(tslist);
         groupsList.get(1).setTeachers(tslist);
         groupsList.get(2).setTeachers(tslist);
@@ -135,18 +157,18 @@ public class MainApp {
         groupsList.get(3).setStudents(stdlist);
 
 
-        GroupService groupService = context.getBean(GroupService.class);
 
-        groupService.add(groupsList.get(0));
-        groupService.add(groupsList.get(1));
-        groupService.add(groupsList.get(2));
-        groupService.add(groupsList.get(3));
+
+
+
+
+
 
 
         List <Group> groupList = groupService.getGroupsList();
 
-        for (Group group: groupList)
 
+        for (Group group: groupList)
             System.out.println(group.toString());
 
 
