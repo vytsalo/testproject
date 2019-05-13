@@ -138,7 +138,6 @@ public class MainApp {
 
         List <Student> studentsList = studentService.getStudentsList();
 
-
         for (Student student: studentsList)
             System.out.println(student.toString());
 
