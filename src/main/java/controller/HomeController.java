@@ -32,7 +32,7 @@ public class HomeController {
         model.addAttribute("ServerTime", formattedDate);
 
         return "home";//вьюшка
-
+///
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
