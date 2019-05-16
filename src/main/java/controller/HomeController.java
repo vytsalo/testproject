@@ -66,4 +66,11 @@ public class HomeController {
         return "Hello world";
     }
 
+    //ЛОгин
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login_page() {
+        return "login";
+    }
+
+
 }
