@@ -73,4 +73,12 @@ public class HomeController {
     }
 
 
+    //Страница списка всех групп
+
+    @RequestMapping(value = "/groupslist", method = RequestMethod.GET)
+    public String groups_page() {
+        return "main";
+    }
+
+
 }
