@@ -11,6 +11,16 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>webapp/WEB-INF/spring-servlet.xml</param-value>
         </init-param>
+
+<!--
+не может найти путь, прописать параметр
+Failed to execute goal org.apache.maven.plugins:maven-war-plugin:2.2:war (default-war) on project Test_hibernate: Error assembling WAR: webxml attribute is required (or pre-existing WEB-INF/web.xml if executing in update mode) -> [Help 1]
+[ERROR]
+
+-->
+
+
+
         <load-on-startup>1</load-on-startup>
     </servlet>
 
