@@ -165,6 +165,17 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>src\main\webapp\META-INF\web.xml</webXml>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 </project>
