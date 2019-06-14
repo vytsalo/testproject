@@ -9,6 +9,24 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <distributionManagement>
+
+        <repository>
+            <id>releases</id>
+            <name>Releases</name>
+            <url>http://localHost:8082</url>
+        </repository>
+
+
+        <!-- Как поменять урл полный? -->
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Snapshots</name>
+            <url>http://localHost:8082</url><!--http://localHost:8082/repository/YourRepo/-->
+        </snapshotRepository>
+    </distributionManagement>
+
+
     <dependencies>
 
         <dependency>
@@ -147,6 +165,13 @@
     <build>
         <finalName>mywebapp</finalName>
         <plugins>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -156,6 +181,7 @@
                     <path>/</path>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
