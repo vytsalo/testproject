@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     @SuppressWarnings("unused")
     public LocalEntityManagerFactoryBean getEntityManagerFactoryBean(){
         LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-        factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");
+        factoryBean.setPersistenceUnitName("LOCAL_PERSISTENCE");//???
         return factoryBean;
     }
 
