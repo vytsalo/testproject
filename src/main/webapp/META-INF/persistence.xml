@@ -7,7 +7,7 @@
   <persistence-unit name="LOCAL_PERSISTENCE" transaction-type="RESOURCE_LOCAL">
      <description> Test project</description>
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
+    <!--  <provider>org.hibernate.ejb.HibernatePersistence</provider>-->
 	 <properties>
 
 	 	 <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
