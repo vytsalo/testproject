@@ -8,6 +8,8 @@
      <description> Test project</description>
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!--  <provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+
+
 	 <properties>
 
 	 	 <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
@@ -31,4 +33,6 @@
      </properties>
 
   </persistence-unit>
+
+
 </persistence>
