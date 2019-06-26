@@ -63,4 +63,14 @@ public class HomeController {
         return "main";
     }
 
+    //Страница списка всех групп
+    @RequestMapping(value = "/Test_hibernate/", method = RequestMethod.GET)
+    @ResponseBody
+    public String test_gubernute() {
+        return "Test Hibernate and Spring";
+    }
+
+
+
+
 }

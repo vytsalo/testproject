@@ -76,7 +76,32 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.2.9.Final</version>
+
+           <!-- <exclusions>
+                <exclusion>
+                    <groupId>org.javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+            </exclusions>-->
+
         </dependency>
+
+        <!--<dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.24.0-GA</version>
+        </dependency>
+-->
+
+        <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>1.1.4</version>
+        </dependency>
+
+
+
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
@@ -212,7 +237,6 @@
 
 
 
-
     <build>
 
         <!-- New -->
@@ -242,6 +266,13 @@
             </plugin>
 
             <!-- Томкат мавен плагин без 7 и в конфигурации запуска - фикс унейбл джар -->
+            <!-- сейчас разные -->
+
+            <!--
+            tomcat на http://localhost:8080/Test_hibernate
+            tomcat7 на http://localhost:8082/ с Jar Entry
+            -->
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
