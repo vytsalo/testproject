@@ -16,21 +16,10 @@
     <name>mywebapp</name>
     <url>http://maven.apache.org</url>
 
-  <!--  <resourses>
-        <resource>
-            <directory>src/main/webapp/META-INF</directory>
-            <targetPath>META-INF</targetPath>
-            <includes>
-                <include>persistence.xml</include>
-            </includes>
-        </resource>
-    </resourses>-->
-
-
 
     <dependencies>
 
-<!-- версии одинаковые сделать -->
+<!-- версии одинаковые сделать c одинаковым групайди -->
 <!-- мавен томкат и плагин томкат -->
 
 
@@ -107,7 +96,6 @@
 
 
 
-
         <!-- TOMCATS -->
 
         <!-- Сервлеты красные веб хмл фикс -->
@@ -145,7 +133,7 @@
 
 
 
-
+        <!-- Разные версии -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -227,18 +215,23 @@
 
     <build>
 
+        <!-- New -->
+        <sourceDirectory>src/main/webapp</sourceDirectory>
+
+
+
         <finalName>mywebapp</finalName>
 
+        <!-- Надо ли? -->
         <resources>
             <resource>
                 <directory>src</directory>
                 <includes>
-                    <include>META-INF/persistence.xml</include>
+                    <include>webapp/META-INF/persistence.xml</include>
                 </includes>
             </resource>
+
         </resources>
-
-
 
 
         <plugins>
@@ -248,7 +241,7 @@
                 <version>3.0.0-M1</version>
             </plugin>
 
-            <!-- Томкат мавен плагин -->
+            <!-- Томкат мавен плагин без 7 и в конфигурации запуска - фикс унейбл джар -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
