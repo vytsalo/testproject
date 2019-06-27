@@ -8,6 +8,11 @@
     <display-name>spring-mvc-example</display-name>
 
 
+    <!-- При ошибке выдает эту страницу -->
+ <!--   <error-page>
+        <location>/webapp/WEB-INF/views/error.jsp</location>
+    </error-page>
+-->
 
     <servlet>
         <servlet-name>spring</servlet-name>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" >
 
 
 
 
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.test_hibernate</groupId>
-    <artifactId>Test_hibernate</artifactId>
+    <groupId>com.test_hibernate</groupId><!-- ????? -->
+    <artifactId>vcproject</artifactId> <!--ArtifactID-->
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <name>mywebapp</name>
-    <url>http://maven.apache.org</url>
-
+  <!--  <url>http://maven.apache.org</url>
+-->
 
     <dependencies>
 
@@ -191,6 +191,17 @@
 
 
         <!-- OTHERS -->
+
+        <!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j -->
+      <!--  <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>64.2</version>
+        </dependency>
+-->
+
+
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
@@ -233,7 +244,65 @@
 
         <!-- /OTHERS -->
 
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.5</version>
+        </dependency>
+
+
+
+
+
+<!-- new -->
+<!--
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjtools</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+-->
+
+<!--
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxb-provider</artifactId>
+            <version>3.6.2.Final</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun.istack</groupId>
+                    <artifactId>istack-commons-runtime</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jvnet.staxex</groupId>
+                    <artifactId>stax-ex</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>txw2</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.sun.xml.fastinfoset</groupId>
+                    <artifactId>FastInfoset</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+-->
+
+
+
+
+
     </dependencies>
+
 
 
 
@@ -260,6 +329,41 @@
 
         <plugins>
 
+
+
+
+<!--
+
+            <plugin>
+                <groupId>com.jcabi</groupId>
+                <artifactId>jcabi-maven-plugin</artifactId>
+                <version>0.14.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>ajc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    &lt;!&ndash; https://mvnrepository.com/artifact/org.aspectj/aspectjtools &ndash;&gt;
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjtools</artifactId>
+                        <version>1.9.1</version>
+                    </dependency>
+                    &lt;!&ndash; https://mvnrepository.com/artifact/org.aspectj/aspectjweaver &ndash;&gt;
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>1.9.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+-->
+
+
+
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0-M1</version>
@@ -272,16 +376,31 @@
             tomcat на http://localhost:8080/Test_hibernate
             tomcat7 на http://localhost:8082/ с Jar Entry
             -->
+<!--
 
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
+                <artifactId>tomcat7-maven-plugin</artifactId> &lt;!&ndash; tomcat 7 и tomcat7:run &ndash;&gt;
                 <version>2.2</version>
                 <configuration>
                     <port>8082</port>
                     <path>/</path>
                 </configuration>
             </plugin>
+
+-->
+
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId> <!-- tomcat 7 и tomcat7:run -->
+                <version>2.1</version>
+                <configuration>
+                    <port>8082</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

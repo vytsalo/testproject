@@ -4,6 +4,7 @@ import model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +15,7 @@ import java.util.Locale;
 //http://localhost:8009/
 //http://localhost:8082/
 
-@Controller
+@Controller//(value="vcproject")//????
 @SuppressWarnings("all")
 public class HomeController {
 
@@ -63,13 +64,31 @@ public class HomeController {
         return "main";
     }
 
-    //Страница списка всех групп
-    @RequestMapping(value = "/Test_hibernate/", method = RequestMethod.GET)
+
+   /* @RequestMapping(value = "/vcproject/", method = RequestMethod.GET)
     @ResponseBody
     public String test_gubernute() {
         return "Test Hibernate and Spring";
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @ResponseBody
+    public String vc_proj() {
+        return "Vichislitelniy centr";
+    }*/
+
+
+    @GetMapping(value = "/")
+    @ResponseBody
+    public String v_proj() {
+        return "Vichislitelniy centr";
+    }
+
+    @GetMapping(value = "/vcproject/")
+    @ResponseBody
+    public String test_gubernute() {
+        return "Test Hibernate and Spring";
+    }
 
 
 
