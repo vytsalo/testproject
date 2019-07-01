@@ -8,12 +8,17 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
+//Component везде?
+
     @Configuration
     @EnableTransactionManagement
     @ComponentScans(value = {
             @ComponentScan("dao"),
-            @ComponentScan("service")
+            @ComponentScan("service"),
+            @ComponentScan("controller")//new
     })
+   // @ComponentScan(basePackages = "dao, service, controller, config")
     @SuppressWarnings("unused")
     public class AppConfig {
 

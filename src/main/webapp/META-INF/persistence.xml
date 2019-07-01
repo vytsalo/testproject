@@ -5,10 +5,27 @@
   version="2.1">
 
   <persistence-unit name="LOCAL_PERSISTENCE" transaction-type="RESOURCE_LOCAL">
-     <description> Test project</description>
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <!--  <provider>org.hibernate.ejb.HibernatePersistence</provider>-->
 
+
+      <description>Test project</description>
+
+      <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+
+
+
+      <!--
+            <provider>org.hibernate.ejb.HibernatePersistence</provider>
+      -->
+
+
+  <!--    <description>Test project</description>
+  -->
+
+    <!--new
+      <mapping-file>META-INF/orm.xml</mapping-file>
+      <exclude-unlisted-classes/>
+-->
 
 	 <properties>
 
@@ -29,6 +46,8 @@
             <property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
 
          <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+
+
 
      </properties>
 

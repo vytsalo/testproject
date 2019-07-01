@@ -3,7 +3,6 @@
              xmlns="http://www.springframework.org/schema/mvc"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:context="http://www.springframework.org/schema/context"
-             xmlns:mvc="http://www.springframework.org/schema/cache"
              xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
@@ -14,17 +13,41 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven />
 
-    <context:component-scan base-package="config,controller,dao,entities,model,service,test" /> <!-- тут еррор -->
+    <!-- 1 конфиг -->
+
+    <context:component-scan base-package="controller,dao,service" /> <!--config-->
+     <!--dao service controller-->
+
+
+    <!-- тут еррор -->
+    <!--Пакет или класс?-->
 
     <!-- вставить ссылку на конфигурационный файл -->
-
 
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="prefix" value="/WEB-INF/views/" /><!-- начало пути файла вьюшки -->
+        <beans:property name="prefix" value="/WEB-INF/views/" /><!-- webapp/начало пути файла вьюшки -->
         <beans:property name="suffix" value=".jsp" /><!-- конец пути файла вьюшки -->
     </beans:bean>
+
+
+    <beans:bean id="myEmf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <beans:property name="persistenceUnitName" value="LOCAL_PERSISTENCE" />  <!--value="myPersistenceUnit"-->
+    </beans:bean>
+
+    <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager"><!-- id="transactionManager"  -->
+        <beans:property name="entityManagerFactory" ref="myEmf" />
+    </beans:bean>
+
+
+    <!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="myEmf" />
+    </bean>
+-->
+
+
+
 
 </beans:beans>
