@@ -52,6 +52,41 @@ WTF-->
 
 
 
+    <!-- new -->
+    <!--<context-param>
+        <param-name>contextClass</param-name>
+        <param-value>
+            org.springframework.web.context.
+            support.AnnotationConfigWebApplicationContext
+        </param-value>
+    </context-param>-->
+   <!-- <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            demo.AppContext
+        </param-value>
+    </context-param>-->
+
+
+
+
+    <!--
+
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+-->
+
+
+
+
+
+
+
+
 
 
     <servlet>
@@ -66,6 +101,18 @@ WTF-->
             <param-name>contextConfigLocation</param-name>
             <param-value>WEB-INF/spring-servlet.xml</param-value><!-- webapp/WEB-INF/spring-servlet.xml -->
         </init-param>
+
+
+
+        <!-- new -->
+
+      <!--  <init-param>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.
+                support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>-->
 
 
 

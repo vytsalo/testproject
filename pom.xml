@@ -138,6 +138,13 @@
 
         <!-- JAVAXES -->
 
+        <!-- new  -->
+      <!--  <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>-->
+
 
         <dependency>
             <groupId>javax</groupId>
@@ -260,7 +267,6 @@
 
 
 
-
 <!-- new -->
 <!--
         <dependency>
@@ -309,18 +315,21 @@
     <build>
 
         <!-- New -->
-        <sourceDirectory>src/main/webapp</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory> <!-- webapp -->
 
 
 
         <finalName>mywebapp</finalName>
 
+
+        <!-- билд - настройки для папок sources и resources -->
+
         <!-- Надо ли? -->
         <resources>
             <resource>
-                <directory>src</directory>
+                <directory>src/main/webapp/META-INF/</directory> <!--webapp/META-INF/ -->
                 <includes>
-                    <include>webapp/META-INF/persistence.xml</include>
+                    <include>persistence.xml</include>
                 </includes>
             </resource>
 

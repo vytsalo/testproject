@@ -28,10 +28,9 @@
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <beans:property name="prefix" value="/WEB-INF/views/" /><!-- webapp/начало пути файла вьюшки -->
+        <beans:property name="prefix" value="webapp/WEB-INF/views/" /><!-- webapp/начало пути файла вьюшки -->
         <beans:property name="suffix" value=".jsp" /><!-- конец пути файла вьюшки -->
     </beans:bean>
-
 
     <beans:bean id="myEmf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <beans:property name="persistenceUnitName" value="LOCAL_PERSISTENCE" />  <!--value="myPersistenceUnit"-->
@@ -40,14 +39,6 @@
     <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager"><!-- id="transactionManager"  -->
         <beans:property name="entityManagerFactory" ref="myEmf" />
     </beans:bean>
-
-
-    <!--<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="myEmf" />
-    </bean>
--->
-
-
 
 
 </beans:beans>
