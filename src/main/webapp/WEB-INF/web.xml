@@ -90,6 +90,7 @@ WTF-->
 
 
     <servlet>
+
         <servlet-name>spring</servlet-name> <!-- spring -->
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
@@ -97,9 +98,10 @@ WTF-->
 
 
 
+
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>WEB-INF/spring-servlet.xml</param-value><!-- webapp/WEB-INF/spring-servlet.xml -->
+            <param-value>WEB-INF/spring-servlet.xml</param-value><!-- src/main/webapp/WEB-INF/spring-servlet.xml -->
         </init-param>
 
 
@@ -119,9 +121,9 @@ WTF-->
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <servlet-mapping>
+   <!-- <servlet-mapping>
         <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
 </web-app>

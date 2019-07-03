@@ -34,6 +34,8 @@
 
     <beans:bean id="myEmf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <beans:property name="persistenceUnitName" value="LOCAL_PERSISTENCE" />  <!--value="myPersistenceUnit"-->
+
+   <!-- св-ва из персистенс.хмл сюда -->
     </beans:bean>
 
     <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager"><!-- id="transactionManager"  -->
