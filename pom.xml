@@ -325,15 +325,15 @@
         <!-- билд - настройки для папок sources и resources -->
 
         <!-- Надо ли? -->
-        <resources>
+    <!--    <resources>
             <resource>
-                <directory>src/main/webapp/META-INF/</directory> <!--webapp/META-INF/ -->
+                <directory>src/main/webapp/META-INF/</directory> &lt;!&ndash;webapp/META-INF/ &ndash;&gt;
                 <includes>
                     <include>persistence.xml</include>
                 </includes>
             </resource>
 
-        </resources>
+        </resources>-->
 
 
         <plugins>
