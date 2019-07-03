@@ -16,14 +16,6 @@
     <!-- 1 конфиг -->
 
     <context:component-scan base-package="controller,dao,service" /> <!--config-->
-     <!--dao service controller-->
-
-
-    <!-- тут еррор -->
-    <!--Пакет или класс?-->
-
-    <!-- вставить ссылку на конфигурационный файл -->
-
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
@@ -33,24 +25,15 @@
     </beans:bean>
 
 
-
-
-
-
+<!-- namespace  -->
     <beans:bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-
        <!-- <beans:property name="dataSource" ref="dataSource"/>
 -->
-        <!--<beans:property name="driverClassName" value="org.postgresql.Driver" />
-        <beans:property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
-        <beans:property name="username" value="postgres" />
-        <beans:property name="password" value="Disturbed_1" />-->
-
         <beans:property name="jpaVendorAdapter">
             <beans:bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </beans:property>
 
-        <beans:property name="persistenceUnitName" value="test"/>
+        <beans:property name="persistenceUnitName" value="LOCAL_PERSISTENCE"/> <!-- test -->
 
         <beans:property name="packagesToScan" value=""/>
         <beans:property name="jpaProperties">
@@ -77,17 +60,11 @@
 
 
 
-
-
-
-
-
    <!-- св-ва из персистенс.хмл сюда -->
     </beans:bean>
 
     <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager"><!-- id="transactionManager"  -->
         <beans:property name="entityManagerFactory" ref="emf" />
     </beans:bean>
-
 
 </beans:beans>
