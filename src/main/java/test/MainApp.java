@@ -3,15 +3,24 @@ package test;
 import entities.Group;
 import entities.Student;
 import entities.Teacher;
+import org.apache.log4j.Logger;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("all")
 public class MainApp {
+
+   // Logger logger = new Logger().getLogger(MainApp.class);
+
+    final static Logger logger = Logger.getLogger(MainApp.class);
 
     public static void main(String[] args) {
 
@@ -52,8 +61,26 @@ public class MainApp {
 
         /*-----------------------------Контексты------------------------------------------------------------------*/
 
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(config.AppConfig.class);
+      /*  AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(config.AppConfig.class);  */
+
+        //ApplicationContext context = new ClassPathXmlApplicationContext("app-config.xml");
+
+
+
+        String configXmlLink = "C:\\Users\\vasilevvs\\Downloads\\НАДО ОТКРЫТЬ\\ембедеды с пожо\\testproject\\src\\main\\webapp\\WEB-INF\\spring-servlet.xml";
+
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext(configXmlLink);
+
+
+        File f = new File(configXmlLink);
+        if(f.exists() && !f.isDirectory()) {
+            logger.info("Файл загружен");
+
+            // do something
+        } else logger.error("Файла нет");
 
         /*------------------------------------------------------------------------------------*/
         /*----------------------Группа--------------------------------------------------------*/
@@ -153,7 +180,7 @@ public class MainApp {
         for (Teacher teacher: teacherList)
             System.out.println(teacher.toString());
 
-        context.close();
+       // context.close();
 
     }
 }
