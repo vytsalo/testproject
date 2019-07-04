@@ -68,7 +68,8 @@ public class MainApp {
         //ApplicationContext context = new ClassPathXmlApplicationContext("app-config.xml");
 
 
-        String configXmlLink = "C:\\Users\\vasilevvs\\Downloads\\НАДО ОТКРЫТЬ\\ембедеды с пожо\\testproject\\src\\main\\webapp\\WEB-INF\\spring-servlet.xml";
+        String configXmlLink = "spring-servlet.xml";
+                //"C:\\Users\\vasilevvs\\Downloads\\НАДО ОТКРЫТЬ\\ембедеды с пожо\\testproject\\src\\main\\webapp\\WEB-INF\\spring-servlet.xml";
 
         ConfigurableApplicationContext context
                 = new ClassPathXmlApplicationContext(configXmlLink);

@@ -14,6 +14,9 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>mywebapp</name>
+    <properties>
+        <spring-version>5.1.2.RELEASE</spring-version>
+    </properties>
   <!--  <url>http://maven.apache.org</url>
 -->
 
@@ -28,13 +31,13 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>5.1.8.RELEASE</version>
+            <version>5.1.2.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.1.2.RELEASE</version>
+            <version>${spring-version}</version>
         </dependency>
 
         <dependency>
@@ -53,7 +56,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>5.1.5.RELEASE</version>
+            <version>5.1.1.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -135,15 +138,15 @@
 
 
 
-
+<!--контрол слеш закомментировать строку-->
         <!-- JAVAXES -->
 
         <!-- new  -->
-        <!--<dependency>
+        <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
-        </dependency>-->
+        </dependency>
 
 
         <dependency>
@@ -169,6 +172,12 @@
         </dependency>
 
 
+        <!--newest-->
+      <!--  <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>2.1</version>
+        </dependency>-->
 
 
         <!-- Разные версии -->
@@ -184,6 +193,7 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
+            <!--<scope>provided</scope>-->
         </dependency>
 
 
