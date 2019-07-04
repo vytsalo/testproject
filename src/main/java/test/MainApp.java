@@ -5,6 +5,7 @@ import entities.Student;
 import entities.Teacher;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import service.GroupService;
@@ -67,14 +68,20 @@ public class MainApp {
         //ApplicationContext context = new ClassPathXmlApplicationContext("app-config.xml");
 
 
-
         String configXmlLink = "C:\\Users\\vasilevvs\\Downloads\\НАДО ОТКРЫТЬ\\ембедеды с пожо\\testproject\\src\\main\\webapp\\WEB-INF\\spring-servlet.xml";
 
+        ConfigurableApplicationContext context
+                = new ClassPathXmlApplicationContext(configXmlLink);
 
-        ApplicationContext context =
+        context.start();
+      /*  AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(configXmlLink);*/
+
+
+
+        /*ApplicationContext context =
                 new ClassPathXmlApplicationContext(configXmlLink);
-
-
+        */
         File f = new File(configXmlLink);
         if(f.exists() && !f.isDirectory()) {
             logger.info("Файл загружен");
@@ -180,7 +187,7 @@ public class MainApp {
         for (Teacher teacher: teacherList)
             System.out.println(teacher.toString());
 
-       // context.close();
+       context.close();
 
     }
 }
