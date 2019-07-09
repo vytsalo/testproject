@@ -54,7 +54,8 @@ public class HomeController {
     }
 
     //Страница списка всех групп
-    @RequestMapping(value = "/groupslist", method = RequestMethod.GET)
+    //@RequestMapping(value = "/groupslist", method = RequestMethod.GET)
+    @GetMapping(value = "/groupslist")
     public String groups_page() {
         return "main";
     }
