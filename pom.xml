@@ -3,10 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" >
 
-
-
-
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.test_hibernate</groupId><!-- ????? -->
     <artifactId>vcproject</artifactId> <!--ArtifactID-->
@@ -20,18 +16,12 @@
         <spring-security-version>5.1.1.RELEASE</spring-security-version>
         <hibernate-version>4.3.11.Final</hibernate-version>
     </properties>
-  <!--  <url>http://maven.apache.org</url>
--->
 
 
-
+    <!-- версии одинаковые сделать c одинаковым групайди -->
+    <!-- Как можно ближе версии делать во избежании ошибок -->
+    <!-- SPRINGS -->
     <dependencies>
-
-<!-- версии одинаковые сделать c одинаковым групайди -->
-<!-- мавен томкат и плагин томкат -->
-
-<!-- Как можно ближе версии делать во избежании ошибок -->
-        <!-- SPRINGS -->
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -63,11 +53,12 @@
             <version>${spring-version}</version>
         </dependency>
 
+        <!-- /SPRINGS -->
 
 
 
 
-
+        <!-- SPRINGS SECURITY -->
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -75,16 +66,13 @@
             <version>${spring-security-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${spring-security-version}</version>
         </dependency>
 
-
-
-        <!-- /SPRINGS -->
+        <!-- /SPRINGS SECURITY -->
 
 
         <!-- HIBERNATES -->
@@ -94,15 +82,12 @@
             <version>${hibernate-version}</version>
         </dependency>
 
-
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -112,31 +97,13 @@
         <!-- /HIBERNATES -->
 
 
-
-        <!-- TOMCATS -->
-
-        <!-- Сервлеты красные веб хмл фикс -->
-        <!--<dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-servlet-api</artifactId>
-            <version>7.0.21</version>
-            <scope>provided</scope> &lt;!&ndash; request provided &ndash;&gt;
-        </dependency>-->
-
-        <!-- /TOMCATS -->
-
-
-
-<!--контрол слеш закомментировать строку-->
         <!-- JAVAXES -->
 
-        <!-- new  -->
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
         </dependency>
-
 
         <dependency>
             <groupId>javax</groupId>
@@ -145,48 +112,30 @@
             <scope>provided</scope>
         </dependency>
 
-
-
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>2.2.11</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
 
-
-        <!--newest-->
-      <!--  <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
-            <version>2.1</version>
-        </dependency>-->
-
-
-        <!-- Разные версии -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
-
-        <!--БЫЛО ЗАКОМЕНЧЕН СКОУП-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
-            <!--<scope>provided</scope>-->
         </dependency>
-
 
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -206,32 +155,19 @@
 
         <!-- OTHERS -->
 
-        <!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j -->
-      <!--  <dependency>
-            <groupId>com.ibm.icu</groupId>
-            <artifactId>icu4j</artifactId>
-            <version>64.2</version>
-        </dependency>
--->
-
-
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.1.1</version>
         </dependency>
 
-        <!-- The tutorials use the PostgreSQL 9.3.5 database -->
-        <dependency>
+         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.3-1102-jdbc41</version>
         </dependency>
 
-        <!-- Минус неизвестные -->
-
-        <dependency>
+         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
             <version>2.2.11</version>
@@ -259,6 +195,7 @@
         <!-- /OTHERS -->
 
 
+        <!--WAT MINUS-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -271,145 +208,34 @@
             <version>1.8.5</version>
         </dependency>
 
-
-
-
-<!-- new -->
-<!--
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
-            <version>1.9.1</version>
-        </dependency>
--->
-
-<!--
-
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jaxb-provider</artifactId>
-            <version>3.6.2.Final</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.sun.istack</groupId>
-                    <artifactId>istack-commons-runtime</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jvnet.staxex</groupId>
-                    <artifactId>stax-ex</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.glassfish.jaxb</groupId>
-                    <artifactId>txw2</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.sun.xml.fastinfoset</groupId>
-                    <artifactId>FastInfoset</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
--->
-
     </dependencies>
 
 
 
     <build>
 
-        <!-- New -->
-        <sourceDirectory>src/main/java/</sourceDirectory> <!-- java -->
+        <sourceDirectory>src/main/java/</sourceDirectory> <!-- код java -->
 
         <finalName>mywebapp</finalName>
 
-
         <!-- билд - настройки для папок sources и resources -->
 
-        <!-- Надо ли? -->
-        <!--<resources>
-            <resource>
-                <directory>src/main/webapp/META-INF/</directory> &lt;!&ndash;webapp/META-INF/ &ndash;&gt;
-                &lt;!&ndash;<includes>
-                    <include>persistence.xml</include>
-                </includes>&ndash;&gt;
-            </resource>
-
-        </resources>-->
-
-
         <plugins>
-
-
-
-
-<!--
-
-            <plugin>
-                <groupId>com.jcabi</groupId>
-                <artifactId>jcabi-maven-plugin</artifactId>
-                <version>0.14.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>ajc</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    &lt;!&ndash; https://mvnrepository.com/artifact/org.aspectj/aspectjtools &ndash;&gt;
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjtools</artifactId>
-                        <version>1.9.1</version>
-                    </dependency>
-                    &lt;!&ndash; https://mvnrepository.com/artifact/org.aspectj/aspectjweaver &ndash;&gt;
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>1.9.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
--->
-
-
 
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>3.0.0-M1</version>
             </plugin>
 
-            <!-- Томкат мавен плагин без 7 и в конфигурации запуска - фикс унейбл джар -->
-            <!-- сейчас разные -->
-
-            <!--
-            tomcat на http://localhost:8080/Test_hibernate
-            tomcat7 на http://localhost:8082/ с Jar Entry
-            -->
-<!--
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId> &lt;!&ndash; tomcat 7 и tomcat7:run &ndash;&gt;
-                <version>2.2</version>
-                <configuration>
-                    <port>8082</port>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-
--->
-
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId> <!-- tomcat 7 и tomcat7:run -->
+                <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
                     <port>8082</port>
                     <path>/</path>
                 </configuration>
             </plugin>
-
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

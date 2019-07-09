@@ -1,111 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd "
          id="WebApp_ID" version="3.0" metadata-complete="true">
 
-
-    <!-- обновить томкат -->
-
-
-
-    <!-- При ошибке выдает эту страницу -->
-    <!--   <error-page>
-        <location>/webapp/WEB-INF/views/error.jsp</location>
-    </error-page>
--->
-
-    <!-- добавить класс конфиг -->
-
-    <!-- весна-диспетчерская -->
-
-
-    <!-- new -->
-    <!--   <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>controller.HomeController</param-value>
-    </context-param>
--->
-
-
-    <!--
-WTF-->
-    <!--
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
     <servlet>
-        <servlet-name>my-dispatcher-servlet</servlet-name>
+
+        <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:web-config.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>my-dispatcher-servlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>-->
-
-
-    <!-- new -->
-    <!--<context-param>
-        <param-name>contextClass</param-name>
-        <param-value>
-            org.springframework.web.context.
-            support.AnnotationConfigWebApplicationContext
-        </param-value>
-    </context-param>-->
-    <!-- <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            demo.AppContext
-        </param-value>
-    </context-param>-->
-
-
-    <!--
-
-    <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
-
--->
-
-
-    <servlet>
-
-        <servlet-name>spring</servlet-name> <!-- spring -->
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-
 
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>WEB-INF/spring-servlet.xml</param-value><!-- src/main/webapp/WEB-INF/spring-servlet.xml -->
+            <param-value>WEB-INF/spring-servlet.xml</param-value>
         </init-param>
 
-
-        <!-- new -->
-
-        <!--  <init-param>
-            <param-name>contextClass</param-name>
-            <param-value>
-                org.springframework.web.context.
-                support.AnnotationConfigWebApplicationContext
-            </param-value>
-        </init-param>-->
-
-
         <load-on-startup>1</load-on-startup>
+
     </servlet>
 
      <servlet-mapping>

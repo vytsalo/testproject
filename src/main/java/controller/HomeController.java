@@ -12,13 +12,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-//http://localhost:8009/
 //http://localhost:8082/
 
-@Controller//(value="vcproject")//????
+@Controller
 public class HomeController {
 
-    //value = "/"
     @RequestMapping(value = "/s", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
 
@@ -36,7 +34,6 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    //@Validated who?
     public String posteacher(@Validated User user, Model model) {
 
         System.out.println("model.User Page Requested");
@@ -51,7 +48,6 @@ public class HomeController {
         return "Hello world";
     }
 
-    //ЛОгин
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login_page() {
         return "login";
@@ -62,20 +58,6 @@ public class HomeController {
     public String groups_page() {
         return "main";
     }
-
-
-   /* @RequestMapping(value = "/vcproject/", method = RequestMethod.GET)
-    @ResponseBody
-    public String test_gubernute() {
-        return "Test Hibernate and Spring";
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
-    public String vc_proj() {
-        return "Vichislitelniy centr";
-    }*/
-
 
     @RequestMapping(value = "/")
     @ResponseBody
