@@ -14,12 +14,16 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>mywebapp</name>
+
     <properties>
         <spring-version>5.1.2.RELEASE</spring-version>
         <spring-security-version>5.1.1.RELEASE</spring-security-version>
+        <hibernate-version>4.3.11.Final</hibernate-version>
     </properties>
   <!--  <url>http://maven.apache.org</url>
 -->
+
+
 
     <dependencies>
 
@@ -87,39 +91,15 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
-
-           <!-- <exclusions>
-                <exclusion>
-                    <groupId>org.javassist</groupId>
-                    <artifactId>javassist</artifactId>
-                </exclusion>
-            </exclusions>-->
-
+            <version>${hibernate-version}</version>
         </dependency>
-
-        <!--<dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.24.0-GA</version>
-        </dependency>
--->
-
-        <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
-        <!--<dependency>
-            <groupId>javax.json</groupId>
-            <artifactId>javax.json-api</artifactId>
-            <version>1.1.4</version>
-        </dependency>-->
-
-
 
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.11.Final</version>
+            <version>${hibernate-version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.0-api -->
@@ -136,12 +116,12 @@
         <!-- TOMCATS -->
 
         <!-- Сервлеты красные веб хмл фикс -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-servlet-api</artifactId>
             <version>7.0.21</version>
-            <scope>provided</scope>
-        </dependency>
+            <scope>provided</scope> &lt;!&ndash; request provided &ndash;&gt;
+        </dependency>-->
 
         <!-- /TOMCATS -->
 
@@ -197,6 +177,8 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+
+        <!--БЫЛО ЗАКОМЕНЧЕН СКОУП-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -328,21 +310,14 @@
         </dependency>
 -->
 
-
-
-
-
     </dependencies>
-
 
 
 
     <build>
 
         <!-- New -->
-        <sourceDirectory>src/main/java</sourceDirectory> <!-- webapp -->
-
-
+        <sourceDirectory>src/main/java/</sourceDirectory> <!-- java -->
 
         <finalName>mywebapp</finalName>
 
@@ -350,12 +325,12 @@
         <!-- билд - настройки для папок sources и resources -->
 
         <!-- Надо ли? -->
-    <!--    <resources>
+        <!--<resources>
             <resource>
                 <directory>src/main/webapp/META-INF/</directory> &lt;!&ndash;webapp/META-INF/ &ndash;&gt;
-                <includes>
+                &lt;!&ndash;<includes>
                     <include>persistence.xml</include>
-                </includes>
+                </includes>&ndash;&gt;
             </resource>
 
         </resources>-->

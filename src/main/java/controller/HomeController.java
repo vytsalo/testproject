@@ -16,7 +16,6 @@ import java.util.Locale;
 //http://localhost:8082/
 
 @Controller//(value="vcproject")//????
-@SuppressWarnings("all")
 public class HomeController {
 
     //value = "/"
@@ -78,7 +77,7 @@ public class HomeController {
     }*/
 
 
-    @GetMapping(value = "/")
+    @RequestMapping(value = "/")
     @ResponseBody
     public String v_proj() {
         return "Vichislitelniy centr";
