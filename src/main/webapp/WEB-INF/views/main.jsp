@@ -1,8 +1,10 @@
-<html><body>
-<p>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-Список групп
+<html>
+<body>
+<h2>Список всех групп</h2>
 
-</p>
 
-</body></html>
+</body>
+</html>

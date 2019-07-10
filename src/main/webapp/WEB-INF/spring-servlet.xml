@@ -17,6 +17,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+        <!-- new -->
+       <!-- <beans:property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView" />
+-->
+
         <beans:property name="prefix" value="/WEB-INF/views/" /> <!-- webapp и - папка вебапп ресурсов -->
 
 

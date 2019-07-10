@@ -5,6 +5,10 @@
             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd "
          id="WebApp_ID" version="3.0" metadata-complete="true">
 
+
+
+    <!-- http://www.springframework.org/schema/oxm
+            http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd -->
     <servlet>
 
         <servlet-name>spring</servlet-name>
