@@ -17,7 +17,6 @@
         <hibernate-version>4.3.11.Final</hibernate-version>
     </properties>
 
-
     <!-- версии одинаковые сделать c одинаковым групайди -->
     <!-- Как можно ближе версии делать во избежании ошибок -->
     <!-- SPRINGS -->
@@ -149,7 +148,6 @@
             <version>1.1.1</version>
         </dependency>
 
-
         <!-- /JAVAXES -->
 
 
@@ -209,8 +207,6 @@
         </dependency>
 
     </dependencies>
-
-
 
     <build>
 

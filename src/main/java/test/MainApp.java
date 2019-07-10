@@ -5,7 +5,6 @@ import entities.Student;
 import entities.Teacher;
 import org.apache.log4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import service.GroupService;
 import service.StudentService;
@@ -17,8 +16,6 @@ import java.util.List;
 
 @SuppressWarnings("all")
 public class MainApp {
-
-   // Logger logger = new Logger().getLogger(MainApp.class);
 
     final static Logger logger = Logger.getLogger(MainApp.class);
 
@@ -61,26 +58,12 @@ public class MainApp {
 
         /*-----------------------------Контексты------------------------------------------------------------------*/
 
-      /*  AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(config.AppConfig.class);  */
-
-        //ApplicationContext context = new ClassPathXmlApplicationContext("app-config.xml");
-
-
         String xmlConfigLink = "spring-servlet.xml";
-                //"C:\\Users\\vasilevvs\\Downloads\\НАДО ОТКРЫТЬ\\ембедеды с пожо\\testproject\\src\\main\\webapp\\WEB-INF\\spring-servlet.xml";
 
         ConfigurableApplicationContext context
                 = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/spring-servlet.xml");
 
         context.start();
-      /*  AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(xmlConfigLink);*/
-
-
-
-        /*ApplicationContext context =
-                new ClassPathXmlApplicationContext(xmlConfigLink);*/
 
         File f = new File(xmlConfigLink);
         if(f.exists() && !f.isDirectory()) {
@@ -174,8 +157,6 @@ public class MainApp {
 
         for (Student student: studentsList)
             System.out.println(student.toString());
-
-
 
         System.out.println("______________________________");
         System.out.println("_______Преподаватели__________");
