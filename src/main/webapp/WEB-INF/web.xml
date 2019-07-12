@@ -7,8 +7,16 @@
 
 
 
-    <!-- http://www.springframework.org/schema/oxm
-            http://www.springframework.org/schema/oxm/spring-oxm-1.5.xsd -->
+  <!--  &lt;!&ndash; new чтобы обрезать пробелы в директиве &ndash;&gt;
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+        </jsp-property-group>
+    </jsp-config>
+-->
+
+
     <servlet>
 
         <servlet-name>spring</servlet-name>

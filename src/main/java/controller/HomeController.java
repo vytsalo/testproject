@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 //http://localhost:8082/
 
+//Контроллеры для каждого отдельного класса
 @Controller
 public class HomeController {
+
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login_page() {

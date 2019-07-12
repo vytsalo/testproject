@@ -41,10 +41,16 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
         <beans:property name="persistenceUnitName" value="LOCAL_PERSISTENCE"/>
 
-        <beans:property name="packagesToScan" value=""/>
+
+        <!-- not an entity fix -->
+        <beans:property name="packagesToScan" value="entities"/>
+
+
         <beans:property name="jpaProperties">
 
             <beans:props>
+
+                <!-- CREATE - поменять на другое -->
 
                 <beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
                 <beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</beans:prop><!-- 95 -->
@@ -66,5 +72,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager"><!-- id="transactionManager"  -->
         <beans:property name="entityManagerFactory" ref="emf" />
     </beans:bean>
+
+
+
 
 </beans:beans>
