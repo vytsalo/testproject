@@ -21,6 +21,12 @@ public class MainApp {
 
     public static void main(String[] args) {
 
+        //Удалить ненужные зависимости
+
+        //Сделать добавление всех групп и настроить логирования для методов
+
+        //создать и проверить на соответствие JSP, чтобы были одинаковыми в методах
+
         //Список групп
         ArrayList<Group> groupsList = new ArrayList();
 
@@ -63,14 +69,14 @@ public class MainApp {
         ConfigurableApplicationContext context
                 = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/spring-servlet.xml");
 
-        context.start();
+        //context.start();
 
-        File f = new File(xmlConfigLink);
+      /*  File f = new File(xmlConfigLink);
         if(f.exists() && !f.isDirectory()) {
             logger.info("Файл загружен");
 
             // do something
-        } else logger.error("Файла нет");
+        } else logger.error("Файла нет");*/
 
         /*------------------------------------------------------------------------------------*/
         /*----------------------Группа--------------------------------------------------------*/
@@ -123,8 +129,8 @@ public class MainApp {
 
 
         //Переименовываем Ивана во Владимира
-        tslist.get(0).setName("Владимир");
-        teacherService.update(tslist.get(0));
+     //   tslist.get(0).setName("Владимир");
+    //    teacherService.update(tslist.get(0));
 
         System.out.println("________________________________");
         System.out.println("________________________________");
@@ -132,7 +138,7 @@ public class MainApp {
         System.out.println("________________________________");
 
         //удаляем препода с Id=10
-        teacherService.delete(new Long(10));
+   //     teacherService.delete(new Long(10));
 
         System.out.println("________________________________");
         System.out.println("________________________________");
@@ -140,7 +146,7 @@ public class MainApp {
         System.out.println("________________________________");
 
         //выводим препода с id = 9
-        System.out.println(teacherService.findById(new Long(9)).toString());
+      //  System.out.println(teacherService.findById(new Long(9)).toString());
 
         System.out.println("________________________________");
         System.out.println("________________________________");
@@ -153,20 +159,20 @@ public class MainApp {
         System.out.println("_______Студенты_______________");
         System.out.println("______________________________");
 
-        List <Student> studentsList = studentService.getStudentsList();
+   //     List <Student> studentsList = studentService.getStudentsList();
 
-        for (Student student: studentsList)
-            System.out.println(student.toString());
-
+   //     for (Student student: studentsList)
+    //        System.out.println(student.toString());
+        
         System.out.println("______________________________");
         System.out.println("_______Преподаватели__________");
         System.out.println("______________________________");
 
 
-        List <Teacher> teacherList = teacherService.getTeachersList();
+   //     List <Teacher> teacherList = teacherService.getTeachersList();
 
-        for (Teacher teacher: teacherList)
-            System.out.println(teacher.toString());
+ //       for (Teacher teacher: teacherList)
+ //          System.out.println(teacher.toString());
 
        context.close();
 

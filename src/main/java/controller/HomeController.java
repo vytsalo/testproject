@@ -28,11 +28,8 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/")
-    @ResponseBody
     public String v_proj() {
-        return "University's main page" +
-                "<br/><a href='http://localhost:8082/groupslist'>grouplist</a>" +
-                "<br/><a href='http://localhost:8082/login'>login</a>";
+        return "moen";
     }
 
     @RequestMapping(value = "/s")

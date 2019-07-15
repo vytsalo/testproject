@@ -17,8 +17,22 @@ import service.StudentService;
 */
 
 
+
+/*
+
+@RequestMapping(value = "/fetch")
+public ModelAndView listEmployee(ModelAndView model) throws IOException {
+
+        List<Employee> listEmp = empDao.empList();
+        model.addObject("listEmp", listEmp);
+        model.setViewName("index");
+
+        return model;
+        }*/
+
+
 @Controller
-@RequestMapping("/student")
+@RequestMapping("/students")
 public class StudentController {
 
     //форма для добавления сначала
@@ -35,25 +49,25 @@ public class StudentController {
         model.addAttribute("students",studentService.getStudentsList());
         //test
         model.addAttribute("g",10);
-        return "students";//вьюшка students.jsp
+        return "list-students";//вьюшка students.jsp
     }
 
     //POST? откуда данные будут браться?
     //Могут ли быть воид?
     //добавление
-    @GetMapping("/addstudent")
+    @GetMapping("/add")
     //String
-    public void addStudent(Model model){
+    public String addStudent(Model model){
         System.out.println("in addStudent");
         //или он добавляет пустого а потом редактировать надо?
         Student student = new Student();
         model.addAttribute(student);//без имени аттрибута?
         //без ретурна?
-        //return "addingStudents";
+        return "show-student-form";
     }
 
     //ШТО?
-    @PostMapping("/processStudentForm")
+    @PostMapping("/processform")
     public String processStudentForm(Model model, @ModelAttribute("student") Student newStudent){
 
         studentService.add(newStudent);
@@ -81,7 +95,7 @@ public class StudentController {
        //getStudentsList?
         model.addAttribute("student", studentService.findById(id));
 
-        return "show-customer-form";
+        return "show-student-form";
 
     }
 
@@ -89,7 +103,6 @@ public class StudentController {
     @GetMapping("/delete")
     public String deleteStudent(Model model, @RequestParam("studentsId") Long id){
         studentService.delete(id);
-
 
         model.addAttribute("students", studentService.getStudentsList());
 

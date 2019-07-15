@@ -37,7 +37,7 @@ public class StudentDaoImpl implements StudentDao{
     public Student findById(Long studentId){
         Student student=em.find(Student.class, studentId);
         if (student==null)
-            throw new EntityNotFoundException("Студент с Id=" + studentId + " не найден");
+            throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
         return student;
     }
 
@@ -45,7 +45,7 @@ public class StudentDaoImpl implements StudentDao{
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);
         if (student != null) em.remove(student);
-        else throw new EntityNotFoundException("Студент с Id=" + studentId + " не найден");
+        else throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
     }
 
 }
