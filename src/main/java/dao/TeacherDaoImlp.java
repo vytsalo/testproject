@@ -45,7 +45,7 @@ public class TeacherDaoImlp implements TeacherDao {
     public Teacher findById(Long teacherId) {
         Teacher teacher = em.find(Teacher.class,teacherId);
         if (teacher==null)
-            throw new EntityNotFoundException("Преподаватель с ID = " + teacherId + "не найден");
+            throw new EntityNotFoundException("Преподаватель с ID = " + teacherId + " не найден");
         return teacher;
     }
 
@@ -54,7 +54,7 @@ public class TeacherDaoImlp implements TeacherDao {
     public void delete(Long teacherId) {
        Teacher teacher = em.find(Teacher.class, teacherId);
        if (teacher != null) em.remove(teacher);
-       else throw new EntityNotFoundException("Преподаватель с ID = " + teacherId + "не найден");
+       else throw new EntityNotFoundException("Преподаватель с ID = " + teacherId + " не найден");
     }
 
 }

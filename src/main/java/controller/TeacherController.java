@@ -21,7 +21,7 @@ public class TeacherController {
 
         model.addAttribute("teachers", teacherService.getTeachersList());
 
-        return "list-teachers";
+        return "teachers/list-teachers";
 
     }
 
@@ -33,7 +33,7 @@ public class TeacherController {
 
         model.addAttribute(teacher);
 
-        return  "show-teacher-form";
+        return  "teachers/show-teacher-form";
 
     }
 
@@ -43,7 +43,7 @@ public class TeacherController {
 
         model.addAttribute("teachers", teacherService.getTeachersList());
 
-        return "list-teachers";
+        return "teachers/list-teachers";
 
     }
 
@@ -55,7 +55,7 @@ public class TeacherController {
 
         model.addAttribute("teacher", teacherService.findById(Id));
 
-        return "show-teacher-form";
+        return "teachers/show-teacher-form";
 
     }
 
@@ -70,7 +70,7 @@ public class TeacherController {
 
         System.out.println("in process form");
 
-        return "list-teachers";
+        return "teachers/list-teachers";
 
     }
 

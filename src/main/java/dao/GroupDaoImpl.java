@@ -37,7 +37,7 @@ public class GroupDaoImpl implements GroupDao {
     public Group findById(Long groupId) {
         Group group = em.find(Group.class,groupId);
         if (group==null)
-            throw new EntityNotFoundException("Группа с ID = " + groupId + "не найдена");
+            throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
         return group;
     }
 
@@ -46,7 +46,7 @@ public class GroupDaoImpl implements GroupDao {
     public void delete(Long groupId) {
         Group group = em.find(Group.class, groupId);
         if (group != null) em.remove(group);
-        else throw new EntityNotFoundException("Группа с ID = " + groupId + "не найдена");
+        else throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
     }
 
 

@@ -18,7 +18,7 @@ public class GroupController {
     public String listgroup(Model model){
         model.addAttribute("groups", groupService.getGroupsList());
 
-        return "list-groups";
+        return "groups/list-groups";
     }
 
     @GetMapping("/add")
@@ -26,7 +26,7 @@ public class GroupController {
         System.out.println("in addGroup ");
         Group group=new Group();
         model.addAttribute(group);
-        return "show-group-form";
+        return "groups/show-group-form";
     }
 
     @PostMapping("/processform")
@@ -39,7 +39,7 @@ public class GroupController {
 
         System.out.println("in process form");
 
-        return "list-groups";
+        return "groups/list-groups";
     }
 
 
@@ -48,7 +48,7 @@ public class GroupController {
 
         model.addAttribute("group",groupService.findById(Id));
 
-        return "show-group-form";
+        return "groups/show-group-form";
 
     }
 
@@ -62,7 +62,7 @@ public class GroupController {
         model.addAttribute("groups",groupService.getGroupsList());
 
         System.out.println("in process form");
-        return "list-groups";
+        return "groups/list-groups";
 
     }
     

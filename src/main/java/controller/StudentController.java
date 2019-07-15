@@ -38,6 +38,10 @@ public class StudentController {
     //форма для добавления сначала
     //потом
     //начать с группы
+    //кратко инициалы сделать - сборка из фамилии имени и отчества
+    // Иванов И.И.
+
+
 
     @Autowired
     private StudentService studentService;//private
@@ -49,7 +53,7 @@ public class StudentController {
         model.addAttribute("students",studentService.getStudentsList());
         //test
         model.addAttribute("g",10);
-        return "list-students";//вьюшка students.jsp
+        return "students/list-students";//вьюшка students.jsp
     }
 
     //POST? откуда данные будут браться?
@@ -63,7 +67,7 @@ public class StudentController {
         Student student = new Student();
         model.addAttribute(student);//без имени аттрибута?
         //без ретурна?
-        return "show-student-form";
+        return "students/show-student-form";
     }
 
     //ШТО?
@@ -77,7 +81,7 @@ public class StudentController {
 
         System.out.println("in process form");
 
-        return "list-student";//вью
+        return "students/list-student";//вью
 
     }
 
@@ -95,7 +99,7 @@ public class StudentController {
        //getStudentsList?
         model.addAttribute("student", studentService.findById(id));
 
-        return "show-student-form";
+        return "students/show-student-form";
 
     }
 
@@ -108,7 +112,7 @@ public class StudentController {
 
         System.out.println("in process form");
 
-        return "list-students";
+        return "students/list-students";
 
 
     }
