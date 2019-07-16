@@ -25,14 +25,16 @@
     <!-- как он их берет если они приватные -->
     <c:out value="${list}"/><br>
 
+    <!-- Преподавателей списков выводить -->
     <!--
     <c:out value="${list.id}"/><br>
     <c:out value="${list.title}"/><br>
     -->
 
-    <!-- Списки -->
 
 </c:forEach>
+
+<a href = "http://localhost:8082/" >На главную</a>
 
 
 </body>

@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 
+
+//логи программы(кастомные) в отдельный файл
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
@@ -17,6 +19,7 @@ public class GroupController {
     //Список групп просто по ссылке
     @GetMapping("/list")
     public String listgroup(Model model){
+
         model.addAttribute("groups", groupService.getGroupsList());
 
         return "groups/list-groups";
@@ -24,29 +27,35 @@ public class GroupController {
 
     @GetMapping("/add")
     public String addGroup(Model model) {
-        System.out.println("in addGroup ");
-        Group group=new Group();//добавить сразу в форму сократить
+        System.out.println("in addGroup ");//удалить юзлесы, но добавить логирование
+        Group group = new Group();//добавить сразу в форму сократить
         model.addAttribute(group);
         return "groups/show-group-form";//возвращает груп форм, а ссылается на процесс пост
     }
 
+    //норм название дать actionform
     @PostMapping("/processform")//@Valid
     public String processForm(Model model,@ModelAttribute("Group") Group newGroup ) {
 
+        //делает дела
+        //add and update
+
+     /*   Если update = true то делаем
+                groupService.update(newGroup);
+        else groupService.add(newGroup);*/
+
         groupService.add(newGroup);
 
-        //display
         model.addAttribute("groups",groupService.getGroupsList());
 
         System.out.println("in process form");
 
+        //и отправляет вьюшку
         return "groups/list-groups";
     }
 
 
-    //формируем ссылку по id как? текстовое поле?
     //объект находится, но с ним ничего не делается
-    //к окне id или в форме
     @GetMapping("/update")
     //обязательный параметр при обновлении
     //редактирование группы
@@ -54,32 +63,28 @@ public class GroupController {
     //при апдейте добавляет
     public String updateGroup(Model model,@RequestParam("GroupId") Long Id ) {
 
-        //считывание параметров id группы для редактирования и полей ввода
+        //сделать считывание параметров id группы для редактирования и полей ввода
 
         model.addAttribute("group",groupService.findById(Id));
 
         //new
-        //groupService.update(groupService.findById(Id));
+        //update
+        model.addAttribute("update", true);
 
         return "groups/show-group-form";
 
     }
 
-    //через гет с указанием id в адресной строке?
-    //через что выводить id!
-
-
+    //через гет с указанием id в адресной строке!
     //удаляет группу с айди 2
     //http://localhost:8082/groups/delete?GroupId=2
-
-    //как сделать в поле вывод или через строку
     @GetMapping("/delete")
     public String deleteGroup(Model model,@RequestParam("GroupId") Long Id) {
 
-        //adding logic here
+        //удаляем группу по ID
         groupService.delete(Id);
 
-        //display
+        //Выводим группы
         model.addAttribute("groups",groupService.getGroupsList());
 
         System.out.println("in process form");
