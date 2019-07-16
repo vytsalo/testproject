@@ -8,6 +8,7 @@
 <html>
 <body>
 
+
 <!-- if update true - Редактирование -->
 
 <h3>
@@ -23,18 +24,18 @@
 </h3>
 
 
-<!-- если с параметром id - то редактирование, если без параметра - то добавление? -->
 <!-- ссылаться на контроллер! -->
 <!-- modelAttribute как в контроллере! -->
 <!-- add без айди -->
 
 <!-- Разные версии для добавления и редактирования(загрузить уже имеющиеся данные) -->
+//интерфейс страницы
+//https://www.javaguides.net/2018/11/spring-mvc-5-hibernate-5-jsp-mysql-crud-tutorial.html
 <form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group">
 
     <p>Название<input type="text" value="" name="title" /></p>
     <!-- Как реализовать? списки-->
 
-    <!-- Комбобоксом -->
     <p>Преподаватели<input type="text" value="" /></p>
     <p>Студенты<input type="text" value="" /></p>
 
@@ -42,6 +43,7 @@
 
 </form>
 
+<!-- поиск с предложением -->
 
 </body>
 </html>

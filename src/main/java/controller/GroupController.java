@@ -43,6 +43,17 @@ public class GroupController {
      /*   Если update = true то делаем
                 groupService.update(newGroup);
         else groupService.add(newGroup);*/
+        //форма поиска
+        //строка поиска
+
+        //null
+
+        /*if (newGroup.getId()==0){
+            groupService.add(newGroup);
+        } else groupService.update(newGroup);
+        */
+
+
 
         groupService.add(newGroup);
 
