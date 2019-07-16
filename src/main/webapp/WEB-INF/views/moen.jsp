@@ -4,12 +4,17 @@
 <html>
 <body align="center">
 <h2>Главная</h2>
+
 <br/>
+
+<hr/>
+
+<br/>
+
 <h3>Группа</h3>
 
 <a href='http://localhost:8082/groups/list'>Список</a></br>
 <a href='http://localhost:8082/groups/add'>Добавить</a></br>
-<a href='http://localhost:8082/groups/processform'>процессформ</a></br>
 <a href='http://localhost:8082/groups/update'>Обновить</a></br>
 <a href='http://localhost:8082/groups/delete'>Удалить</a></br>
 
@@ -19,7 +24,6 @@
 
 <a href='http://localhost:8082/teachers/list'>Список</a></br>
 <a href='http://localhost:8082/teachers/add'>Добавить</a></br>
-<a href='http://localhost:8082/teachers/processform'>процессформ</a></br>
 <a href='http://localhost:8082/teachers/update'>Обновить</a></br>
 <a href='http://localhost:8082/teachers/delete'>Удалить</a></br>
 
@@ -31,7 +35,7 @@
 
 <a href='http://localhost:8082/students/list'>Список</a></br>
 <a href='http://localhost:8082/students/add'>Добавить</a></br>
-<a href='http://localhost:8082/students/processform'>процессформ</a></br>
+<!-- <a href='http://localhost:8082/students/processform'>процессформ</a></br> -->
 <a href='http://localhost:8082/students/update'>Обновить</a></br>
 <a href='http://localhost:8082/students/delete'>Удалить</a></br>
 

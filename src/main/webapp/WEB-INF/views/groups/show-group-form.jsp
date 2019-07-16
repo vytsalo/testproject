@@ -7,31 +7,25 @@
 
 <html>
 <body>
-<h3>Редактирование группы</h3>
+<h3>Добавление/редактирование группы</h3>
 
-<form method="GET" action="http://localhost:8082/groups/add>
-    <p>Id<input type="text" value="" /></p>
-    <p>Название<input type="text" value="" /></p>
-    <!-- Как реализовать? -->
+<!-- если с параметром id - то редактирование, если без параметра - то добавление? -->
+<!-- ссылаться на контроллер! -->
+<!-- modelAttribute как в контроллере! -->
+<!-- add без айди -->
+
+<!-- Разные версии для добавления и редактирования(загрузить уже имеющиеся данные) -->
+<form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group">
+
+    <p>Название<input type="text" value="" name="title" /></p>
+    <!-- Как реализовать? списки-->
     <p>Преподаватели<input type="text" value="" /></p>
     <p>Студенты<input type="text" value="" /></p>
 
-
     <input type="submit" onclick="" style="cursor:pointer"/>
 
-
-
-<!--
-<form:form action="save" name="employeeDTO" method="POST">
-    <label for="name">Name</label><input id="name" name="name" type="text" required><br>
-    <label for="surname">Surname</label><input id="surname" name="surname" type="text" required><br>
-    <label for="email">E-mail</label><input id="email" type="email" name="email" required><br>
-    <label for="salary">Salary</label><input id="salary" type="number" name="salary" required><br>
-    <input type="submit" value="Save">
-</form:form>
--->
-
 </form>
+
 
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
+
+<html>
+<body align = center>
+<h3>Список всех групп</h3>
+
+
+<!-- обращение к модели через атрибуты-->
+
+<c:set var="test" value="Группы:" />
+
+<h4><c:out value="${test}" /></h4>
+
+<!-- база данных -->
+<!-- таблицей имя и т.д. -->
+<!-- база -->
+
+<c:forEach items="${groups}" var="list">
+
+    <!-- как он их берет если они приватные -->
+    <c:out value="${list}"/><br>
+
+    <!--
+    <c:out value="${list.id}"/><br>
+    <c:out value="${list.title}"/><br>
+    -->
+
+    <!-- Списки -->
+
+</c:forEach>
+
+
+</body>
+</html>
