@@ -23,10 +23,11 @@ public class Group implements Serializable  {
         this.title = title;
     }
 
+    //объектный тип ID сделать
     @Id
     @Column(name="group_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     //Название группы
     @Column
@@ -71,7 +72,7 @@ public class Group implements Serializable  {
         return students;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -82,7 +83,7 @@ public class Group implements Serializable  {
     @SuppressWarnings("unused")
     public Group() {}
 
-    public Group(long id, String title, List<Teacher> teachers, List<Student> students) {
+    public Group(Long id, String title, List<Teacher> teachers, List<Student> students) {
         this.id = id;
         this.title = title;
         this.teachers = teachers;
