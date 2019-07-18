@@ -30,10 +30,6 @@ public class GroupController {
 
 
 
-
-
-
-
     @GetMapping("/add")
     public String addGroup(Model model) {
         System.out.println("in addGroup ");//удалить юзлесы, но добавить логирование
@@ -50,14 +46,14 @@ public class GroupController {
     //норм название дать actionform
     //редирект на список групп
     //подробные коменты всего
+    //как сделать, чтобы напрямую его нельзя было вызвать - редирект?
     @PostMapping("/processform")//@Valid                  //Group
     public String processForm(Model model,@ModelAttribute("group") Group newGroup) {
 
+        //Надо ли сортировку по алфавиту?
+
         //форма поиска
         //строка поиска
-
-
-
 
         /*
             Переходим на update - страницу
@@ -67,29 +63,6 @@ public class GroupController {
         * */
 
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println("id=" + newGroup.getId());
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
-
-
-
-
-       /* if (newGroup.getId().equals(null))
-            groupService.add(newGroup);
-        else
-            groupService.update(newGroup);*/
-
-
-       //сократить до унарной ?
         if (newGroup.getId()==null)
             groupService.add(newGroup);
         else
@@ -98,7 +71,6 @@ public class GroupController {
 
         //надо ли?
         model.addAttribute("groups",groupService.getGroupsList());
-
 
         System.out.println("in process form");
 
@@ -144,7 +116,13 @@ public class GroupController {
 
         model.addAttribute("update", true);
 
-        return "groups/show-group-form"; //"redirect:" + "/list"
+        //        return "redirect:/viewemp";//will redirect to viewemp request mapping
+        //        return "forward:/" - проброс
+        return "groups/show-group-form";
+
+        //какая разница между
+        //"redirect:" + "/list"
+        //и вызовом метода, если убрать считывание группы
 
     }
 
