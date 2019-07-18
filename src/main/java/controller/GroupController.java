@@ -27,9 +27,7 @@ public class GroupController {
     }
 
 
-
-
-
+    //Сделать файлик notes с замечаниями чего исправить или поменять
     @GetMapping("/add")
     public String addGroup(Model model) {
         System.out.println("in addGroup ");//удалить юзлесы, но добавить логирование
@@ -67,7 +65,6 @@ public class GroupController {
             groupService.add(newGroup);
         else
             groupService.update(newGroup);
-
 
         //надо ли?
         model.addAttribute("groups",groupService.getGroupsList());
@@ -125,14 +122,6 @@ public class GroupController {
         //и вызовом метода, если убрать считывание группы
 
     }
-
-
-
-
-
-
-
-
 
     //через гет с указанием id в адресной строке!
     //удаляет группу с айди 2
