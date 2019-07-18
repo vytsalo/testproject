@@ -79,7 +79,6 @@ public class GroupController {
     //сделать не через ?= а http://localhost:8082/groups/update/2 вот так
 
     //объект находится, но с ним ничего не делается
-    @GetMapping("/update")
     //обязательный параметр при обновлении
     //редактирование группы
     //http://localhost:8082/groups/update?GroupId=2
@@ -92,25 +91,21 @@ public class GroupController {
 //ГАЙД ПО ПЕРЕДАЧЕ
  //produces = "application/json"
 
-    public String updateGroup(Model model,@RequestParam("GroupId") Long Id) {//еще и модель?
+    @GetMapping("/update/{Id}")
+    public String updateGroup(Model model,@PathVariable Long Id) {//еще и модель?
 
         //сделать считывание параметров id группы для редактирования и полей ввода
 
 
        // Group group = new Group();//добавить сразу в форму сократить
 
-
+        //сделать короче
         Group group = groupService.findById(Id);
+
+        //избавиться
         model.addAttribute("group", group);
 
-
-
-//        model.addAttribute("group",groupService.findById(Id));
-
-
-        //ключ есть long id передается в модель
-
-
+        //Избавиться и в jsp юзать
         model.addAttribute("update", true);
 
         //        return "redirect:/viewemp";//will redirect to viewemp request mapping
@@ -128,16 +123,13 @@ public class GroupController {
     //http://localhost:8082/groups/delete?GroupId=2
     //сделать так
     //http://localhost:8082/groups/delete/2
-    @GetMapping("/delete")
-    public String deleteGroup(Model model,@RequestParam("GroupId") Long Id) {
 
+
+    @GetMapping("/delete/{Id}")
+    public String deleteGroup(Model model,@PathVariable Long Id) {
         //удаляем группу по ID
         groupService.delete(Id);
-
-        //Выводим группы
         model.addAttribute("groups",groupService.getGroupsList());
-
-        System.out.println("in process form");
         return "groups/list-groups";
 
     }
