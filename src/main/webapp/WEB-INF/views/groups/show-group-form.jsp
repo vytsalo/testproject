@@ -8,6 +8,11 @@
 <html>
 <body>
 
+<head>
+<title>Группы</title>
+</head>
+
+
 
 <!-- if update true - Редактирование с id таким - то -->
 

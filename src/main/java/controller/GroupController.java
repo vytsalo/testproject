@@ -21,8 +21,9 @@ public class GroupController {
     @GetMapping("/list")
     public String listgroup(Model model){
 
+        //зачем?
         model.addAttribute("groups", groupService.getGroupsList());
-
+//asdas
         return "groups/list-groups";
     }
 
@@ -30,13 +31,11 @@ public class GroupController {
     //Сделать файлик notes с замечаниями чего исправить или поменять
     @GetMapping("/add")
     public String addGroup(Model model) {
-        System.out.println("in addGroup ");//удалить юзлесы, но добавить логирование
-        Group group = new Group();//добавить сразу в форму сократить
 
+        //Просто передаем пустой экземпляр, который потом заполняем с помощью формы
+        model.addAttribute("group", new Group());// - "group"
 
-        //-----------------------------NEW------------------------
-        model.addAttribute("group", group);// - "group"
-
+        //+ Логирование
 
         return "groups/show-group-form";//возвращает груп форм, а ссылается на процесс пост
     }
@@ -45,9 +44,10 @@ public class GroupController {
     //редирект на список групп
     //подробные коменты всего
     //как сделать, чтобы напрямую его нельзя было вызвать - редирект?
-    @PostMapping("/processform")//@Valid                  //Group
+    @PostMapping("/processform")
     public String processForm(Model model,@ModelAttribute("group") Group newGroup) {
 
+        //Узнать про поиск
         //Надо ли сортировку по алфавиту?
 
         //форма поиска
@@ -58,7 +58,7 @@ public class GroupController {
             считываем id
             заполняем данные в форму
             отправляем в пост метод
-        * */
+        */
 
 
         if (newGroup.getId()==null)
@@ -76,23 +76,9 @@ public class GroupController {
     }
 
 
-    //сделать не через ?= а http://localhost:8082/groups/update/2 вот так
-
-    //объект находится, но с ним ничего не делается
-    //обязательный параметр при обновлении
-    //редактирование группы
-    //http://localhost:8082/groups/update?GroupId=2
-    //при апдейте добавляет
-
-    //поменять на
-   /* @GetMapping("/update/{id}")
-    public String updateGroup(Model model, @PathVariable Long Id)
-*/
 //ГАЙД ПО ПЕРЕДАЧЕ
- //produces = "application/json"
-
     @GetMapping("/update/{Id}")
-    public String updateGroup(Model model,@PathVariable Long Id) {//еще и модель?
+    public String updateGroup(Model model,@PathVariable Long Id) {
 
         //сделать считывание параметров id группы для редактирования и полей ввода
 
@@ -117,12 +103,6 @@ public class GroupController {
         //и вызовом метода, если убрать считывание группы
 
     }
-
-    //через гет с указанием id в адресной строке!
-    //удаляет группу с айди 2
-    //http://localhost:8082/groups/delete?GroupId=2
-    //сделать так
-    //http://localhost:8082/groups/delete/2
 
 
     @GetMapping("/delete/{Id}")
