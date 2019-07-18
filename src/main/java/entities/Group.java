@@ -76,6 +76,11 @@ public class Group implements Serializable  {
         return id;
     }
 
+    //надо ли?
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setStudents(List<Student> students) {
         this.students = students;
     }

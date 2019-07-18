@@ -17,6 +17,7 @@ public class GroupController {
     private GroupService groupService;
 
     //Список групп просто по ссылке
+    //поменять на @GetMapping("/")
     @GetMapping("/list")
     public String listgroup(Model model){
 
@@ -37,68 +38,62 @@ public class GroupController {
     public String addGroup(Model model) {
         System.out.println("in addGroup ");//удалить юзлесы, но добавить логирование
         Group group = new Group();//добавить сразу в форму сократить
-        model.addAttribute(group);
+
+
+        //-----------------------------NEW------------------------
+        model.addAttribute("group", group);// - "group"
+
+
         return "groups/show-group-form";//возвращает груп форм, а ссылается на процесс пост
     }
 
     //норм название дать actionform
-    @PostMapping("/processform")//@Valid
-    public String processForm(Model model,@ModelAttribute("Group") Group newGroup) {
+    //редирект на список групп
+    //подробные коменты всего
+    @PostMapping("/processform")//@Valid                  //Group
+    public String processForm(Model model,@ModelAttribute("group") Group newGroup) {
 
-        //делает дела
-        //add and update
-
-     /*   Если update = true то делаем
-                groupService.update(newGroup);
-        else groupService.add(newGroup);*/
         //форма поиска
         //строка поиска
 
-        //null
-       // groupService.add(newGroup);
 
 
+
+        /*
+            Переходим на update - страницу
+            считываем id
+            заполняем данные в форму
+            отправляем в пост метод
+        * */
+
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("id=" + newGroup.getId());
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+
+
+
+
+       /* if (newGroup.getId().equals(null))
+            groupService.add(newGroup);
+        else
+            groupService.update(newGroup);*/
+
+
+       //сократить до унарной ?
         if (newGroup.getId()==null)
             groupService.add(newGroup);
         else
             groupService.update(newGroup);
-
-
-      /* if (newGroup.getId().equals(null)){
-            groupService.add(newGroup);
-        } else {
-            groupService.update(newGroup);
-        }*/
-
-
-      //парсить строку?
-
-
-
-        // update or add
-      /*  if (uoa.equals("u")){
-            groupService.update(newGroup);
-        } else groupService.add(newGroup);*/
-
-
-        //id не может быть null
-        //groupService.add(newGroup);
-        //groupService.update(newGroup);
-
-
-
-
-     /*   if (groupService.findById(newGroup.getId())!=null){
-            System.out.println("update");
-        } else System.out.println("add");*/
-
-
-
-    /*    if (model.containsAttribute("update"))
-            System.out.println("aosidas9idha=diha['sdha[shfaihfoia------------------------____________________");
-*/
-
-
 
 
         //надо ли?
@@ -120,27 +115,52 @@ public class GroupController {
     //редактирование группы
     //http://localhost:8082/groups/update?GroupId=2
     //при апдейте добавляет
-    public String updateGroup(Model model,@RequestParam("GroupId") Long Id) {
+
+    //поменять на
+   /* @GetMapping("/update/{id}")
+    public String updateGroup(Model model, @PathVariable Long Id)
+*/
+//ГАЙД ПО ПЕРЕДАЧЕ
+ //produces = "application/json"
+
+    public String updateGroup(Model model,@RequestParam("GroupId") Long Id) {//еще и модель?
 
         //сделать считывание параметров id группы для редактирования и полей ввода
 
-        model.addAttribute("group",groupService.findById(Id));
 
-        //new
-        //update
+       // Group group = new Group();//добавить сразу в форму сократить
+
+
+        Group group = groupService.findById(Id);
+        model.addAttribute("group", group);
+
+
+
+//        model.addAttribute("group",groupService.findById(Id));
+
 
         //ключ есть long id передается в модель
 
-        //-----
+
         model.addAttribute("update", true);
 
-        return "groups/show-group-form";
+        return "groups/show-group-form"; //"redirect:" + "/list"
 
     }
+
+
+
+
+
+
+
+
 
     //через гет с указанием id в адресной строке!
     //удаляет группу с айди 2
     //http://localhost:8082/groups/delete?GroupId=2
+    //сделать так
+    //http://localhost:8082/groups/delete/2
     @GetMapping("/delete")
     public String deleteGroup(Model model,@RequestParam("GroupId") Long Id) {
 
