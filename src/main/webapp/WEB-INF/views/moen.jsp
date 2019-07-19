@@ -2,7 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
+<head>
+<title>Группы</title>
+</head>
 <body align="center">
+
+
+
 <h2>Главная</h2>
 
 <br/>
@@ -13,10 +19,10 @@
 
 <h3>Группа</h3>
 
-<a href='http://localhost:8082/groups/list'>Список</a></br>
-<a href='http://localhost:8082/groups/add'>Добавить</a></br>
-<a href='http://localhost:8082/groups/update'>Обновить</a></br>
-<a href='http://localhost:8082/groups/delete'>Удалить</a></br>
+<a href='http://localhost:8082/groups/list/'>Список</a></br>
+<a href='http://localhost:8082/groups/add/'>Добавить</a></br>
+<a href='http://localhost:8082/groups/update/'>Обновить</a></br>
+<a href='http://localhost:8082/groups/delete/'>Удалить</a></br>
 
 
 

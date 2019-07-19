@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
-
-
 //логи программы(кастомные) в отдельный файл
+
+
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
@@ -16,16 +16,16 @@ public class GroupController {
     @Autowired
     private GroupService groupService;
 
+
+
     //Список групп просто по ссылке
     //поменять на @GetMapping("/")
     @GetMapping("/list")
     public String listgroup(Model model){
-
-        //зачем?
         model.addAttribute("groups", groupService.getGroupsList());
-//asdas
         return "groups/list-groups";
     }
+
 
 
     //Сделать файлик notes с замечаниями чего исправить или поменять
@@ -47,7 +47,6 @@ public class GroupController {
     @PostMapping("/processform")
     public String processForm(Model model,@ModelAttribute("group") Group newGroup) {
 
-        //Узнать про поиск
         //Надо ли сортировку по алфавиту?
 
         //форма поиска
@@ -69,8 +68,6 @@ public class GroupController {
         //надо ли?
         model.addAttribute("groups",groupService.getGroupsList());
 
-        System.out.println("in process form");
-
         //и отправляет вьюшку
         return "groups/list-groups";
     }
@@ -81,7 +78,6 @@ public class GroupController {
     public String updateGroup(Model model,@PathVariable Long Id) {
 
         //сделать считывание параметров id группы для редактирования и полей ввода
-
 
        // Group group = new Group();//добавить сразу в форму сократить
 
@@ -113,7 +109,17 @@ public class GroupController {
         return "groups/list-groups";
 
     }
-    
+
+
+    //-------TEST------
+
+
+    @GetMapping("/test")
+    public String testgroup(Model model){
+        return "groups/testform";
+    }
+
+
     
 
 
