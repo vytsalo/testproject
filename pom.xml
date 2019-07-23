@@ -17,6 +17,12 @@
         <hibernate-version>4.3.11.Final</hibernate-version>
     </properties>
 
+   <!-- <classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+        <attributes>
+            <attribute name="maven.pomderived" value="true"/>
+        </attributes>
+    </classpathentry>-->
+
     <!-- версии одинаковые сделать c одинаковым групайди -->
     <!-- Как можно ближе версии делать во избежании ошибок -->
     <!-- SPRINGS -->
@@ -208,7 +214,26 @@
 
     </dependencies>
 
+
+
+
     <build>
+
+
+
+
+        <!-- Пути хранения ресурсов не работают -->
+        <resources>
+
+            <resource>
+                <directory>src/main/webapp/</directory>
+            </resource>
+           <!-- <resource>
+                <directory>path to your folder to put in classpath</directory>
+            </resource>-->
+        </resources>
+
+
 
         <sourceDirectory>src/main/java/</sourceDirectory> <!-- код java -->
 

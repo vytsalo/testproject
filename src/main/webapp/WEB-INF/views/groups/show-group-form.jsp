@@ -18,10 +18,6 @@
 <!-- . - точка на уровень выше подняться -->
 
 
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js" />"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" />"></script>
-
 </head>
 
 <h3>

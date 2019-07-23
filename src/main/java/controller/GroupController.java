@@ -119,6 +119,11 @@ public class GroupController {
         return "groups/testform";
     }
 
+    @GetMapping("/ssz")
+    public String dstgroup(Model model){
+        return "groups/index";
+    }
+
 
     
 
