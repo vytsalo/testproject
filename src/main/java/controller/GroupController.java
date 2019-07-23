@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 //логи программы(кастомные) в отдельный файл
 
+
+
 @Controller
 @RequestMapping("/groups")
 public class GroupController {

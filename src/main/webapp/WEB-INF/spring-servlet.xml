@@ -10,7 +10,24 @@
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
 
+    <!-- NEW -->
+
+
+<!--     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
+ -->
+
+
+<!--
+    <resources mapping="/resources/**" location="/WEB-INF/css/" />&lt;!&ndash; webapp/WEB-INF/css &ndash;&gt;
+
+    <default-servlet-handler />
+-->
+
+
     <tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
 
     <context:component-scan base-package="controller,dao,service" /> <!--config-->
 
