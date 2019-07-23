@@ -116,11 +116,6 @@ public class GroupController {
 
     @GetMapping("/test")
     public String testgroup(Model model){
-        return "groups/testform";
-    }
-
-    @GetMapping("/ssz")
-    public String dstgroup(Model model){
         return "groups/index";
     }
 

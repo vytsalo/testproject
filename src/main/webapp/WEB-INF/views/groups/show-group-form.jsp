@@ -6,22 +6,188 @@
 <%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
 
 <html>
-<body>
 
 <head>
-<meta charset="ISO-8859-1">
-<title>Spring MVC 5 - form handling | Java Guides</title>
-<!-- добавить resource folder в помник -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!---------- CSS ------------>
+	<!--
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" />
+	-->
 
-<!-- абсолютный путь -->
-<!-- сделать путь с локальными файлами-->
-<!-- . - точка на уровень выше подняться -->
+<!-- src= -->
+	<!--
+	<link rel="stylesheet" type="text/css" href="<c:url value="${pageContext.request.contextPath}/css/style.css" />" />
+	-->
+
+<!--	<link rel="stylesheet" type="text/css" href="<spring:url value="/.resources/css/style.css" />" />
+-->
+	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" />
 
 
+
+
+
+<style type="text/css">
+ /*
+ * simple Signup Form
+ * Created by Oussama Afellad
+ * www.premiumfreebies.eu
+ * 29/08/2011
+ */
+
+ body {
+ 	background: #FDFDFD;
+ }
+ body, input, textarea {
+ 	font: 14px/24px Helvetica, Arial, sans-serif;
+ 	color: #666;
+ }
+ input {
+ 	width: 60%
+ }
+ form {
+ 	margin: 30px 0 0 0
+ }
+ input, textarea {
+ 	background: none repeat scroll 0 0 #FFFFFF;
+ 	border: 1px solid #C9C9C9;
+ 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset, -5px -5px 0 0 #F5F5F6, 5px 5px 0 0 #F5F5F6, 5px 0 0 0 #F5F5F6, 0 5px 0 0 #F5F5F6, 5px -5px 0 0 #F5F5F6, -5px 5px 0 0 #F5F5F6;
+ 	color: #545658;
+ 	padding: 8px;
+ 	font-size: 14px;
+ 	border-radius: 2px 2px 2px 2px;
+ }
+ #submit {
+ 	background: url("../images/submit_bg.gif") repeat-x scroll 0 0 transparent;
+ 	border: 1px solid #B7D6DF;
+ 	border-radius: 2px 2px 2px 2px;
+ 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+ 	color: #437182;
+ 	cursor: pointer;
+ 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+ 	font-size: 14px;
+ 	font-weight: bold;
+ 	height: auto;
+ 	padding: 6px 10px;
+ 	text-shadow: 0 1px 0 #FFFFFF;
+ 	width: auto;
+ }
+ #submit:hover {
+ 	background: url("../images/submit_hover_bg.gif") repeat-x scroll 0 0 transparent;
+ 	border: 1px solid #9FBAC0;
+ 	cursor: pointer;
+ }
+ a {
+ 	color: #88BBC8;
+ 	text-decoration: none;
+ }
+ a:hover {
+ 	color: #f26525
+ }
+ #signup-form {
+ 	width: 510px;
+ 	margin: 0 auto;
+ 	margin-top: 50px;
+ 	margin-bottom: 50px;
+ 	background: #fff;
+ 	padding: 40px;
+ 	border: 10px solid #f2f2f2;
+ }
+ #signup-icon {
+ 	float: right;
+ 	width: 48px;
+ 	height: 48px;
+ }
+ h1, h2, h3, h4, h5, h6 {
+ 	margin: 0;
+ 	padding: 0;
+ 	color: #444;
+ }
+ h1 {
+ 	float: left;
+ 	margin: 0 0 30px;
+ 	font-size: 24px;
+ 	line-height: 34px;
+ }
+ h2.secondary {
+ 	float: left;
+ 	width: 260px;
+ 	font-size: 16px;
+ 	font-weight: normal;
+ 	color: #999;
+ 	margin-bottom: 30px;
+ 	line-height: 26px;
+ }
+ h3 {
+ 	margin: 30px 0 0 0
+ }
+ .clearfix:after {
+ 	content: ".";
+ 	display: block;
+ 	height: 0;
+ 	clear: both;
+ 	visibility: hidden;
+ }
+ .clearfix {
+ 	display: inline-block
+ } /* Hide from IE Mac \*/
+ .clearfix {
+ 	display: block;
+ } /* End hide from IE Mac */
+ .none {
+ 	display: none;
+ } /* End Clearfix _NO__DOTCOMMA__AFTER__*/
+
+ #header {
+ 	margin: 0 0 30px 0;
+ 	border-bottom: 1px solid #efefef;
+ }
+ #send p {
+ 	margin-bottom: 20px
+ }
+ textarea {
+ 	width: 95%;
+ 	margin: 0 0 0 2px;
+ }
+ #required p{
+ 	font-size:10px;
+ }
+ #apply {
+ 	border-top: 1px solid #efefef;
+ 	margin-top: 30px;
+ 	padding: 20px 0 0 0;
+ }
+ #apply ul {
+ 	margin-bottom: 50px
+ }
+ form label {
+ 	display: block;
+ 	margin-bottom: 5px;
+ 	font-weight: bold;
+ 	font-size: 12px;
+ }
+  </style>
+
+	<title>Добавление/удаление группы</title>
 </head>
 
-<h3>
-<c:choose>
+
+
+
+<body>
+
+    <!--BEGIN #signup-form -->
+    <div id="signup-form">
+        
+        <!--BEGIN #subscribe-inner -->
+        <div id="signup-inner">
+        
+        	<div class="clearfix" id="header">
+        	
+        		
+				<img id="signup-icon" src="C:\Users\vasilevvs\Downloads\НАДО ОТКРЫТЬ\ембедеды с пожо\testproject\testform\images\group.png" alt="" />
+                <h1>
+				<c:choose>
   <c:when test="${update}">
     <c:out value="Редактирование группы с ID = ${group.id}" />
 
@@ -31,122 +197,61 @@
     <c:out value="Добавление группы"/>
   </c:otherwise>
 </c:choose>
-</h3>
+
+				
+				
+				
+				
+				</h1>
+
+            
+            </div>
+			
+			
+			<p>Пожалуйста, заполните поля ниже.</p>
+            
+            <form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" id="send">
+
+				<input type="text" value="${group.id}" name="id" hidden />
+
+                <p>
+                <label for="name">Название *</label>
+                <input id="name" type="text" name="title" value="${group.title}" />
+                </p>
+                
+				
+				<!-- поменять айдишники -->
+                <p>
+                <label for="company">Преподаватели</label>
+                <input id="company" type="text" value="" />
+                </p>
+                
+                <p>
+                <label for="email">Студенты</label>
+                <input id="email" type="text" value="" />
+                </p>
+   
+                
+                <p>
+
+                <input id="submit" type="submit" style="cursor:pointer" value="Отправить" />
+
+                </p>
+                
+            </form>
+            
+		<div id="required">
+		<p>* Поля, обязательные для заполнения</p>
+		</div>
 
 
-
-<div class="container">
-  <div class="col-md-offset-2 col-md-7">
-   <h2 class="text-center">Spring MVC 5 + Hibernate 5 + JSP + MySQL
-    Example</h2>
-   <div class="panel panel-info">
-
-    <div class="panel-heading">
-
-     <div class="panel-title">Add Customer</div>
-
-    </div>
-    <div class="panel-body">
-
-
-
-
-
-
-
-<!-- ссылаться на контроллер! -->
-<!-- modelAttribute как в контроллере! -->
-
-<!-- Разные версии для добавления и редактирования(загрузить уже имеющиеся данные) -->
-<!--
-//интерфейс страницы
-//https://www.javaguides.net/2018/11/spring-mvc-5-hibernate-5-jsp-mysql-crud-tutorial.html
--->
-
-<!-- в экшон можно просто метод processForm -->
-<!-- передается в пост метод джававский для обработки -->
-
-
-
-
-
-
-
-
-
-<form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" class="form-horizontal">
-
-    <!-- Загружаются данные, если это update -->
-    <!-- передается айди с апдейта -->
-    <input type="text" value="${group.id}" name="id" hidden />
-
-
-
-
- <div class="form-group">
-
-        <label for="firstname" class="col-md-3 control-label">Название</label>
-
-        <div class="col-md-9">
-
-         <input type="text" path="firstName" value="${group.title}" name="title" class="form-control" />
+            </div>
+        
+        <!--END #signup-inner -->
         </div>
-
- </div>
-
-
-
-
-
-
-
-    <!-- Как реализовать? списки-->
-
-    <p>Преподаватели<input type="text" value="" /></p><!-- name -->
-    <p>Студенты<input type="text" value="" /></p><!-- name -->
-
-
-<!-- БАГ - по количеству нажатий на кнопку добавляется несколько записей -->
-    <input type="submit" style="cursor:pointer" />
-
-</form>
-
-<!-- поиск с предложением -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	    </div>
-   </div>
-  </div>
- </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+    <!--END #signup-form -->   
+    </div>
 
 </body>
 </html>
