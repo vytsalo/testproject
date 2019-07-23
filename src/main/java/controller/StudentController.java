@@ -7,6 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.StudentService;
 
+
+
+/*
+* Почему-то для группы, студентов и преподавателей совместная нумерация ID
+*
+*
+* */
+
+
 /*
 Вьюхи:
     Главная: список всех групп
@@ -48,7 +57,7 @@ public class StudentController {
 
     //Вывод списка студентов
     //без ретурна?
-    @GetMapping("/list")
+    @GetMapping("/")
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getStudentsList());
         return "students/list-students";//вьюшка students.jsp
@@ -70,7 +79,7 @@ public class StudentController {
 
         model.addAttribute("students",studentService.getStudentsList());
 
-        return "students/list-student";//вью
+        return "students/list-students";//вью
 
     }
 
@@ -81,11 +90,7 @@ public class StudentController {
     @GetMapping("/update/{Id}")
     public String updateStudent(Model model,@PathVariable Long Id) {
 
-        //сделать короче
-        Student student = studentService.findById(Id);
-
-        //избавиться
-        model.addAttribute("student", student);
+        model.addAttribute("student", studentService.findById(Id));
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);

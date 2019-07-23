@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="student")
-@SuppressWarnings("unused")
+@SuppressWarnings("unused")//--
 public class Student extends Human implements Serializable {
 
     @Id
@@ -35,7 +35,7 @@ public class Student extends Human implements Serializable {
     public String toString() {
         return "Student{" +
                 "id = " +  id +
-                " gruppa = " + gruppa.toString() +
+                " gruppa = " + gruppa +
                  super.toString() + "}\n";
     }
 

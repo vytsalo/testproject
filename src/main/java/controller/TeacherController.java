@@ -16,7 +16,7 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String listTeachers(Model model){
 
         model.addAttribute("teachers", teacherService.getTeachersList());
@@ -26,7 +26,7 @@ public class TeacherController {
     }
 
 
-    @GetMapping("/addteacher")
+    @GetMapping("/add")
     public String addTeacher(Model model){
 
         model.addAttribute("teacher", new Teacher());
@@ -53,11 +53,8 @@ public class TeacherController {
 
     @GetMapping("/update/{Id}")
     public String updateTeacher(Model model,@PathVariable Long Id) {
-
-        Teacher teacher = teacherService.findById(Id);
-
         //избавиться
-        model.addAttribute("teacher", teacher);
+        model.addAttribute("teacher", teacherService.findById(Id));
 
         model.addAttribute("update", true);
 

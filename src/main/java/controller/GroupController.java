@@ -8,25 +8,41 @@ import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 //логи программы(кастомные) в отдельный файл
 
-
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
 
+
+    /*
+    Spring Validation
+    JavaScript Jquery Client Validation
+    Masked Input JS
+    Поменять дату стринг на дату
+    Регулярками дату, телефон е-майл и ввод по шаблону (? (???) - ??? - ?? - ?? )
+
+    */
+
+    /*
+
+    Единый ID
+
+    CSS
+
+    баг с нажатием несколько раз
+
+    Как сделать форму
+
+    */
+
+
     @Autowired
     private GroupService groupService;
 
-
-
-    //Список групп просто по ссылке
-    //поменять на @GetMapping("/")
-    @GetMapping("/list")
+    @GetMapping("/")
     public String listgroup(Model model){
         model.addAttribute("groups", groupService.getGroupsList());
         return "groups/list-groups";
     }
-
-
 
     //Сделать файлик notes с замечаниями чего исправить или поменять
     @GetMapping("/add")
@@ -72,24 +88,13 @@ public class GroupController {
         return "groups/list-groups";
     }
 
-
-
 //оптимизация всего контроллера
 
 
-//ГАЙД ПО ПЕРЕДАЧЕ
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id) {
 
-        //сделать считывание параметров id группы для редактирования и полей ввода
-
-       // Group group = new Group();//добавить сразу в форму сократить
-
-        //сделать короче
-        Group group = groupService.findById(Id);
-
-        //избавиться
-        model.addAttribute("group", group);
+        model.addAttribute("group", groupService.findById(Id));
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);
@@ -101,7 +106,6 @@ public class GroupController {
         //какая разница между
         //"redirect:" + "/list"
         //и вызовом метода, если убрать считывание группы
-
     }
 
 
@@ -122,9 +126,5 @@ public class GroupController {
     public String testgroup(Model model){
         return "groups/index";
     }
-
-
-    
-
 
 }
