@@ -24,13 +24,13 @@ public class GroupController {
 
     /*
 
-    Единый ID
+    Единый ID - generationtype=sequence
 
-    CSS
+    CSS add resource handlers
 
-    баг с нажатием несколько раз
+    баг с нажатием несколько раз - не баг
 
-    Как сделать форму
+    Как сделать форму - like по всем полям, если есть совпадения
 
     */
 

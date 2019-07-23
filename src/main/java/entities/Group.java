@@ -26,7 +26,7 @@ public class Group implements Serializable  {
     //объектный тип ID сделать
     @Id
     @Column(name="group_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     //Название группы

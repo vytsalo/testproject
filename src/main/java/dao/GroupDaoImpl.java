@@ -2,6 +2,7 @@ package dao;
 
 import entities.Group;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
@@ -17,26 +18,26 @@ public class GroupDaoImpl implements GroupDao {
     private EntityManager em;
 
     @Override
-    public void add(Group group){
+    public void add(Group group) {
         em.persist(group);
     }
 
     @Override
-    public List<Group> getGroupsList(){
+    public List<Group> getGroupsList() {
         CriteriaQuery<Group> criteriaQuery = em.getCriteriaBuilder().createQuery(Group.class);
         Root<Group> root = criteriaQuery.from(Group.class);
-        return  em.createQuery(criteriaQuery).getResultList();
+        return em.createQuery(criteriaQuery).getResultList();
     }
 
     @Override
-    public void update(Group group){
+    public void update(Group group) {
         em.merge(group);
     }
 
     @Override
     public Group findById(Long groupId) {
-        Group group = em.find(Group.class,groupId);
-        if (group==null)
+        Group group = em.find(Group.class, groupId);
+        if (group == null)
             throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
         return group;
     }

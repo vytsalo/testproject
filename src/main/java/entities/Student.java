@@ -10,7 +10,7 @@ public class Student extends Human implements Serializable {
 
     @Id
     @Column(name="student_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     //Группа, в которой учится студент

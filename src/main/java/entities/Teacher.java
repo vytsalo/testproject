@@ -12,7 +12,7 @@ public class Teacher extends Human implements Serializable {
 
     @Id
     @Column(name="teacher_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToMany(targetEntity = Group.class,fetch=FetchType.EAGER)

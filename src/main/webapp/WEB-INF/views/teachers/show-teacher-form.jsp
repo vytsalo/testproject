@@ -216,7 +216,7 @@
 
                 <p>
                 <label for="name">Фамилия *</label>
-                <input id="name" type="text" name="fam" value="${teacher.fam}" />
+                <input id="name" type="text" name="fam" value="${teacher.fam}" /><!-- placeholder="Введите фамилию" -->
                 </p>
 
 
@@ -237,11 +237,11 @@
 
                 <p>
                 <label for="name">Номер телефона *</label>
-                <input id="name" type="text" name="phone_number" value="${teacher.phone_number}" />
+                <input id="name" type="text" name="phone_number" value="${teacher.phone_number}"  />
                 </p>
 
 
-
+                <!--  pattern="\+7\-[0-9]{3}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" -->
 
 
 
