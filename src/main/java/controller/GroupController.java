@@ -73,6 +73,10 @@ public class GroupController {
     }
 
 
+
+//оптимизация всего контроллера
+
+
 //ГАЙД ПО ПЕРЕДАЧЕ
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id) {

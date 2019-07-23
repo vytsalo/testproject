@@ -51,69 +51,61 @@ public class StudentController {
     @GetMapping("/list")
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getStudentsList());
-        //test
-        model.addAttribute("g",10);
         return "students/list-students";//вьюшка students.jsp
     }
 
-    //POST? откуда данные будут браться?
-    //Могут ли быть воид?
-    //добавление
     @GetMapping("/add")
-    //String
     public String addStudent(Model model){
-        System.out.println("in addStudent");
-        //или он добавляет пустого а потом редактировать надо?
-        Student student = new Student();
-        model.addAttribute(student);//без имени аттрибута?
-        //без ретурна?
+        model.addAttribute(new Student());//без имени аттрибута?
         return "students/show-student-form";
     }
 
-    //ШТО?
     @PostMapping("/processform")
     public String processStudentForm(Model model, @ModelAttribute("student") Student newStudent){
 
-        studentService.add(newStudent);
+        if (newStudent.getId()==null)
+            studentService.add(newStudent);
+        else
+            studentService.update(newStudent);
 
-        //обновление
-        //model.addAttribute("students",studentService.get);
-
-        System.out.println("in process form");
+        model.addAttribute("students",studentService.getStudentsList());
 
         return "students/list-student";//вью
 
     }
 
 
-    //обновление
-    @GetMapping("/update")
-    //studentId - или реальный ID
-    public String updateStudent(Model model, @RequestParam("studentId") Long id ){
-
-       /* Student student = studentService.findById(id);
-          model.addAttribute("student", studentService.update(student));
-        */
 
 
-       //getStudentsList?
-        model.addAttribute("student", studentService.findById(id));
 
+    @GetMapping("/update/{Id}")
+    public String updateStudent(Model model,@PathVariable Long Id) {
+
+        //сделать короче
+        Student student = studentService.findById(Id);
+
+        //избавиться
+        model.addAttribute("student", student);
+
+        //Избавиться и в jsp юзать
+        model.addAttribute("update", true);
+
+        //        return "redirect:/viewemp";//will redirect to viewemp request mapping
+        //        return "forward:/" - проброс
         return "students/show-student-form";
+
+        //какая разница между
+        //"redirect:" + "/list"
+        //и вызовом метода, если убрать считывание группы
 
     }
 
-    //удаление
-    @GetMapping("/delete")
-    public String deleteStudent(Model model, @RequestParam("studentsId") Long id){
-        studentService.delete(id);
-
-        model.addAttribute("students", studentService.getStudentsList());
-
-        System.out.println("in process form");
-
+    @GetMapping("/delete/{Id}")
+    public String deleteGroup(Model model,@PathVariable Long Id) {
+        //удаляем группу по ID
+        studentService.delete(Id);
+        model.addAttribute("students",studentService.getStudentsList());
         return "students/list-students";
-
 
     }
 

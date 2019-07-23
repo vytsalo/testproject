@@ -11,7 +11,7 @@ public class Student extends Human implements Serializable {
     @Id
     @Column(name="student_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     //Группа, в которой учится студент
     @ManyToOne(fetch = FetchType.EAGER)//-fetch ЛЕЗИ?
@@ -27,7 +27,7 @@ public class Student extends Human implements Serializable {
         this.gruppa = gruppa;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -39,7 +39,7 @@ public class Student extends Human implements Serializable {
                  super.toString() + "}\n";
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

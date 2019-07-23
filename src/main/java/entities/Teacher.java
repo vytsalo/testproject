@@ -13,7 +13,7 @@ public class Teacher extends Human implements Serializable {
     @Id
     @Column(name="teacher_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @ManyToMany(targetEntity = Group.class,fetch=FetchType.EAGER)
     @JoinTable(name = "teacher_groups",
@@ -47,11 +47,11 @@ public class Teacher extends Human implements Serializable {
                 "} " + super.toString();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

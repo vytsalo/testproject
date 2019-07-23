@@ -28,10 +28,8 @@ public class TeacherController {
 
     @GetMapping("/addteacher")
     public String addTeacher(Model model){
-        System.out.println("in addTeacher");
-        Teacher teacher = new Teacher();
 
-        model.addAttribute(teacher);
+        model.addAttribute("teacher", new Teacher());
 
         return  "teachers/show-teacher-form";
 
@@ -39,37 +37,40 @@ public class TeacherController {
 
     @PostMapping("/processform")
     public String processForm(Model model, @ModelAttribute("teacher") Teacher newTeacher){
-        teacherService.add(newTeacher);
 
-        model.addAttribute("teachers", teacherService.getTeachersList());
+        if (newTeacher.getId()==null)
+            teacherService.add(newTeacher);
+        else
+            teacherService.update(newTeacher);
+
+        model.addAttribute("teachers",teacherService.getTeachersList());
 
         return "teachers/list-teachers";
 
     }
 
 
-    //Поменять параменты на адекватные не тичерайди а просто айди
 
-    @GetMapping("/update")
-    public String updateTeacher(Model model, @RequestParam("teacherId") Long Id){
+    @GetMapping("/update/{Id}")
+    public String updateTeacher(Model model,@PathVariable Long Id) {
 
-        model.addAttribute("teacher", teacherService.findById(Id));
+        Teacher teacher = teacherService.findById(Id);
+
+        //избавиться
+        model.addAttribute("teacher", teacher);
+
+        model.addAttribute("update", true);
 
         return "teachers/show-teacher-form";
 
     }
 
-    @GetMapping("/delete")
-    //http://localhost:8082/teachers/delete?teacherId=2
-    public String deleteTeacher(Model model, @RequestParam("teacherId") Long Id){
+
+    @GetMapping("/delete/{Id}")
+    public String deleteTeacher(Model model,@PathVariable Long Id) {
+        //удаляем группу по ID
         teacherService.delete(Id);
-
-        //проверки на нахождение?
-
-        model.addAttribute("customers", teacherService.findById(Id));
-
-        System.out.println("in process form");
-
+        model.addAttribute("teachers",teacherService.getTeachersList());
         return "teachers/list-teachers";
 
     }
