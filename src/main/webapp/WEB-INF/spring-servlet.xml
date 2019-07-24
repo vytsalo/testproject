@@ -22,7 +22,6 @@
 
 
     <!-- ПУТЬ -->
-    <!--<mvc:resources mapping="/webapp/WEB-INF/**" location="/css/"/>-->
 
     <mvc:resources mapping="/**" location="/WEB-INF/" />
 
@@ -30,8 +29,6 @@
     <!-- ШО ЭТО И ЗАЧЕМ? -->
     <mvc:annotation-driven/>
 
-
-<!-- минус? и в схемах?-->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
 

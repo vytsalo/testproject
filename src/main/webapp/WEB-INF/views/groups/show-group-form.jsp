@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
-
+<!-- Удалить лишнее, юзаю только джеестеель кор -->
 <html>
 
 <head>
@@ -17,6 +17,7 @@
 <!-- CSS привести в порядок, удалить ненужное, поменять названия -->
 
 	<title>Добавление/удаление группы</title>
+
 </head>
 
 
@@ -25,33 +26,27 @@
 <body>
 
      <div id="signup-form">
-        
-        <!--BEGIN #subscribe-inner -->
+
         <div id="signup-inner">
         
         	<div class="clearfix" id="header">
         	
         		
-					<img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
+			    <img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
 
-                <h1>
-				<c:choose>
-  <c:when test="${update}">
-    <c:out value="Редактирование группы с ID = ${group.id}" />
+                    <h1>
+                        <c:choose>
+                            <c:when test="${update}">
+                                <c:out value="Редактирование группы с ID = ${group.id}" />
 
-    <!-- Загрузка данных из бд -->
-  </c:when>
-  <c:otherwise>
-    <c:out value="Добавление группы"/>
-  </c:otherwise>
-</c:choose>
 
+                            </c:when>
+                            <c:otherwise>
+                                <c:out value="Добавление группы"/>
+                            </c:otherwise>
+                        </c:choose>
 				
-				
-				
-				
-				</h1>
-
+				    </h1>
             
             </div>
 			
@@ -62,28 +57,23 @@
 
 				<input type="text" value="${group.id}" name="id" hidden />
 
-                <p>
-                <label for="name">Название *</label>
-                <input id="name" type="text" name="title" value="${group.title}" />
+                <p><!-- Убрать и просто текст сделать? -->
+                <label for="title">Название *</label>
+                <input id="title" type="text" name="title" value="${group.title}" />
                 </p>
-                
-				
-				<!-- поменять айдишники -->
-                <p>
-                <label for="company">Преподаватели</label>
-                <input id="company" type="text" value="" />
-                </p>
-                
-                <p>
-                <label for="email">Студенты</label>
-                <input id="email" type="text" value="" />
-                </p>
-   
-                
-                <p>
 
-                <input id="submit" type="submit" style="cursor:pointer" value="Отправить" />
-
+				<p>
+                <label for="teachers">Список преподавателей</label>
+                <input id="teachers" type="text" value="" />
+                </p>
+                
+                <p>
+                <label for="students">Список студентов</label>
+                <input id="students" type="text" value="" />
+                </p>
+                
+                <p>
+                <input type="submit" id="submit" value="Отправить" />
                 </p>
                 
             </form>
@@ -94,11 +84,9 @@
 
 
             </div>
-        
-        <!--END #signup-inner -->
+
         </div>
-        
-    <!--END #signup-form -->   
+
     </div>
 
 </body>
