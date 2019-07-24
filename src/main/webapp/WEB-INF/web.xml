@@ -63,10 +63,12 @@
 
 
 <!-- new not working -->
-    <servlet-mapping>
+   <!-- <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>*.css</url-pattern><!-- CSS JS -->
-    </servlet-mapping>
+        <url-pattern>webapp/WEB-INF/css/*.css</url-pattern>&lt;!&ndash; CSS JS &ndash;&gt;
+    </servlet-mapping>-->
+
+
 
 
 
@@ -110,5 +112,27 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern><!-- после localhost:8082/ что будет? или нет? -->
     </servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/webapp/WEB-INF/css/*</url-pattern>
+    </servlet-mapping>
+-->
+
+
 
 </web-app>

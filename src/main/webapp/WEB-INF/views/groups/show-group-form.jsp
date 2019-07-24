@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!---------- CSS ------------>
+
 	<!--
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" />
 	-->
@@ -21,10 +22,12 @@
 
 <!--	<link rel="stylesheet" type="text/css" href="<spring:url value="/.resources/css/style.css" />" />
 -->
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" />
 
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css" />" />
+    <!-- Не пишет ,что не нашел, но не использует -->
+	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
+
+
 
 
 	<title>Добавление/удаление группы</title>
@@ -44,7 +47,7 @@
         	<div class="clearfix" id="header">
         	
         		
-				<img id="signup-icon" src="C:\Users\vasilevvs\Downloads\НАДО ОТКРЫТЬ\ембедеды с пожо\testproject\testform\images\group.png" alt="" />
+				<img id="signup-icon" src="<c:url value="\WEB-INF\pics\group.png" />" alt="" />
                 <h1>
 				<c:choose>
   <c:when test="${update}">
