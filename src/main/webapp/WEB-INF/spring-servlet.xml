@@ -24,45 +24,14 @@
     <!-- ПУТЬ -->
     <!--<mvc:resources mapping="/webapp/WEB-INF/**" location="/css/"/>-->
 
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
-
-
-
-
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
-
-    <mvc:default-servlet-handler/>
+    <mvc:resources mapping="/**" location="/WEB-INF/" />
 
 
     <!-- ШО ЭТО И ЗАЧЕМ? -->
     <mvc:annotation-driven/>
 
 
-    <!--    <mvc:resources mapping="/webapp/WEB-INF/**" location="/, classpath:/webapp/WEB-INF/css/"/>-->
-
-    <!--  <mvc:resources mapping="/resources/**" location="/, classpath:/META-INF/public-web-resources/"/>
-  -->
-
-    <!-- NEW -->
-
-
-<!--     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
- -->
-
-
-<!--
-    <resources mapping="/resources/**" location="/WEB-INF/css/" />&lt;!&ndash; webapp/WEB-INF/css &ndash;&gt;
-
-    <default-servlet-handler />
--->
-
-<!--
-    With Spring 3.0.4.RELEASE and higher you can use
-
-    <mvc:resources mapping="/resources/**" location="/public-resources/"/>-->
-
-
-
+<!-- минус? и в схемах?-->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
 

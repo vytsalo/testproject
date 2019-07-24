@@ -9,26 +9,12 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<!---------- CSS ------------>
 
-	<!--
-	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" />
-	-->
-
-<!-- src= -->
-	<!--
-	<link rel="stylesheet" type="text/css" href="<c:url value="${pageContext.request.contextPath}/css/style.css" />" />
-	-->
-
-<!--	<link rel="stylesheet" type="text/css" href="<spring:url value="/.resources/css/style.css" />" />
--->
-
-
-    <!-- Не пишет ,что не нашел, но не использует -->
+    <!-- ОНО. РАБОТАЕТ. НЕ. ТРОГАТЬ. -->
 	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
 
 
-
+<!-- CSS привести в порядок, удалить ненужное, поменять названия -->
 
 	<title>Добавление/удаление группы</title>
 </head>
@@ -38,8 +24,7 @@
 
 <body>
 
-    <!--BEGIN #signup-form -->
-    <div id="signup-form">
+     <div id="signup-form">
         
         <!--BEGIN #subscribe-inner -->
         <div id="signup-inner">
@@ -47,7 +32,8 @@
         	<div class="clearfix" id="header">
         	
         		
-				<img id="signup-icon" src="<c:url value="\WEB-INF\pics\group.png" />" alt="" />
+					<img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
+
                 <h1>
 				<c:choose>
   <c:when test="${update}">
