@@ -51,7 +51,7 @@
             </div>
 			
 			
-			<p>Пожалуйста, заполните поля ниже.</p>
+			<p>Пожалуйста, заполните поля ниже.</p><!-- Пожалуйста исправьте следующие ошибки: -->
             
             <form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" id="send">
 
@@ -59,7 +59,7 @@
 
                 <p><!-- Убрать и просто текст сделать? -->
                 <label for="title">Название *</label>
-                <input id="title" type="text" name="title" value="${group.title}" />
+                <input id="title" type="text" name="title" value="${group.title}" minlength="3" maxlength="35" required /> <!-- required -->
                 </p>
 
 				<p>

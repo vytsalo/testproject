@@ -53,28 +53,38 @@
 
                 <p>
                     <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
-                    <input id="fam" type="text" name="fam" value="${student.fam}" />
+                    <input id="fam" type="text" name="fam" value="${student.fam}" required />
                 </p>
 
 
                 <p>
                     <label for="name">Имя *</label>
-                    <input id="name" type="text" name="name" value="${student.name}" />
+                    <input id="name" type="text" name="name" value="${student.name}" required />
                 </p>
 
                 <p>
                     <label for="otch">Отчество *</label>
-                    <input id="otch" type="text" name="otch" value="${student.otch}" />
+                    <input id="otch" type="text" name="otch" value="${student.otch}" required />
                 </p>
+
+
+                    <!-- Маска -->
+                    <!-- https://jsfiddle.net/itchief/9faffnof/ -->
+                    <!-- Подсветка полей -->
+                    <!-- https://medium.com/russian/%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%86%D0%B8%D1%8F-%D1%84%D0%BE%D1%80%D0%BC-%D0%BD%D0%B0-html-%D0%B8-css-c34c982d42a0 -->
+                    <!-- с сообщениями -->
+                    <!-- https://professorweb.ru/my/html/html5/level2/2_2.php -->
+                    <!-- JS Method Validation -->
+                    <!-- https://www.w3schools.com/js/tryit.asp?filename=tryjs_validation_number -->
 
                 <p>
                     <label for="date">Дата рождения *</label>
-                    <input id="date" type="text" name="date_of_birth" value="${student.date_of_birth}" />
+                    <input id="date" type="text" name="date_of_birth" value="${student.date_of_birth}" required />
                 </p>
 
                 <p>
                     <label for="phone">Номер телефона *</label>
-                    <input id="phone" type="text" name="phone_number" value="${student.phone_number}" />
+                    <input id="phone" type="text" name="phone_number" value="${student.phone_number}" required />
                 </p>
 
 

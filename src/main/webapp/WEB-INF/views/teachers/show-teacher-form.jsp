@@ -57,27 +57,27 @@
 
                 <p>
                 <label for="fam">Фамилия *</label>
-                <input id="fam" type="text" name="fam" value="${teacher.fam}" /><!-- placeholder="Введите фамилию" -->
+                <input id="fam" type="text" name="fam" value="${teacher.fam}" required /><!-- placeholder="Введите фамилию" -->
                 </p>
 
                 <p>
                 <label for="name">Имя *</label>
-                <input id="name" type="text" name="name" value="${teacher.name}" />
+                <input id="name" type="text" name="name" value="${teacher.name}" required />
                 </p>
 
                 <p>
                 <label for="otch">Отчество *</label>
-                <input id="otch" type="text" name="otch" value="${teacher.otch}" />
+                <input id="otch" type="text" name="otch" value="${teacher.otch}" required />
                 </p>
 
                 <p>
                 <label for="date">Дата рождения *</label>
-                <input id="date" type="text" name="date_of_birth" value="${teacher.date_of_birth}" />
+                <input id="date" type="text" name="date_of_birth" value="${teacher.date_of_birth}" required />
                 </p>
 
                 <p>
                 <label for="phone">Номер телефона *</label>
-                <input id="phone" type="text" name="phone_number" value="${teacher.phone_number}"  />
+                <input id="phone" type="text" name="phone_number" value="${teacher.phone_number}" required />
                 </p>
 
                 <p>
