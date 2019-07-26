@@ -13,7 +13,21 @@
 
 	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
 
-	<title>Добавление/удаление группы</title>
+
+        <!-- Подключение библиотеки jQuery -->
+        <script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
+        <!-- Подключение jQuery плагина Masked Input -->
+        <script src="<c:url value="\js\jquery.maskedinput.min.js" />"></script>
+        <!-- Подключение методов обработки полей -->
+        <script src="<c:url value="\js\mask.js" />"></script>
+
+
+
+
+
+
+
+	<title>Добавление/удаление преподавателя</title>
 </head>
 
 
