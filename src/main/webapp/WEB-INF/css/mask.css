@@ -1,0 +1,10 @@
+ 
+    // покажите успех!
+    :valid {
+      background: url(<c:url value="\images\6371.png_300.png" />);
+      background-size: 20px;
+      background-repeat: no-repeat;
+      background-position: 20px 20px;
+      // продолжаем прятать label
+    
+    }
