@@ -13,6 +13,8 @@
 
 	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
 
+    <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
+
 
         <!-- Подключение библиотеки jQuery -->
         <script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
@@ -65,28 +67,28 @@
 			<p>Пожалуйста, заполните поля ниже.</p>
 
             <!-- Поменять лейбли и айдишники -->
-            <form method="POST" action="http://localhost:8082/teachers/processform" modelAttribute="teacher" id="send">
+            <form method="POST" action="http://localhost:8082/teachers/processform" modelAttribute="teacher" id="send" >
 
 				<input type="text" value="${teacher.id}" name="id" hidden />
 
                 <p>
                 <label for="fam">Фамилия *</label>
-                <input id="fam" type="text" name="fam" value="${teacher.fam}" required /><!-- placeholder="Введите фамилию" -->
+                <input id="fam" type="text" name="fam" value="${teacher.fam}" minlength="2" maxlength="35" required /><!-- placeholder="Введите фамилию" -->
                 </p>
 
                 <p>
                 <label for="name">Имя *</label>
-                <input id="name" type="text" name="name" value="${teacher.name}" required />
+                <input id="name" type="text" name="name" value="${teacher.name}" minlength="2" maxlength="35" required />
                 </p>
 
                 <p>
                 <label for="otch">Отчество *</label>
-                <input id="otch" type="text" name="otch" value="${teacher.otch}" required />
+                <input id="otch" type="text" name="otch" value="${teacher.otch}" minlength="2" maxlength="35" required />
                 </p>
 
                 <p>
                 <label for="date">Дата рождения *</label>
-                <input id="date" type="text" name="date_of_birth" value="${teacher.date_of_birth}" required />
+                <input id="date" type="text" name="date_of_birth" value="${teacher.date_of_birth}" pattern="^(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$" required />
                 </p>
 
                 <p>

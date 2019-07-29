@@ -13,10 +13,11 @@
 
 
 
+
         <!-- мб без сиюрла можно? -->
         <link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
 
-        <link rel="stylesheet" type="text/css" href="<c:url value="\css\mask.css" />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
 
 
 
@@ -26,9 +27,6 @@
         <script src="<c:url value="\js\jquery.maskedinput.min.js" />"></script>
         <!-- Подключение методов обработки полей -->
         <script src="<c:url value="\js\mask.js" />"></script>
-
-
-
 
 
         <title>Добавление/удаление студента</title>
@@ -70,18 +68,18 @@
 
                 <p>
                     <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
-                    <input id="fam" type="text" name="fam" value="${student.fam}" required />
+                    <input id="fam" type="text" name="fam" value="${student.fam}" minlength="2" maxlength="35" required />
                 </p>
 
 
                 <p>
                     <label for="name">Имя *</label>
-                    <input id="name" type="text" name="name" value="${student.name}" required />
+                    <input id="name" type="text" name="name" value="${student.name}" minlength="2" maxlength="35" required />
                 </p>
 
                 <p>
                     <label for="otch">Отчество *</label>
-                    <input id="otch" type="text" name="otch" value="${student.otch}" required />
+                    <input id="otch" type="text" name="otch" value="${student.otch}" minlength="2" maxlength="35" required />
                 </p>
 
 
@@ -94,9 +92,36 @@
                     <!-- JS Method Validation -->
                     <!-- https://www.w3schools.com/js/tryit.asp?filename=tryjs_validation_number -->
 
+<!--
+
+
+validate(){
+id=sdksdl
+if ()''= Слижком много слижком мало букв в тултип
+
+}
+
+
+https://www.geeksforgeeks.org/form-validation-using-html-javascript/
+
+
+//Топовое
+https://htmlacademy.ru/blog/useful/html/form-validation-techniques
+
+
+
+// Сборка регулярок
+https://habr.com/ru/post/123845/
+
+
+-->
+
+
+
+
                 <p>
                     <label for="date">Дата рождения *</label>
-                    <input id="date" type="text" name="date_of_birth" value="${student.date_of_birth}" required />
+                    <input id="date" type="text" name="date_of_birth" value="${student.date_of_birth}" pattern="^(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$" required /> <!-- pattern="[-+]?[0-9]" -->
                 </p>
 
                 <p>

@@ -12,6 +12,7 @@
 
     <!-- ОНО. РАБОТАЕТ. НЕ. ТРОГАТЬ. -->
 	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
 
 
 <!-- CSS привести в порядок, удалить ненужное, поменять названия -->
@@ -21,6 +22,8 @@
 </head>
 
 
+
+<!-- JavaScript сообщения при неправильной валидации -->
 
 
 <body>
@@ -59,7 +62,7 @@
 
                 <p><!-- Убрать и просто текст сделать? -->
                 <label for="title">Название *</label>
-                <input id="title" type="text" name="title" value="${group.title}" minlength="3" maxlength="35" required /> <!-- required -->
+                <input id="title" type="text" name="title" value="${group.title}" minlength="2" maxlength="35" required /> <!-- required -->
                 </p>
 
 				<p>

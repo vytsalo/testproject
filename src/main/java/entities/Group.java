@@ -1,6 +1,10 @@
 package entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +15,34 @@ import java.util.List;
 //сделать рефактор gruppa - group
 @Table(name="gruppa")
 @SuppressWarnings("unused")
-public class Group implements Serializable  {
+public class Group implements Serializable {
+
+
+
+ /*   @NotNull(message = "Поле не должно быть пустым")
+    @Min(value = 3,message = "Число символов не должно быть меньше 3")
+    @Max(value = 35,message = "Число символов не должно быть больше 35")
+     @Size(min = 2, max = 14) для стринга
+
+    */
+
+//@Pattern(regex=, flags=)
+    //@Length(min=, max=)
+    //@Past(дата в дейт)
+//Checks whether the annotated date is in the past
+
+
+
+    /*
+    Дату переводить из стринг в date?
+    как узнать какие зависимости не используеются
+
+    https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-declaring-method-constraints
+
+    поменять текстовые поля инпут на дейт емайл и т.д.
+
+
+    */
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
         this.title = title;
@@ -31,6 +62,8 @@ public class Group implements Serializable  {
 
     //Название группы
     @Column
+    @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
+    @Size(min = 2, max = 35, message = "Длина поля должна быть не менее 2, и не более 35 символов")
     private String title;
 
     //Список преподавателей в этой группе

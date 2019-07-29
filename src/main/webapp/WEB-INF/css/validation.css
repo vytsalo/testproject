@@ -1,0 +1,20 @@
+#send {
+  padding-bottom: 1.25rem;
+}
+#send input[type="text"] {
+  margin: 0 .25rem;
+  min-width: 125px;
+  border: 1px solid #eee;
+  border-left: 8px solid;
+  border-radius: 5px;
+  transition: border-color .5s ease-out;
+}
+#send input:optional {
+  border-left-color: #999;
+}
+#send input:required {
+  border-left-color: palegreen;
+}
+#send input:invalid {
+  border-left-color: salmon;
+}

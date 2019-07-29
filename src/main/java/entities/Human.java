@@ -1,24 +1,91 @@
 package entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 @SuppressWarnings("unused")
 public abstract class Human{
 
+
+    //На процессформ чтобы нельзя было перейти напрямую, а только с формы
+
+
+
+    /*
+
+    hibernate validation example
+
+    @NotBlank применяется только к строкам и проверяет, что строка не пуста.
+@NotNull применяется к CharSequence, Collection, Map или Array и проверяет, что объект не равен null. Но при этом он может быть пуст.
+@NotEmpty применяется к CharSequence, Collection, Map или Array и проверяет, что он не null имеет размер больше 0.
+
+Аннотация @Size(min=6) пропустит строку состоящую из 6 пробелов и/или символов переноса строки, а @NotBlank не пропустит.
+
+
+только это
+
+
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.0.13.Final</version>
+</dependency>
+
+
+
+
+
+
+   <dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-validator</artifactId>
+   <version>6.0.17.Final</version>
+</dependency>
+<dependency>
+   <groupId>org.glassfish</groupId>
+   <artifactId>javax.el</artifactId>
+   <version>3.0.1-b09</version>
+</dependency>
+
+
+
+    */
+
+
+
+
+
+    //Валидация не работает
     @Column
+    @NotNull//в отдельную кастомную аннотацию сделать?
+    @Size(min = 2, max = 3, message = "Длина поля должна быть не менее 2, и не более 3 символов")
     private String fam;
 
+
+    //@NotNullMin2Max35
     @Column
+    @NotNull
+    @Size(min = 2, max = 35, message = "Длина поля должна быть не менее 2, и не более 35 символов")
     private String name;
 
     @Column
+    @NotNull//не объект же. какой нафиг нулл?
+    @Size(min = 2, max = 35, message = "Длина поля должна быть не менее 2, и не более 35 символов")
     private String otch;
 
-    @Column
+    @Column//в дату?
+    @NotNull
+    //@Past
+    //дата
     private String date_of_birth;
 
     @Column
+    @NotNull
+    @Size(min = 15, max = 15, message = "Длина поля должна быть 15 символов")//сколько символов - только из-за шаблона
+    //8(963) 145-8916
     private String phone_number;
 
     public String getFam() {
