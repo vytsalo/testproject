@@ -87,11 +87,31 @@
             <version>${hibernate-version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.2.1.Final</version>
+        </dependency>
+        <dependency>
+
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator-annotation-processor</artifactId>
+            <version>5.2.1.Final</version>
+        </dependency>
+
+
+
+
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.0-api</artifactId>
             <version>1.0.1.Final</version>
         </dependency>
+
+
+
+
 
         <!-- /HIBERNATES -->
 
@@ -129,6 +149,8 @@
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
+
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -191,6 +213,56 @@
         </dependency>
 
         <!-- /OTHERS -->
+
+
+
+        <!-- NEWS -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.0.Final</version>
+        </dependency>
+
+
+
+
+
+        <!-- HIBERNATES -->
+
+
+
+        <!--/HIBERNATES -->
+
+
+
+        <!-- ELS -->
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>2.2.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>2.2.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- /ELS -->
+
+        <!-- /NEWS -->
+
+
+
+
+
+
+
+
+
+
 
 
         <!--WAT MINUS-->

@@ -7,14 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.StudentService;
 
-
-
-/*
-* Почему-то для группы, студентов и преподавателей совместная нумерация ID
-*
-*
-* */
-
+import static valid.Validation.isValid;
 
 /*
 Вьюхи:
@@ -72,10 +65,12 @@ public class StudentController {
     @PostMapping("/processform")
     public String processStudentForm(Model model, @ModelAttribute("student") Student newStudent){
 
-        if (newStudent.getId()==null)
-            studentService.add(newStudent);
-        else
-            studentService.update(newStudent);
+        //Если прошли валидацию, то
+        if (isValid(newStudent))
+            if (newStudent.getId()==null)
+                studentService.add(newStudent);
+            else
+                studentService.update(newStudent);
 
         model.addAttribute("students",studentService.getStudentsList());
 

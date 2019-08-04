@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.TeacherService;
 
+import static valid.Validation.isValid;
+
 
 //на майн файле вывести структуру
 @Controller
@@ -38,10 +40,12 @@ public class TeacherController {
     @PostMapping("/processform")
     public String processForm(Model model, @ModelAttribute("teacher") Teacher newTeacher){
 
-        if (newTeacher.getId()==null)
-            teacherService.add(newTeacher);
-        else
-            teacherService.update(newTeacher);
+        //Если прошли валидацию, то
+        if (isValid(newTeacher))
+            if (newTeacher.getId()==null)
+                teacherService.add(newTeacher);
+            else
+                teacherService.update(newTeacher);
 
         model.addAttribute("teachers",teacherService.getTeachersList());
 

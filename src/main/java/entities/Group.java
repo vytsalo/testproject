@@ -18,6 +18,9 @@ import java.util.List;
 public class Group implements Serializable {
 
 
+/*    private static int MIN_CHAR_COUNT=3;
+    private static int MAX_CHAR_COUNT=35;*/
+
 
  /*   @NotNull(message = "Поле не должно быть пустым")
     @Min(value = 3,message = "Число символов не должно быть меньше 3")
@@ -63,7 +66,7 @@ public class Group implements Serializable {
     //Название группы
     @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
-    @Size(min = 2, max = 35, message = "Длина поля должна быть не менее 2, и не более 35 символов")
+    @Size(min = 3, max = 35, message = "Длина поля должна быть не менее 3, и не более 35 символов")
     private String title;
 
     //Список преподавателей в этой группе

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
+
+import static valid.Validation.isValid;
 //логи программы(кастомные) в отдельный файл
 
 
@@ -16,8 +18,8 @@ public class GroupController {
 
 
     /*
-    Spring Validation
-    JavaScript Jquery Client Validation
+    Spring valid
+    JavaScript Jquery Client valid
     Masked Input JS
     Поменять дату стринг на дату
     Регулярками дату, телефон е-майл и ввод по шаблону (? (???) - ??? - ?? - ?? )
@@ -53,6 +55,8 @@ public class GroupController {
         //Просто передаем пустой экземпляр, который потом заполняем с помощью формы
         model.addAttribute("group", new Group());// - "group"
 
+
+        //Вместе с моделью отправляет сообщение об ошибке
         //+ Логирование
 
         return "groups/show-group-form";//возвращает груп форм, а ссылается на процесс пост
@@ -77,17 +81,20 @@ public class GroupController {
             отправляем в пост метод
         */
 
+        //не добавлять аттрибут?
 
-        if (newGroup.getId()==null)
-            groupService.add(newGroup);
-        else
-            groupService.update(newGroup);
-
+        //Если прошли валидацию, то
+        if (isValid(newGroup))
+            if (newGroup.getId()==null)
+                groupService.add(newGroup);
+            else
+                groupService.update(newGroup);
         //надо ли?
         model.addAttribute("groups",groupService.getGroupsList());
 
         //и отправляет вьюшку
         return "groups/list-groups";
+        //Если валидация не прошла, ретурнить другую вью?
     }
 
 //оптимизация всего контроллера
