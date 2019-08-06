@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -30,13 +31,13 @@ public class Teacher extends Human implements Serializable {
         this.groups = groups;
     }
 
-    public Teacher(String fam, String name, String otch, String date_of_birth, String phone_number, ArrayList<Group> groups) {
+    public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number, ArrayList<Group> groups) {
         super(fam, name, otch, date_of_birth, phone_number);
         this.groups = groups;
     }
 
     @SuppressWarnings("unused")
-    public Teacher(String fam, String name, String otch, String date_of_birth, String phone_number) {
+    public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number) {
         super(fam, name, otch, date_of_birth, phone_number);
     }
 

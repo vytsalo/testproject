@@ -4,6 +4,7 @@ import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.StudentService;
 
@@ -63,19 +64,18 @@ public class StudentController {
     }
 
     @PostMapping("/processform")
-    public String processStudentForm(Model model, @ModelAttribute("student") Student newStudent){
+    public String processStudentForm(Model model, @ModelAttribute("student") Student newStudent, BindingResult result){
 
-        //Если прошли валидацию, то
-        if (isValid(newStudent))
-            if (newStudent.getId()==null)
-                studentService.add(newStudent);
-            else
-                studentService.update(newStudent);
+                //Если прошли валидацию, то
+                if (isValid(newStudent))
+                    if (newStudent.getId() == null)
+                        studentService.add(newStudent);
+                    else
+                        studentService.update(newStudent);
 
-        model.addAttribute("students",studentService.getStudentsList());
+                model.addAttribute("students", studentService.getStudentsList());
 
-        return "students/list-students";//вью
-
+                return "students/list-students";//вью
     }
 
 

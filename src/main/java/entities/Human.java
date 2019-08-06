@@ -1,27 +1,25 @@
 package entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @MappedSuperclass
-@SuppressWarnings("unused")
 public abstract class Human{
 
 
-    //На процессформ чтобы нельзя было перейти напрямую, а только с формы
-
-    //Валидация не работает
     @Column
-    //в отдельную кастомную аннотацию сделать?
-
-
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String fam;
 
-    //@NotNullMin2Max35
     @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
@@ -36,10 +34,10 @@ public abstract class Human{
 
     //Определенное ко-вол сомволов
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
-    @Size(min = 10, max = 10, message = "Длина поля должна быть 10 символов")
-    //@Past
-    //дата
-    private String date_of_birth;
+    @Past(message = "Время должно быть в прошлом")
+    @Temporal(value = TemporalType.DATE)//@Type(type = "date")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private Date date_of_birth;
 
     @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
@@ -71,11 +69,11 @@ public abstract class Human{
         this.otch = otch;
     }
 
-    public String getDate_of_birth() {
+    public Date getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public void setDate_of_birth(Date date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
@@ -89,7 +87,7 @@ public abstract class Human{
 
     public Human() {}
 
-    public Human(String fam, String name, String otch, String date_of_birth, String phone_number) {
+    public Human(String fam, String name, String otch, Date date_of_birth, String phone_number) {
         this.fam = fam;
         this.name = name;
         this.otch = otch;
@@ -102,7 +100,7 @@ public abstract class Human{
         return  " fam=" + this.getFam() +
                 " name=" + this.getName() +
                 " otch=" + this.getOtch() +
-                " date_of_birth=" + this.getDate_of_birth() +
+                " date_of_birth=" + new SimpleDateFormat("dd.MM.yyyy").format(this.getDate_of_birth()) +
                 " phone_number=" + this.getPhone_number();
     }
 

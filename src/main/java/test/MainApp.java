@@ -3,6 +3,7 @@ package test;
 import entities.Group;
 import entities.Student;
 import entities.Teacher;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.apache.log4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -11,15 +12,18 @@ import service.StudentService;
 import service.TeacherService;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("all")
+@Ignore
 public class MainApp {
 
     final static Logger logger = Logger.getLogger(MainApp.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         //Удалить ненужные зависимости
 
@@ -37,16 +41,16 @@ public class MainApp {
 
         //Список преподавателей
         List<Teacher> tslist= new ArrayList();
-        tslist.add(new Teacher("Ivanov","Ivan","Ivanovich","13.11.1980","79534527778"));
-        tslist.add(new Teacher("Antonov","Anton","Antonovich","13.11.1979","79534547778"));
-        tslist.add(new Teacher("Sidorov","Sidr","Sidorovich","27.02.1950","79531527778"));
-        tslist.add(new Teacher("Petrov","Petr","Petrovich","25.12.1965","79534457778"));
+        tslist.add(new Teacher("Ivanov","Ivan","Ivanovich",new SimpleDateFormat("dd.MM.yyyy").parse("13.11.1980"),"79534527778"));
+        tslist.add(new Teacher("Antonov","Anton","Antonovich",new SimpleDateFormat("dd.MM.yyyy").parse("13.11.1979"),"79534547778"));
+        tslist.add(new Teacher("Sidorov","Sidr","Sidorovich",new SimpleDateFormat("dd.MM.yyyy").parse("27.02.1950"),"79531527778"));
+        tslist.add(new Teacher("Petrov","Petr","Petrovich",new SimpleDateFormat("dd.MM.yyyy").parse("25.12.1965"),"79534457778"));
 
         //Список студентов
         List<Student> stdlist= new ArrayList();
-        stdlist.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
-        stdlist.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
-        stdlist.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
+        stdlist.add(new Student("Vasiliev","Vasiliy","Vasilievich",new SimpleDateFormat("dd.MM.yyyy").parse("02.04.1990"),"79051453382", groupsList.get(0)));
+        stdlist.add(new Student("Vitaliyev","Vitaliy","Vitalievich", new SimpleDateFormat("dd.MM.yyyy").parse("02.05.1995"),"9115484545",  groupsList.get(1)));
+        stdlist.add(new Student("Sergeev","Sergey","Sergeevich", new SimpleDateFormat("dd.MM.yyyy").parse("02.12.1980"),"79114658955",  groupsList.get(2)));
 
         //Циклом адекватно
         //Передаем преподавателей в группу
@@ -66,6 +70,7 @@ public class MainApp {
 
         String xmlConfigLink = "spring-servlet.xml";
 
+        //2 ШТ -1
         ConfigurableApplicationContext context
                 = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/spring-servlet.xml");
 
@@ -103,9 +108,9 @@ public class MainApp {
 
         StudentService studentService = context.getBean(StudentService.class);
         //без группы добавить?
-        studentService.add(new Student("Vasiliev","Vasiliy","Vasilievich","02.04.1990","79051453382", groupsList.get(0)));
-        studentService.add(new Student("Vitaliyev","Vitaliy","Vitalievich","02.05.1995","9115484545",  groupsList.get(1)));
-        studentService.add(new Student("Sergeev","Sergey","Sergeevich","02.12.1980","79114658955",  groupsList.get(2)));
+        studentService.add(new Student("Vasiliev","Vasiliy","Vasilievich",new SimpleDateFormat("dd.MM.yyyy").parse("02.04.1990"),"79051453382", groupsList.get(0)));
+        studentService.add(new Student("Vitaliyev","Vitaliy","Vitalievich",new SimpleDateFormat("dd.MM.yyyy").parse("02.05.1995"),"9115484545",  groupsList.get(1)));
+        studentService.add(new Student("Sergeev","Sergey","Sergeevich", new SimpleDateFormat("dd.MM.yyyy").parse("02.12.1980"),"79114658955",  groupsList.get(2)));
 
         /*------------------------------------------------------------------------------------*/
         /*----------------------Студенты--------------------------------------------------------*/
