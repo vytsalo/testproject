@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.StudentService;
 
-import static valid.Validation.isValid;
+import javax.validation.Valid;
 
 /*
 Вьюхи:
@@ -59,33 +59,73 @@ public class StudentController {
 
     @GetMapping("/add")
     public String addStudent(Model model){
-        model.addAttribute(new Student());//без имени аттрибута?
+        model.addAttribute("student", new Student());//без имени аттрибута?
         return "students/show-student-form";
     }
 
     @PostMapping("/processform")
-    public String processStudentForm(Model model, @ModelAttribute("student") Student newStudent, BindingResult result){
+    public String processStudentForm(Model model, @Valid @ModelAttribute("student") Student newStudent, BindingResult result){
 
-                //Если прошли валидацию, то
-                if (isValid(newStudent))
+        //выводить как ошибки?
+
+
+
+
+
+
+        if (result.hasErrors()){
+
+
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println(result.getAllErrors());
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
+
                     if (newStudent.getId() == null)
-                        studentService.add(newStudent);
-                    else
-                        studentService.update(newStudent);
+                        return "redirect:/students/add";
+                    else {
+                        model.addAttribute("student", newStudent);
+                        return "redirect:/students/update/" + newStudent.getId();
+                    }
+                    //дата - инпут тайп дейта и минут регулярка
 
-                model.addAttribute("students", studentService.getStudentsList());
+                } else {
 
-                return "students/list-students";//вью
+                        if (newStudent.getId() == null)
+                            studentService.add(newStudent);
+                        else
+                            studentService.update(newStudent);
+
+                    model.addAttribute("students", studentService.getStudentsList());
+
+                    return "students/list-students";//вью
+                }
     }
 
 
 
 
-
+    //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
-    public String updateStudent(Model model,@PathVariable Long Id) {
+    public String updateStudent(Model model,@PathVariable Long Id){
 
-        model.addAttribute("student", studentService.findById(Id));
+
+        //if (Id == null) throw new StudentNotFoundException();
+        //if (Id == null) throw new StudentNotFoundException();
+
+        Student student = studentService.findById(Id);
+
+        model.addAttribute("student", student);
+        //лучше так
+        //if (studentService.findById(Id) == nul
+        // l) throw new StudentNotFoundException();
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);
