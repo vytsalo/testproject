@@ -34,6 +34,14 @@ public ModelAndView listEmployee(ModelAndView model) throws IOException {
         }*/
 
 
+
+
+//где записать баги?
+/*
+Датафикс
+
+*/
+
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -59,40 +67,44 @@ public class StudentController {
 
     @GetMapping("/add")
     public String addStudent(Model model){
+
         model.addAttribute("student", new Student());//без имени аттрибута?
+        //else model.addAttribute("student", )
+
+        //model.addAttribute("student", model);
+
         return "students/show-student-form";
     }
 
     @PostMapping("/processform")
     public String processStudentForm(Model model, @Valid @ModelAttribute("student") Student newStudent, BindingResult result){
 
-        //выводить как ошибки?
-
-
-
-
-
+        //возврат страницы с данными+
+        //валидация с префиксом форм?
+        //Ошибки связанные с ID(обработка исключений)
+        //Куда мелкие баги записывать
+        //todo datefix
+        //todo studentErrorHandler
+        //при срабатывании исключения в контроллере ретурнить страницу с тем, что студент не найден
 
         if (result.hasErrors()){
 
-
-                    System.out.println();
-                    System.out.println();
-                    System.out.println();
-                    System.out.println();
-                    System.out.println();
                     System.out.println(result.getAllErrors());
-                    System.out.println();
-                    System.out.println();
-                    System.out.println();
-                    System.out.println();
-                    System.out.println();
 
-                    if (newStudent.getId() == null)
-                        return "redirect:/students/add";
+                    if (newStudent.getId() == null) {
+
+                        model.addAttribute("student", newStudent);
+
+                        return "students/show-student-form";//"redirect:/students/add";//return
+
+                    }
                     else {
                         model.addAttribute("student", newStudent);
-                        return "redirect:/students/update/" + newStudent.getId();
+
+
+                        return "students/show-student-form";
+                        //return "redirect:/students/update/" + newStudent.getId();
+                        //
                     }
                     //дата - инпут тайп дейта и минут регулярка
 

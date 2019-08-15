@@ -30,9 +30,7 @@ public abstract class Human{
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String otch;
 
-    @Column//в дату?
-
-    //Определенное ко-вол сомволов
+    @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
     @Past(message = "Время должно быть в прошлом")
     @Temporal(value = TemporalType.DATE)//@Type(type = "date")
