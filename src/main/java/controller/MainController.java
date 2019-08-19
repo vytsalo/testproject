@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //Главная страница, юзеры и т.д.
 @Controller
 public class MainController {
-
+//сделать классом
     @RequestMapping(value = "/")
     public String v_proj() {
         return "main";

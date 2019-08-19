@@ -1,14 +1,20 @@
 package controller;
 
 import entities.Student;
+import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import service.StudentService;
+import valid.StudentValidator;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
 Вьюхи:
@@ -17,29 +23,6 @@ import javax.validation.Valid;
         Группа 1 - список преподавателей и студентов
         Группа 2 - список преподавателей и студентов
         Группа 3 - список преподавателей и студентов
-*/
-
-
-
-/*
-
-@RequestMapping(value = "/fetch")
-public ModelAndView listEmployee(ModelAndView model) throws IOException {
-
-        List<Employee> listEmp = empDao.empList();
-        model.addObject("listEmp", listEmp);
-        model.setViewName("index");
-
-        return model;
-        }*/
-
-
-
-
-//где записать баги?
-/*
-Датафикс
-
 */
 
 @Controller
@@ -52,10 +35,8 @@ public class StudentController {
     //кратко инициалы сделать - сборка из фамилии имени и отчества
     // Иванов И.И.
 
-
-
     @Autowired
-    private StudentService studentService;//private
+    private StudentService studentService;
 
     //Вывод списка студентов
     //без ретурна?
@@ -68,10 +49,7 @@ public class StudentController {
     @GetMapping("/add")
     public String addStudent(Model model){
 
-        model.addAttribute("student", new Student());//без имени аттрибута?
-        //else model.addAttribute("student", )
-
-        //model.addAttribute("student", model);
+        model.addAttribute("student", new Student());
 
         return "students/show-student-form";
     }
@@ -103,10 +81,9 @@ public class StudentController {
 
 
                         return "students/show-student-form";
-                        //return "redirect:/students/update/" + newStudent.getId();
-                        //
+
                     }
-                    //дата - инпут тайп дейта и минут регулярка
+
 
                 } else {
 
@@ -117,27 +94,19 @@ public class StudentController {
 
                     model.addAttribute("students", studentService.getStudentsList());
 
-                    return "students/list-students";//вью
+                    return "students/list-students";
                 }
     }
-
-
-
 
     //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
     public String updateStudent(Model model,@PathVariable Long Id){
 
-
-        //if (Id == null) throw new StudentNotFoundException();
-        //if (Id == null) throw new StudentNotFoundException();
-
         Student student = studentService.findById(Id);
 
         model.addAttribute("student", student);
         //лучше так
-        //if (studentService.findById(Id) == nul
-        // l) throw new StudentNotFoundException();
+        //if (studentService.findById(Id) == null) throw new StudentNotFoundException();
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);
@@ -145,10 +114,6 @@ public class StudentController {
         //        return "redirect:/viewemp";//will redirect to viewemp request mapping
         //        return "forward:/" - проброс
         return "students/show-student-form";
-
-        //какая разница между
-        //"redirect:" + "/list"
-        //и вызовом метода, если убрать считывание группы
 
     }
 
@@ -161,5 +126,31 @@ public class StudentController {
 
     }
 
+    //валидатор класса
+    @Autowired
+    private StudentValidator studentValidator;
+
+    /*
+    @Autowired
+    private TeacherValidator studentValidator;
+    */
+
+
+    @InitBinder
+    public void dataBinding(WebDataBinder binder) {
+        binder.addValidators(studentValidator);//нескольок валидаторов добавлять моджно
+        //в каком формате будет дата
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        //строгий формат - false, нестрогий, который будет разбирать - true
+        dateFormat.setLenient(true);
+        //dateFormat.setLenient(false);
+
+        //создаем поле в сущности
+        //с определенным классом - тип поля
+        //как называется поле
+        //формат
+        //из примера взять
+        binder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
+    }
 
 }

@@ -5,77 +5,6 @@
             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd "
          id="WebApp_ID" version="3.0" metadata-complete="true">
 
-
-    <!-- "http://java.sun.com/xml/ns/j2ee -->
-
-<!-- NEW TRY TO FIX INVISIBLE CSS JS AND PIC -->
-
-<!--
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/resources/*</url-pattern>
-        <url-pattern>/resources/*</url-pattern>
-    </servlet-mapping>
-
-
-
-    <servlet-mapping>
-    <servlet-name>Resource Servlet</servlet-name>
-    <url-pattern>/static/*</url-pattern>
-</servlet-mapping>
-
-+++
-
-<dependency>
-    <groupId>org.springframework.webflow</groupId>
-    <artifactId>org.springframework.js</artifactId>
-    <version>2.0.8.RELEASE</version>
-</dependency>
-
-
-
-
-
-<servlet-mapping>
-    <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-    <url-pattern>/</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.jpg</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.png</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.gif</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.js</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>*.css</url-pattern>
-</servlet-mapping>
-
-
-    -->
-
-
-<!-- new not working -->
-   <!-- <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>webapp/WEB-INF/css/*.css</url-pattern>&lt;!&ndash; CSS JS &ndash;&gt;
-    </servlet-mapping>-->
-
-
-
-
-
-
     <!-- NEW WORKING BUT REMOVE UNNESASARILY-->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
@@ -135,19 +64,6 @@
         <error-code>404</error-code>
         <location>/404</location>
     </error-page>
-
-
-
-
-    <!--
-
-
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/webapp/WEB-INF/css/*</url-pattern>
-    </servlet-mapping>
--->
-
 
 
 </web-app>

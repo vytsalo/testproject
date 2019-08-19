@@ -4,6 +4,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+//валидатор для каждого класса в отдельности?
+//зачем тогда валидация над полями
 public class Validation {
 
     //Отдельный класс ModelValidation
