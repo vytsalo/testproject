@@ -32,7 +32,7 @@
         	<div class="clearfix" id="header">
 			    <img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
                     <h1>
-                       Ошибка. Такая сущность не найдена!
+                       Ошибка 500! Что-то пошло не так!
 				    </h1>
             </div>
 
@@ -43,7 +43,7 @@
              <img src="<c:url value="\images\error404.png" />" /> -->
              <img src="<c:url value="\images\error404.png" />" />
 
-			<h2>Пожалуйста, проверьте правильность ввода ID
+			<h2>Пожалуйста, проверьте правильность ввода URL
 			    или вернитесь на <a href="http://localhost:8082/">главную страницу</a>.
 			</h2<!-- Пожалуйста исправьте следующие ошибки: -->
             </div>

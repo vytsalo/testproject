@@ -52,7 +52,10 @@ public class StudentController {
 
         return "students/show-student-form";
     }
+    //todo try to remove initbinder
+    //todo delete executed todos
 
+    //todo initbinder into another main controller?
     //todo phone input text to tel
     //todo date format validation client
     @PostMapping("/processform")//valid
@@ -69,6 +72,10 @@ public class StudentController {
         //todo replace post url to post java method
         //todo class controller requestmapping
         //todo mainclass controller override method
+        //https://developer.mozilla.org/ru/docs/Web/HTML/Element/Input/tel
+        //http://programmerbook.ru/html/input/type/tel/
+        //todo use or not html5 features like tel field
+
         //при срабатывании исключения в контроллере ретурнить страницу с тем, что студент не найден
 
         if (result.hasErrors()){

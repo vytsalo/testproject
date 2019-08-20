@@ -24,15 +24,15 @@
 
 
 <!-- JavaScript сообщения при неправильной валидации -->
-
-
+ <!-- model.getId -->
+<!-- Сущность с таким ID не найдена -->
 <body>
 
      <div id="signup-form">
         	<div class="clearfix" id="header">
 			    <img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
                     <h1>
-                        Ошибка 400. Сущность с таким ID не найдена!
+                       Ошибка. Такая сущность не найдена!
 				    </h1>
             </div>
 
@@ -43,7 +43,7 @@
              <img src="<c:url value="\images\error404.png" />" /> -->
              <img src="<c:url value="\images\error404.png" />" />
 
-			<h2>Пожалуйста, проверьте правильность ID
+			<h2>Пожалуйста, проверьте правильность ввода ID
 			    или вернитесь на <a href="http://localhost:8082/">главную страницу</a>.
 			</h2<!-- Пожалуйста исправьте следующие ошибки: -->
             </div>

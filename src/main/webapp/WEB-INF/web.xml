@@ -60,10 +60,23 @@
     </servlet-mapping>
 
 
+    <!-- ERROR_PAGES -->
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/400</location>
+    </error-page>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404</location>
     </error-page>
 
+    <error-page><!-- picture with not found nuts patrick -->
+        <error-code>500</error-code>
+        <location>/500</location>
+    </error-page>
+
+    <!-- /ERROR_PAGES -->
 
 </web-app>
