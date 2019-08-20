@@ -18,3 +18,7 @@
 #send input:invalid {
   border-left-color: salmon;
 }
+
+input.error {
+color:red;
+}

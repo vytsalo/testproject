@@ -131,7 +131,8 @@ https://habr.com/ru/post/123845/
 
                     <!-- Просто инпут тайп date без масок и регулярок -->
                     <springForm:input id="date" path="date_of_birth" type="text" name="date_of_birth" value="${student.date_of_birth}"  />
-                    <springForm:errors path="date_of_birth" cssClass="error" /> <!-- cssClass="error" -->
+                    <br/>
+                    <springForm:errors path="date_of_birth" cssStyle="color: #ff4411; font-family: 'Raleway',sans-serif; font-size: 12px; font-weight: 800; line-height: 72px; margin: 0 0 24px; text-align: center; text-transform: uppercase;" /> <!-- cssClass="error" -->
 
                     <!--
                     <form:errors path="date"/>

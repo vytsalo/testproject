@@ -135,6 +135,8 @@ public class StudentController {
     private TeacherValidator studentValidator;
     */
 
+    //todo fix css bug with error
+    //todo -name attribute in jsp file
 
     @InitBinder
     public void dataBinding(WebDataBinder binder) {
