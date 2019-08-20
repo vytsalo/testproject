@@ -1,7 +1,8 @@
 #send {
   padding-bottom: 1.25rem;
 }
-#send input[type="text"] {
+
+#send input[type="text"], input[type="date"]  {
   margin: 0 .25rem;
   min-width: 125px;
   border: 1px solid #eee;
@@ -19,6 +20,13 @@
   border-left-color: salmon;
 }
 
-input.error {
-color:red;
+.error {
+	color: #ff4411;
+	font-family: 'Raleway',sans-serif;
+	font-size: 12px;
+	font-weight: 800;
+	line-height: 72px;
+	 margin: 0 0 24px;
+	  text-align: center;
+	   text-transform: uppercase;
 }

@@ -71,20 +71,20 @@
                 <p>
                     <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
                     <!-- привести в вид атрибутов по порядку -->
-                    <springForm:input id="fam" path="fam" type="text" name="fam" value="${student.fam}" minlength="2" maxlength="35" /><!-- рекуиред -->
+                    <springForm:input id="fam" path="fam" type="text" name="fam" value="${student.fam}" minlength="2" maxlength="35" required="required" /><!-- рекуиред -->
                     <springForm:errors path="fam" cssClass="error" />
                 </p>
 
 
                 <p>
                     <label for="name">Имя *</label>
-                    <springForm:input id="name" path="name" type="text" name="name" value="${student.name}" minlength="2" maxlength="35" />
+                    <springForm:input id="name" path="name" type="text" name="name" value="${student.name}" minlength="2" maxlength="35" required="required" />
                     <springForm:errors path="name" cssClass="error" />
                 </p>
 
                 <p>
                     <label for="otch">Отчество *</label>
-                    <springForm:input path="otch" id="otch" type="text" name="otch" value="${student.otch}" minlength="2" maxlength="35" />
+                    <springForm:input path="otch" id="otch" type="text" name="otch" value="${student.otch}" minlength="2" maxlength="35" required="required" />
                     <springForm:errors path="otch" cssClass="error" />
                 </p>
 
@@ -122,17 +122,14 @@ https://habr.com/ru/post/123845/
 
 -->
 
-
-
-
                 <p>
                     <label for="date">Дата рождения *</label>
                     <!-- pattern="^(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$" -->
 
-                    <!-- Просто инпут тайп date без масок и регулярок -->
-                    <springForm:input id="date" path="date_of_birth" type="text" name="date_of_birth" value="${student.date_of_birth}"  />
+                    <!-- formatDate -->
+                    <springForm:input id="date" path="date_of_birth" type="date" name="date_of_birth" value="${student.date_of_birth}" required="required" min="1965-01-01" max="2002-12-31"/>
                     <br/>
-                    <springForm:errors path="date_of_birth" cssStyle="color: #ff4411; font-family: 'Raleway',sans-serif; font-size: 12px; font-weight: 800; line-height: 72px; margin: 0 0 24px; text-align: center; text-transform: uppercase;" /> <!-- cssClass="error" -->
+                    <springForm:errors path="date_of_birth" cssClass="error" /> <!-- cssClass="error" -->
 
                     <!--
                     <form:errors path="date"/>
@@ -141,7 +138,7 @@ https://habr.com/ru/post/123845/
 
                 <p>
                     <label for="phone">Номер телефона *</label>
-                    <springForm:input  path="phone_number" id="phone" type="text" name="phone_number" value="${student.phone_number}" />
+                    <springForm:input  path="phone_number" id="phone" type="text" name="phone_number" value="${student.phone_number}" required="required" />
                     <springForm:errors path="phone_number" cssClass="error" /> <!-- cssClass="error" -->
                     <!-- cssClass="error" -->
                 </p>

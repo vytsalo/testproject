@@ -33,8 +33,12 @@ public abstract class Human{
     @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
     @Past(message = "Время должно быть в прошлом")
-    @Temporal(value = TemporalType.DATE)//@Type(type = "date")
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    //https://stackoverflow.com/questions/29183871/date-binding-in-springmvc-in-yyyy-mm-dd-format
+    @Temporal(value = TemporalType.DATE)//@Type(type = "date") todo try this
+    @DateTimeFormat(pattern = "dd.MM.yyyy")// non working?
+    //new working
+    //todo meanings iso = datetimeformat
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date_of_birth;
 
     @Column

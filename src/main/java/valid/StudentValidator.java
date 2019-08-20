@@ -29,4 +29,27 @@ public class StudentValidator implements Validator  {
             errors.rejectValue("name","", "Имя пользователя меньше 3х символов");
 
     }
+
+
+
+
+    /* @Override
+   public void validate(Object obj, Errors err) {
+
+      ValidationUtils.rejectIfEmpty(err, "name", "user.name.empty");
+      ValidationUtils.rejectIfEmpty(err, "email", "user.email.empty");
+      ValidationUtils.rejectIfEmpty(err, "gender", "user.gender.empty");
+      ValidationUtils.rejectIfEmpty(err, "languages", "user.languages.empty");
+
+      User user = (User) obj;
+
+      Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
+            Pattern.CASE_INSENSITIVE);
+      if (!(pattern.matcher(user.getEmail()).matches())) {
+         err.rejectValue("email", "user.email.invalid");
+      }
+
+   }*/
+
+
 }
