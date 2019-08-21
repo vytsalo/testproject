@@ -41,6 +41,18 @@ public class StudentDaoImpl implements StudentDao{
         return student;
     }
 
+
+
+
+    public Student findBySomething(String someStr){
+            // ищет по всем полям совпадения, если есть выводит, исключить повторки?
+
+        //нечувствителен к регистру
+        //несколько символов - строка - несколько символов
+
+        return new Student();
+    }
+
     @Override
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);

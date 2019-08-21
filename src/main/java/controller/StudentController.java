@@ -189,6 +189,7 @@ public class StudentController {
     }
 
     //todo try this initbinder
+    //todo remove useless commentaries
     //source: https://stackoverflow.com/questions/11324622/how-to-handle-different-date-formats-in-spring-mvc-controller
 //    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", this.getLocale(context));
 
