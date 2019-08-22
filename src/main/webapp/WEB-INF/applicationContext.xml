@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- -class beans like spring security example -->
 <beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:mvc="http://www.springframework.org/schema/mvc"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -47,8 +48,6 @@
 -->
 
         <beans:property name="prefix" value="/WEB-INF/views/" /> <!-- webapp и - папка вебапп ресурсов -->
-
-
         <!-- src\main\webapp\webapp/начало пути файла вьюшки webapp/WEB-INF/views/ -->
         <!-- webapp/начало пути файла вьюшки -->
         <beans:property name="suffix" value=".jsp" /><!-- конец пути файла вьюшки -->

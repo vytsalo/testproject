@@ -68,11 +68,11 @@ public class MainApp {
 
         /*-----------------------------Контексты------------------------------------------------------------------*/
 
-        String xmlConfigLink = "spring-servlet.xml";
+        String xmlConfigLink = "applicationContext.xml";
 
         //2 ШТ -1
         ConfigurableApplicationContext context
-                = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/spring-servlet.xml");
+                = new FileSystemXmlApplicationContext("/src/main/webapp/WEB-INF/applicationContext.xml");
 
         //context.start();
 

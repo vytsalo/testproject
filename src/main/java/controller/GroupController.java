@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 
-import static valid.Validation.isValid;
 //логи программы(кастомные) в отдельный файл
 
 
@@ -84,7 +83,6 @@ public class GroupController {
         //не добавлять аттрибут?
 
         //Если прошли валидацию, то
-        if (isValid(newGroup))
             if (newGroup.getId()==null)
                 groupService.add(newGroup);
             else
@@ -96,6 +94,8 @@ public class GroupController {
         return "groups/list-groups";
         //Если валидация не прошла, ретурнить другую вью?
     }
+
+    //todo слетел лог4j
 
 //оптимизация всего контроллера
 
