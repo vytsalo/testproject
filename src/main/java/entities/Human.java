@@ -34,10 +34,8 @@ public abstract class Human{
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
     @Past(message = "Время должно быть в прошлом")
     //https://stackoverflow.com/questions/29183871/date-binding-in-springmvc-in-yyyy-mm-dd-format
-    @Temporal(value = TemporalType.DATE)//@Type(type = "date") todo try this
-    @DateTimeFormat(pattern = "dd.MM.yyyy")// non working?
-    //new working
-    //todo meanings iso = datetimeformat
+    @Temporal(value = TemporalType.DATE)//@Type(type = "date")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date_of_birth;
 

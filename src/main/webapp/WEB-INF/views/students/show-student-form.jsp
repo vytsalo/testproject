@@ -64,7 +64,7 @@
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
             <springForm:form method="POST" action="http://localhost:8082/students/processform" modelAttribute="student" id="send">
 
-				<input type="text" value="${student.id}" name="id" hidden />
+				<springForm:input type="hidden" value="${student.id}" path="id" />
 
                 <!-- -name отовсюду -->
                 <!-- https://www.journaldev.com/2668/spring-validation-example-mvc-validator -->

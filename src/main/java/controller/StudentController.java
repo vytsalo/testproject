@@ -51,23 +51,25 @@ public class StudentController {
         return "students/show-student-form";
     }
 
+    //todo input type hidden
 
-    //todo initbinder into another main controller?
-    //todo phone input text to tel
+
+    //todo phone input text to tel to get ride of js masks
+    //todo javadoc maven dependency
+    //todo spring security database user accounts
+
+
+    //todo с процессформа - редирект
     @PostMapping("/processform")//valid
     public String processStudentForm(Model model, @Valid @ModelAttribute("student") Student newStudent, BindingResult result){
 
-        //todo studentErrorHandler
-        //todo 500 error handler (getErrorMessage)
-        //todo css class errors
+        //todo change name attribute to path in jsp springForm:input tags
         //todo replace post url to post java method
         //todo class controller requestmapping
         //todo mainclass controller override method
         //https://developer.mozilla.org/ru/docs/Web/HTML/Element/Input/tel
         //http://programmerbook.ru/html/input/type/tel/
         //todo use or not html5 features like tel field
-
-        //при срабатывании исключения в контроллере ретурнить страницу с тем, что студент не найден
 
         if (result.hasErrors()){
 
@@ -88,7 +90,6 @@ public class StudentController {
 
                     }
 
-
                 } else {
 
                         if (newStudent.getId() == null)
@@ -98,10 +99,12 @@ public class StudentController {
 
                     model.addAttribute("students", studentService.getStudentsList());
 
-                    return "students/list-students";
+                    return "redirect:/students/";//Редирект чтобы не открывался сам процессформ
                 }
     }
 
+    //todo try this beautiful jsp
+    //https://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/
     //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
     public String updateStudent(Model model,@PathVariable Long Id){
@@ -140,15 +143,13 @@ public class StudentController {
     public void initBinder(WebDataBinder dataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         //строгий формат - false, нестрогий, который будет разбирать - true
-        dateFormat.setLenient(true);
-        //dateFormat.setLenient(false);
+        dateFormat.setLenient(true);//dateFormat.setLenient(false);
         //создаем поле в сущности
         //с определенным классом - тип поля
         //как называется поле
         //формат
         //из примера взять
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
-        //todo edit css class for input type date
     }
 
     //todo remove useless commentaries

@@ -20,15 +20,6 @@ public class MainController {
         return "main";
     }
 
- /*   @RequestMapping(value = "/admin**", method = RequestMethod.GET)
-    public String admin_page() {
-        return "testsecurity/admin";
-    }
-
-    @RequestMapping(value = "/welcome**", method = RequestMethod.GET)
-    public String weclome_page() {
-        return "testsecurity/hello";
-    }*/
 
     @RequestMapping(value = {"/welcome**" }, method = RequestMethod.GET)
     public ModelAndView welcomePage() {
@@ -42,7 +33,9 @@ public class MainController {
     }
 
 
-    //todo custom login page
+    //todo spring security custom login page
+    //todo difference between ModelAndView and String controller
+    //todo передаю в модель и вью - не рест?
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
