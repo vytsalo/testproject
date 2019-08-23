@@ -47,7 +47,7 @@
                   value="org.springframework.web.servlet.view.JstlView" />
 -->
 
-        <beans:property name="prefix" value="/WEB-INF/views/" /> <!-- webapp и - папка вебапп ресурсов -->
+        <beans:property name="prefix" value="/WEB-INF/jsp/" /> <!-- webapp и - папка вебапп ресурсов -->
         <!-- src\main\webapp\webapp/начало пути файла вьюшки webapp/WEB-INF/views/ -->
         <!-- webapp/начало пути файла вьюшки -->
         <beans:property name="suffix" value=".jsp" /><!-- конец пути файла вьюшки -->

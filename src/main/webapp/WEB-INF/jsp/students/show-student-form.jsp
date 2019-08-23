@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
-<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
 
 <html>
 
@@ -11,14 +10,10 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-
-
-
         <!-- мб без сиюрла можно? -->
         <link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
 
         <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
-
 
 
         <!-- Подключение библиотеки jQuery -->
@@ -66,25 +61,24 @@
 
 				<springForm:input type="hidden" value="${student.id}" path="id" />
 
-                <!-- -name отовсюду -->
-                <!-- https://www.journaldev.com/2668/spring-validation-example-mvc-validator -->
+                         <!-- https://www.journaldev.com/2668/spring-validation-example-mvc-validator -->
                 <p>
                     <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
                     <!-- привести в вид атрибутов по порядку -->
-                    <springForm:input id="fam" path="fam" type="text" name="fam" value="${student.fam}" minlength="2" maxlength="35" required="required" /><!-- рекуиред -->
+                    <springForm:input type="text" id="fam" path="fam" value="${student.fam}" minlength="2" maxlength="35" required="required" /><!-- рекуиред -->
                     <springForm:errors path="fam" cssClass="error" />
                 </p>
 
 
                 <p>
                     <label for="name">Имя *</label>
-                    <springForm:input id="name" path="name" type="text" name="name" value="${student.name}" minlength="2" maxlength="35" required="required" />
+                    <springForm:input type="text" id="name" path="name" value="${student.name}" minlength="2" maxlength="35" required="required" />
                     <springForm:errors path="name" cssClass="error" />
                 </p>
 
                 <p>
                     <label for="otch">Отчество *</label>
-                    <springForm:input path="otch" id="otch" type="text" name="otch" value="${student.otch}" minlength="2" maxlength="35" required="required" />
+                    <springForm:input type="text" path="otch" id="otch" value="${student.otch}" minlength="2" maxlength="35" required="required" />
                     <springForm:errors path="otch" cssClass="error" />
                 </p>
 
@@ -124,39 +118,30 @@ https://habr.com/ru/post/123845/
 
                 <p>
                     <label for="date">Дата рождения *</label>
-                    <!-- pattern="^(((0[1-9]|[12]\d|3[01])\.(0[13578]|1[02])\.((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\.(0[13456789]|1[012])\.((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\.02\.((19|[2-9]\d)\d{2}))|(29\.02\.((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$" -->
 
-                    <!-- formatDate -->
-                    <springForm:input id="date" path="date_of_birth" type="date" name="date_of_birth" value="${student.date_of_birth}" required="required" min="1965-01-01" max="2002-12-31"/>
+                    <springForm:input type="date" id="date" path="date_of_birth" value="${student.date_of_birth}" required="required" min="1965-01-01" max="2002-12-31"/>
                     <br/>
-                    <springForm:errors path="date_of_birth" cssClass="error" /> <!-- cssClass="error" -->
-
-                    <!--
-                    <form:errors path="date"/>
-                    -->
+                    <springForm:errors path="date_of_birth" cssClass="error" />
                 </p>
 
                 <p>
                     <label for="phone">Номер телефона *</label>
-                    <springForm:input  path="phone_number" id="phone" type="text" name="phone_number" value="${student.phone_number}" required="required" />
+                    <springForm:input type="text" path="phone_number" id="phone" value="${student.phone_number}" required="required" />
                     <springForm:errors path="phone_number" cssClass="error" /> <!-- cssClass="error" -->
-                    <!-- cssClass="error" -->
                 </p>
 
 
                 <!-- Поиск одной группы -->
                 <p>
                     <label for="group">Группа</label>
-                    <input id="group" type="text" value="${student.gruppa}" /> <!-- + name="gruppa" -->
+                    <input type="text" id="group" value="${student.gruppa}" />
                 </p>
-                    <!-- пошире + рекуиред -->
 
                 <p>
-                    <!-- Spring form example -->
-                    <input type="submit" id="submit" value="Отправить" />
+                   <input type="submit" id="submit" value="Отправить" />
                 </p>
 
-            </springForm:form> <!-- path == name? -->
+            </springForm:form>
 
                 <div id="required">
                 <p>* Поля, обязательные для заполнения</p>

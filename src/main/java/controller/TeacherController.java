@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.TeacherService;
 
-
-//на майн файле вывести структуру
 @Controller
 @RequestMapping("/teachers")
 public class TeacherController {

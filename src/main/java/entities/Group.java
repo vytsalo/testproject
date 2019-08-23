@@ -17,36 +17,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class Group implements Serializable {
 
-
-/*    private static int MIN_CHAR_COUNT=3;
-    private static int MAX_CHAR_COUNT=35;*/
-
-
- /*   @NotNull(message = "Поле не должно быть пустым")
-    @Min(value = 3,message = "Число символов не должно быть меньше 3")
-    @Max(value = 35,message = "Число символов не должно быть больше 35")
-     @Size(min = 2, max = 14) для стринга
-
-    */
-
-//@Pattern(regex=, flags=)
-    //@Length(min=, max=)
-    //@Past(дата в дейт)
-//Checks whether the annotated date is in the past
-
-
-
-    /*
-    Дату переводить из стринг в date?
-    как узнать какие зависимости не используеются
-
-    https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-declaring-method-constraints
-
-    поменять текстовые поля инпут на дейт емайл и т.д.
-
-
-    */
-
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
         this.title = title;
         this.teachers = teachers;

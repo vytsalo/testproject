@@ -25,6 +25,7 @@ public class MainApp {
 
     public static void main(String[] args) throws ParseException {
 
+        //todo сделать рабочую конфигурацию и хдбллауто поменять на апдейт
         //Удалить ненужные зависимости
 
         //Сделать добавление всех групп и настроить логирования для методов

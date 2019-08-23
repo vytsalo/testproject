@@ -51,22 +51,13 @@ public class StudentController {
         return "students/show-student-form";
     }
 
-    //todo input type hidden
-
-
     //todo phone input text to tel to get ride of js masks
     //todo javadoc maven dependency
     //todo spring security database user accounts
 
-
-    //todo с процессформа - редирект
     @PostMapping("/processform")//valid
     public String processStudentForm(Model model, @Valid @ModelAttribute("student") Student newStudent, BindingResult result){
 
-        //todo change name attribute to path in jsp springForm:input tags
-        //todo replace post url to post java method
-        //todo class controller requestmapping
-        //todo mainclass controller override method
         //https://developer.mozilla.org/ru/docs/Web/HTML/Element/Input/tel
         //http://programmerbook.ru/html/input/type/tel/
         //todo use or not html5 features like tel field
@@ -79,7 +70,7 @@ public class StudentController {
 
                         model.addAttribute("student", newStudent);
 
-                        return "students/show-student-form";//"redirect:/students/add";//return
+                        return "students/show-student-form";
 
                     }
                     else {
@@ -112,7 +103,7 @@ public class StudentController {
         Student student = studentService.findById(Id);
 
         model.addAttribute("student", student);
-        //лучше так
+
         //if (studentService.findById(Id) == null) throw new StudentNotFoundException();
 
         //Избавиться и в jsp юзать
@@ -133,26 +124,21 @@ public class StudentController {
 
     }
 
-
-    //todo fix css bug with error
-    //todo -name attribute in jsp file
-    //todo form - hidden
     //todo make a ModelandView name (difference between)
 
     @InitBinder//(value="date_of_birth")
     public void initBinder(WebDataBinder dataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         //строгий формат - false, нестрогий, который будет разбирать - true
-        dateFormat.setLenient(true);//dateFormat.setLenient(false);
-        //создаем поле в сущности
-        //с определенным классом - тип поля
-        //как называется поле
-        //формат
-        //из примера взять
+        dateFormat.setLenient(true);//false;
+        /*
+        1) создаем поле в сущности с определенным классом - тип поля
+        2) как называется поле
+        3) формат-даты
+        */
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
     }
 
     //todo remove useless commentaries
-
 
 }

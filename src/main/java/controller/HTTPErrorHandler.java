@@ -23,7 +23,6 @@ public class HTTPErrorHandler{
     //Ошибка 404 -
     @RequestMapping(value="/404")
     public String error404(){
-        // DO stuff here
         return "errors/error404";//Страница не найдена
     }
 

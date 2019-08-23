@@ -7,36 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 
-//логи программы(кастомные) в отдельный файл
-
-
-
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
 
-
     /*
-    Spring valid
-    JavaScript Jquery Client valid
-    Masked Input JS
-    Поменять дату стринг на дату
-    Регулярками дату, телефон е-майл и ввод по шаблону (? (???) - ??? - ?? - ?? )
-
-    */
-
-    /*
-
-    Единый ID - generationtype=sequence
-
-    CSS add resource handlers
-
-    баг с нажатием несколько раз - не баг
 
     Как сделать форму - like по всем полям, если есть совпадения
 
     */
-
 
     @Autowired
     private GroupService groupService;
@@ -47,24 +26,19 @@ public class GroupController {
         return "groups/list-groups";
     }
 
-    //Сделать файлик notes с замечаниями чего исправить или поменять
     @GetMapping("/add")
     public String addGroup(Model model) {
 
         //Просто передаем пустой экземпляр, который потом заполняем с помощью формы
         model.addAttribute("group", new Group());// - "group"
 
-
         //Вместе с моделью отправляет сообщение об ошибке
-        //+ Логирование
 
         return "groups/show-group-form";//возвращает груп форм, а ссылается на процесс пост
     }
 
     //норм название дать actionform
-    //редирект на список групп
     //подробные коменты всего
-    //как сделать, чтобы напрямую его нельзя было вызвать - редирект?
     @PostMapping("/processform")
     public String processForm(Model model,@ModelAttribute("group") Group newGroup) {
 
@@ -125,15 +99,6 @@ public class GroupController {
         model.addAttribute("groups",groupService.getGroupsList());
         return "groups/list-groups";
 
-    }
-
-
-    //-------TEST------
-
-
-    @GetMapping("/test")
-    public String testgroup(Model model){
-        return "groups/index";
     }
 
 }
