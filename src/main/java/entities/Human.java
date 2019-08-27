@@ -70,7 +70,8 @@ public abstract class Human{
     }
 
     public Date getDate_of_birth() {
-        return date_of_birth;
+//new Date(new SimpleDateFormat("dd.MM.yyyy").format(this.date_of_birth))
+        return this.date_of_birth;
     }
 
     public void setDate_of_birth(Date date_of_birth) {

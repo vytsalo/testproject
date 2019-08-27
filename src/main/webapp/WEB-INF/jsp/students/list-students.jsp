@@ -6,43 +6,81 @@
 <%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
 
 <html>
-<body align = center>
-<h3>Список всех студентов</h3>
+<head>
 
 
-<!-- обращение к модели через атрибуты-->
+ <link rel="stylesheet" type="text/css" href="<c:url value="\css\tables.css" />" />
 
-<c:set var="test" value="Студенты:" />
-
-<!-- Выводить только номер и название группы ссылкой -->
-
-<h4><c:out value="${test}" /></h4>
-
-<!-- база данных -->
-<!-- таблицей имя и т.д. -->
-<!-- база -->
-
-<c:forEach items="${students}" var="list">
-
-    <c:out value="${list}"/><br>
-
-    <!-- Преподавателей списков выводить -->
-    <!--
-    <c:out value="${list.id}"/><br>
-    <c:out value="${list.fam}"/><br>
-    <c:out value="${list.name}"/><br>
-    <c:out value="${list.otch}"/><br>
-    <c:out value="${list.date_of_birth}"/><br>
-    <c:out value="${list.phone_number}"/><br>
-    <c:out value="${list.gruppa}"/><br>
-
-    -->
+        <!-- Подключение js-файла поиска -->
+<script src="<c:url value="\js\search.js" />"></script>
 
 
-</c:forEach>
+</head>
+<body>
+  <!--for demo wrap-->
 
-<a href = "http://localhost:8082/" >На главную</a>
+	<section class="container">
 
+
+
+
+<p align = center>
+	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
+	 <!-- Синюю с прокруткой -->
+	</p>
+	<div class="table-users">
+   <div class="header">Студенты</div>
+
+   <table cellspacing="0" class="order-table table">
+
+	  <thead>
+	    <tr>
+         <th>#ID</th>
+         <th>Фамилия</th>
+         <th>Имя</th>
+         <th>Отчество</th>
+         <th>Дата рождения</th>
+         <th>Телефон</th>
+         <th>Действия</th>
+   		</tr>
+	  </thead>
+
+
+	<c:forEach items="${students}" var="list">
+		<tr>
+          <td><c:out value="${list.id}"/></td>
+          <td><c:out value="${list.fam}"/></td>
+          <td><c:out value="${list.name}"/></td>
+          <td><c:out value="${list.otch}"/></td>
+          <td><c:out value="${list.date_of_birth}"/></td><!-- Формат даты поменять? -->
+          <td><c:out value="${list.phone_number}"/></td>
+          <td>
+
+            <a href = "<c:out value="http://localhost:8082/students/update/${list.id}"/>" >Редактировать</a>
+            </br>
+            <a href = "<c:out value="http://localhost:8082/students/delete/${list.id}"/>" >Удалить</a>
+
+          </td>
+        </tr>
+		</c:forEach>
+
+
+
+   </table>
+</div>
+
+
+	</section>
+
+<br/>
+
+<p  align=center>
+  <a href = "http://localhost:8082/students/add">Добавить</a>
+</p>
+
+<!--
+<a href = "http://localhost:8082/" align = center >На главную</a>
+-->
 
 </body>
 </html>
