@@ -9,25 +9,26 @@
 <head>
 
 
- <link rel="stylesheet" type="text/css" href="<c:url value="\css\tables.css" />" />
+
+<link rel="stylesheet" type="text/css" href="<c:url value="\css\tables.css" />" />
+
+<link rel="stylesheet" type="text/css" href="<c:url value="\css\jquery.modal.min.css" />" />
 
         <!-- Подключение js-файла поиска -->
 <script src="<c:url value="\js\search.js" />"></script>
+<script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
+<script src="<c:url value="\js\jquery.modal.min.js" />"></script>
 
 
 </head>
 <body>
   <!--for demo wrap-->
 
+
+
 	<section class="container">
 
 
-
-
-<p align = center>
-	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
-	 <!-- Синюю с прокруткой -->
-	</p>
 	<div class="table-users">
    <div class="header">Студенты</div>
 
@@ -56,6 +57,34 @@
           <td><c:out value="${list.phone_number}"/></td>
           <td>
 
+
+
+
+
+
+<!-- Само модальное окно -->
+<div id="<c:out value="ex${list.id}"/>" class="modal">
+  <p>Преподаватель:</p>
+  <p>ID : <c:out value="${list.id}"/></p>
+  <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
+  <p>Дата рождения: <c:out value="${list.date_of_birth}"/></p>
+  <p>Телефон: <c:out value="${list.phone_number}"/></p>
+</div>
+
+<!-- Link to open the modal -->
+<a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
+
+
+            <!-- Перейти на страницу -->
+
+
+
+
+
+
+
+
+            </br>
             <a href = "<c:out value="http://localhost:8082/students/update/${list.id}"/>" >Редактировать</a>
             </br>
             <a href = "<c:out value="http://localhost:8082/students/delete/${list.id}"/>" >Удалить</a>
@@ -69,18 +98,23 @@
    </table>
 </div>
 
-
+<p align = center>
+	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
+	 <!-- Синюю с прокруткой -->
+	</p>
 	</section>
 
 <br/>
 
 <p  align=center>
   <a href = "http://localhost:8082/students/add">Добавить</a>
+    <br/>
+  <a href = "http://localhost:8082/" align = center >На главную</a>
+
 </p>
 
-<!--
-<a href = "http://localhost:8082/" align = center >На главную</a>
--->
+
+
 
 </body>
 </html>

@@ -51,10 +51,32 @@ public class StudentController {
         return "students/show-student-form";
     }
 
+
+    //todo вопросы
+
+    /*
+
+    форматирование даты. при выводе всей инфы - переводится в нормальный формат,
+    а как сделать в сеттерах - геттерах
+    разница между ModelAndView и String - контроллером
+    в каком формате данные передаются
+    как ограничить приватность - какие страницы доступны по авторизации, а какие нет
+    (update/add/delete - авторизованным)
+
+    */
+
+
+
     //todo phone input text to tel to get ride of js masks
-    //todo javadoc maven dependency
     //todo spring security database user accounts
 
+    /**
+     *
+     * @param model
+     * @param newStudent
+     * @param result
+     * @return
+     */
     @PostMapping("/processform")//valid
     public String processStudentForm(Model model, @Valid @ModelAttribute("student") Student newStudent, BindingResult result){
 
