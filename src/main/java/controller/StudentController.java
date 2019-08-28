@@ -142,7 +142,8 @@ public class StudentController {
         //удаляем группу по ID
         studentService.delete(Id);
         model.addAttribute("students",studentService.getStudentsList());
-        return "students/list-students";
+        return "redirect:/students/";
+        //return "students/list-students";
 
     }
 

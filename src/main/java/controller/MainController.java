@@ -37,6 +37,9 @@ public class MainController {
     //todo difference between ModelAndView and String controller
     //todo передаю в модель и вью - не рест?
 
+
+    //todo стиль логина сделать одинаковым и вынести в ксс
+
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
 
@@ -44,6 +47,16 @@ public class MainController {
         model.addObject("title", "Spring Security Hello World");
         model.addObject("message", "This is protected page!");
         model.setViewName("testsecurity/admin");
+
+        return model;
+
+    }
+
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public ModelAndView authTestPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("testsecurity/auth");
 
         return model;
 

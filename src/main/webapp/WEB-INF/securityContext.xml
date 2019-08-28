@@ -9,6 +9,9 @@
 
     <http auto-config="true">
         <intercept-url pattern="/admin**" access="ROLE_USER" />
+        <intercept-url pattern="/students/add/**" access="ROLE_USER" />
+        <intercept-url pattern="/students/delete/**" access="ROLE_USER" />
+        <intercept-url pattern="/students/update/**" access="ROLE_USER" />
     </http>
 
     <authentication-manager>

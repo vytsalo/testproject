@@ -7,6 +7,8 @@
 </head>
 <body align="center">
 
+<jsp:include page="testsecurity\auth.jsp" />
+
 <h2>Главная</h2>
 
 <br/>

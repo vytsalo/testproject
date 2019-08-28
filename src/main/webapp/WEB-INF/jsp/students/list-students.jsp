@@ -22,6 +22,8 @@
 
 </head>
 <body>
+<jsp:include page="..\testsecurity\auth.jsp" />
+
   <!--for demo wrap-->
 
 
@@ -64,7 +66,7 @@
 
 <!-- Само модальное окно -->
 <div id="<c:out value="ex${list.id}"/>" class="modal">
-  <p>Преподаватель:</p>
+  <p>Студент:</p>
   <p>ID : <c:out value="${list.id}"/></p>
   <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
   <p>Дата рождения: <c:out value="${list.date_of_birth}"/></p>

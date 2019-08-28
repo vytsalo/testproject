@@ -31,6 +31,8 @@
 
 
 <body>
+<jsp:include page="..\testsecurity\auth.jsp" />
+
 
     <div id="signup-form">
 
