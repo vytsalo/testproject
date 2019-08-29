@@ -22,6 +22,8 @@ import java.util.Date;
         Группа 3 - список преподавателей и студентов
 */
 
+
+//todo add custom security login page
 @Controller
 @RequestMapping("/students")
 public class StudentController {

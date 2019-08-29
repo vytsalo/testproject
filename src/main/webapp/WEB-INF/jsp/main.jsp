@@ -37,14 +37,19 @@
 <a href='http://localhost:8082/teachers/delete/'>Удалить</a></br>
 
 
-<h3>Студенты</h3>
+<h3><a href='http://localhost:8082/students/'>Студенты</a></h3>
 
-<a href='http://localhost:8082/students/'>Список</a></br>
+
+
+
+
+
+<!--
+<a href='http://localhost:8082/students/'>Студенты</a></br>
 <a href='http://localhost:8082/students/add/'>Добавить</a></br>
-<!-- <a href='http://localhost:8082/students/processform'>процессформ</a></br> -->
 <a href='http://localhost:8082/students/update/'>Обновить</a></br>
 <a href='http://localhost:8082/students/delete/'>Удалить</a></br>
-
+-->
 
 
 
