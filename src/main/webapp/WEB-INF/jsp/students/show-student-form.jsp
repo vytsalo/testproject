@@ -22,6 +22,8 @@
         <script src="<c:url value="\js\jquery.maskedinput.min.js" />"></script>
         <!-- Подключение методов обработки полей -->
         <script src="<c:url value="\js\mask.js" />"></script>
+        <!-- Операции с таблицами -->
+        <script src="<c:url value="\js\tableOperations.js" />"></script>
 
 
         <title>Добавление/удаление студента</title>
@@ -135,8 +137,159 @@ https://habr.com/ru/post/123845/
 
                 <!-- Поиск одной группы -->
                 <p>
+
                     <label for="group">Группа</label>
-                    <input type="text" id="group" value="${student.gruppa}" />
+
+<!--   style="margin-top: -20px;" -->
+
+
+
+
+
+                   <input type="text" id="group" value="${student.gruppa.title}" readonly
+                        onclick = "alert('Поиск в модалку(окно выбор группы)'); return false;"
+
+                        style="cursor: pointer;
+                               margin-bottom:20px;
+                              "
+                    />
+
+<!--
+                    <input type="text" id = "groupId" readonly hidden />
+-->
+
+                   <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
+
+
+
+
+
+                   	<img src="<c:url value="\images\cross.png" />"
+                   	style="cursor: pointer;"
+                   	    onclick="document.getElementById('group').value=''; document.getElementById('groupId').value=''; return false;"
+                   	alt="" />
+
+<!--
+		            <springForm:input type="hidden" value="${student.gruppa}" path="gruppa" />
+-->
+
+            <div style="border: thin solid black">
+            <h4>
+            	Список существующих групп
+            </h4>
+<!--
+            <p>
+            Введите данные для поиска <input type = "text"  />
+            </p>
+-->
+            <!-- Как передавать id? в хайдден? -->
+
+<center>
+
+
+
+
+            <table id="mytable" cellspacing="0" border="1">
+                <thead>
+            	    <tr>
+                     <th>#ID</th>
+                     <th>Название</th>
+                     <th>Список преподов</th>
+                     <th>Список студентов</th>
+                     <th>Действия</th>
+               		</tr>
+            	  </thead>
+
+
+              <tbody>
+
+
+
+ <c:forEach items="${groups}" var="lost">
+          		<tr>
+                    <td><c:out value="${lost.id}"/></td>
+                    <td><c:out value="${lost.title}"/></td>
+                    <td><c:out value="lost teachers"/></td>
+                    <td><c:out value="lost.students"/></td>
+                    <td>
+
+         <td><input type="button" value="Add" onclick="setGroup(this)" /></td>
+
+                    </td>
+                </tr>
+</c:forEach>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+            	<tr>
+                     <th>1</th>
+                     <th>ПИ442</th>
+                     <th>преподы1</th>
+                     <th>студенты1</th>
+                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
+                </tr>
+
+                <tr>
+                     <th>2</th>
+                     <th>БИ1137</th>
+                     <th>преподы2</th>
+                     <th>студенты2</th>
+                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
+                </tr>
+
+                <tr>
+                     <th>3</th>
+                     <th>МКМ</th>
+                     <th>преподы3</th>
+                     <th>студенты3</th>
+                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
+                </tr>
+
+            	<tr>
+                     <th>4</th>
+                     <th>МИКН</th>
+                     <th>преподы4</th>
+                     <th>студенты4</th>
+                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
+                </tr>
+
+            	<tr>
+                     <th>5</th>
+                     <th>ПЕ</th>
+                     <th>преподы5</th>
+                     <th>студенты5</th>
+                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
+                </tr>
+
+
+-->
+
+
+
+
+
+
+              </tbody>
+
+            </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+</center>
+              </div>
+
                 </p>
 
                 <p>

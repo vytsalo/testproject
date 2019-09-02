@@ -48,7 +48,6 @@
    		</tr>
 	  </thead>
 
-
 	<c:forEach items="${students}" var="list">
 		<tr>
           <td><c:out value="${list.id}"/></td>
@@ -58,9 +57,6 @@
           <td><c:out value="${list.date_of_birth}"/></td><!-- Формат даты поменять? -->
           <td><c:out value="${list.phone_number}"/></td>
           <td>
-
-
-
 
 
 

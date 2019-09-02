@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Group;
 import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import service.GroupService;
 import service.StudentService;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -37,6 +39,9 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private GroupService groupService;
+
     //Вывод списка студентов
     //без ретурна?
     @GetMapping("/")
@@ -48,13 +53,21 @@ public class StudentController {
     @GetMapping("/add")
     public String addStudent(Model model){
 
+        //добавить список групп
+
+        //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("student", new Student());
 
+        //добавляем группы
+        model.addAttribute("groups", groupService.getGroupsList());
+
         return "students/show-student-form";
+
     }
 
 
     //todo вопросы
+    //todo + поле группа в таблице студентов
 
     /*
 
@@ -86,6 +99,8 @@ public class StudentController {
         //http://programmerbook.ru/html/input/type/tel/
         //todo use or not html5 features like tel field
 
+        //проверять в посте
+        //если поле = "" то гетГруп=нулл
         if (result.hasErrors()){
 
                     System.out.println(result.getAllErrors());
@@ -162,6 +177,24 @@ public class StudentController {
         3) формат-даты
         */
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
+        //dataBinder.registerCustomEditor(Group.class, "gruppa", groupService.findById() );
+
+
+
+        //new
+
+        StudentEditor studentEditor = new StudentEditor();
+
+        dataBinder.registerCustomEditor(Group.class, "gruppa", studentEditor);
+
+        //
+
+     /*   dataBinder.registerCustomEditor(
+                Group.class,
+                "gruppa",
+                studentService.findById(studentID).setGruppa(groupService.findById(groupID));
+                );*/
+
     }
 
     //todo remove useless commentaries
