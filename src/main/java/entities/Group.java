@@ -36,7 +36,7 @@ public class Group implements Serializable {
     //Название группы
     @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
-    @Size(min = 3, max = 35, message = "Длина поля должна быть не менее 3, и не более 35 символов")
+    //@Size(min = 3, max = 35, message = "Длина поля должна быть не менее 3, и не более 35 символов")
     private String title;
 
     //Список преподавателей в этой группе

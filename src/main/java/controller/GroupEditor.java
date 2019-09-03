@@ -1,17 +1,15 @@
 package controller;
 
-import entities.Group;
 import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import service.GroupService;
-import service.StudentService;
 import java.beans.PropertyEditorSupport;
 
-public class StudentEditor extends PropertyEditorSupport {
-
-    @Autowired
-    StudentService studentService;
+//Проперти эдитор для определенного поля
+@Component
+public class GroupEditor extends PropertyEditorSupport {
 
     @Autowired
     GroupService groupService;
@@ -28,12 +26,17 @@ public class StudentEditor extends PropertyEditorSupport {
             Student newStudent = new Student();
 
             //Создаем группу, и находим по тому айди который есть на форме
-            Group newGroup = groupService.findById(Long.parseLong(text));
+            //Group newGroup = groupService.findById(Long.parseLong(text));
 
-            newStudent.setGruppa(newGroup);
+            newStudent.setGruppa(groupService.findById(Long.parseLong(text)));
 
             setValue(newStudent);
 
         }
     }
+
+    public GroupEditor(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
 }

@@ -44,6 +44,7 @@
          <th>Отчество</th>
          <th>Дата рождения</th>
          <th>Телефон</th>
+         <th>Группа</th>
          <th>Действия</th>
    		</tr>
 	  </thead>
@@ -56,6 +57,7 @@
           <td><c:out value="${list.otch}"/></td>
           <td><c:out value="${list.date_of_birth}"/></td><!-- Формат даты поменять? -->
           <td><c:out value="${list.phone_number}"/></td>
+          <td><c:out value="${list.gruppa}"/></td>
           <td>
 
 
@@ -67,6 +69,7 @@
   <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
   <p>Дата рождения: <c:out value="${list.date_of_birth}"/></p>
   <p>Телефон: <c:out value="${list.phone_number}"/></p>
+  <p>Группа: <c:out value="${list.gruppa}"/></p>
 </div>
 
 <!-- Link to open the modal -->

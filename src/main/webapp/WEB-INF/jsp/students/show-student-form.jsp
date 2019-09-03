@@ -146,26 +146,38 @@ https://habr.com/ru/post/123845/
 
 
 
+
+<!-- important -->
+
+
                    <input type="text" id="group" value="${student.gruppa.title}" readonly
                         onclick = "alert('Поиск в модалку(окно выбор группы)'); return false;"
-
-                        style="cursor: pointer;
-                               margin-bottom:20px;
-                              "
+                        style="cursor: pointer; display: inline;"
                     />
 
+
+
+                   <springForm:input type="text" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
+
+
+
+
+
+
+
+
+
+
+
+
 <!--
-                    <input type="text" id = "groupId" readonly hidden />
+                    <input type="text" id = "groupId" name="gruppa" value="${item.id}" value="${student.gruppa.id}"/>
 -->
-
-                   <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
-
-
 
 
 
                    	<img src="<c:url value="\images\cross.png" />"
-                   	style="cursor: pointer;"
+                   	style="cursor: pointer; display: inline;"
                    	    onclick="document.getElementById('group').value=''; document.getElementById('groupId').value=''; return false;"
                    	alt="" />
 

@@ -15,7 +15,7 @@ public class Student extends Human implements Serializable {
     private Long id;
 
     //Группа, в которой учится студент
-    @ManyToOne(fetch = FetchType.EAGER)//-fetch ЛЕЗИ?
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)//-fetch ЛЕЗИ?
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     private Group gruppa;
 

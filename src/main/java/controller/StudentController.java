@@ -103,22 +103,17 @@ public class StudentController {
         //если поле = "" то гетГруп=нулл
         if (result.hasErrors()){
 
+            //в один метод упрятать
                     System.out.println(result.getAllErrors());
 
-                    if (newStudent.getId() == null) {
+                    //Если есть ошибки - ничего не делать
+                    //действия одинаковы - не проверять на нулл
+
+                        //Если есть ошибки - добавляем то, что есть
+                        //и перезагружаем форму
 
                         model.addAttribute("student", newStudent);
-
                         return "students/show-student-form";
-
-                    }
-                    else {
-                        model.addAttribute("student", newStudent);
-
-
-                        return "students/show-student-form";
-
-                    }
 
                 } else {
 
@@ -128,7 +123,10 @@ public class StudentController {
                             studentService.update(newStudent);
 
                     model.addAttribute("students", studentService.getStudentsList());
+                    //а надо?
+                    //model.addAttribute("groups", groupService.getGroupsList());
 
+                    // не доходит?
                     return "redirect:/students/";//Редирект чтобы не открывался сам процессформ
                 }
     }
@@ -147,6 +145,9 @@ public class StudentController {
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);
+
+        //добавляем группы
+        model.addAttribute("groups", groupService.getGroupsList());
 
         //        return "redirect:/viewemp";//will redirect to viewemp request mapping
         //        return "forward:/" - проброс
@@ -178,16 +179,10 @@ public class StudentController {
         */
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
         //dataBinder.registerCustomEditor(Group.class, "gruppa", groupService.findById() );
-
-
-
         //new
+        //GroupEditor studentEditor = new GroupEditor();
 
-        StudentEditor studentEditor = new StudentEditor();
-
-        dataBinder.registerCustomEditor(Group.class, "gruppa", studentEditor);
-
-        //
+        dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
 
      /*   dataBinder.registerCustomEditor(
                 Group.class,

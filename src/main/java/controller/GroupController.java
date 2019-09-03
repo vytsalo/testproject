@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
@@ -40,7 +42,7 @@ public class GroupController {
     //норм название дать actionform
     //подробные коменты всего
     @PostMapping("/processform")
-    public String processForm(Model model,@ModelAttribute("group") Group newGroup) {
+    public String processForm(Model model, @Valid @ModelAttribute("group") Group newGroup) {
 
         //Надо ли сортировку по алфавиту?
 
@@ -55,7 +57,6 @@ public class GroupController {
         */
 
         //не добавлять аттрибут?
-
         //Если прошли валидацию, то
             if (newGroup.getId()==null)
                 groupService.add(newGroup);
