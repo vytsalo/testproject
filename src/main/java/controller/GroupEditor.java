@@ -21,16 +21,18 @@ public class GroupEditor extends PropertyEditorSupport {
 
         }   else {
 
-
-
             //Создаем группу, и находим по тому айди который есть на форме
             //Group newGroup = groupService.findById(Long.parseLong(text));
 
+
+            //добавляем студента в группу
+            //groupService.findById(Long.parseLong(text)).setStudents(newStudent);
 
             setValue(groupService.findById(Long.parseLong(text)));
 
         }
     }
+
 
     public GroupEditor(GroupService groupService) {
         this.groupService = groupService;

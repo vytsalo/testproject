@@ -26,6 +26,7 @@ import java.util.Date;
 
 
 //todo add custom security login page
+//todo сортировка таблицы по id
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -44,7 +45,7 @@ public class StudentController {
 
     //Вывод списка студентов
     //без ретурна?
-    @GetMapping("/")
+    @GetMapping("/")//""
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getStudentsList());
         return "students/list-students";//вьюшка students.jsp
@@ -117,8 +118,13 @@ public class StudentController {
 
                 } else {
 //todo одновременно сделать назначение двусторонней связи
-                        if (newStudent.getId() == null)
+                        if (newStudent.getId() == null){
+                            //добавляем нового студента
                             studentService.add(newStudent);
+
+                            //добавляем студента в группу
+                         //   groupService.findById().setStudents(newStudent);
+                        }
                         else
                             studentService.update(newStudent);
 
@@ -181,6 +187,8 @@ public class StudentController {
         //GroupEditor studentEditor = new GroupEditor();
 
         dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
+
+        dataBinder.registerCustomEditor(Student.class, "gruppa", new StudentEditor(studentService));
 
      /*   dataBinder.registerCustomEditor(
                 Group.class,

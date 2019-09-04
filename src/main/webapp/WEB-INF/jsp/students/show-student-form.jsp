@@ -134,21 +134,9 @@ https://habr.com/ru/post/123845/
                     <springForm:errors path="phone_number" cssClass="error" /> <!-- cssClass="error" -->
                 </p>
 
-
-                <!-- Поиск одной группы -->
                 <p>
 
                     <label for="group">Группа</label>
-
-<!--   style="margin-top: -20px;" -->
-
-
-
-
-
-
-<!-- important -->
-
 
                    <input type="text" id="group" value="${student.gruppa.title}" readonly
                         onclick = "alert('Поиск в модалку(окно выбор группы)'); return false;"
@@ -160,45 +148,30 @@ https://habr.com/ru/post/123845/
                    <springForm:input type="text" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
 
 
+                    <!-- ID студента для добавления в группу -->
+
+                    <label for="zdudend">ZDUDEND_ID</label>
+                    <input type="text" id = "zdudend" value="${student.id}" readonly
+                                           onclick = "alert('Добавить студента в группу'); return false;"
+                                           style="cursor: pointer;"
+                                       />
 
 
 
-
-
-
-
-
-
-
-<!--
-                    <input type="text" id = "groupId" name="gruppa" value="${item.id}" value="${student.gruppa.id}"/>
--->
-
-
+<!-- в хайдден передать id студента в группе? -->
 
                    	<img src="<c:url value="\images\cross.png" />"
                    	style="cursor: pointer; display: inline;"
                    	    onclick="document.getElementById('group').value=''; document.getElementById('groupId').value=''; return false;"
                    	alt="" />
 
-<!--
-		            <springForm:input type="hidden" value="${student.gruppa}" path="gruppa" />
--->
 
             <div style="border: thin solid black">
             <h4>
             	Список существующих групп
             </h4>
-<!--
-            <p>
-            Введите данные для поиска <input type = "text"  />
-            </p>
--->
-            <!-- Как передавать id? в хайдден? -->
 
-<center>
-
-
+        <center>
 
 
             <table id="mytable" cellspacing="0" border="1">
@@ -217,7 +190,7 @@ https://habr.com/ru/post/123845/
 
 
 
- <c:forEach items="${groups}" var="lost">
+<c:forEach items="${groups}" var="lost">
           		<tr>
                     <td><c:out value="${lost.id}"/></td>
                     <td><c:out value="${lost.title}"/></td>
@@ -239,68 +212,19 @@ https://habr.com/ru/post/123845/
 
 
 
-
-
-
-
-
-
-
-<!--
-
-            	<tr>
-                     <th>1</th>
-                     <th>ПИ442</th>
-                     <th>преподы1</th>
-                     <th>студенты1</th>
-                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
-                </tr>
-
-                <tr>
-                     <th>2</th>
-                     <th>БИ1137</th>
-                     <th>преподы2</th>
-                     <th>студенты2</th>
-                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
-                </tr>
-
-                <tr>
-                     <th>3</th>
-                     <th>МКМ</th>
-                     <th>преподы3</th>
-                     <th>студенты3</th>
-                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
-                </tr>
-
-            	<tr>
-                     <th>4</th>
-                     <th>МИКН</th>
-                     <th>преподы4</th>
-                     <th>студенты4</th>
-                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
-                </tr>
-
-            	<tr>
-                     <th>5</th>
-                     <th>ПЕ</th>
-                     <th>преподы5</th>
-                     <th>студенты5</th>
-                     <th><input type="button" value="Add" onclick="setGroup(this)" /></th>
-                </tr>
-
-
--->
-
-
-
-
-
-
               </tbody>
 
             </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 </center>
+
               </div>
+
+
+
+
+
+
+
 
                 </p>
 
