@@ -116,7 +116,7 @@ public class StudentController {
                         return "students/show-student-form";
 
                 } else {
-
+//todo одновременно сделать назначение двусторонней связи
                         if (newStudent.getId() == null)
                             studentService.add(newStudent);
                         else
@@ -131,8 +131,6 @@ public class StudentController {
                 }
     }
 
-    //todo try this beautiful jsp
-    //https://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/
     //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
     public String updateStudent(Model model,@PathVariable Long Id){

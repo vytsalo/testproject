@@ -43,12 +43,12 @@ public class Group implements Serializable {
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
     //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
     @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)//, fetch=FetchType.EAGER)
-    private List<Teacher> teachers = new ArrayList();
+    private List<Teacher> teachers = new ArrayList<>();
 
     //group - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.LAZY)//-fetch
-    private List<Student> students = new ArrayList();
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER)//-fetch
+    private List<Student> students = new ArrayList<>();
 
     @Override
     public String toString() {

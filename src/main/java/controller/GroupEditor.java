@@ -1,6 +1,5 @@
 package controller;
 
-import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -22,15 +21,13 @@ public class GroupEditor extends PropertyEditorSupport {
 
         }   else {
 
-            //создаем студента
-            Student newStudent = new Student();
+
 
             //Создаем группу, и находим по тому айди который есть на форме
             //Group newGroup = groupService.findById(Long.parseLong(text));
 
-            newStudent.setGruppa(groupService.findById(Long.parseLong(text)));
 
-            setValue(newStudent);
+            setValue(groupService.findById(Long.parseLong(text)));
 
         }
     }
