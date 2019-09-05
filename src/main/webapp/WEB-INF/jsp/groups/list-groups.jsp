@@ -24,14 +24,21 @@
 
 <c:forEach items="${groups}" var="list">
 
-    <c:out value="${list}"/><br>
-
-    <!-- Преподавателей списков выводить -->
-    <!--
     <c:out value="${list.id}"/><br>
     <c:out value="${list.title}"/><br>
-    -->
 
+    <br/>
+
+   <c:forEach items="${list.students}" var="tslist">
+
+                <c:out value="${tslist}"/><br>
+
+
+    </c:forEach>
+
+
+
+    <br/>
 
 </c:forEach>
 

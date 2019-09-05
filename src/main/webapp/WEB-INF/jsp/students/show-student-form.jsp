@@ -73,7 +73,6 @@
                     <springForm:errors path="fam" cssClass="error" />
                 </p>
 
-
                 <p>
                     <label for="name">Имя *</label>
                     <springForm:input type="text" id="name" path="name" value="${student.name}" minlength="2" maxlength="35" required="required" />
@@ -138,33 +137,32 @@ https://habr.com/ru/post/123845/
 
                     <label for="group">Группа</label>
 
+
+
                    <input type="text" id="group" value="${student.gruppa.title}" readonly
                         onclick = "alert('Поиск в модалку(окно выбор группы)'); return false;"
-                        style="cursor: pointer; display: inline;"
+                        style="cursor: pointer; vertical-align: 65px;"
                     />
 
 
 
-                   <springForm:input type="text" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
 
-
-                    <!-- ID студента для добавления в группу -->
-
-                    <label for="zdudend">ZDUDEND_ID</label>
-                    <input type="text" id = "zdudend" value="${student.id}" readonly
-                                           onclick = "alert('Добавить студента в группу'); return false;"
-                                           style="cursor: pointer;"
-                                       />
 
 
 
 <!-- в хайдден передать id студента в группе? -->
 
                    	<img src="<c:url value="\images\cross.png" />"
-                   	style="cursor: pointer; display: inline;"
-                   	    onclick="document.getElementById('group').value=''; document.getElementById('groupId').value=''; return false;"
-                   	alt="" />
+                   	style="cursor: pointer; vertical-align: 40px; visibility: hidden;"
+                   	    onclick="document.getElementById('group').value='';
+                   	    document.getElementById('groupId').value='';
+                   	    document.getElementById('deleteGroup').style.visibility = 'hidden';
+                   	    return false;"
+                   	alt="" id = "deleteGroup" />
 
+
+
+        <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
 
             <div style="border: thin solid black">
             <h4>
@@ -172,7 +170,6 @@ https://habr.com/ru/post/123845/
             </h4>
 
         <center>
-
 
             <table id="mytable" cellspacing="0" border="1">
                 <thead>

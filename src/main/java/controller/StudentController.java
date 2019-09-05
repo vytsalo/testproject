@@ -14,6 +14,7 @@ import service.StudentService;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /*
 Вьюхи:
@@ -121,14 +122,21 @@ public class StudentController {
                         if (newStudent.getId() == null){
                             //добавляем нового студента
                             studentService.add(newStudent);
-
-                            //добавляем студента в группу
-                         //   groupService.findById().setStudents(newStudent);
                         }
                         else
                             studentService.update(newStudent);
 
-                    model.addAttribute("students", studentService.getStudentsList());
+
+            /* STUDENT TO GROUP*/
+            //нашли группу
+            Group currentGroup = groupService.findById(newStudent.getGruppa().getId());
+            //добавили студента
+            currentGroup.addStudent(newStudent);
+            //обновили группу
+            groupService.update(currentGroup);
+            /* /STUDENT TO GROUP*/
+
+            model.addAttribute("students", studentService.getStudentsList());
                     //а надо?
                     //model.addAttribute("groups", groupService.getGroupsList());
 
@@ -188,7 +196,7 @@ public class StudentController {
 
         dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
 
-        dataBinder.registerCustomEditor(Student.class, "gruppa", new StudentEditor(studentService));
+        //dataBinder.registerCustomEditor(Student.class, "gruppa", new StudentEditor(studentService));
 
      /*   dataBinder.registerCustomEditor(
                 Group.class,

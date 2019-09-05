@@ -91,6 +91,15 @@ public class Group implements Serializable {
         this.students = students;
     }
 
+
+    //добавляем студента в список
+    public void addStudent(Student student){
+        //если список не содержит студента, то добавляем его
+        if (!(students.contains(student)))
+            students.add(student);
+    }
+
+
     @SuppressWarnings("unused")
     public Group() {}
 

@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Group;
+import entities.Student;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -50,5 +51,9 @@ public class GroupDaoImpl implements GroupDao {
         else throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
     }
 
+
+    public void addStudent(Student student){
+
+    }
 
 }

@@ -18,10 +18,14 @@
 <script src="<c:url value="\js\search.js" />"></script>
 <script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
 <script src="<c:url value="\js\jquery.modal.min.js" />"></script>
+<script src="<c:url value="\js\jquery.tablesorter.min.js" />"></script>
+<script src="<c:url value="\js\tableOperations.js" />"></script>
 
 
+
+<title>Список студентов</title>
 </head>
-<body>
+<body onload = "javascript:sortTable()">
 <jsp:include page="..\testsecurity\auth.jsp" />
 
   <!--for demo wrap-->
@@ -34,10 +38,15 @@
 	<div class="table-users">
    <div class="header">Студенты</div>
 
-   <table cellspacing="0" class="order-table table">
+   <table cellspacing="0" class="order-table table" id = "mytable">
 
 	  <thead>
 	    <tr>
+	    <!--
+
+	    <img src = "<c:url value="\images\sortImages.png" />" />
+
+	    -->
          <th>#ID</th>
          <th>Фамилия</th>
          <th>Имя</th>
@@ -57,7 +66,16 @@
           <td><c:out value="${list.otch}"/></td>
           <td><c:out value="${list.date_of_birth}"/></td><!-- Формат даты поменять? -->
           <td><c:out value="${list.phone_number}"/></td>
-          <td><c:out value="${list.gruppa}"/></td>
+          <td>
+          <a href = "http://localhost:8082/groups/update/${list.gruppa.id}" >
+          <c:out value="${list.gruppa}"/>
+          </a>
+
+          </td>
+
+
+
+
           <td>
 
 
@@ -112,8 +130,6 @@
     <br/>
   <a href = "http://localhost:8082/" align = center >На главную</a>
 
-
-    
 </p>
 
 
