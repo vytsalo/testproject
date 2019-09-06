@@ -38,8 +38,9 @@ public class GroupDaoImpl implements GroupDao {
     @Override
     public Group findById(Long groupId) {
         Group group = em.find(Group.class, groupId);
-        if (group == null)
+        if (group == null) {
             throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
+        }
         return group;
     }
 

@@ -16,14 +16,15 @@ public class GroupEditor extends PropertyEditorSupport {
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
 
+        //нул поинтер убрать, чтобы можно было группу добавлять
         if (StringUtils.isEmpty(text)) {
+
             setValue(null);
 
         }   else {
 
             //Создаем группу, и находим по тому айди который есть на форме
             //Group newGroup = groupService.findById(Long.parseLong(text));
-
 
             //добавляем студента в группу
             //groupService.findById(Long.parseLong(text)).setStudents(newStudent);

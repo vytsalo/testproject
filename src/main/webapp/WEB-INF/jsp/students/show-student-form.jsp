@@ -16,8 +16,15 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
 
 
+        <link rel="stylesheet" type="text/css" href="<c:url value="\css\jquery.modal.min.css" />" />
+
+
         <!-- Подключение библиотеки jQuery -->
         <script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
+
+        <script src="<c:url value="\js\jquery.modal.min.js" />"></script>
+
+
         <!-- Подключение jQuery плагина Masked Input -->
         <script src="<c:url value="\js\jquery.maskedinput.min.js" />"></script>
         <!-- Подключение методов обработки полей -->
@@ -86,39 +93,6 @@
                 </p>
 
 
-                    <!-- Маска -->
-                    <!-- https://jsfiddle.net/itchief/9faffnof/ -->
-                    <!-- Подсветка полей -->
-                    <!-- https://medium.com/russian/%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%86%D0%B8%D1%8F-%D1%84%D0%BE%D1%80%D0%BC-%D0%BD%D0%B0-html-%D0%B8-css-c34c982d42a0 -->
-                    <!-- с сообщениями -->
-                    <!-- https://professorweb.ru/my/html/html5/level2/2_2.php -->
-                    <!-- JS Method Validation -->
-                    <!-- https://www.w3schools.com/js/tryit.asp?filename=tryjs_validation_number -->
-
-<!--
-
-
-validate(){
-id=sdksdl
-if ()''= Слижком много слижком мало букв в тултип
-
-}
-
-
-https://www.geeksforgeeks.org/form-validation-using-html-javascript/
-
-
-//Топовое
-https://htmlacademy.ru/blog/useful/html/form-validation-techniques
-
-
-
-// Сборка регулярок
-https://habr.com/ru/post/123845/
-
-
--->
-
                 <p>
                     <label for="date">Дата рождения *</label>
 
@@ -139,89 +113,79 @@ https://habr.com/ru/post/123845/
 
 
 
+
+                    <!-- -readonly for working validation -->
                    <input type="text" id="group" value="${student.gruppa.title}" readonly
-                        onclick = "alert('Поиск в модалку(окно выбор группы)'); return false;"
+                        onclick = "$('#addGroupWindow').modal('show'); return false;"
                         style="cursor: pointer; vertical-align: 65px;"
+                        minlength="2" maxlength="35" required
                     />
 
 
+                           	<img src="<c:url value="\images\cross.png" />"
+                                       	style="cursor: pointer; vertical-align: 40px; visibility: hidden;"
+                                       	    onclick="
+                                       	    document.getElementById('group').value='';
+                                       	    document.getElementById('groupId').value='';
+                                       	    document.getElementById('deleteGroup').style.visibility = 'hidden';
+                                       	    return false;"
+                                       	alt="" id = "deleteGroup" />
+
+               <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
 
 
 
+
+                    <!-- vertical-align: 65px; -->
+
+
+
+                    <!-- Само модальное окно -->
+                    <div id="<c:out value="addGroupWindow"/>" class="modal">
+                      <h4>Список групп:</h4>
+
+                              <center>
+
+                                  <table id="mytable" cellspacing="5" border="1">
+                                      <thead>
+                                  	    <tr>
+                                           <th>#ID</th>
+                                           <th>Название</th>
+                                           <th></th>
+                                     	</tr>
+                                  	  </thead>
+
+
+                                    <tbody>
+
+
+
+                      <c:forEach items="${groups}" var="lost">
+                                		<tr>
+                                          <td><c:out value="${lost.id}"/></td>
+                                          <td><c:out value="${lost.title}"/></td>
+                                          <td>
+
+                               <td>
+
+                               <a href = "#" onclick = "setGroup(this)" >Добавить</a>
+
+                               </td>
+
+                                          </td>
+                                      </tr>
+                      </c:forEach>
+
+                                    </tbody>
+
+                                  </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                      </center>
+
+
+                    </div>
 
 
 <!-- в хайдден передать id студента в группе? -->
-
-                   	<img src="<c:url value="\images\cross.png" />"
-                   	style="cursor: pointer; vertical-align: 40px; visibility: hidden;"
-                   	    onclick="document.getElementById('group').value='';
-                   	    document.getElementById('groupId').value='';
-                   	    document.getElementById('deleteGroup').style.visibility = 'hidden';
-                   	    return false;"
-                   	alt="" id = "deleteGroup" />
-
-
-
-        <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" />
-
-            <div style="border: thin solid black">
-            <h4>
-            	Список существующих групп
-            </h4>
-
-        <center>
-
-            <table id="mytable" cellspacing="0" border="1">
-                <thead>
-            	    <tr>
-                     <th>#ID</th>
-                     <th>Название</th>
-                     <th>Список преподов</th>
-                     <th>Список студентов</th>
-                     <th>Действия</th>
-               		</tr>
-            	  </thead>
-
-
-              <tbody>
-
-
-
-<c:forEach items="${groups}" var="lost">
-          		<tr>
-                    <td><c:out value="${lost.id}"/></td>
-                    <td><c:out value="${lost.title}"/></td>
-                    <td><c:out value="lost teachers"/></td>
-                    <td><c:out value="lost.students"/></td>
-                    <td>
-
-         <td><input type="button" value="Add" onclick="setGroup(this)" /></td>
-
-                    </td>
-                </tr>
-</c:forEach>
-
-
-
-
-
-
-
-
-
-              </tbody>
-
-            </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-</center>
-
-              </div>
-
-
-
-
-
-
-
 
                 </p>
 

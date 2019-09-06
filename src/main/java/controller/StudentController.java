@@ -14,7 +14,6 @@ import service.StudentService;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /*
 Вьюхи:
@@ -27,7 +26,7 @@ import java.util.List;
 
 
 //todo add custom security login page
-//todo сортировка таблицы по id
+//todo сортировка таблицы по id при загрузке страницы
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -66,10 +65,6 @@ public class StudentController {
         return "students/show-student-form";
 
     }
-
-
-    //todo вопросы
-    //todo + поле группа в таблице студентов
 
     /*
 
@@ -118,7 +113,7 @@ public class StudentController {
                         return "students/show-student-form";
 
                 } else {
-//todo одновременно сделать назначение двусторонней связи
+
                         if (newStudent.getId() == null){
                             //добавляем нового студента
                             studentService.add(newStudent);
@@ -126,14 +121,45 @@ public class StudentController {
                         else
                             studentService.update(newStudent);
 
+                        //todo white errors loading while loading logs
+
+
+
+            //todo баг при редактировании не отображается кнопка удалить, если есть группа
+            //todo как сделать несколько записей?
+            /*
+             * какие компоненты использовать в интерфейса
+             * закрытие джейкуерри модал
+             * валидация группы нужна ли?
+             *
+             * */
+
+
 
             /* STUDENT TO GROUP*/
             //нашли группу
-            Group currentGroup = groupService.findById(newStudent.getGruppa().getId());
-            //добавили студента
-            currentGroup.addStudent(newStudent);
-            //обновили группу
-            groupService.update(currentGroup);
+            //ERROR HERE
+
+            //проверка на существование группы
+
+            //boolean g = (newStudent.getGruppa()!=null);
+
+            //если у студента есть группа
+            if (newStudent.getGruppa()!=null) {
+
+                //нашли ID группы
+                Long groupId = newStudent.getGruppa().getId();
+
+                //нашли группу
+                Group currentGroup = groupService.findById(groupId);
+                    //добавили студента
+
+                //добавили студента в группу
+                currentGroup.addStudent(newStudent);
+                //обновили группу
+                groupService.update(currentGroup);
+
+            }
             /* /STUDENT TO GROUP*/
 
             model.addAttribute("students", studentService.getStudentsList());
@@ -144,6 +170,7 @@ public class StudentController {
                     return "redirect:/students/";//Редирект чтобы не открывался сам процессформ
                 }
     }
+
 
     //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
@@ -190,19 +217,10 @@ public class StudentController {
         3) формат-даты
         */
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
-        //dataBinder.registerCustomEditor(Group.class, "gruppa", groupService.findById() );
-        //new
-        //GroupEditor studentEditor = new GroupEditor();
 
         dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
 
-        //dataBinder.registerCustomEditor(Student.class, "gruppa", new StudentEditor(studentService));
 
-     /*   dataBinder.registerCustomEditor(
-                Group.class,
-                "gruppa",
-                studentService.findById(studentID).setGruppa(groupService.findById(groupID));
-                );*/
 
     }
 
