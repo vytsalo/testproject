@@ -36,18 +36,18 @@ public class Group implements Serializable {
     //Название группы
     @Column
     @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
-    //@Size(min = 3, max = 35, message = "Длина поля должна быть не менее 3, и не более 35 символов")
+    @Size(min = 3, max = 35, message = "Длина поля должна быть не менее 3, и не более 35 символов")
     private String title;
 
     //Список преподавателей в этой группе
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
     //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
-    @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)//, fetch=FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)//, fetch=FetchType.EAGER)
     private List<Teacher> teachers = new ArrayList<>();
 
     //group - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER)//-fetch
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER,cascade = CascadeType.ALL)//-fetch
     private List<Student> students = new ArrayList<>();
 
     @Override

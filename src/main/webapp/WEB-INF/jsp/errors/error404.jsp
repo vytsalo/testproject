@@ -27,7 +27,7 @@
 
 
 <body>
-
+<jsp:include page="..\testsecurity\auth.jsp" />
      <div id="signup-form">
         	<div class="clearfix" id="header">
 			    <img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />

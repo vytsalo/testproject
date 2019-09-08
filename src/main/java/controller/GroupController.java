@@ -4,6 +4,7 @@ import entities.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 
@@ -13,93 +14,87 @@ import javax.validation.Valid;
 @RequestMapping("/groups")
 public class GroupController {
 
-    /*
-
-    Как сделать форму - like по всем полям, если есть совпадения
-
-    */
-
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/")
-    public String listgroup(Model model){
-        model.addAttribute("groups", groupService.getGroupsList());
+    //Нарушает правила ограничаения внешнего ключа
+
+    @GetMapping("/")//"","/"
+    public String listGroups(Model model){
+        model.addAttribute("groups",groupService.getGroupsList());
         return "groups/list-groups";
     }
 
     @GetMapping("/add")
-    public String addGroup(Model model) {
+    public String addGroup(Model model){
+        //добавить список групп
+        //Просто создаем пустой экземпляр, а потом пост его обрабатывает
+        model.addAttribute("group", new Group());
 
-        //Просто передаем пустой экземпляр, который потом заполняем с помощью формы
-        model.addAttribute("group", new Group());// - "group"
-
-        //Вместе с моделью отправляет сообщение об ошибке
-
-        return "groups/show-group-form";//возвращает груп форм, а ссылается на процесс пост
+        return "groups/show-group-form";
     }
 
-    //норм название дать actionform
-    //подробные коменты всего
-    @PostMapping("/processform")
-    public String processForm(Model model, @Valid @ModelAttribute("group") Group newGroup) {
 
-        //Надо ли сортировку по алфавиту?
+    @PostMapping("/processform")//valid
+    public String processGroupForm(Model model, @Valid @ModelAttribute("group") Group newGroup, BindingResult result){
 
-        //форма поиска
-        //строка поиска
+        if (result.hasErrors()){
 
-        /*
-            Переходим на update - страницу
-            считываем id
-            заполняем данные в форму
-            отправляем в пост метод
-        */
+            System.out.println(result.getAllErrors());
 
-        //не добавлять аттрибут?
-        //Если прошли валидацию, то
-            if (newGroup.getId()==null)
+            model.addAttribute("group", newGroup);
+            return "groups/show-group-form";
+
+        } else {
+
+            if (newGroup.getId() == null){
                 groupService.add(newGroup);
+            }
             else
                 groupService.update(newGroup);
-        //надо ли?
-        model.addAttribute("groups",groupService.getGroupsList());
 
-        //и отправляет вьюшку
-        return "groups/list-groups";
-        //Если валидация не прошла, ретурнить другую вью?
+            model.addAttribute("groups", groupService.getGroupsList());
+
+            return "redirect:/groups/";//Редирект чтобы не открывался сам процессформ
+        }
     }
-
-    //todo fix log4j
-
-//оптимизация всего контроллера
 
 
     @GetMapping("/update/{Id}")
-    public String updateGroup(Model model,@PathVariable Long Id) {
+    public String updateGroup(Model model,@PathVariable Long Id){
 
-        model.addAttribute("group", groupService.findById(Id));
+        Group group = groupService.findById(Id);
+
+        model.addAttribute("group", group);
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);
 
-        //        return "redirect:/viewemp";//will redirect to viewemp request mapping
-        //        return "forward:/" - проброс
+        //добавляем группы
+        model.addAttribute("groups", groupService.getGroupsList());
+
         return "groups/show-group-form";
 
-        //какая разница между
-        //"redirect:" + "/list"
-        //и вызовом метода, если убрать считывание группы
     }
-
 
     @GetMapping("/delete/{Id}")
     public String deleteGroup(Model model,@PathVariable Long Id) {
         //удаляем группу по ID
         groupService.delete(Id);
         model.addAttribute("groups",groupService.getGroupsList());
-        return "groups/list-groups";
-
+        return "redirect:/groups/";
     }
+
+/*
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(true);//false;
+
+        dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
+
+        dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
+
+    }*/
 
 }

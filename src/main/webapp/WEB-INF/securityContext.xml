@@ -9,9 +9,11 @@
 
     <http auto-config="true" use-expressions="true">
         <!-- isAnonymous() -->
-        <intercept-url pattern="/students/add/**" access="isAuthenticated()" />
-        <intercept-url pattern="/students/delete/**" access="isAuthenticated()" />
-        <intercept-url pattern="/students/update/**" access="isAuthenticated()" />
+        <intercept-url pattern="/**/add/**" access="isAuthenticated()" />
+        <intercept-url pattern="/**/delete/**" access="isAuthenticated()" />
+        <intercept-url pattern="/**/update/**" access="isAuthenticated()" />
+
+
     </http>
 
     <authentication-manager>

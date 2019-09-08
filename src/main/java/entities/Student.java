@@ -6,7 +6,6 @@ import java.util.Date;
 
 @Entity
 @Table(name="student")
-@SuppressWarnings("unused")//--
 public class Student extends Human implements Serializable {
 
     @Id

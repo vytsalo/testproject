@@ -20,7 +20,7 @@
 
 <!-- Одним ксс стилем сделать -->
 
-<h3>Группа</h3>
+<h3><a href='http://localhost:8082/groups/'>Группы</a></h3>
 
 <a href='http://localhost:8082/groups/'>Список</a></br>
 <a href='http://localhost:8082/groups/add/'>Добавить</a></br>
@@ -29,12 +29,7 @@
 
 
 
-<h3>Преподаватели</h3>
-
-<a href='http://localhost:8082/teachers/'>Список</a></br>
-<a href='http://localhost:8082/teachers/add/'>Добавить</a></br>
-<a href='http://localhost:8082/teachers/update/'>Обновить</a></br>
-<a href='http://localhost:8082/teachers/delete/'>Удалить</a></br>
+<h3><a href='http://localhost:8082/students/'>Преподаватели</a></h3>
 
 
 <h3><a href='http://localhost:8082/students/'>Студенты</a></h3>

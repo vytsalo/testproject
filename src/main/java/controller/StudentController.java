@@ -43,9 +43,7 @@ public class StudentController {
     @Autowired
     private GroupService groupService;
 
-    //Вывод списка студентов
-    //без ретурна?
-    @GetMapping("/")//""
+    @GetMapping("/")//"","/"
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getStudentsList());
         return "students/list-students";//вьюшка students.jsp
@@ -53,9 +51,7 @@ public class StudentController {
 
     @GetMapping("/add")
     public String addStudent(Model model){
-
         //добавить список групп
-
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("student", new Student());
 
@@ -72,9 +68,6 @@ public class StudentController {
     а как сделать в сеттерах - геттерах
     разница между ModelAndView и String - контроллером
     в каком формате данные передаются
-    как ограничить приватность - какие страницы доступны по авторизации, а какие нет
-    (update/add/delete - авторизованным)
-
     */
 
 
@@ -96,16 +89,12 @@ public class StudentController {
         //http://programmerbook.ru/html/input/type/tel/
         //todo use or not html5 features like tel field
 
-        //проверять в посте
-        //если поле = "" то гетГруп=нулл
         if (result.hasErrors()){
 
             //в один метод упрятать
                     System.out.println(result.getAllErrors());
 
                     //Если есть ошибки - ничего не делать
-                    //действия одинаковы - не проверять на нулл
-
                         //Если есть ошибки - добавляем то, что есть
                         //и перезагружаем форму
 
@@ -124,7 +113,6 @@ public class StudentController {
                         //todo white errors loading while loading logs
 
 
-
             //todo баг при редактировании не отображается кнопка удалить, если есть группа
             //todo как сделать несколько записей?
             /*
@@ -137,23 +125,12 @@ public class StudentController {
 
 
             /* STUDENT TO GROUP*/
-            //нашли группу
-            //ERROR HERE
 
-            //проверка на существование группы
 
-            //boolean g = (newStudent.getGruppa()!=null);
+            Group currentGroup = newStudent.getGruppa();
 
             //если у студента есть группа
-            if (newStudent.getGruppa()!=null) {
-
-                //нашли ID группы
-                Long groupId = newStudent.getGruppa().getId();
-
-                //нашли группу
-                Group currentGroup = groupService.findById(groupId);
-                    //добавили студента
-
+            if (currentGroup!=null) {
                 //добавили студента в группу
                 currentGroup.addStudent(newStudent);
                 //обновили группу
@@ -163,10 +140,7 @@ public class StudentController {
             /* /STUDENT TO GROUP*/
 
             model.addAttribute("students", studentService.getStudentsList());
-                    //а надо?
-                    //model.addAttribute("groups", groupService.getGroupsList());
 
-                    // не доходит?
                     return "redirect:/students/";//Редирект чтобы не открывался сам процессформ
                 }
     }
@@ -179,8 +153,6 @@ public class StudentController {
         Student student = studentService.findById(Id);
 
         model.addAttribute("student", student);
-
-        //if (studentService.findById(Id) == null) throw new StudentNotFoundException();
 
         //Избавиться и в jsp юзать
         model.addAttribute("update", true);
@@ -200,13 +172,10 @@ public class StudentController {
         studentService.delete(Id);
         model.addAttribute("students",studentService.getStudentsList());
         return "redirect:/students/";
-        //return "students/list-students";
-
     }
 
     //todo make a ModelandView name (difference between)
-
-    @InitBinder//(value="date_of_birth")
+    @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         //строгий формат - false, нестрогий, который будет разбирать - true
@@ -220,10 +189,7 @@ public class StudentController {
 
         dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
 
-
-
     }
 
     //todo remove useless commentaries
-
 }
