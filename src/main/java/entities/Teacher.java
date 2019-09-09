@@ -22,13 +22,20 @@ public class Teacher extends Human implements Serializable {
             joinColumns = { @JoinColumn(name = "teacher_id") },
             //имя колонки id со второй таблицы (внешний ключ)
             inverseJoinColumns = { @JoinColumn(name = "group_id") })
-    private List<Group> groups = new ArrayList();
+    private List<Group> groups = new ArrayList();//<>
 
     public List<Group> getGroups() {
         return groups;
     }
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
+    }
+
+    //добавляем группу в список
+    public void addGroup(Group group){
+        if (!(groups.contains(group))){
+            groups.add(group);
+        }
     }
 
     public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number, ArrayList<Group> groups) {

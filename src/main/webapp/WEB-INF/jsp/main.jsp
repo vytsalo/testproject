@@ -22,15 +22,7 @@
 
 <h3><a href='http://localhost:8082/groups/'>Группы</a></h3>
 
-<a href='http://localhost:8082/groups/'>Список</a></br>
-<a href='http://localhost:8082/groups/add/'>Добавить</a></br>
-<a href='http://localhost:8082/groups/update/'>Обновить</a></br>
-<a href='http://localhost:8082/groups/delete/'>Удалить</a></br>
-
-
-
-<h3><a href='http://localhost:8082/students/'>Преподаватели</a></h3>
-
+<h3><a href='http://localhost:8082/teachers/'>Преподаватели</a></h3>
 
 <h3><a href='http://localhost:8082/students/'>Студенты</a></h3>
 
