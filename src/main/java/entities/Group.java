@@ -47,7 +47,7 @@ public class Group implements Serializable {
 
     //group - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER,cascade = CascadeType.ALL)//-fetch
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER)//-fetch
     private List<Student> students = new ArrayList<>();
 
     @Override
