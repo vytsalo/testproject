@@ -113,6 +113,7 @@ public class StudentController {
                         //todo white errors loading while loading logs
 
 
+
             //todo баг при редактировании не отображается кнопка удалить, если есть группа
             //todo как сделать несколько записей?
             /*
@@ -185,9 +186,11 @@ public class StudentController {
         2) как называется поле
         3) формат-даты
         */
-        dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
+        //, "date_of_birth", - field
+        //без указания поля будет обрабатывать все поля типа Date
+        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 
-        dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
+        dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
 
     }
 

@@ -1,14 +1,21 @@
 package controller;
 
 import entities.Group;
+import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
-
+import service.StudentService;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/groups")
@@ -16,6 +23,9 @@ public class GroupController {
 
     @Autowired
     private GroupService groupService;
+
+    @Autowired
+    private StudentService studentService;
 
     //Нарушает правила ограничаения внешнего ключа
 
@@ -31,11 +41,17 @@ public class GroupController {
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("group", new Group());
 
+
+        model.addAttribute("students", Collections.EMPTY_LIST);
+
+
         return "groups/show-group-form";
     }
 
 
     @PostMapping("/processform")//valid
+    //- request param
+    // @RequestParam("students") List<Student> listStudents,
     public String processGroupForm(Model model, @Valid @ModelAttribute("group") Group newGroup, BindingResult result){
 
         if (result.hasErrors()){
@@ -45,15 +61,40 @@ public class GroupController {
             model.addAttribute("group", newGroup);
             return "groups/show-group-form";
 
+            //по ID или по группе
+            //
         } else {
 
             if (newGroup.getId() == null){
                 groupService.add(newGroup);
             }
-            else
+            else {
+
                 groupService.update(newGroup);
 
+
+            }
+
+
+            //добавили группу в студента и студента в группу
+
+
+
+
+
+
+
+            //группа стала нуллом
+
+        /*    List<Student> listStudent = newGroup.getStudents();
+
+
+
+
             model.addAttribute("groups", groupService.getGroupsList());
+*/
+
+
 
             return "redirect:/groups/";//Редирект чтобы не открывался сам процессформ
         }
@@ -73,6 +114,13 @@ public class GroupController {
         //добавляем группы
         model.addAttribute("groups", groupService.getGroupsList());
 
+        //Добавляем студентов
+
+        List<Student> studentList = group.getStudents();
+
+        model.addAttribute("students", studentList);
+
+
         return "groups/show-group-form";
 
     }
@@ -85,16 +133,14 @@ public class GroupController {
         return "redirect:/groups/";
     }
 
-/*
+
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(true);//false;
+        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 
-        dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
-
-        dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupEditor(groupService));
-
-    }*/
+    }
 
 }

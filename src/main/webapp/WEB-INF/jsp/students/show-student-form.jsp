@@ -112,8 +112,6 @@
                     <label for="group">Группа</label>
 
 
-
-
                     <!-- -readonly for working validation -->
                    <input type="text" id="group" value="${student.gruppa.title}" readonly
                         onclick = "$('#addGroupWindow').modal('show'); return false;"

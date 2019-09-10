@@ -100,14 +100,28 @@ public class Group implements Serializable {
         }
     }
 
+
+    //удаляем студента из группы
+    public void deleteStudent(Student student){
+        if (students.contains(student)) {
+            students.remove(student);
+        }
+    }
+
         //добавляем преподавателя в список
         public void addTeacher(Teacher teacher){
         //если список не содержит, то добавляем его
         if (!(teachers.contains(teacher))){
             teachers.add(teacher);
+            }
         }
-    }
 
+        //удаляем преподавателя из списка
+        public void deleteTeacher(Teacher teacher){
+            if (teachers.contains(teacher)){
+                teachers.remove(teacher);
+            }
+        }
 
 
 

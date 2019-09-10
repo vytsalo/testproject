@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import service.StudentService;
+
 import java.beans.PropertyEditorSupport;
 
 @Component
@@ -14,14 +15,23 @@ public class StudentEditor extends PropertyEditorSupport {
     @Autowired
     StudentService studentService;
 
+//    List<Student> studentList = new ArrayList<>();
+
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
-
+        //массив стрингов
         if (StringUtils.isEmpty(text))
             setValue(null);
-        else
+        else {
+
+
             setValue(studentService.findById(Long.parseLong(text)));
 
+        }
+    }
+
+    public StudentEditor(StudentService studentService){
+        this.studentService = studentService;
     }
 
 
