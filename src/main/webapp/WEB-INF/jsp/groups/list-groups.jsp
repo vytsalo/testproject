@@ -75,6 +75,7 @@
                                     <a href = "http://localhost:8082/students/update/${stlist.id}" >
 
                                           <c:out value="${stlist}"/><br>
+
                                      </a>
 
                               </c:forEach>

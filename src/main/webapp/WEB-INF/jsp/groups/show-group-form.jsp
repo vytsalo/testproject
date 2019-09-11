@@ -10,22 +10,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <!-- ОНО. РАБОТАЕТ. НЕ. ТРОГАТЬ. -->
 	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
     <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
 
     <script src="<c:url value="\js\tableOperationz.js" />"></script>
 
-<!-- CSS привести в порядок, удалить ненужное, поменять названия -->
-
 	<title>Добавление/удаление группы</title>
 
 </head>
-
-
-
-<!-- JavaScript сообщения при неправильной валидации -->
-
 
 <body>
 
@@ -55,15 +47,15 @@
             </div>
 			
 			
-			<p>Пожалуйста, заполните поля ниже.</p><!-- Пожалуйста исправьте следующие ошибки: -->
+			<p>Пожалуйста, заполните поля ниже.</p>
             
             <form:form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" id="send">
 
-				<input type="text" value="${group.id}" name="id" hidden />
+				<form:input type="hidden" value="${group.id}" path="id" />
 
-                <p><!-- Убрать и просто текст сделать? -->
+                <p>
                 <label for="title">Название *</label>
-                <input id="title" type="text" name="title" value="${group.title}" minlength="2" maxlength="35" required /> <!-- required -->
+                <form:input id="title" path = "title" value="${group.title}" minlength="2" maxlength="35" required = "true" /> <!-- required -->
                 </p>
 
 				<p>
@@ -90,19 +82,55 @@
                 <tbody>
 
 
-                    <c:forEach items="${students}" var="stdList" varStatus="tagStatus">
+                <!-- при нажатии на кнопку уменьшить индекс? -->
+
+                <!-- JSTL -- -->
+
+<!--
+tagStatus--
+
+<c:out value="${16+64*2}" />
+-->
+
+
+   <!--
+   <c:set var="count" value="${count + 1}" scope="page"/>
+                        -->
+
+
+
+
+                    <!--  begin="1970" end="2000" -->
+
+
+
+                        <!-- group.students[].id -->
+
+
+<!--
+                    <c:set value = "${group.students}" var = "groupSt" />
+-->
+                    <c:forEach items="${group.students}" var="stdList" varStatus="tagStatus">
+
+
                         <tr>
 
+
+                            <input type = "text" value =
+                                "<c:out value="${tagStatus.index}" />"
+                             />
+
+
+                            <!-- Индексы пофиксить -->
                             <!-- HIDDENS -->
-                            <td><form:hidden path="students[${tagStatus.index}].id" value="${stdList.id}" readonly="true"/></td>
-                            <td><form:hidden path="students[${tagStatus.index}].name" value="${stdList.name}" readonly="true"/></td>
-                            <td><form:hidden path="students[${tagStatus.index}].fam" value="${stdList.fam}" readonly="true"/></td>
-                            <td><form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" readonly="true"/></td>
-                            <td><form:input type="date" path="students[${tagStatus.index}].date_of_birth" value="${stdList.date_of_birth}" readonly="true" hidden="true"/></td>
-                            <td><form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" readonly="true"/></td>
 
-
-                            <td><form:input type = "text" path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa}" readonly="true"/></td>
+                            <td><form:hidden path="students[${tagStatus.index}].id" value="${stdList.id}" /></td>
+                            <td><form:hidden path="students[${tagStatus.index}].name" value="${stdList.name}" /></td>
+                            <td><form:hidden path="students[${tagStatus.index}].fam" value="${stdList.fam}" /></td>
+                            <td><form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" /></td>
+                            <td><form:hidden path="students[${tagStatus.index}].date_of_birth" value="${stdList.date_of_birth}" /></td>
+                            <td><form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" /></td>
+                            <td><form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" /></td>
 
 
                             <!-- /HIDDENS  -->
@@ -112,31 +140,44 @@
                             <td>${stdList.otch}</td>
 
                             <!-- Все поля hidden а вывод в таблицу отдельно? -->
+                            <!-- передается только тайтл -->
 
 
 
-                            <td><a href = "#" onclick = "deleteRow(this)" >Удалить</a></td>
+                            <td><a href = "#" onclick = "deleteRow(this);
+
+                                                      "<c:set var="tagStatus.index" value="${tagStatus.index - 1}" />"
+
+
+
+
+                            " >Удалить</a></td>
+
+
+
+
 
                         </tr>
 
+
+
                     </c:forEach>
+
+
 
 
                 </tbody>
 
                 </table>
 
-
-
-
-
-<br/>
 <br/>
 <br/>
 <br/>
 <br/>
 
-
+<!--
+                <input type = "button" onclick = "alert(${tagStatus})" value = "showTagStatus" />
+-->
 
                 <input id="students" type="text" value="" />
                 </p>

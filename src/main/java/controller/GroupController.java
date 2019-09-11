@@ -1,7 +1,6 @@
 package controller;
 
 import entities.Group;
-import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -11,11 +10,11 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 import service.StudentService;
+
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/groups")
@@ -52,7 +51,7 @@ public class GroupController {
     @PostMapping("/processform")//valid
     //- request param
     // @RequestParam("students") List<Student> listStudents,
-    public String processGroupForm(Model model, @Valid @ModelAttribute("group") Group newGroup, BindingResult result){
+    public String processGroupForm(Model model, @ModelAttribute("group") Group newGroup, BindingResult result){
 
         if (result.hasErrors()){
 
@@ -66,11 +65,25 @@ public class GroupController {
         } else {
 
             if (newGroup.getId() == null){
+
                 groupService.add(newGroup);
             }
             else {
 
+
+                /*
+                  List<User> users = userList.getUsers();
+    for(User user : users) {
+        System.out.println("First Name- " + user.getFirstName());
+    }                */
+
                 groupService.update(newGroup);
+
+                /*
+                * Как быть с нулами? Как обрабатывать?
+                * Брать студента по айди
+                * контроллер, который удаляет студента из группы?
+                * */
 
 
             }
@@ -112,13 +125,14 @@ public class GroupController {
         model.addAttribute("update", true);
 
         //добавляем группы
+        //
         model.addAttribute("groups", groupService.getGroupsList());
 
         //Добавляем студентов
 
-        List<Student> studentList = group.getStudents();
+     //   List<Student> studentList = group.getStudents();
 
-        model.addAttribute("students", studentList);
+     //   model.addAttribute("students", studentList);
 
 
         return "groups/show-group-form";
@@ -140,6 +154,10 @@ public class GroupController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(true);//false;
         dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
+        //поле которое отвечает за группу
+        dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
+
 
     }
 
