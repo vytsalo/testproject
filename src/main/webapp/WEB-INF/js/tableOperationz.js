@@ -46,46 +46,31 @@ function addRow(btn, id) {
 
 function rewriteHTML(){//remove or add
 
-
-//document.getElementsByTagName('button')[0].setAttribute('value', 'Buddan');
-		
-
-		//document.getElementsByTagName('button')[0].innerText = 'Buddan';
-		
-		
 		//они же все инпуты
 		//присвоить класс - jstlCollectionSending
 		
 		var inputs = document.getElementsByClassName("jstlStudentsSending");
-			
-		var i = 0;
-		//id
-		
-		alert(inputs[i].getAttribute("name"));
-		
-		
+		var fields = ["id", "name", "fam", "otch", "date_of_birth","phone_number","gruppa"];
+
+			    for (var j = 0; j < inputs.length; j++) {
+
+                //students[0].id
+				inputs[j].setAttribute("name","students[" + Math.floor(j/7) + "]." + fields[j % 7]);
+     }
+
+
+                //перед нажатием на пост
+                alert("Замена успешна");
+
+
+
 		//посчитать inputs.length/7 to int
-			
+
 		/* 7 записей */
 			//for i количество записей
-			
-			
-			//var ml = inputs.length;
-			alert(inputs.length);
-			
-			
-			for (var j = 0; j < inputs.length; j++) {
 
-				inputs[j].setAttribute("name","aaaaaaaaaa");
-				//name
-				inputs[j].setAttribute("name","aaaaaaaaaaa");
-				inputs[j].setAttribute("name","ssssssss");
-				inputs[j].setAttribute("name","ads");
-				inputs[j].setAttribute("name","sdgasdgsd");
-				inputs[j].setAttribute("name","wegwgasdg");
-				inputs[j].setAttribute("name","poiuft9n");
-		
-		}
+
+			//var ml = inputs.length;
 
 			//working
 		//inputs[0].setAttribute("name","gagaga");

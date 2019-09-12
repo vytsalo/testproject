@@ -55,7 +55,7 @@ public class Group implements Serializable {
     //должен быть персист
 
 
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Student> students = new ArrayList<>();
 
     @Override
@@ -131,7 +131,14 @@ public class Group implements Serializable {
             }
         }
 
+        public void putStudentsIntoGroup(List<Student> students, Group group){
 
+            for (int i = 0; i < students.size(); i++) {
+                students.get(i).setGruppa(group);
+            }
+        
+        
+    }
 
     @SuppressWarnings("unused")
     public Group() {}

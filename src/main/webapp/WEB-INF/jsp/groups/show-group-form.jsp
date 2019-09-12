@@ -96,11 +96,6 @@
                         <tr>
 
 
-                            <input type = "text" value =
-                                "<c:out value="${tagStatus.index}" />"
-                             />
-
-
                             <!-- Индексы пофиксить -->
                             <!-- HIDDENS -->
 
@@ -160,11 +155,7 @@
 <br/>
 <br/>
 
-<!--
-                <input type = "button" onclick = "alert(${tagStatus})" value = "showTagStatus" />
--->
 
-                <input id="students" type="text" value="" />
                 </p>
                 
                 <p>

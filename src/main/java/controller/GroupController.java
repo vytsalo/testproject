@@ -1,6 +1,7 @@
 package controller;
 
 import entities.Group;
+import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,10 @@ import service.StudentService;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/groups")
@@ -70,13 +73,23 @@ public class GroupController {
             }
             else {
 
+                //метод назначения всем группам id
+                List<Student> tmp = newGroup.getStudents();
 
-                /*
-                  List<User> users = userList.getUsers();
-    for(User user : users) {
-        System.out.println("First Name- " + user.getFirstName());
-    }                */
+                      Long tempId;
+                      Student tempStudent = null;
+                for (int i = 0; i < tmp.size(); i++) {
+                    tempId = tmp.get(i).getId();
+                    //tmp.get(i).setGruppa(newGroup);
+                    tempStudent = studentService.findById(tempId);
+                    tempStudent.setGruppa(newGroup);
+                    studentService.update(tempStudent);
 
+                }
+
+                //студентов заапдейтить
+
+                //studentService.findById()
                 groupService.update(newGroup);
 
                 /*
