@@ -1,5 +1,7 @@
 package entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -43,11 +45,17 @@ public class Group implements Serializable {
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
     //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
     @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)//, fetch=FetchType.EAGER)
+    //@Cascade({org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    //persist
     private List<Teacher> teachers = new ArrayList<>();
 
     //group - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER)//-fetch
+
+    //должен быть персист
+
+
+    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER)
     private List<Student> students = new ArrayList<>();
 
     @Override

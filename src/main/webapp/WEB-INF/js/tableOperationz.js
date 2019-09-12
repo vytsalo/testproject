@@ -43,3 +43,128 @@ function addRow(btn, id) {
   
   }
 }
+
+function rewriteHTML(){//remove or add
+
+
+//document.getElementsByTagName('button')[0].setAttribute('value', 'Buddan');
+		
+
+		//document.getElementsByTagName('button')[0].innerText = 'Buddan';
+		
+		
+		//они же все инпуты
+		//присвоить класс - jstlCollectionSending
+		
+		var inputs = document.getElementsByClassName("jstlStudentsSending");
+			
+		var i = 0;
+		//id
+		
+		alert(inputs[i].getAttribute("name"));
+		
+		
+		//посчитать inputs.length/7 to int
+			
+		/* 7 записей */
+			//for i количество записей
+			
+			
+			//var ml = inputs.length;
+			alert(inputs.length);
+			
+			
+			for (var j = 0; j < inputs.length; j++) {
+
+				inputs[j].setAttribute("name","aaaaaaaaaa");
+				//name
+				inputs[j].setAttribute("name","aaaaaaaaaaa");
+				inputs[j].setAttribute("name","ssssssss");
+				inputs[j].setAttribute("name","ads");
+				inputs[j].setAttribute("name","sdgasdgsd");
+				inputs[j].setAttribute("name","wegwgasdg");
+				inputs[j].setAttribute("name","poiuft9n");
+		
+		}
+
+			//working
+		//inputs[0].setAttribute("name","gagaga");
+		
+		/*
+		inputs[0].setAttribute("name","students[" + i + "].id");
+		//name
+		inputs[0].setAttribute("name","students[" + i + "].name");
+		inputs[0].setAttribute("name","students[" + i + "].fam");
+		inputs[0].setAttribute("name","students[" + i + "].otch");
+		inputs[0].setAttribute("name","students[" + i + "].date_of_birth");
+		inputs[0].setAttribute("name","students[" + i + "].phone_number");
+		inputs[0].setAttribute("name","students[" + i + "].gruppa");
+		*/
+		
+		/*
+		var x = document.getElementsByClassName("example");
+		
+		var i;
+		for (i = 0; i < x.length; i++) {
+		  x[i].style.backgroundColor = "red";
+		}
+		*/			
+
+
+
+			
+		
+		/*
+		
+		var tags = document.getElementsByTagName('input');
+		tags[0].innerText = 'Buddan';
+
+		*/
+
+
+
+/*
+		//первому символу даем[0] и так до конца
+		
+		//считает пространства имен или по классу
+		var tags = document.getElementsByTagName('<form:hidden>');
+
+
+		Array.prototype.forEach.call(els, function(tags) {
+   
+			//for i=1 to 7 - св-ва
+				
+				
+			//tags - array
+		
+			for (var i = 0; i < tags.length; i++){
+				for (var j = 0; j < tags.length; j++){
+				
+				//{индекс i передавать в аттрибутах}
+				
+				
+				
+				
+				}
+			}
+	*/	
+		
+		
+			
+		
+		
+		
+	//		tags.setAttribute("path", value);
+
+
+	//		document.getElementById('n_art').setAttribute("rel", choice);
+
+
+
+	//		console.log(tags.tagName);
+//});
+		
+		
+		
+	
+}

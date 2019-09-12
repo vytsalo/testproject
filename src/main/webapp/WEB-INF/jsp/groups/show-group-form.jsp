@@ -48,7 +48,12 @@
 			
 			
 			<p>Пожалуйста, заполните поля ниже.</p>
-            
+
+
+            <button value="Кпопка" onclick = "rewriteHTML()" >asdasdasd</button>
+
+
+
             <form:form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" id="send">
 
 				<form:input type="hidden" value="${group.id}" path="id" />
@@ -74,6 +79,8 @@
                     <th>Фамилия</th>
                     <th>Имя</th>
                     <th>Отчество</th>
+                    <th>Дата рождения</th>
+                    <th>Телефон</th>
                     <th>Действие</th>
                     </tr>
                 </thead>
@@ -82,34 +89,7 @@
                 <tbody>
 
 
-                <!-- при нажатии на кнопку уменьшить индекс? -->
 
-                <!-- JSTL -- -->
-
-<!--
-tagStatus--
-
-<c:out value="${16+64*2}" />
--->
-
-
-   <!--
-   <c:set var="count" value="${count + 1}" scope="page"/>
-                        -->
-
-
-
-
-                    <!--  begin="1970" end="2000" -->
-
-
-
-                        <!-- group.students[].id -->
-
-
-<!--
-                    <c:set value = "${group.students}" var = "groupSt" />
--->
                     <c:forEach items="${group.students}" var="stdList" varStatus="tagStatus">
 
 
@@ -124,34 +104,39 @@ tagStatus--
                             <!-- Индексы пофиксить -->
                             <!-- HIDDENS -->
 
-                            <td><form:hidden path="students[${tagStatus.index}].id" value="${stdList.id}" /></td>
-                            <td><form:hidden path="students[${tagStatus.index}].name" value="${stdList.name}" /></td>
-                            <td><form:hidden path="students[${tagStatus.index}].fam" value="${stdList.fam}" /></td>
-                            <td><form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" /></td>
-                            <td><form:hidden path="students[${tagStatus.index}].date_of_birth" value="${stdList.date_of_birth}" /></td>
-                            <td><form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" /></td>
-                            <td><form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" /></td>
+                            <td>
 
+
+                            <form:hidden path="students[${tagStatus.index}].id" value="${stdList.id}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].name" value="${stdList.name}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].fam" value="${stdList.fam}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].date_of_birth" value="${stdList.date_of_birth}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
+
+                            ${stdList.id}
+                            </td>
+
+                            <!-- js переделать формирование страницы
+                             переписать код страницы
+
+                             -->
 
                             <!-- /HIDDENS  -->
 
                             <td>${stdList.fam}</td>
                             <td>${stdList.name}</td>
                             <td>${stdList.otch}</td>
+                            <td>${stdList.date_of_birth}</td>
+                            <td>${stdList.phone_number}</td>
 
                             <!-- Все поля hidden а вывод в таблицу отдельно? -->
                             <!-- передается только тайтл -->
 
 
 
-                            <td><a href = "#" onclick = "deleteRow(this);
-
-                                                      "<c:set var="tagStatus.index" value="${tagStatus.index - 1}" />"
-
-
-
-
-                            " >Удалить</a></td>
+                            <td><a href = "#" onclick = "deleteRow(this)">Удалить</a></td>
 
 
 

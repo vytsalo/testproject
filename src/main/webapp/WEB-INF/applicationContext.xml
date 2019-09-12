@@ -42,6 +42,9 @@
         in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 
+
+
+
         <!-- new -->
        <!-- <beans:property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView" />
@@ -95,8 +98,6 @@
     <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager"><!-- id="transactionManager"  -->
         <beans:property name="entityManagerFactory" ref="emf" />
     </beans:bean>
-
-
 
 
 </beans:beans>

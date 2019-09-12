@@ -13,9 +13,12 @@ public class Student extends Human implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    //каскад тайп персист
     //Группа, в которой учится студент
-    @ManyToOne(fetch = FetchType.EAGER)//-fetch ЛЕЗИ? ,cascade = CascadeType.ALL
+    //, cascade = CascadeType.MERGE
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})//-fetch ЛЕЗИ? ,cascade = CascadeType.ALL
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
+    //главное управляющее поле, все делается через него, а потом уже через группу
     private Group gruppa;
 
     //new PersistentList()
