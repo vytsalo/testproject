@@ -74,7 +74,62 @@ public class GroupController {
             else {
 
                 //метод назначения всем группам id
-                List<Student> tmp = newGroup.getStudents();
+
+                //список студентов - группа одна
+                //группа - студенты - список
+
+
+
+                //Студенты, которые сейчас есть в базе
+                List<Student> serviceStudents = groupService.findById(newGroup.getId()).getStudents();
+
+                //получаем список студентов в модели
+                List<Student> modelStudents = newGroup.getStudents();
+
+                Student temp = null;
+
+                //если не контейнс то группа нулл
+                for (int i = 0; i < modelStudents.size(); i++) {
+                    if (!modelStudents.contains(serviceStudents.get(i))) {
+                        temp = serviceStudents.get(i);
+                        temp.setGruppa(null);
+                        studentService.update(temp);
+
+                    }
+                }
+
+                for (int i = 0; i < modelStudents.size(); i++) {
+                    temp = modelStudents.get(i);
+                    temp.setGruppa(newGroup);
+
+                    studentService.update(temp);
+                }
+
+
+                //добавление группы для студентов
+                //newGroup.setStudents(a);
+
+                groupService.update(newGroup);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              /*
+
+                      //List<Student> tmp = newGroup.getStudents();
 
                       Long tempId;
                       Student tempStudent = null;
@@ -85,7 +140,7 @@ public class GroupController {
                     tempStudent.setGruppa(newGroup);
                     studentService.update(tempStudent);
 
-                }
+                }*/
 
                 //студентов заапдейтить
 

@@ -131,7 +131,7 @@
 
 
 
-                            <td><a href = "#" onclick = "deleteRow(this)">Удалить</a></td>
+                            <td><a href = "#" onclick = "deleteRow(this); rewriteHTML(); ">Удалить</a></td>
 
 
 
