@@ -27,18 +27,12 @@ function addRow(btn, id) {
   // parent - td(ячейка) parent parent - tr(строка)
   var row = btn.parentNode.parentNode;
   
-  /*
-  querySelectorAll()
-  
-  в таблице с id - 
-  есть элементы с классом таким - 
-  у них удалить аттрибут нейм
-  
-  */
-	
   //добавляем строку к таблице с таким айди
   document.getElementById(id).appendChild(row);
   
+  
+  //последнюю строку в таблице изменить, добавить name к аттрибутам
+  //или просто добавить класс, и она перерисуется
   
   
   
@@ -87,6 +81,17 @@ function addRow(btn, id) {
 	  addRow(this,'existingStudents');
 	  }, true);
 	btn.innerText = "Удалить";
+	
+	
+	//тут код для добавления класса к строке
+	
+	//var newStudentInGroup = document.getElementsByClassName("studentsTable").lastChild;
+	//newStudentInGroup.setAttribute("class","jstlStudentsSending");
+	
+	//сделать роуcreate element
+	//existingStudents
+	
+	
   }
   else{
 	  btn.addEventListener("click", function(){

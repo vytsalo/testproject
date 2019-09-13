@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 import service.StudentService;
 
-import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,13 +46,12 @@ public class GroupController {
         model.addAttribute("students", Collections.EMPTY_LIST);
 
 
+        //добавить студентов всех как модель
         return "groups/show-group-form";
     }
 
 
-    @PostMapping("/processform")//valid
-    //- request param
-    // @RequestParam("students") List<Student> listStudents,
+    @PostMapping("/processform")
     public String processGroupForm(Model model, @ModelAttribute("group") Group newGroup, BindingResult result){
 
         if (result.hasErrors()){
@@ -73,11 +71,8 @@ public class GroupController {
             }
             else {
 
-                //метод назначения всем группам id
-
                 //список студентов - группа одна
                 //группа - студенты - список
-
 
 
                 //Студенты, которые сейчас есть в базе
@@ -89,100 +84,34 @@ public class GroupController {
                 Student temp = null;
 
                 //если не контейнс то группа нулл
-                //не доходит до конца
+                //Если студент был удален из группы, ставим ему группу нулл
+
                 for (int i = 0; i < serviceStudents.size(); i++) {
                     if (!modelStudents.contains(serviceStudents.get(i))) {
                         temp = serviceStudents.get(i);
                         temp.setGruppa(null);
                         studentService.update(temp);
-
                     }
                 }
 
+                //Для каждого студента устанавливаем текущую группу
                 for (int i = 0; i < modelStudents.size(); i++) {
                     temp = modelStudents.get(i);
                     temp.setGruppa(newGroup);
-
                     studentService.update(temp);
                 }
 
-
-                //добавление группы для студентов
-                //newGroup.setStudents(a);
-
                 groupService.update(newGroup);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              /*
-
-                      //List<Student> tmp = newGroup.getStudents();
-
-                      Long tempId;
-                      Student tempStudent = null;
-                for (int i = 0; i < tmp.size(); i++) {
-                    tempId = tmp.get(i).getId();
-                    //tmp.get(i).setGruppa(newGroup);
-                    tempStudent = studentService.findById(tempId);
-                    tempStudent.setGruppa(newGroup);
-                    studentService.update(tempStudent);
-
-                }*/
-
-                //студентов заапдейтить
-
-                //studentService.findById()
-                groupService.update(newGroup);
-
-                /*
-                * Как быть с нулами? Как обрабатывать?
-                * Брать студента по айди
-                * контроллер, который удаляет студента из группы?
-                * */
-
 
             }
-
-
-            //добавили группу в студента и студента в группу
-
-
-
-
-
-
-
-            //группа стала нуллом
-
-        /*    List<Student> listStudent = newGroup.getStudents();
-
-
-
-
-            model.addAttribute("groups", groupService.getGroupsList());
-*/
-
 
 
             return "redirect:/groups/";//Редирект чтобы не открывался сам процессформ
         }
     }
 
-
+    //выполняется метод, потом только страница получается. модель которую тут заполняем
+    //в этой же страничке используется
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
@@ -197,12 +126,93 @@ public class GroupController {
         //
         model.addAttribute("groups", groupService.getGroupsList());
 
+
+
+
+        //Студенты, которые сейчас есть в базе
+        List<Student> serviceStudents = studentService.getStudentsList();
+
+        //получаем список студентов в модели
+        List<Student> modelStudents = groupService.findById(Id).getStudents();
+
+
+
+
+
+        //Все студенты, которые сейчас есть в базе
+
+        List<Student> allStudents = studentService.getStudentsList();
+        //List<Student> serviceStudents = groupService.findById(Id).getStudents();
+
+        //получаем список студентов в данной группе
+        //List<Student> modelStudents = group.getStudents();
+
+        //список студентов которые не в этой группе
+
+        List<Student> notInThisGroupStudent = new ArrayList<>();
+
+
+        //сравнивать id
+
+        //
+
+        Student temp = null;
+
+
+        //юзать икуалс
+        // modelStudents.get(0).getId().equals(serviceStudents.get(1).getId())
+        //
+
+
+
+    if (modelStudents.get(0).getId().equals(serviceStudents.get(1).getId()))
+        serviceStudents.remove(modelStudents.get(0));
+
+       /*
+        for (int i = 0; i < modelStudents.size(); i++) {
+
+            temp = allStudents.get(i);
+            if (modelStudents.contains(temp)){
+                notInThisGroupStudent.add(temp);
+            //
+            }
+        }
+*/
+        //одни студенты могут быть с группой а другие нет
+
+        if (notInThisGroupStudent!=null)
+        model.addAttribute("notInGroupStudents", notInThisGroupStudent);
+
+
+        for (int i = 0; i < serviceStudents.size(); i++) {
+            if (!modelStudents.contains(serviceStudents.get(i))) {
+                temp = serviceStudents.get(i);
+                temp.setGruppa(null);
+                studentService.update(temp);
+            }
+        }
+
+
+/*
+
+        List<Student> allStudents = studentService.getStudentsList();
+        List<Student> groupStudents = groupService.findById(Id).getStudents();
+
+        //удаляем найденные совпадения
+        allStudents.removeAll(groupStudents);
+
+        model.addAttribute("notInGroupStudents", allStudents);
+
+*/
+
         //Добавляем студентов
 
      //   List<Student> studentList = group.getStudents();
 
      //   model.addAttribute("students", studentList);
 
+
+        //добавить атрибут студенты, которых нету в группе
 
         return "groups/show-group-form";
 
@@ -229,5 +239,6 @@ public class GroupController {
 
 
     }
+
 
 }

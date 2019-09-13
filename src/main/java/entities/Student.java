@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name="student")
@@ -55,4 +56,14 @@ public class Student extends Human implements Serializable {
         this.gruppa = gruppa;
     }
 
+/*
+    //сравнивает по id
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student that = (Student) o;
+        return this.id == that.id;
+    }
+*/
 }

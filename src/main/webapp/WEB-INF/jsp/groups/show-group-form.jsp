@@ -174,6 +174,9 @@
 </h4>
 
 
+
+<!--notInGroupStudents -->
+
 <table id="existingStudents" cellspacing="0" border="1">
        <thead>
 	    <tr>
@@ -190,37 +193,28 @@
   
   <tbody>
 		<!-- th to td -->
-	<tr>
-         <th>5</th>
-         <th>Фа3милия</th>
-         <th>И3мя</th>
-         <th>Отче3ство</th>
-         <th>Да3та рождения</th>
-         <th>Телеф3он</th>
-         <th><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></th>
-    </tr>
 		
-    <tr>
-         <th>6</th>
-         <th>Фа3милия</th>
-         <th>И3мя</th>
-         <th>Отче3ство</th>
-         <th>Да3та рождения</th>
-         <th>Телеф3он</th>
-         <th><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></th>
-    </tr>
-	
+		
+		<!-- notInGroupStudents -->
+
+		<!-- Добавлять скрытые инпуты, а потом при переносе в таблицу - добавлять 
+		добавлять класс
+		name=""  -->
+		
+	<c:forEach items="${notInGroupStudents}" var="sddList">
 
 	
 	<tr>
-         <th>7</th>
-         <th>Ф4амилия</th>
-         <th>Им4я</th>
-         <th>Отч4ество</th>
-         <th>Дата4 рождения</th>
-         <th>Телеф4он</th>
-          <th><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></th>
+         <td>${sddList.id}</td>
+         <td>${sddList.fam}</td>
+         <td>${sddList.name}</td>
+         <td>${sddList.otch}</td>
+         <td>${sddList.date_of_birth}</td>
+         <td>${sddList.phone_number}</td>
+         <td><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></td>
     </tr>
+	
+	</c:forEach>
 	
   </tbody>
 
