@@ -89,7 +89,8 @@ public class GroupController {
                 Student temp = null;
 
                 //если не контейнс то группа нулл
-                for (int i = 0; i < modelStudents.size(); i++) {
+                //не доходит до конца
+                for (int i = 0; i < serviceStudents.size(); i++) {
                     if (!modelStudents.contains(serviceStudents.get(i))) {
                         temp = serviceStudents.get(i);
                         temp.setGruppa(null);

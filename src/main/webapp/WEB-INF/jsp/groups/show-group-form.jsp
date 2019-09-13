@@ -49,11 +49,6 @@
 			
 			<p>Пожалуйста, заполните поля ниже.</p>
 
-
-            <button value="Кпопка" onclick = "rewriteHTML()" >asdasdasd</button>
-
-
-
             <form:form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" id="send">
 
 				<form:input type="hidden" value="${group.id}" path="id" />
@@ -64,12 +59,12 @@
                 </p>
 
 				<p>
-                <label for="teachers">Список преподавателей</label>
+                <label for="teachers">Список преподавателей группы</label>
                 <input id="teachers" type="text" value="" />
                 </p>
                 
                 <p>
-                <label for="students">Список студентов</label>
+                <label for="students">Список студентов группы</label>
 
 
                 <table border = "1 px solid" id="studentsTable">
@@ -94,11 +89,6 @@
 
 
                         <tr>
-
-
-                            <!-- Индексы пофиксить -->
-                            <!-- HIDDENS -->
-
                             <td>
 
 
@@ -110,7 +100,7 @@
                             <form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
 
-                            ${stdList.id}
+                            <div>${stdList.id}</div>
                             </td>
 
                             <!-- js переделать формирование страницы
@@ -130,8 +120,7 @@
                             <!-- передается только тайтл -->
 
 
-
-                            <td><a href = "#" onclick = "deleteRow(this); rewriteHTML(); ">Удалить</a></td>
+                            <td><a href = "#" onclick = "addRow(this,'existingStudents'); rewriteHTML(); ">Удалить</a></td>
 
 
 
@@ -150,6 +139,123 @@
 
                 </table>
 
+
+
+
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+
+<h4>
+	Список существующих студентов
+</h4>
+
+
+<table id="existingStudents" cellspacing="0" border="1">
+       <thead>
+	    <tr>
+         <th>#ID</th>
+         <th>Фамилия</th>
+         <th>Имя</th>
+         <th>Отчество</th>
+         <th>Дата рождения</th>
+         <th>Телефон</th>
+         <th>Действия</th>
+   		</tr>
+	  </thead>
+  
+  
+  <tbody>
+		<!-- th to td -->
+	<tr>
+         <th>5</th>
+         <th>Фа3милия</th>
+         <th>И3мя</th>
+         <th>Отче3ство</th>
+         <th>Да3та рождения</th>
+         <th>Телеф3он</th>
+         <th><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></th>
+    </tr>
+		
+    <tr>
+         <th>6</th>
+         <th>Фа3милия</th>
+         <th>И3мя</th>
+         <th>Отче3ство</th>
+         <th>Да3та рождения</th>
+         <th>Телеф3он</th>
+         <th><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></th>
+    </tr>
+	
+
+	
+	<tr>
+         <th>7</th>
+         <th>Ф4амилия</th>
+         <th>Им4я</th>
+         <th>Отч4ество</th>
+         <th>Дата4 рождения</th>
+         <th>Телеф4он</th>
+          <th><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></th>
+    </tr>
+	
+  </tbody>
+
+</table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
 <br/>
 <br/>
 <br/>

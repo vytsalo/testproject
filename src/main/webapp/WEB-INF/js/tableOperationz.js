@@ -26,12 +26,65 @@ function addRow(btn, id) {
   //получаем саму строку, по которой кликнули
   // parent - td(ячейка) parent parent - tr(строка)
   var row = btn.parentNode.parentNode;
+  
+  /*
+  querySelectorAll()
+  
+  в таблице с id - 
+  есть элементы с классом таким - 
+  у них удалить аттрибут нейм
+  
+  */
+	
   //добавляем строку к таблице с таким айди
   document.getElementById(id).appendChild(row);
   
+  
+  
+  
+  /*
+  ANOTHER VARIANT
+  
+   let inputs = document.querySelectorAll("#existingStudents .jstlStudentsSending");
+        for(let input of inputs) 
+            input.removeAttribute("name");
+   
+  
+  */
+  
+  /*
+  //SHORT VARIANT
+  
+  var elems = document.getElementById("existingStudents").getElementsByClassName("jstlStudentsSending");
+    for (var i = 0; i<elems.length; i++)
+            elems[i].removeAttribute("name");
+  
+  
+  */
+  
+  
+  
+  
+  
+  var sec_table = document.getElementById("existingStudents");
+    
+	var elems = sec_table.getElementsByClassName("jstlStudentsSending");
+
+	for (var i = 0; i<elems.length; i++){
+		
+			elems[i].removeAttribute("name");
+		
+	}
+  
+  alert("Аттрибуты удалены");
+			
+  
+  
+  
+  //удалить аттрибут нейм у тегов
   if (id == 'studentsTable'){
 	  btn.addEventListener("click", function(){
-	  addRow(this,'existingGroups');
+	  addRow(this,'existingStudents');
 	  }, true);
 	btn.innerText = "Удалить";
   }
@@ -44,112 +97,45 @@ function addRow(btn, id) {
   }
 }
 
+//поменять имя класса на депрекейтед, а потом наоборот
 function rewriteHTML(){//remove or add
 
+
+  //переписать студентов только в этой таблице
 		//они же все инпуты
 		//присвоить класс - jstlCollectionSending
 		
-		var inputs = document.getElementsByClassName("jstlStudentsSending");
+		var tableStud = document.getElementById("studentsTable");
+		
+		var inputs = tableStud.getElementsByClassName("jstlStudentsSending");
+		
 		var fields = ["id", "name", "fam", "otch", "date_of_birth","phone_number","gruppa"];
 
 			    for (var j = 0; j < inputs.length; j++) {
 
                 //students[0].id
 				inputs[j].setAttribute("name","students[" + Math.floor(j/7) + "]." + fields[j % 7]);
-     }
+				//if из другой таблицы
+				// removeAttribute(name);
 
-
+   }
                 //перед нажатием на пост
                 alert("Замена успешна");
-
-
-
-		//посчитать inputs.length/7 to int
-
-		/* 7 записей */
-			//for i количество записей
-
-
-			//var ml = inputs.length;
-
-			//working
-		//inputs[0].setAttribute("name","gagaga");
-		
-		/*
-		inputs[0].setAttribute("name","students[" + i + "].id");
-		//name
-		inputs[0].setAttribute("name","students[" + i + "].name");
-		inputs[0].setAttribute("name","students[" + i + "].fam");
-		inputs[0].setAttribute("name","students[" + i + "].otch");
-		inputs[0].setAttribute("name","students[" + i + "].date_of_birth");
-		inputs[0].setAttribute("name","students[" + i + "].phone_number");
-		inputs[0].setAttribute("name","students[" + i + "].gruppa");
-		*/
-		
-		/*
-		var x = document.getElementsByClassName("example");
-		
-		var i;
-		for (i = 0; i < x.length; i++) {
-		  x[i].style.backgroundColor = "red";
-		}
-		*/			
-
-
-
-			
-		
-		/*
-		
-		var tags = document.getElementsByTagName('input');
-		tags[0].innerText = 'Buddan';
-
-		*/
-
-
+}
 
 /*
-		//первому символу даем[0] и так до конца
-		
-		//считает пространства имен или по классу
-		var tags = document.getElementsByTagName('<form:hidden>');
-
-
-		Array.prototype.forEach.call(els, function(tags) {
-   
-			//for i=1 to 7 - св-ва
-				
-				
-			//tags - array
-		
-			for (var i = 0; i < tags.length; i++){
-				for (var j = 0; j < tags.length; j++){
-				
-				//{индекс i передавать в аттрибутах}
-				
-				
-				
-				
-				}
-			}
-	*/	
-		
-		
-			
-		
-		
-		
-	//		tags.setAttribute("path", value);
-
-
-	//		document.getElementById('n_art').setAttribute("rel", choice);
-
-
-
-	//		console.log(tags.tagName);
-//});
-		
-		
-		
+function rewriteForDeletingStudents(){
 	
-}
+	var tableRows = document.getElementsByClassName('existingStudents');
+	var deletiones = tableRows.getElementsByClassName('jstlStudentsSending');
+	
+	deletiones.
+	
+	var tl = tableRows.length;
+	
+	alert(tl);
+	
+	tableRows
+	
+	.removeAttribute("align");
+}*/
