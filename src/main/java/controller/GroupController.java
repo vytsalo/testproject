@@ -127,94 +127,37 @@ public class GroupController {
         model.addAttribute("groups", groupService.getGroupsList());
 
 
-
-
-        //Студенты, которые сейчас есть в базе
-        List<Student> serviceStudents = studentService.getStudentsList();
-
-        //получаем список студентов в модели
-        List<Student> modelStudents = groupService.findById(Id).getStudents();
-
-
-
-
-
-        //Все студенты, которые сейчас есть в базе
-
         List<Student> allStudents = studentService.getStudentsList();
-        //List<Student> serviceStudents = groupService.findById(Id).getStudents();
 
-        //получаем список студентов в данной группе
-        //List<Student> modelStudents = group.getStudents();
+        List<Student> thisGroupStudents = group.getStudents();
 
-        //список студентов которые не в этой группе
-
-        List<Student> notInThisGroupStudent = new ArrayList<>();
-
-
-        //сравнивать id
-
-        //
-
-        Student temp = null;
-
-
-        //юзать икуалс
-        // modelStudents.get(0).getId().equals(serviceStudents.get(1).getId())
-        //
-
-
-
-    if (modelStudents.get(0).getId().equals(serviceStudents.get(1).getId()))
-        serviceStudents.remove(modelStudents.get(0));
-
-       /*
-        for (int i = 0; i < modelStudents.size(); i++) {
-
-            temp = allStudents.get(i);
-            if (modelStudents.contains(temp)){
-                notInThisGroupStudent.add(temp);
-            //
+       //если id равны то ремув из списка
+        for (int i = 0; i < allStudents.size(); i++) {
+            for (int j = 0; j < thisGroupStudents.size(); j++) {
+                if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
+                    allStudents.remove(allStudents.get(i));
+                }
             }
+
         }
-*/
-        //одни студенты могут быть с группой а другие нет
 
-        if (notInThisGroupStudent!=null)
-        model.addAttribute("notInGroupStudents", notInThisGroupStudent);
+        if (!(allStudents.equals(null)))
+            model.addAttribute("notInGroupStudents", allStudents);
+
+        return "groups/show-group-form";
 
 
-        for (int i = 0; i < serviceStudents.size(); i++) {
-            if (!modelStudents.contains(serviceStudents.get(i))) {
-                temp = serviceStudents.get(i);
-                temp.setGruppa(null);
-                studentService.update(temp);
-            }
-        }
+        //allStudents.remove(thisGroupStudents);
 
 
 /*
-
-        List<Student> allStudents = studentService.getStudentsList();
-        List<Student> groupStudents = groupService.findById(Id).getStudents();
-
-        //удаляем найденные совпадения
-        allStudents.removeAll(groupStudents);
-
-        model.addAttribute("notInGroupStudents", allStudents);
+        thisGroupStudents.forEach(tGS -> {
+            if (tGS > 2) {
+                System.out.println(tGS);
+            }
+        });
 
 */
-
-        //Добавляем студентов
-
-     //   List<Student> studentList = group.getStudents();
-
-     //   model.addAttribute("students", studentList);
-
-
-        //добавить атрибут студенты, которых нету в группе
-
-        return "groups/show-group-form";
 
     }
 

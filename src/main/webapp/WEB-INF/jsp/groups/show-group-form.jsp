@@ -165,10 +165,6 @@
 <br/>
 
 
-
-
-
-
 <h4>
 	Список существующих студентов
 </h4>
@@ -200,18 +196,35 @@
 		<!-- Добавлять скрытые инпуты, а потом при переносе в таблицу - добавлять 
 		добавлять класс
 		name=""  -->
-		
-	<c:forEach items="${notInGroupStudents}" var="sddList">
-
 	
+	<c:forEach items="${notInGroupStudents}" var="sddList" varStatus="tagStatus">
+
+	<!-- поменять класс и добавить путь  -->
 	<tr>
-         <td>${sddList.id}</td>
+         <td>
+		 
+		       <input type = "hidden" value= "${sddList.id}" class = "jstlStudentsExisting"/>
+				<input type = "hidden" value= "${sddList.name}" class = "jstlStudentsExisting"/>
+		 		
+		<input type = "hidden" value= "${sddList.fam}" class = "jstlStudentsExisting"/>		   
+		  
+		       <input type = "hidden" value= "${sddList.otch}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.date_of_birth}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.phone_number}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.gruppa.id}" class = "jstlStudentsExisting"/>
+		   
+
+		 <!-- innerHtml = код -->
+		 
+		 
+		 
+		 ${sddList.id}</td>
          <td>${sddList.fam}</td>
          <td>${sddList.name}</td>
          <td>${sddList.otch}</td>
          <td>${sddList.date_of_birth}</td>
          <td>${sddList.phone_number}</td>
-         <td><a href="#" onclick="addRow(this,'studentsTable')">Добавить</a></td>
+         <td><a href="#" onclick="addRow(this,'studentsTable'); classChange(); rewriteHTML();">Добавить</a></td>
     </tr>
 	
 	</c:forEach>

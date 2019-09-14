@@ -56,8 +56,9 @@ public class Student extends Human implements Serializable {
         this.gruppa = gruppa;
     }
 
-/*
+    //getid
     //сравнивает по id
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,5 +66,5 @@ public class Student extends Human implements Serializable {
         Student that = (Student) o;
         return this.id == that.id;
     }
-*/
+
 }

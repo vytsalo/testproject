@@ -28,8 +28,8 @@ function addRow(btn, id) {
   var row = btn.parentNode.parentNode;
   
   //добавляем строку к таблице с таким айди
-  document.getElementById(id).appendChild(row);
-  
+  //document.getElementById(id).childNodes[2].appendChild(row);
+  document.getElementById(id).getElementsByTagName("tbody")[0].appendChild(row);
   
   //последнюю строку в таблице изменить, добавить name к аттрибутам
   //или просто добавить класс, и она перерисуется
@@ -114,8 +114,10 @@ function rewriteHTML(){//remove or add
 		
 		var inputs = tableStud.getElementsByClassName("jstlStudentsSending");
 		
-		var fields = ["id", "name", "fam", "otch", "date_of_birth","phone_number","gruppa"];
+		//порядок везде одинаковый сделать
+		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number","gruppa"];
 
+		//почему пропускает через 1
 			    for (var j = 0; j < inputs.length; j++) {
 
                 //students[0].id
@@ -128,19 +130,20 @@ function rewriteHTML(){//remove or add
                 alert("Замена успешна");
 }
 
-/*
-function rewriteForDeletingStudents(){
+//+class Change
+//if удалили из метода, нейм ремув
+
+//Аппенд чайлд надо в тбоди а не в тейбл 
+function classChange(){
+		//получаем таблицу
+		var tableStud = document.getElementById("studentsTable");
+		//получаем инпуты
+		var inputs = tableStud.getElementsByClassName("jstlStudentsExisting");
 	
-	var tableRows = document.getElementsByClassName('existingStudents');
-	var deletiones = tableRows.getElementsByClassName('jstlStudentsSending');
+		var i = 0;
 	
-	deletiones.
+	while(i<inputs.length)
+		inputs[i].setAttribute("class","jstlStudentsSending");
 	
-	var tl = tableRows.length;
-	
-	alert(tl);
-	
-	tableRows
-	
-	.removeAttribute("align");
-}*/
+		alert("Класс сменен");
+}
