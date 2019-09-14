@@ -31,12 +31,6 @@ import java.util.Date;
 @RequestMapping("/students")
 public class StudentController {
 
-    //форма для добавления сначала
-    //потом
-    //начать с группы
-    //кратко инициалы сделать - сборка из фамилии имени и отчества
-    // Иванов И.И.
-
     @Autowired
     private StudentService studentService;
 
@@ -111,18 +105,6 @@ public class StudentController {
                             studentService.update(newStudent);
 
                         //todo white errors loading while loading logs
-
-
-
-            //todo баг при редактировании не отображается кнопка удалить, если есть группа
-            //todo как сделать несколько записей?
-            /*
-             * какие компоненты использовать в интерфейса
-             * закрытие джейкуерри модал
-             * валидация группы нужна ли?
-             *
-             * */
-
 
 
             /* STUDENT TO GROUP*/

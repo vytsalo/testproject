@@ -3,7 +3,7 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//Контролеер ошибок
+//Контроллер ошибок
 @Controller
 public class HTTPErrorHandler{
 
@@ -13,13 +13,12 @@ public class HTTPErrorHandler{
     5** -
     */
 
-    //Ошибка 400 -
-    @RequestMapping(value="/400")//razvodit rukami
+
+    @RequestMapping(value="/400")
     public String error400(){
         return "errors/error400";//Что-то пошло не так
     }
 
-    //todo make a new pictures for each error page
     //Ошибка 404 -
     @RequestMapping(value="/404")
     public String error404(){

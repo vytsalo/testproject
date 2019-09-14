@@ -121,7 +121,7 @@
 
 
                            	<img src="<c:url value="\images\cross.png" />"
-                                       	style="cursor: pointer; vertical-align: 40px; visibility: hidden;"
+                                       	style="cursor: pointer; vertical-align: 40px;"
                                        	    onclick="
                                        	    document.getElementById('group').value='';
                                        	    document.getElementById('groupId').value='';
