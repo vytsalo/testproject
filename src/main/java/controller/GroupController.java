@@ -13,7 +13,7 @@ import service.GroupService;
 import service.StudentService;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -43,7 +43,7 @@ public class GroupController {
         model.addAttribute("group", new Group());
 
 
-        model.addAttribute("students", Collections.EMPTY_LIST);
+        model.addAttribute("notInGroupStudents", studentService.getStudentsList());
 
 
         //добавить студентов всех как модель
@@ -67,7 +67,180 @@ public class GroupController {
 
             if (newGroup.getId() == null){
 
+                //получили студентов, установили нулл, передали, потом вернули и заапдейтили
+
+                //Получаем список студентов группы
+                List<Student> studentsThisGroup = newGroup.getStudents();
+
+                //Обнуляем студентов
+                newGroup.setStudents(Collections.EMPTY_LIST);
+
+                //добавляем в базу новую группу, чтобы получить id
                 groupService.add(newGroup);
+
+                //получаем временную группу, которую загружаем из базы
+                //продолжить юзать ньюгрупп
+                Group tempGroup = groupService.getGroupsList().get(groupService.getGroupsList().size()-1);
+
+                //todo delete red cross invisible style and onclick option
+                //optimize this
+
+                for (int i = 0; i < studentsThisGroup.size(); i++) {
+                    studentsThisGroup.get(i).setGruppa(tempGroup);
+                    studentService.update(studentsThisGroup.get(i));
+                }
+
+                //tempGroup.setStudents(studentsThisGroup);
+
+                //у другой группы удалить этого студента
+
+                Group gggg = groupService.findById(tempGroup.getId());
+                gggg.setStudents(studentsThisGroup);
+                groupService.update(gggg);//getById
+
+                Group ffff = groupService.findById(tempGroup.getId());
+
+
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println(newGroup);
+                System.out.println(studentsThisGroup);
+                System.out.println(gggg);
+                System.out.println(ffff);
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
+
+                /*
+                Group groupAAAA = groupService.getGroupsList().get(groupService.getGroupsList().size()-1);
+
+
+
+
+                for (int i = 0; i < groupAAAA.getStudents().size(); i++) {
+                    studentsThisGroup.get(i).setGruppa(groupAAAA);
+                    //groupAAAA.getStudents().get(i).setGruppa(groupAAAA);
+                }
+
+                groupAAAA.setStudents(studentsThisGroup);
+
+                groupService.update(groupAAAA);
+
+*/
+
+                //student.setGruppa(newGroup)
+
+                /*
+                //Студенты, которые сейчас есть в базе
+                List<Student> serviceStudents = groupService.findById(newGroup.getId()).getStudents();
+
+                //получаем список студентов в модели
+                List<Student> modelStudents = newGroup.getStudents();
+
+                Student temp = null;
+
+                //если не контейнс то группа нулл
+                //Если студент был удален из группы, ставим ему группу нулл
+
+                for (int i = 0; i < serviceStudents.size(); i++) {
+                    if (!modelStudents.contains(serviceStudents.get(i))) {
+                        temp = serviceStudents.get(i);
+                        temp.setGruppa(null);
+                        studentService.update(temp);
+                    }
+                }
+
+                //Для каждого студента устанавливаем текущую группу
+                for (int i = 0; i < modelStudents.size(); i++) {
+                    temp = modelStudents.get(i);
+                    temp.setGruppa(newGroup);
+                    studentService.update(temp);
+                }
+
+
+
+                groupService.update(newGroup);
+                */
             }
             else {
 
