@@ -90,11 +90,19 @@
                             <form:hidden path="teachers[${tagStatus.index}].date_of_birth" value="${tcsList.date_of_birth}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].phone_number" value="${tcsList.phone_number}" class = "jstlTeachersSending" />
                             <!-- SECOND FOREACH-->
+						
+						
+						
+						
+						
 						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="tagStatus">
 							<!-- tagZdaduz -->
 							<form:hidden path="teachers[${tcsList.tagStatus.index}].groups[${gsList.tagStatus.index}]" value="${gsList}" class = "jstlTeachersSending" />
 						
 						</c:forEach>
+						
+						
+						
                             <div>${tcsList.id}</div>
                             </td>
 
@@ -167,7 +175,17 @@
 		       <input type = "hidden" value= "${tsList.date_of_birth}" class = "jstlTeachersExisting"/>
 		       <input type = "hidden" value= "${tsList.phone_number}" class = "jstlTeachersExisting"/>
 		       
-			   <input type = "hidden" value= "${tsList.groups.id}" class = "jstlTeachersExisting"/>
+			
+
+				<c:forEach items="${tsList.groups}" var="gsList" varStatus="tagStatus">
+							<!-- tagZdaduz -->
+							<form:hidden path="teachers[${tsList.tagStatus.index}].groups[${gsList.tagStatus.index}]" value="${gsList}" class = "jstlTeachersExisting" />
+						
+						</c:forEach>
+
+
+			
+			   <input type = "hidden" value= "${tsList.groups}" class = "jstlTeachersExisting"/>
 		   
 
 		 <!-- innerHtml = код -->
