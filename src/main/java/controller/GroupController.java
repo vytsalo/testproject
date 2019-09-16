@@ -98,6 +98,8 @@ public class GroupController {
                     teacherService.update(teacher);
                 });
 
+                //todo если добавляет то по 2 раза, а если пусто не добавляет вовсе
+
                 //Добавляем студентов и преподавателей в эту группу
                 newGroup.setStudents(studentsThisGroup);
                 newGroup.setTeachers(teachersThisGroup);
@@ -278,7 +280,7 @@ public class GroupController {
 
 
         return "groups/show-group-form";
-    
+
     }
 
     @GetMapping("/delete/{Id}")

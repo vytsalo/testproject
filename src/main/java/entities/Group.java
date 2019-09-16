@@ -119,10 +119,12 @@ public class Group implements Serializable {
         }
     }
 
+        //говеный метод
+        @Deprecated
         //добавляем преподавателя в список
         public void addTeacher(Teacher teacher){
         //если список не содержит, то добавляем его
-        if (!(teachers.contains(teacher))){
+        if (!(this.getTeachers().contains(teacher))){
             teachers.add(teacher);
             }
         }
@@ -143,6 +145,13 @@ public class Group implements Serializable {
         
     }
 
+    //todo проверка по id
+    //todo fix multiply adding
+    //todo fix empty adding
+    //todo переделку индексов и для групп тоже
+    //<input id="teachers0.groups0" name="teachers[0].groups[0]" value="321" class="jstlTeachersSending" type="hidden">
+
+
     @SuppressWarnings("unused")
     public Group() {}
 
@@ -152,5 +161,7 @@ public class Group implements Serializable {
         this.teachers = teachers;
         this.students = students;
     }
+
+    //equals по id
 
 }
