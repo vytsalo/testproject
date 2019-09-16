@@ -1,6 +1,8 @@
 package entities;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -47,6 +49,7 @@ public class Group implements Serializable {
     @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)//, fetch=FetchType.EAGER)
     //@Cascade({org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     //persist
+    //new
     private List<Teacher> teachers = new ArrayList<>();
 
     //group - из другой таблицы

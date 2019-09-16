@@ -145,6 +145,8 @@ public class GroupController {
                 /*/TEACHERS REDACTION*/
 
 
+                //список тичеров по id
+                //проперти эдитор
 
 
 
@@ -229,7 +231,7 @@ public class GroupController {
         //Если не контейнс то добавляем
 
 
-
+        //почему вывел 3 раза?
         List<Student> allStudents = studentService.getStudentsList();
 
         List<Student> thisGroupStudents = group.getStudents();
@@ -248,35 +250,35 @@ public class GroupController {
             model.addAttribute("notInGroupStudents", allStudents);
 
 
-
-        //Если не контейнс то добавляем
 /*
+        //Если не контейнс то добавляем
         List<Teacher> allTeachers = teacherService.getTeachersList();
 
-        List<Teacher> thisGroupStudents = group.getStudents();
+        List<Teacher> thisGroupTeachers = group.getTeachers();
 
         //если id равны то ремув из списка
-        for (int i = 0; i < allStudents.size(); i++) {
-            for (int j = 0; j < thisGroupStudents.size(); j++) {
-                if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
-                    allStudents.remove(allStudents.get(i));
+        for (int i = 0; i < allTeachers.size(); i++) {
+            for (int j = 0; j < thisGroupTeachers.size(); j++) {
+                if(allTeachers.get(i).getId().equals(thisGroupTeachers.get(j).getId())) {
+                    allTeachers.remove(allTeachers.get(i));
                 }
             }
 
         }
 
-        if (!(allStudents.equals(null)))
-            model.addAttribute("notInGroupStudents", allStudents);
+        //
 
-  model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
-*/
+        if (!(allTeachers.equals(null)))
+            model.addAttribute("notInGroupStudents", allTeachers);*/
+//todo сделать везде одинаковый стиль гет тичерс и гет тичерслист
 
-        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
+            model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 
+//group.getTeachers();
 
 
         return "groups/show-group-form";
-
+    
     }
 
     @GetMapping("/delete/{Id}")
@@ -297,6 +299,10 @@ public class GroupController {
 
         //поле которое отвечает за группу
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
+
+
+        //todo не переделывает html? не убирает нейм?
+        //dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
 
 
     }

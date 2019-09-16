@@ -61,8 +61,10 @@
 				<p>
                 <label for="teachers">Список преподавателей группы</label>
                 
+				
+				<!-- везде разные переменные -->
 				<!--TEACHERS -->
-				<table border = "1 px solid" id="studentsTable">
+				<table border = "1 px solid" id="teachersTable">
                 <thead>
                     <tr>
                     <th>ID</th>
@@ -95,12 +97,11 @@
 						
 						
 						
-						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="tagStatus">
-							<!-- tagZdaduz -->
-							<form:hidden path="teachers[${tcsList.tagStatus.index}].groups[${gsList.tagStatus.index}]" value="${gsList}" class = "jstlTeachersSending" />
+						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="dagSdatus">
+						
+							<form:hidden path="teachers[${tagStatus.index}].groups[${dagSdatus.index}]" value="${gsList.id}" class = "jstlTeachersSending" />
 						
 						</c:forEach>
-						
 						
 						
                             <div>${tcsList.id}</div>
@@ -112,23 +113,18 @@
                             <td>${tcsList.date_of_birth}</td>
                             <td>${tcsList.phone_number}</td>
 
-                            <td><a href = "#" onclick = "addRow(this,'existingTeachers'); rewriteHTML(); ">Удалить</a></td>
+                            <td><a href = "#" onclick = "addRowToTeachersTable(this,'existingTeachers'); rewriteHTMLTeacher(); ">Удалить</a></td>
+                             </c:forEach>
 
                         </tr>
 
-                    </c:forEach>
+                   
 
                 </tbody>
 
                 </table>
 
 				
-				
-				
-				
-				
-				
-		
 
 <br/>
 <br/>
@@ -139,7 +135,6 @@
 <h4>
 	Список существующих преподавателей
 </h4>
-
 
 
 <!--notInGroupTeachers -->
@@ -175,18 +170,22 @@
 		       <input type = "hidden" value= "${tsList.date_of_birth}" class = "jstlTeachersExisting"/>
 		       <input type = "hidden" value= "${tsList.phone_number}" class = "jstlTeachersExisting"/>
 		       
-			
-
-				<c:forEach items="${tsList.groups}" var="gsList" varStatus="tagStatus">
-							<!-- tagZdaduz -->
-							<form:hidden path="teachers[${tsList.tagStatus.index}].groups[${gsList.tagStatus.index}]" value="${gsList}" class = "jstlTeachersExisting" />
+	
+						<!-- tagZdaduz -->
+							
+							<!-- Каждое поле в отдельности - бесконечная рекурсия -->
+	
+	
+ 
+				
+						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="dagSdatus">
+						
+							<input type = "hidden" value="${gsList}" class = "jstlTeachersSending" />
 						
 						</c:forEach>
 
-
 			
-			   <input type = "hidden" value= "${tsList.groups}" class = "jstlTeachersExisting"/>
-		   
+			   
 
 		 <!-- innerHtml = код -->
 		 
@@ -198,7 +197,7 @@
          <td>${tsList.otch}</td>
          <td>${tsList.date_of_birth}</td>
          <td>${tsList.phone_number}</td>
-         <td><a href="#" onclick="addRow(this,'teachersTable'); classChange(); rewriteHTML();">Добавить</a></td>
+         <td><a href="#" onclick="addRowToTeachersTable(this,'teachersTable'); classChangeTeacher(); rewriteHTMLTeacher();">Добавить</a></td>
     </tr>
 	
 	</c:forEach>
@@ -208,50 +207,15 @@
 </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 		
 				
-				
-				
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-				
-				
-				
-				
-				
-				
-				<!--/TEACHERS -->
-				
 							
 				</p>
-                
+                				<!--/TEACHERS -->
 				
-                <p>
+				
+				
+				
+				
+				 <p>
                 <label for="students">Список студентов группы</label>
 
 
@@ -293,7 +257,6 @@
 
                             <!-- js переделать формирование страницы
                              переписать код страницы
-
                              -->
 
                             <!-- /HIDDENS  -->
@@ -458,7 +421,9 @@
 
 
                 </p>
-                
+				
+				
+	     
                 <p>
                 <input type="submit" id="submit" value="Отправить" />
                 </p>

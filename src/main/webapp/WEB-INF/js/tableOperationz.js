@@ -147,3 +147,61 @@ function classChange(){
 	
 		alert("Класс сменен");
 }
+
+
+
+function addRowToTeachersTable(btn, id) {
+  var row = btn.parentNode.parentNode;
+  document.getElementById(id).getElementsByTagName("tbody")[0].appendChild(row);
+  var sec_table = document.getElementById("existingTeachers");
+  var elems = sec_table.getElementsByClassName("jstlStudentsSending");
+
+	for (var i = 0; i<elems.length; i++){
+			elems[i].removeAttribute("name");	
+	}
+  
+  alert("Аттрибуты удалены");
+			
+  //удалить аттрибут нейм у тегов
+  if (id == 'teachersTable'){
+	  btn.addEventListener("click", function(){
+	  addRow(this,'existingTeachers');
+	  }, true);
+	btn.innerText = "Удалить";
+	
+  }
+  else{
+	  btn.addEventListener("click", function(){
+	  addRow(this,'teachersTable');
+	  }, true);
+	btn.innerText = "Добавить";
+  
+  }
+}
+
+function rewriteHTMLTeacher(){
+
+		var tableStud = document.getElementById("teachersTable");
+		
+		var inputs = tableStud.getElementsByClassName("jstlTeachersSending");
+		
+		//group - как сделать
+		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number","group"];
+
+			    for (var j = 0; j < inputs.length; j++) {
+
+				inputs[j].setAttribute("name","teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
+   }
+                alert("Замена успешна");
+}
+
+function classChangeTeacher(){
+		var tableStud = document.getElementById("teachersTable");
+		var inputs = tableStud.getElementsByClassName("jstlTeachersExisting");
+		var i = 0;
+	
+	while(i<inputs.length)
+		inputs[i].setAttribute("class","jstlTeachersSending");
+	
+		alert("Класс сменен");
+}
