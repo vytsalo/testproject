@@ -38,6 +38,14 @@ public class Teacher extends Human implements Serializable {
         }
     }
 
+    //удаляем группу из списка
+    public void removeGroup(Group group){
+        if (this.groups.contains(group))
+            groups.remove(group);
+        //+тичера из группы
+    }
+
+
     public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number, ArrayList<Group> groups) {
         super(fam, name, otch, date_of_birth, phone_number);
         this.groups = groups;
@@ -64,4 +72,5 @@ public class Teacher extends Human implements Serializable {
     }
 
     public Teacher(){}
+
 }

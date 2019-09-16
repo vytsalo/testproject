@@ -60,9 +60,179 @@
 
 				<p>
                 <label for="teachers">Список преподавателей группы</label>
-                <input id="teachers" type="text" value="" />
-                </p>
                 
+				<!--TEACHERS -->
+				<table border = "1 px solid" id="studentsTable">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Дата рождения</th>
+                    <th>Телефон</th>
+                    <th>Действие</th>
+                    </tr>
+                </thead>
+                <!-- group - модель, студенты - аттрибут -->
+
+                <tbody>
+
+                 <c:forEach items="${group.teachers}" var="tcsList" varStatus="tagStatus">
+
+                        <tr>
+                            <td>
+
+                            <form:hidden path="teachers[${tagStatus.index}].id" value="${tcsList.id}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].name" value="${tcsList.name}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].fam" value="${tcsList.fam}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].otch" value="${tcsList.otch}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].date_of_birth" value="${tcsList.date_of_birth}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].phone_number" value="${tcsList.phone_number}" class = "jstlTeachersSending" />
+                            <!-- SECOND FOREACH-->
+						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="tagStatus">
+							<!-- tagZdaduz -->
+							<form:hidden path="teachers[${tcsList.tagStatus.index}].groups[${gsList.tagStatus.index}]" value="${gsList}" class = "jstlTeachersSending" />
+						
+						</c:forEach>
+                            <div>${tcsList.id}</div>
+                            </td>
+
+                            <td>${tcsList.fam}</td>
+                            <td>${tcsList.name}</td>
+                            <td>${tcsList.otch}</td>
+                            <td>${tcsList.date_of_birth}</td>
+                            <td>${tcsList.phone_number}</td>
+
+                            <td><a href = "#" onclick = "addRow(this,'existingTeachers'); rewriteHTML(); ">Удалить</a></td>
+
+                        </tr>
+
+                    </c:forEach>
+
+                </tbody>
+
+                </table>
+
+				
+				
+				
+				
+				
+				
+		
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<h4>
+	Список существующих преподавателей
+</h4>
+
+
+
+<!--notInGroupTeachers -->
+
+<table id="existingTeachers" cellspacing="0" border="1">
+       <thead>
+	    <tr>
+         <th>#ID</th>
+         <th>Фамилия</th>
+         <th>Имя</th>
+         <th>Отчество</th>
+         <th>Дата рождения</th>
+         <th>Телефон</th>
+         <th>Действия</th>
+   		</tr>
+	  </thead>
+  
+  
+  <tbody>
+		
+	<c:forEach items="${notInGroupTeachers}" var="tsList" varStatus="tagStatus">
+
+	<!-- поменять класс и добавить путь  -->
+	<tr>
+         <td>
+		 
+		       <input type = "hidden" value= "${tsList.id}" class = "jstlTeachersExisting"/>
+				<input type = "hidden" value= "${tsList.name}" class = "jstlTeachersExisting"/>
+		 		
+		<input type = "hidden" value= "${tsList.fam}" class = "jstlTeachersExisting"/>		   
+		  
+		       <input type = "hidden" value= "${tsList.otch}" class = "jstlTeachersExisting"/>
+		       <input type = "hidden" value= "${tsList.date_of_birth}" class = "jstlTeachersExisting"/>
+		       <input type = "hidden" value= "${tsList.phone_number}" class = "jstlTeachersExisting"/>
+		       
+			   <input type = "hidden" value= "${tsList.groups.id}" class = "jstlTeachersExisting"/>
+		   
+
+		 <!-- innerHtml = код -->
+		 
+		 
+		 
+		 ${tsList.id}</td>
+         <td>${tsList.fam}</td>
+         <td>${tsList.name}</td>
+         <td>${tsList.otch}</td>
+         <td>${tsList.date_of_birth}</td>
+         <td>${tsList.phone_number}</td>
+         <td><a href="#" onclick="addRow(this,'teachersTable'); classChange(); rewriteHTML();">Добавить</a></td>
+    </tr>
+	
+	</c:forEach>
+	
+  </tbody>
+
+</table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+		
+				
+				
+				
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+				
+				
+				
+				
+				
+				
+				<!--/TEACHERS -->
+				
+							
+				</p>
+                
+				
                 <p>
                 <label for="students">Список студентов группы</label>
 

@@ -2,6 +2,7 @@ package controller;
 
 import entities.Group;
 import entities.Student;
+import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 import service.StudentService;
+import service.TeacherService;
 
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,11 @@ public class GroupController {
     private GroupService groupService;
 
     @Autowired
+    private TeacherService teacherService;
+
+    @Autowired
     private StudentService studentService;
+
 
     //Нарушает правила ограничаения внешнего ключа
 
@@ -42,11 +47,10 @@ public class GroupController {
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("group", new Group());
 
-
         model.addAttribute("notInGroupStudents", studentService.getStudentsList());
 
+        model.addAttribute("notInGroupTeachers", studentService.getStudentsList());
 
-        //добавить студентов всех как модель
         return "groups/show-group-form";
     }
 
@@ -59,50 +63,108 @@ public class GroupController {
             System.out.println(result.getAllErrors());
 
             model.addAttribute("group", newGroup);
+
             return "groups/show-group-form";
 
         } else {
 
+            /*получили студентов, установили нулл, передали, потом вернули и заапдейтили*/
             if (newGroup.getId() == null){
-
-                //получили студентов, установили нулл, передали, потом вернули и заапдейтили
 
                 //Получаем список студентов группы
                 List<Student> studentsThisGroup = newGroup.getStudents();
-
                 //Обнуляем студентов
                 newGroup.setStudents(Collections.EMPTY_LIST);
+
+                //Получаем список преподов этой группы
+                List<Teacher> teachersThisGroup = newGroup.getTeachers();
+                //Обнуляем преподов
+                newGroup.setTeachers(Collections.EMPTY_LIST);
+
 
                 //добавляем в базу новую группу, чтобы получить id
                 groupService.add(newGroup);
 
-
-               /* //лямбдой
-                for (int i = 0; i < studentsThisGroup.size(); i++) {
-                    studentsThisGroup.get(i).setGruppa(newGroup);
-                    studentService.update(studentsThisGroup.get(i));
-                }*/
-//todo загрузка логов и конфигов сразу
-
+                //todo загрузка логов и конфигов сразу
+                //Назначаем всем студентам группу
                 studentsThisGroup.forEach(student -> {
                    student.setGruppa(newGroup);
                    studentService.update(student);
                 });
 
+                //Добавляем всем преподавателям эту группу
+                teachersThisGroup.forEach(teacher -> {
+                    teacher.addGroup(newGroup);
+                    teacherService.update(teacher);
+                });
 
-
-
-
+                //Добавляем студентов и преподавателей в эту группу
                 newGroup.setStudents(studentsThisGroup);
+                newGroup.setTeachers(teachersThisGroup);
+
 
                 groupService.update(newGroup);
 
             }
             else {
 
+                /*TEACHERS REDACTION*/
+
+                //Преподаватели, которые сейчас есть в базе
+                List<Teacher> serviceTeachers = groupService.findById(newGroup.getId()).getTeachers();
+
+                //получаем список преподов в модели
+                List<Teacher> modelTeachers = newGroup.getTeachers();
+
+                Teacher tempTeacher = null;
+
+                //Сейчас 1 группа
+                //Если препод был удален из группы, удаляем группу из препода
+
+                for (int i = 0; i < serviceTeachers.size(); i++) {
+
+                    tempTeacher = serviceTeachers.get(i);
+
+                    if (!modelTeachers.contains(tempTeacher)) {
+
+                        //removeGroup
+                        tempTeacher.removeGroup(newGroup);
+
+                        teacherService.update(tempTeacher);
+                    }
+                }
+
+                //Каждому преподу, который есть в модели добавляем текущую группу
+                for (int i = 0; i < modelTeachers.size(); i++) {
+                    tempTeacher = modelTeachers.get(i);
+                    tempTeacher.addGroup(newGroup);
+                    teacherService.update(tempTeacher);
+                }
+
+
+                /*/TEACHERS REDACTION*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 //список студентов - группа одна
                 //группа - студенты - список
-
 
                 //Студенты, которые сейчас есть в базе
                 List<Student> serviceStudents = groupService.findById(newGroup.getId()).getStudents();
@@ -116,6 +178,7 @@ public class GroupController {
                 //Если студент был удален из группы, ставим ему группу нулл
 
                 for (int i = 0; i < serviceStudents.size(); i++) {
+                    //temp тут чтоб короче
                     if (!modelStudents.contains(serviceStudents.get(i))) {
                         temp = serviceStudents.get(i);
                         temp.setGruppa(null);
@@ -134,8 +197,8 @@ public class GroupController {
 
             }
 
-
             return "redirect:/groups/";//Редирект чтобы не открывался сам процессформ
+
         }
     }
 
@@ -156,6 +219,17 @@ public class GroupController {
         model.addAttribute("groups", groupService.getGroupsList());
 
 
+
+
+
+
+        /* Выбираем студентов, которых нет в группе */
+
+
+        //Если не контейнс то добавляем
+
+
+
         List<Student> allStudents = studentService.getStudentsList();
 
         List<Student> thisGroupStudents = group.getStudents();
@@ -173,20 +247,35 @@ public class GroupController {
         if (!(allStudents.equals(null)))
             model.addAttribute("notInGroupStudents", allStudents);
 
-        return "groups/show-group-form";
 
 
-        //allStudents.remove(thisGroupStudents);
-
-
+        //Если не контейнс то добавляем
 /*
-        thisGroupStudents.forEach(tGS -> {
-            if (tGS > 2) {
-                System.out.println(tGS);
-            }
-        });
+        List<Teacher> allTeachers = teacherService.getTeachersList();
 
+        List<Teacher> thisGroupStudents = group.getStudents();
+
+        //если id равны то ремув из списка
+        for (int i = 0; i < allStudents.size(); i++) {
+            for (int j = 0; j < thisGroupStudents.size(); j++) {
+                if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
+                    allStudents.remove(allStudents.get(i));
+                }
+            }
+
+        }
+
+        if (!(allStudents.equals(null)))
+            model.addAttribute("notInGroupStudents", allStudents);
+
+  model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 */
+
+        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
+
+
+
+        return "groups/show-group-form";
 
     }
 
