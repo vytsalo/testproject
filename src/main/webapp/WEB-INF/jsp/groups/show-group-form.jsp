@@ -92,6 +92,9 @@
                             <form:hidden path="teachers[${tagStatus.index}].date_of_birth" value="${tcsList.date_of_birth}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].phone_number" value="${tcsList.phone_number}" class = "jstlTeachersSending" />
                             <!-- SECOND FOREACH-->
+
+						
+						
 						
 						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="dagSdatus">
 						
@@ -108,6 +111,7 @@
                             <td>${tcsList.otch}</td>
                             <td>${tcsList.date_of_birth}</td>
                             <td>${tcsList.phone_number}</td>
+
                             <td><a href = "#" onclick = "addRowToTeachersTable(this,'existingTeachers'); rewriteHTMLTeacher(); ">Удалить</a></td>
                              
 

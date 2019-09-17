@@ -59,6 +59,8 @@ public class Group implements Serializable {
 
 
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+
+
     private List<Student> students = new ArrayList<>();
 
     @Override

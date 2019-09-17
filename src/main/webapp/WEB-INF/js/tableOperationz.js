@@ -181,17 +181,66 @@ function addRowToTeachersTable(btn, id) {
 
 function rewriteHTMLTeacher(){
 
+		//сначала переместить в таблицу, а потом вызывать реврайт
 		var tableStud = document.getElementById("teachersTable");
 		
+		
+		//Все преподаватели для отправки
 		var inputs = tableStud.getElementsByClassName("jstlTeachersSending");
 		
 		//group - как сделать
-		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number","group"];
+		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number","groups"];
 
-			    for (var j = 0; j < inputs.length; j++) {
 
+		var inputGroups, expression;
+		
+//			inputGroups = document.querySelectorAll("[id^='teachers1.groups'");
+
+		//		alert(inputGroups.length);
+		
+			//индекс неправильный
+			//
+			for (var j = 0; j < inputs.length; j++) {
+				
+				expression = "[id^='teachers" + j + ".groups'";
+				//найти не по документу, а по той таблице(первой)
+				inputGroups = tableStud.querySelectorAll(expression);
+
+				//почему так передается группа?
+
+				//alert("inputGroups.length = " + inputGroups.length);
+				//alert(j)
+				
+				каждый аттрибут по отдельности выводить
+				
+				if (Math.floor(j%7)==6){
+					for (var k = 0; k < inputGroups.length; k++) {
+						inputs[j].setAttribute("name","teachers[" + j + "].groups" + k + "]");
+							//фикс индексов, на 3его препода ставит индекс группы 1
+							alert("Устанавливаем группу " + "teachers[" + j + "].groups[" + k + "]");
+			
+						}
+				}	
+				else {
 				inputs[j].setAttribute("name","teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
-   }
+				alert("Устанавливаем аттрибут " + "teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
+				}
+				
+				//ById teachers.groups[].id
+				//просто группы преподавателей у всех
+				
+					for (var k = 0; k < inputs.length; k++){
+						//for teachers group count
+						inputs[j].setAttribute("name","teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
+				
+						
+				
+					
+				} 
+  
+
+
+  }
                 alert("Замена успешна");
 }
 

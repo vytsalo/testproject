@@ -49,7 +49,7 @@ public class GroupController {
 
         model.addAttribute("notInGroupStudents", studentService.getStudentsList());
 
-        model.addAttribute("notInGroupTeachers", studentService.getStudentsList());
+        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 
         return "groups/show-group-form";
     }
@@ -102,6 +102,7 @@ public class GroupController {
 
                 //Добавляем студентов и преподавателей в эту группу
                 newGroup.setStudents(studentsThisGroup);
+
                 newGroup.setTeachers(teachersThisGroup);
 
 
