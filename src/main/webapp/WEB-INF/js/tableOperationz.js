@@ -154,13 +154,23 @@ function addRowToTeachersTable(btn, id) {
   var row = btn.parentNode.parentNode;
   document.getElementById(id).getElementsByTagName("tbody")[0].appendChild(row);
   var sec_table = document.getElementById("existingTeachers");
-  var elems = sec_table.getElementsByClassName("jstlStudentsSending");
+  var elems = sec_table.getElementsByClassName("jstlTeachersSending");
 
+	//не меняет класс при удалении
 	for (var i = 0; i<elems.length; i++){
-			elems[i].removeAttribute("name");	
+			elems[i].removeAttribute("name");
 	}
+	 alert("Аттрибуты удалены");
   
-  alert("Аттрибуты удалены");
+  
+  /*
+	for (var j = 0; j<elems.length; j++){
+	
+			elems[j].setAttribute("class", "existingTeachers");	
+	}
+	*/
+	
+  alert("Класс сменен");
 			
   //удалить аттрибут нейм у тегов
   if (id == 'teachersTable'){
@@ -179,76 +189,29 @@ function addRowToTeachersTable(btn, id) {
   }
 }
 
-function rewriteHTMLTeacher(){
 
-		//сначала переместить в таблицу, а потом вызывать реврайт
+function rewriteHTMLTeacher(){
 		var tableStud = document.getElementById("teachersTable");
-		
-		
-		//Все преподаватели для отправки
+
 		var inputs = tableStud.getElementsByClassName("jstlTeachersSending");
 		
-		//group - как сделать
-		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number","groups"];
+		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number"];
 
+			    for (var j = 0; j < inputs.length; j++) {
 
-		var inputGroups, expression;
-		
-//			inputGroups = document.querySelectorAll("[id^='teachers1.groups'");
+                inputs[j].setAttribute("name","teachers[" + Math.floor(j/6) + "]." + fields[j % 6]);
+				
 
-		//		alert(inputGroups.length);
-		
-			//индекс неправильный
-			//
-			for (var j = 0; j < inputs.length; j++) {
-				
-				expression = "[id^='teachers" + j + ".groups'";
-				//найти не по документу, а по той таблице(первой)
-				inputGroups = tableStud.querySelectorAll(expression);
-
-				//почему так передается группа?
-
-				//alert("inputGroups.length = " + inputGroups.length);
-				//alert(j)
-				
-				каждый аттрибут по отдельности выводить
-				
-				if (Math.floor(j%7)==6){
-					for (var k = 0; k < inputGroups.length; k++) {
-						inputs[j].setAttribute("name","teachers[" + j + "].groups" + k + "]");
-							//фикс индексов, на 3его препода ставит индекс группы 1
-							alert("Устанавливаем группу " + "teachers[" + j + "].groups[" + k + "]");
-			
-						}
-				}	
-				else {
-				inputs[j].setAttribute("name","teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
-				alert("Устанавливаем аттрибут " + "teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
-				}
-				
-				//ById teachers.groups[].id
-				//просто группы преподавателей у всех
-				
-					for (var k = 0; k < inputs.length; k++){
-						//for teachers group count
-						inputs[j].setAttribute("name","teachers[" + Math.floor(j/7) + "]." + fields[j % 7]);
-				
-						
-				
-					
-				} 
-  
-
-
-  }
-                alert("Замена успешна");
+   }
+                //перед нажатием на пост
+                alert("Замена тичеров успешна");
 }
 
 function classChangeTeacher(){
 		var tableStud = document.getElementById("teachersTable");
 		var inputs = tableStud.getElementsByClassName("jstlTeachersExisting");
 		var i = 0;
-	
+	//меняет классы
 	while(i<inputs.length)
 		inputs[i].setAttribute("class","jstlTeachersSending");
 	

@@ -133,19 +133,33 @@ public class Group implements Serializable {
 
         //удаляем преподавателя из списка
         public void deleteTeacher(Teacher teacher){
+        //вручную
+            //потестить. удаляет ли?
+
+            if(gontainz(teacher,teachers))
+                teachers.remove(teacher);
+    /*
             if (teachers.contains(teacher)){
                 teachers.remove(teacher);
             }
-        }
+      */
+    }
 
         public void putStudentsIntoGroup(List<Student> students, Group group){
 
             for (int i = 0; i < students.size(); i++) {
                 students.get(i).setGruppa(group);
             }
-        
-        
     }
+
+        public static boolean gontainz(Teacher teacher, List<Teacher> teachers){
+                for (int i = 0; i < teachers.size(); i++) {
+
+                if (teacher.getId().equals(teachers.get(i).getId()))// equals
+                    return true;
+            }
+            return false;
+        }
 
     //todo проверка по id
     //todo fix multiply adding

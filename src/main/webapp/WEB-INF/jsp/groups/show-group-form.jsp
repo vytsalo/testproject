@@ -64,6 +64,8 @@
 				
 				<!-- везде разные переменные -->
 				<!--TEACHERS -->
+				
+				<button onclick = "rewriteHTMLTeacher()">Test getIds</button>
 				<table border = "1 px solid" id="teachersTable">
                 <thead>
                     <tr>
@@ -91,16 +93,8 @@
                             <form:hidden path="teachers[${tagStatus.index}].otch" value="${tcsList.otch}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].date_of_birth" value="${tcsList.date_of_birth}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].phone_number" value="${tcsList.phone_number}" class = "jstlTeachersSending" />
-                            <!-- SECOND FOREACH-->
-
-						
-						
-						
-						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="dagSdatus">
-						
-							<form:hidden path="teachers[${tagStatus.index}].groups[${dagSdatus.index}]" value="${gsList.id}" class = "jstlTeachersSending" />
-						
-						</c:forEach>
+                   	
+					
 						
 						
                             <div>${tcsList.id}</div>
@@ -168,23 +162,6 @@
 		       <input type = "hidden" value= "${tsList.otch}" class = "jstlTeachersExisting"/>
 		       <input type = "hidden" value= "${tsList.date_of_birth}" class = "jstlTeachersExisting"/>
 		       <input type = "hidden" value= "${tsList.phone_number}" class = "jstlTeachersExisting"/>
-		       
-	
-						<!-- tagZdaduz -->
-							
-							<!-- Каждое поле в отдельности - бесконечная рекурсия -->
-	
-	
- 
-				
-						<c:forEach items="${tcsList.groups}" var="gsList" varStatus="dagSdatus">
-						
-							<input type = "hidden" value="${gsList}" class = "jstlTeachersSending" />
-						
-						</c:forEach>
-
-			
-			   
 
 		 <!-- innerHtml = код -->
 		 
