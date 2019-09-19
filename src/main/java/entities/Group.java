@@ -132,18 +132,23 @@ public class Group implements Serializable {
         }
 
         //удаляем преподавателя из списка
-        public void deleteTeacher(Teacher teacher){
-        //вручную
+        public void deleteTeacher(Teacher teacher) {
+            //вручную
             //потестить. удаляет ли?
 
-            if(gontainz(teacher,teachers))
-                teachers.remove(teacher);
-    /*
+            for (int i = 0; i < teachers.size(); i++) {
+
+
+                if (teacher.getId().equals(teachers.get(i).getId())) {
+                    teachers.remove(i);
+                }
+            /*
             if (teachers.contains(teacher)){
                 teachers.remove(teacher);
             }
       */
-    }
+            }
+        }
 
         public void putStudentsIntoGroup(List<Student> students, Group group){
 
@@ -179,5 +184,14 @@ public class Group implements Serializable {
     }
 
     //equals по id
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group that = (Group) o;
+        return this.getId().equals(that.getId());
+    }
 
 }

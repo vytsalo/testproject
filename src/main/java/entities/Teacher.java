@@ -36,16 +36,21 @@ public class Teacher extends Human implements Serializable {
     //добавляем группу в список
     public void addGroup(Group group){
         //по id сравнивать?
-        if (!(groups.contains(group))){
+      //  if (!(groups.contains(group))){
             groups.add(group);
-        }
+        //}
     }
 
     //удаляем группу из списка
+    //сделать по id
     public void removeGroup(Group group){
         //если содержит группу, то удаляем ее
-        if (groups.contains(group))
-            groups.remove(group);
+        //if (groups.contains(group))
+
+        for (int i = 0; i < groups.size(); i++) {
+            if (groups.get(i).getId().equals(group.getId()))
+                groups.remove(i);//groupservice.findById(id)
+        }
         //+тичера из группы
     }
 
@@ -77,4 +82,15 @@ public class Teacher extends Human implements Serializable {
 
     public Teacher(){}
 
+
+
+    //equal не поломает ли все
+    //сравниваем только id
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Teacher that = (Teacher) o;
+        return this.getId().equals(that.getId());
+    }
 }

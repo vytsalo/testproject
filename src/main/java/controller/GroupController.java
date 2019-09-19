@@ -111,6 +111,8 @@ public class GroupController {
             }
             else {
 
+
+
                 /*
                     найти преподавателей по ID, добавить им эту группу, если её еще нет
                     обновить преподавателя
@@ -118,27 +120,165 @@ public class GroupController {
                     обновить группу
                  */
 
-                //то, что есть в модели
                 Long idGroup = newGroup.getId();
 
-                //serviceTeacher
-                //список преподов которые есть в базе
-                List<Teacher> allTeachers = groupService.findById(idGroup).getTeachers();
+                //Юзать это
+                Group dbGroup = groupService.findById(idGroup);
 
+                //список преподов которые есть в базе
+                List<Teacher> allDBTeachers = dbGroup.getTeachers();
+
+                //список по умолчанию сделать пустым?
                 //список преподов в модели
                 List<Teacher> teachersThisGroup = newGroup.getTeachers();
 
-                newGroup.setTeachers(Collections.EMPTY_LIST);
+                //порядок поменять?
+
+                //сделать цикол
+
+                allDBTeachers.removeAll(teachersThisGroup);
+
+
+                Teacher tempTeacher;
+
+                for (int i = 0; i < teachersThisGroup.size() ; i++) {
+                    tempTeacher = teachersThisGroup.get(i);
+                    tempTeacher.addGroup(dbGroup);
+                    teacherService.update(tempTeacher);
+                }
+
+
+                groupService.findById(idGroup).setTeachers(teachersThisGroup);
+                groupService.update(groupService.findById(idGroup));
+
+                //потом попробовать избавиться
+                //newGroup.setTeachers(Collections.EMPTY_LIST);
+
+
+
+                //
+                //из преподавателей остаются те, которые нужно удалить
+                //List<Teacher> teachersToRemove = переименовать all
+
+
+                for (int i = 0; i < allDBTeachers.size(); i++) {
+                    allDBTeachers.get(i).removeGroup(dbGroup);//newGroup
+                    teacherService.update(allDBTeachers.get(i));
+                }
+
+
+
+                System.out.println(allDBTeachers);
+
+
+                groupService.update(dbGroup);
+
+
+
+
+                /*
+
+                 //List<Teacher> teachersToRemove;
+                for (int i = 0; i < allDBTeachers.size(); i++) {
+                    for (int j = 0; j < teachersThisGroup.size(); j++) {
+                        if (!(allDBTeachers.get(i).equals(teachersThisGroup.get(j)))){
+
+
+
+                        }
+                    }
+                }
+*/
+
+
+
+                //cначала группу?
+
+                //newGroup.setTeachers(teachersThisGroup);
+
+                //groupService.update(groupService.findById(newGroup));
+
+                //groupService.update(newGroup);
+
+                //removeGroup
+
+
+
+                //пройтись по всем преподавателям, вывести, удалить группу, если удален препод, вывести список групп
+                //добавить группу в список тех кого не было
+                //добавить препода в группу
+
+
+
+                //пройтись по студентам, добавить эту группу если ее нет
+   /*             teachersThisGroup.forEach(tTG -> {
+                    tTG.addGroup(newGroup);
+                    teacherService.update(tTG);
+
+                });
+*/
+
+                System.out.println(teachersThisGroup);
+
+                System.out.println(newGroup);
+
+     //           groupService.update(newGroup);
+
+                //почему удаляются преподаватели, которые уже где-то есть,
+                //но не удаляются преподаватели, которые больше не содержат эту группу
+                //установить группе студентов
+
+                //тех студентов, что удалили убрать группы
+
+
 
 
                 //удаление
                 //разность списков которые в модели и те, что в бд
                 //где не совпадают, удаляем
-
-
+/*
                 Teacher tempTeacher;
 
                 Group dbTempGroup = groupService.findById(idGroup);
+
+
+                for (int i = 0; i < allDBTeachers.size(); i++) {
+                    for (int j = 0; j < teachersThisGroup.size(); j++) {
+
+                        if (allDBTeachers.get(i).equals(teachersThisGroup.get(j))){
+                            //удаляем преподавателя из этой группы
+                            //ремув тичер
+                            //вынести в темптичер
+
+                            //Удаляем преподавателя из группы
+                            dbTempGroup.deleteTeacher(allDBTeachers.get(i));//teachersThisGroup.get(j)
+                            //удаляем группу у преподавателя
+                            allDBTeachers.get(i).removeGroup(dbTempGroup);
+                            //обновляем преподавателя
+                            teacherService.update(allDBTeachers.get(i));
+
+                            System.out.println(allDBTeachers);
+                            //allDBTeachers.remove(teachersThisGroup.get(j));//z.get(i)
+
+                        }
+                    }
+                }
+
+                System.out.println(dbTempGroup);
+
+                //обновляем группу
+                groupService.update(dbTempGroup);*/
+
+                //устанавливаем преподавателей
+                //dbTempGroup.setTeachers(allDBTeachers);
+
+
+
+
+
+
+
+
 /*
                 for (int i = 0; i < allTeachers.size(); i++) {
                     //если не содержит, то удаляем
@@ -155,6 +295,7 @@ public class GroupController {
                 }
 */
 
+/* IMPORTANT
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
                     for (int j = 0; j < allTeachers.size(); j++) {
                         if (teachersThisGroup.get(i).getId().equals(allTeachers.get(j).getId())) { //equals
@@ -189,6 +330,9 @@ public class GroupController {
                 });
 
                 newGroup.setTeachers(teachersThisGroup);
+
+
+                */
 
 
               /*
