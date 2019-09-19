@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -125,24 +125,42 @@ public class GroupController {
                 //Юзать это
                 Group dbGroup = groupService.findById(idGroup);
 
-                //список преподов которые есть в базе
+                //список преподов которые есть в базе в этой группе
                 List<Teacher> allDBTeachers = dbGroup.getTeachers();
 
-                //список по умолчанию сделать пустым?
+                //не передаются, потому что групп нет в модели
                 //список преподов в модели
                 List<Teacher> teachersThisGroup = newGroup.getTeachers();
 
-                //порядок поменять?
+//ht
+                //List<Teacher> tsList = new ArrayList<>();
+                //создать новый массив
+                for (int i = 0; i < teachersThisGroup.size(); i++) {
+                    for (int j = 0; j < allDBTeachers.size(); j++) {
+                        if (teachersThisGroup.get(i).getId().equals(allDBTeachers.get(j).getId())){
 
-                //сделать цикол
+                            teachersThisGroup.set(i,allDBTeachers.get(j));
+                        }
+                    }
+                }
 
+                System.out.println(teachersThisGroup);
+
+                //взять idшники и сформировать новый список, но уже с преподами
+
+                /*сначала найти совпадения, и загрузить туда группы, потом добавить*/
+
+
+                //образаем, остаются только те, которые нужно удалить
                 allDBTeachers.removeAll(teachersThisGroup);
 
 
                 Teacher tempTeacher;
 
+                //добавляем группу у преподавателя
                 for (int i = 0; i < teachersThisGroup.size() ; i++) {
                     tempTeacher = teachersThisGroup.get(i);
+                    //add group if not exist
                     tempTeacher.addGroup(dbGroup);
                     teacherService.update(tempTeacher);
                 }
@@ -167,10 +185,11 @@ public class GroupController {
                 }
 
 
+                //просто добавляет нормально, а если добавляет что есть, то просто очищает
 
                 System.out.println(allDBTeachers);
 
-
+                //избавица?
                 groupService.update(dbGroup);
 
 

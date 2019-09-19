@@ -36,9 +36,13 @@ public class Teacher extends Human implements Serializable {
     //добавляем группу в список
     public void addGroup(Group group){
         //по id сравнивать?
-      //  if (!(groups.contains(group))){
-            groups.add(group);
-        //}
+        //сравнить по id, чтобы добавлял только если группы еще нет
+        //todo - fori на лямбды
+        //getGroups()
+        for (int i = 0; i < groups.size(); i++) {
+            if (!(group.getId().equals(groups.get(i).getId())))
+                groups.add(group);
+        }
     }
 
     //удаляем группу из списка
