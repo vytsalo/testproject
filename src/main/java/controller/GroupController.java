@@ -15,10 +15,7 @@ import service.StudentService;
 import service.TeacherService;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/groups")
@@ -50,10 +47,6 @@ public class GroupController {
 
         model.addAttribute("notInGroupStudents", studentService.getStudentsList());
 
-
-
-
-
         model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 
         return "groups/show-group-form";
@@ -75,7 +68,7 @@ public class GroupController {
 
             /*получили студентов, установили нулл, передали, потом вернули и заапдейтили*/
             if (newGroup.getId() == null){
-
+                //todo одинаковые потому что переменные такие же?
                 //Получаем список студентов группы
                 List<Student> studentsThisGroup = newGroup.getStudents();
                 //Обнуляем студентов
@@ -92,16 +85,41 @@ public class GroupController {
 
                 //todo загрузка логов и конфигов сразу
                 //Назначаем всем студентам группу
-                studentsThisGroup.forEach(student -> {
-                   student.setGruppa(newGroup);
-                   studentService.update(student);
-                });
 
-                //Добавляем всем преподавателям эту группу
+
+                for (int i = 0; i < studentsThisGroup.size(); i++) {
+                    studentsThisGroup.get(i).setGruppa(newGroup);
+                    studentService.update(studentsThisGroup.get(i));
+                }
+
+            /*    studentsThisGroup.forEach(student -> {
+                   student.setGruppa(newGroup);
+                    //мб из-за этого?
+                   studentService.update(student);
+                });*/
+
+               /* //Добавляем всем преподавателям эту группу
                 teachersThisGroup.forEach(teacher -> {
+                    //if (!(teacher.getGroups().contains(newGroup)))
                     teacher.addGroup(newGroup);
                     teacherService.update(teacher);
-                });
+                });*/
+
+
+               //TODO ПРЕПОДОВ ДОБАВЛЯЕТ 2 РАЗА СТУДЕНТОВ 3 РАЗА
+                for (int i = 0; i < teachersThisGroup.size(); i++) {
+                    for (int j = 0; j < teachersThisGroup.get(i).getGroups().size(); j++) {
+                       // if (!(teachersThisGroup.get(i).getGroups().get(j).getId().equals(newGroup.getId()))) {
+
+                            //if (!(teachersThisGroup.get(i).getGroups().contains(newGroup))) {
+                                teachersThisGroup.get(i).addGroup(newGroup);
+                                teacherService.update(teachersThisGroup.get(i));
+                           // }
+                        }
+                    }
+
+
+
 
                 //todo если добавляет то по 2 раза, а если пусто не добавляет вовсе
 
@@ -116,7 +134,7 @@ public class GroupController {
             }
             else {
 
-
+                //todo где-то тут добавить проверку на
 
                 /*
                     найти преподавателей по ID, добавить им эту группу, если её еще нет
@@ -146,9 +164,8 @@ public class GroupController {
                 Teacher tempT;
                 List<Group> grT = new ArrayList<>();
 
-
+                //todo проблема в методах add?
                 //удаление преподов
-
 
 
                 //удаляем эту группу у преподов, которые были там раньше но сейчас нет
@@ -156,8 +173,6 @@ public class GroupController {
                     allDBTeachers.get(i).removeGroup(dbGroup);//newGroup
                     teacherService.update(allDBTeachers.get(i));
                 }
-
-                //todo сделать чтобы при удалении группы, просто студенты удалялись из группы
 
                 System.out.println(allDBTeachers);
 
@@ -217,7 +232,7 @@ public class GroupController {
 
                 //на этом моменте уже группы 2!
 
-
+                //todo перенести update на конец
 
                 //проходимся по преподавателям в модели и добавляем им группу
                 //обновляем преподавателей
@@ -235,260 +250,15 @@ public class GroupController {
                 //Перезаписываем здесь, а надо добавлять
 
 
-                groupService.findById(idGroup).setTeachers(teachersThisGroup);
-                groupService.update(groupService.findById(idGroup));
-
-                //потом попробовать избавиться
-                //newGroup.setTeachers(Collections.EMPTY_LIST);
+                dbGroup.setTeachers(teachersThisGroup);
 
 
-
-                //
-                //из преподавателей остаются те, которые нужно удалить
-                //List<Teacher> teachersToRemove = переименовать all
-
-
-
-                groupService.update(dbGroup);
-
+                //groupService.update(dbGroup);
 
                 System.out.println(teachersThisGroup);
 
                 System.out.println(newGroup);
 
-
-
-
-                /*
-
-                 //List<Teacher> teachersToRemove;
-                for (int i = 0; i < allDBTeachers.size(); i++) {
-                    for (int j = 0; j < teachersThisGroup.size(); j++) {
-                        if (!(allDBTeachers.get(i).equals(teachersThisGroup.get(j)))){
-
-
-
-                        }
-                    }
-                }
-*/
-
-
-
-                //cначала группу?
-
-                //newGroup.setTeachers(teachersThisGroup);
-
-                //groupService.update(groupService.findById(newGroup));
-
-                //groupService.update(newGroup);
-
-                //removeGroup
-
-
-
-                //пройтись по всем преподавателям, вывести, удалить группу, если удален препод, вывести список групп
-                //добавить группу в список тех кого не было
-                //добавить препода в группу
-
-
-
-                //пройтись по студентам, добавить эту группу если ее нет
-   /*             teachersThisGroup.forEach(tTG -> {
-                    tTG.addGroup(newGroup);
-                    teacherService.update(tTG);
-
-                });
-*/
-
-     //           groupService.update(newGroup);
-
-                //почему удаляются преподаватели, которые уже где-то есть,
-                //но не удаляются преподаватели, которые больше не содержат эту группу
-                //установить группе студентов
-
-                //тех студентов, что удалили убрать группы
-
-
-
-
-                //удаление
-                //разность списков которые в модели и те, что в бд
-                //где не совпадают, удаляем
-/*
-                Teacher tempTeacher;
-
-                Group dbTempGroup = groupService.findById(idGroup);
-
-
-                for (int i = 0; i < allDBTeachers.size(); i++) {
-                    for (int j = 0; j < teachersThisGroup.size(); j++) {
-
-                        if (allDBTeachers.get(i).equals(teachersThisGroup.get(j))){
-                            //удаляем преподавателя из этой группы
-                            //ремув тичер
-                            //вынести в темптичер
-
-                            //Удаляем преподавателя из группы
-                            dbTempGroup.deleteTeacher(allDBTeachers.get(i));//teachersThisGroup.get(j)
-                            //удаляем группу у преподавателя
-                            allDBTeachers.get(i).removeGroup(dbTempGroup);
-                            //обновляем преподавателя
-                            teacherService.update(allDBTeachers.get(i));
-
-                            System.out.println(allDBTeachers);
-                            //allDBTeachers.remove(teachersThisGroup.get(j));//z.get(i)
-
-                        }
-                    }
-                }
-
-                System.out.println(dbTempGroup);
-
-                //обновляем группу
-                groupService.update(dbTempGroup);*/
-
-                //устанавливаем преподавателей
-                //dbTempGroup.setTeachers(allDBTeachers);
-
-
-
-
-
-
-
-
-/*
-                for (int i = 0; i < allTeachers.size(); i++) {
-                    //если не содержит, то удаляем
-                    tempTeacher = allTeachers.get(i);
-                    if (!teachersThisGroup.contains(tempTeacher)){
-
-                        tempTeacher.removeGroup(dbTempGroup);//findById newGroup
-                        teacherService.update(tempTeacher);
-
-                        dbTempGroup.deleteTeacher(tempTeacher);
-                        groupService.update(dbTempGroup);
-
-                    }
-                }
-*/
-
-/* IMPORTANT
-                for (int i = 0; i < teachersThisGroup.size(); i++) {
-                    for (int j = 0; j < allTeachers.size(); j++) {
-                        if (teachersThisGroup.get(i).getId().equals(allTeachers.get(j).getId())) { //equals
-                                //сначала группу у преподавателя
-
-                                //tempTeacher
-
-                                //сначала тичеров удаляем, потом группу
-                                teachersThisGroup.get(i).removeGroup(dbTempGroup);
-                                teacherService.update(teachersThisGroup.get(i));
-
-
-                                dbTempGroup.deleteTeacher(teachersThisGroup.get(i));//teachersThisGroup.get(i)
-
-                                groupService.update(dbTempGroup);
-                        }
-                    }
-                }
-
-                //и у группы удалить тичера
-
-
-
-
-
-
-
-                //для каждого списка студентов добавляем эту (текущую) группу
-                teachersThisGroup.forEach(teacher -> {
-                    teacher.addGroup(newGroup);
-                    teacherService.update(teacher);
-                });
-
-                newGroup.setTeachers(teachersThisGroup);
-
-
-                */
-
-
-              /*
-                //Преподаватели, которые сейчас есть в базе
-                List<Teacher> serviceTeachers = groupService.findById(newGroup.getId()).getTeachers();
-
-                //получаем список преподов в модели
-                List<Teacher> modelTeachers = newGroup.getTeachers();
-
-                Teacher tempTeacher = null;
-
-                //Сейчас 1 группа
-                //Если препод был удален из группы, удаляем группу из препода
-
-                for (int i = 0; i < serviceTeachers.size(); i++) {
-
-                    tempTeacher = serviceTeachers.get(i);
-
-                    if (!modelTeachers.contains(tempTeacher)) {
-
-                        //removeGroup
-                        tempTeacher.removeGroup(newGroup);
-
-                        teacherService.update(tempTeacher);
-                    }
-                }
-
-                //Каждому преподу, который есть в модели добавляем текущую группу
-                for (int i = 0; i < modelTeachers.size(); i++) {
-                    tempTeacher = modelTeachers.get(i);
-                    tempTeacher.addGroup(newGroup);
-                    teacherService.update(tempTeacher);
-                }
-
-
-                /*REDACTION*/
-
-
-                //список тичеров по id
-                //проперти эдитор
-
-
-                /*
-                почему мы группу передавали по id
-                а студентов и преподов через коллекцию
-
-                */
-
-
-
-                //в контроллере получать список групп по id
-                //
-                //
-                //this group
-               // for (int i = 0; i < 5; i++) {
-
-                    //check for coincidence
-                   // groupService.findById(new Long(5)).getTeachers().get(i);
-
-
-               // }
-                //teacherService.findById(new Long(5));
-
-
-
-
-
-
-
-
-
-
-
-
-
-                //список студентов - группа одна
-                //группа - студенты - список
 
                 //Студенты, которые сейчас есть в базе
                 List<Student> serviceStudents = groupService.findById(newGroup.getId()).getStudents();
@@ -500,7 +270,6 @@ public class GroupController {
 
                 //если не контейнс то группа нулл
                 //Если студент был удален из группы, ставим ему группу нулл
-
                 for (int i = 0; i < serviceStudents.size(); i++) {
                     //temp тут чтоб короче
                     if (!modelStudents.contains(serviceStudents.get(i))) {
@@ -531,7 +300,9 @@ public class GroupController {
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
+        //с самого начала отправляет два экземпляра(JSTL FIX)?
         //todo добавить только тех преподов, которых нет в группе
+        //todo два раза добавляет из-за апдейта?
         Group group = groupService.findById(Id);
 
         model.addAttribute("group", group);
@@ -542,10 +313,6 @@ public class GroupController {
         //добавляем группы
         //
         model.addAttribute("groups", groupService.getGroupsList());
-
-
-
-
 
 
         /* Выбираем студентов, которых нет в группе */
@@ -560,10 +327,13 @@ public class GroupController {
         List<Student> thisGroupStudents = group.getStudents();
 
        //если id равны то ремув из списка
+
+        int tempSize = thisGroupStudents.size();
         for (int i = 0; i < allStudents.size(); i++) {
-            for (int j = 0; j < thisGroupStudents.size(); j++) {
+            for (int j = 0; j < tempSize; j++) {
                 if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
                     allStudents.remove(allStudents.get(i));
+                    tempSize--;
                 }
             }
 
@@ -595,10 +365,32 @@ public class GroupController {
             model.addAttribute("notInGroupStudents", allTeachers);*/
 //todo сделать везде одинаковый стиль гет тичерс и гет тичерслист
 
+
+/*
+
+        List<Teacher> allTeachers = teacherService.getTeachersList();
+
+        List<Teacher> thisGroupTeachers = group.getTeachers();
+
+        //если id равны то ремув из списка
+        for (int i = 0; i < allTeachers.size(); i++) {
+            for (int j = 0; j < thisGroupTeachers.size(); j++) {
+                if(allTeachers.get(i).getId().equals(thisGroupTeachers.get(j).getId())) {
+                    allTeachers.remove(allTeachers.get(i));
+                }
+            }
+
+        }
+
+        if (!(allStudents.equals(null))) {
             model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
+        }
+*/
 
-//group.getTeachers();
 
+        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
+
+        //todo remove unnecessary commentaries
 
         return "groups/show-group-form";
 
@@ -626,10 +418,36 @@ public class GroupController {
         //удаляем всех преподавателей у группы
         group.setTeachers(Collections.emptyList());
 
+
+
+
+
+
+
+
+
+
+
+
+
+        //удаляем связи группы и преподавателей
+        List<Student> thisGroupStudents = group.getStudents();
+
+        //удаляем группу у преподавателя
+        thisGroupStudents.forEach(tGS ->{
+            tGS.setGruppa(null);
+            //заапдейтили, очистили список
+            studentService.update(tGS);
+        });
+
+        //удаляем всех преподавателей у группы
+        group.setStudents(Collections.emptyList());
+
         //заапдейтили, очистили список
         groupService.update(group);
 
         groupService.delete(Id);
+
         model.addAttribute("groups",groupService.getGroupsList());
         return "redirect:/groups/";
     }

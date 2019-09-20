@@ -36,9 +36,12 @@ public class Teacher extends Human implements Serializable {
     //добавляем группу в список
     public void addGroup(Group group){
         //по id сравнивать?
-        if (!(groups.contains(group))){
+        //просто добавить, а проверять по факту
+        //if (!(this.getGroups().contains(group))){
+            if (!(this.contains(group)))
             groups.add(group);
-      }
+      //}
+
     }
 
     //удаляем группу из списка
@@ -92,5 +95,19 @@ public class Teacher extends Human implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         Teacher that = (Teacher) o;
         return this.getId().equals(that.getId());
+    }
+
+
+    public boolean contains(Group group){
+        List<Group> temp = this.getGroups();
+
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i).getId().equals(group.getId())){
+
+                return true;
+
+            }
+        }
+        return false;
     }
 }

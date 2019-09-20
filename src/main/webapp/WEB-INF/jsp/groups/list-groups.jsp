@@ -23,7 +23,7 @@
 
 
 
-<title>Список студентов</title>
+<title>Список групп</title>
 </head>
 <body onload = "javascript:sortTable()">
 <jsp:include page="..\testsecurity\auth.jsp" />
