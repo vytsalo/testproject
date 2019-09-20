@@ -161,6 +161,7 @@ public class GroupController {
 
                 System.out.println(allDBTeachers);
 
+                //todo поиск куда надо
 
                 //тут ошибка при добавлении преподов в группу умножаются неудаленные
 
@@ -609,6 +610,7 @@ public class GroupController {
 
         //todo сделать удаление связей группы, а потом только удаление самой группы?
 
+        //todo вернуть студентов в группы из security update commit
         Group group = groupService.findById(Id);
 
         //удаляем связи группы и преподавателей

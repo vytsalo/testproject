@@ -189,6 +189,236 @@
 				
 				
 				
+				<!-- STUDENTS -->
+
+
+  <p>
+                <label for="students">Список студентов группы</label>
+
+
+                <table border = "1 px solid" id="studentsTable">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Дата рождения</th>
+                    <th>Телефон</th>
+                    <th>Действие</th>
+                    </tr>
+                </thead>
+                <!-- group - модель, студенты - аттрибут -->
+
+                <tbody>
+
+
+
+                    <c:forEach items="${group.students}" var="stdList" varStatus="tagStatus">
+
+
+                        <tr>
+                            <td>
+
+
+                            <form:hidden path="students[${tagStatus.index}].id" value="${stdList.id}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].name" value="${stdList.name}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].fam" value="${stdList.fam}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].date_of_birth" value="${stdList.date_of_birth}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
+
+                            <div>${stdList.id}</div>
+                            </td>
+
+                            <!-- js переделать формирование страницы
+                             переписать код страницы
+                             -->
+
+                            <!-- /HIDDENS  -->
+
+                            <td>${stdList.fam}</td>
+                            <td>${stdList.name}</td>
+                            <td>${stdList.otch}</td>
+                            <td>${stdList.date_of_birth}</td>
+                            <td>${stdList.phone_number}</td>
+
+                            <!-- Все поля hidden а вывод в таблицу отдельно? -->
+                            <!-- передается только тайтл -->
+
+
+                            <td><a href = "#" onclick = "addRow(this,'existingStudents'); rewriteHTML(); ">Удалить</a></td>
+
+
+
+
+
+                        </tr>
+
+
+
+                    </c:forEach>
+
+
+
+
+                </tbody>
+
+                </table>
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<h4>
+	Список существующих студентов
+</h4>
+
+
+
+<!--notInGroupStudents -->
+
+<table id="existingStudents" cellspacing="0" border="1">
+       <thead>
+	    <tr>
+         <th>#ID</th>
+         <th>Фамилия</th>
+         <th>Имя</th>
+         <th>Отчество</th>
+         <th>Дата рождения</th>
+         <th>Телефон</th>
+         <th>Действия</th>
+   		</tr>
+	  </thead>
+  
+  
+  <tbody>
+		<!-- th to td -->
+		
+		
+		<!-- notInGroupStudents -->
+
+		<!-- Добавлять скрытые инпуты, а потом при переносе в таблицу - добавлять 
+		добавлять класс
+		name=""  -->
+	
+	<c:forEach items="${notInGroupStudents}" var="sddList" varStatus="tagStatus">
+
+	<!-- поменять класс и добавить путь  -->
+	<tr>
+         <td>
+		 
+		       <input type = "hidden" value= "${sddList.id}" class = "jstlStudentsExisting"/>
+				<input type = "hidden" value= "${sddList.name}" class = "jstlStudentsExisting"/>
+		 		
+		<input type = "hidden" value= "${sddList.fam}" class = "jstlStudentsExisting"/>		   
+		  
+		       <input type = "hidden" value= "${sddList.otch}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.date_of_birth}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.phone_number}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.gruppa.id}" class = "jstlStudentsExisting"/>
+		   
+
+		 <!-- innerHtml = код -->
+		 
+		 
+		 
+		 ${sddList.id}</td>
+         <td>${sddList.fam}</td>
+         <td>${sddList.name}</td>
+         <td>${sddList.otch}</td>
+         <td>${sddList.date_of_birth}</td>
+         <td>${sddList.phone_number}</td>
+         <td><a href="#" onclick="addRow(this,'studentsTable'); classChange(); rewriteHTML();">Добавить</a></td>
+    </tr>
+	
+	</c:forEach>
+	
+  </tbody>
+
+</table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+                </p>
+
+
+
+
+
+
+				<!-- /STUDENTS -->
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 
 	     
                 <p>
