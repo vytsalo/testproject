@@ -50,6 +50,10 @@ public class GroupController {
 
         model.addAttribute("notInGroupStudents", studentService.getStudentsList());
 
+
+
+
+
         model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 
         return "groups/show-group-form";
@@ -153,7 +157,7 @@ public class GroupController {
                     teacherService.update(allDBTeachers.get(i));
                 }
 
-
+                //todo сделать чтобы при удалении группы, просто студенты удалялись из группы
 
                 System.out.println(allDBTeachers);
 
@@ -526,7 +530,7 @@ public class GroupController {
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
-        //добавить только тех преподов, которых нет в группе
+        //todo добавить только тех преподов, которых нет в группе
         Group group = groupService.findById(Id);
 
         model.addAttribute("group", group);
@@ -602,6 +606,27 @@ public class GroupController {
     @GetMapping("/delete/{Id}")
     public String deleteGroup(Model model,@PathVariable Long Id) {
         //удаляем группу по ID
+
+        //todo сделать удаление связей группы, а потом только удаление самой группы?
+
+        Group group = groupService.findById(Id);
+
+        //удаляем связи группы и преподавателей
+        List<Teacher> thisGroupTeachers = group.getTeachers();
+
+        //удаляем группу у преподавателя
+        thisGroupTeachers.forEach(tGt ->{
+            tGt.removeGroup(group);
+            //заапдейтили, очистили список
+            teacherService.update(tGt);
+        });
+
+        //удаляем всех преподавателей у группы
+        group.setTeachers(Collections.emptyList());
+
+        //заапдейтили, очистили список
+        groupService.update(group);
+
         groupService.delete(Id);
         model.addAttribute("groups",groupService.getGroupsList());
         return "redirect:/groups/";
