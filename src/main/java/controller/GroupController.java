@@ -135,23 +135,32 @@ public class GroupController {
 
                 List<Teacher> allDBTeachers = dbGroup.getTeachers();
 
-                //список по умолчанию сделать пустым?
-                //список преподов в модели
-
-                //не перезаписывать, а прост сетГроуп
-
-               // List<Teacher> modelTeacher = newGroup.getTeachers();
-
-
-
                 List<Teacher> teachersThisGroup = newGroup.getTeachers();
-                //tempStudent
-                //AllDBTEachers - null
 
                 List<Teacher> allTeacherDatabase = teacherService.getTeachersList();
 
                 Teacher tempT;
                 List<Group> grT = new ArrayList<>();
+
+
+                //удаление преподов
+
+
+
+                //удаляем эту группу у преподов, которые были там раньше но сейчас нет
+                for (int i = 0; i < allDBTeachers.size(); i++) {
+                    allDBTeachers.get(i).removeGroup(dbGroup);//newGroup
+                    teacherService.update(allDBTeachers.get(i));
+                }
+
+
+
+                System.out.println(allDBTeachers);
+
+
+                //тут ошибка при добавлении преподов в группу умножаются неудаленные
+
+                //добавляем преподавателей в группы
                 if (teachersThisGroup.size()!=0) {
 
                     for (int i = 0; i < allTeacherDatabase.size(); i++) {
@@ -159,14 +168,14 @@ public class GroupController {
                             if (allTeacherDatabase.get(i).getId().equals(teachersThisGroup.get(j).getId())) {
                                 tempT = teachersThisGroup.get(j);
                                 grT = allTeacherDatabase.get(i).getGroups();
+                                //важно, если не содержит группу, то добавляем ее
+                                if (!(grT.contains(newGroup)))
                                 grT.add(newGroup);
                                 tempT.setGroups(new ArrayList<>(grT));
                                 teachersThisGroup.set(j,tempT);
                                 //teachersThisGroup.add(allTeacherDatabase.get(i));
                             }
                         }
-
-
                     }
                 }
 
@@ -200,6 +209,11 @@ public class GroupController {
 
                 Teacher tempTeacher;
 
+
+                //на этом моменте уже группы 2!
+
+
+
                 //проходимся по преподавателям в модели и добавляем им группу
                 //обновляем преподавателей
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
@@ -228,15 +242,6 @@ public class GroupController {
                 //из преподавателей остаются те, которые нужно удалить
                 //List<Teacher> teachersToRemove = переименовать all
 
-                //удаляем эту группу у преподов, которые были там раньше но сейчас нет
-                for (int i = 0; i < allDBTeachers.size(); i++) {
-                    allDBTeachers.get(i).removeGroup(dbGroup);//newGroup
-                    teacherService.update(allDBTeachers.get(i));
-                }
-
-
-
-                System.out.println(allDBTeachers);
 
 
                 groupService.update(dbGroup);
