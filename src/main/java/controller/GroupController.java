@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,50 +121,99 @@ public class GroupController {
                     обновить группу
                  */
 
+                //получаем ID нашей группы
                 Long idGroup = newGroup.getId();
 
                 //Юзать это
                 Group dbGroup = groupService.findById(idGroup);
 
-                //список преподов которые есть в базе в этой группе
+                //список преподов которые есть в базе
+
+                /* прямо здесь сделать выборку из того что есть
+                *  совпадения + список групп
+                *  */
+
                 List<Teacher> allDBTeachers = dbGroup.getTeachers();
 
-                //не передаются, потому что групп нет в модели
+                //список по умолчанию сделать пустым?
                 //список преподов в модели
+
+                //не перезаписывать, а прост сетГроуп
+
+               // List<Teacher> modelTeacher = newGroup.getTeachers();
+
+
+
                 List<Teacher> teachersThisGroup = newGroup.getTeachers();
+                //tempStudent
+                //AllDBTEachers - null
 
-//ht
-                //List<Teacher> tsList = new ArrayList<>();
-                //создать новый массив
-                for (int i = 0; i < teachersThisGroup.size(); i++) {
-                    for (int j = 0; j < allDBTeachers.size(); j++) {
-                        if (teachersThisGroup.get(i).getId().equals(allDBTeachers.get(j).getId())){
+                List<Teacher> allTeacherDatabase = teacherService.getTeachersList();
 
-                            teachersThisGroup.set(i,allDBTeachers.get(j));
+                Teacher tempT;
+                List<Group> grT = new ArrayList<>();
+                if (teachersThisGroup.size()!=0) {
+
+                    for (int i = 0; i < allTeacherDatabase.size(); i++) {
+                        for (int j = 0; j < teachersThisGroup.size(); j++) {
+                            if (allTeacherDatabase.get(i).getId().equals(teachersThisGroup.get(j).getId())) {
+                                tempT = teachersThisGroup.get(j);
+                                grT = allTeacherDatabase.get(i).getGroups();
+                                grT.add(newGroup);
+                                tempT.setGroups(new ArrayList<>(grT));
+                                teachersThisGroup.set(j,tempT);
+                                //teachersThisGroup.add(allTeacherDatabase.get(i));
+                            }
                         }
+
+
                     }
                 }
 
+                //потом добавляем текущую группу
+
+
+                System.out.println(teachersThisGroup);
+                //найти по айди и засетить группы
+
+/*
+
+                if (allDBTeachers.size()!=0) {
+                    for (int i = 0; i < allDBTeachers.size(); i++) {
+                        for (int j = 0; j < modelTeacher.size(); j++) {
+                            if (allDBTeachers.get(i).getId().equals(modelTeacher.get(j).getId())) {
+                                teachersThisGroup.add(allDBTeachers.get(i));
+
+                            }
+                        }
+                    }
+                }*/
                 System.out.println(teachersThisGroup);
 
-                //взять idшники и сформировать новый список, но уже с преподами
 
-                /*сначала найти совпадения, и загрузить туда группы, потом добавить*/
+ // newGroup.getTeachers();
 
 
-                //образаем, остаются только те, которые нужно удалить
+                //получаем преподавателей для удаления из них группы
                 allDBTeachers.removeAll(teachersThisGroup);
 
 
                 Teacher tempTeacher;
 
-                //добавляем группу у преподавателя
-                for (int i = 0; i < teachersThisGroup.size() ; i++) {
+                //проходимся по преподавателям в модели и добавляем им группу
+                //обновляем преподавателей
+                for (int i = 0; i < teachersThisGroup.size(); i++) {
                     tempTeacher = teachersThisGroup.get(i);
-                    //add group if not exist
                     tempTeacher.addGroup(dbGroup);
                     teacherService.update(tempTeacher);
                 }
+
+
+                /* преподавателей тоже добавить в группу и группу в преподавателей*/
+
+
+                //находим группу, ставим ей преподов и обновляем
+                //Перезаписываем здесь, а надо добавлять
 
 
                 groupService.findById(idGroup).setTeachers(teachersThisGroup);
@@ -178,19 +228,23 @@ public class GroupController {
                 //из преподавателей остаются те, которые нужно удалить
                 //List<Teacher> teachersToRemove = переименовать all
 
-
+                //удаляем эту группу у преподов, которые были там раньше но сейчас нет
                 for (int i = 0; i < allDBTeachers.size(); i++) {
                     allDBTeachers.get(i).removeGroup(dbGroup);//newGroup
                     teacherService.update(allDBTeachers.get(i));
                 }
 
 
-                //просто добавляет нормально, а если добавляет что есть, то просто очищает
 
                 System.out.println(allDBTeachers);
 
-                //избавица?
+
                 groupService.update(dbGroup);
+
+
+                System.out.println(teachersThisGroup);
+
+                System.out.println(newGroup);
 
 
 
@@ -236,10 +290,6 @@ public class GroupController {
 
                 });
 */
-
-                System.out.println(teachersThisGroup);
-
-                System.out.println(newGroup);
 
      //           groupService.update(newGroup);
 
@@ -471,6 +521,7 @@ public class GroupController {
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
+        //добавить только тех преподов, которых нет в группе
         Group group = groupService.findById(Id);
 
         model.addAttribute("group", group);
