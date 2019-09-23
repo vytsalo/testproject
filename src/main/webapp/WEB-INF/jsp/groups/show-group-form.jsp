@@ -65,7 +65,6 @@
 				<!-- везде разные переменные -->
 				<!--TEACHERS -->
 				
-				<button onclick = "rewriteHTMLTeacher()">Test getIds</button>
 				<table border = "1 px solid" id="teachersTable">
                 <thead>
                     <tr>

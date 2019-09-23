@@ -142,9 +142,11 @@ function classChange(){
 	
 		var i = 0;
 	
-	while(i<inputs.length)
-		inputs[i].setAttribute("class","jstlStudentsSending");
+	while(i<inputs.length){
 	
+		inputs[i].setAttribute("class","jstlStudentsSending");
+		//i++;
+	}
 		alert("Класс сменен");
 }
 

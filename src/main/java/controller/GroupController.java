@@ -38,6 +38,7 @@ public class GroupController {
         return "groups/list-groups";
     }
 
+    //todo если гетлист нулл то ретурт гет тичерслист
     @GetMapping("/add")
     public String addGroup(Model model){
         //добавить список групп
@@ -284,121 +285,98 @@ public class GroupController {
         //todo два раза добавляет из-за апдейта?
         Group group = groupService.findById(Id);
 
+        //При редактировании с 0 групп и 0 преподов выводит тоже нули
+
         model.addAttribute("group", group);
-
-        //Избавиться и в jsp юзать
         model.addAttribute("update", true);
-
-        //добавляем группы
-        //
         model.addAttribute("groups", groupService.getGroupsList());
-
-
-        /* Выбираем студентов, которых нет в группе */
-
-
-        //Если не контейнс то добавляем
-
-
-        //почему вывел 3 раза?
-        List<Student> allStudents = studentService.getStudentsList();
-
-        List<Student> thisGroupStudents = group.getStudents();
-
-       //если id равны то ремув из списка
-
-        int tempSize = thisGroupStudents.size();
-        for (int i = 0; i < allStudents.size(); i++) {
-            for (int j = 0; j < tempSize; j++) {
-                if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
-                    allStudents.remove(allStudents.get(i));
-                    tempSize--;
-                }
-            }
-
-        }
-
-        if (!(allStudents.equals(null)))
-            model.addAttribute("notInGroupStudents", allStudents);
-
-
-/*
-        //Если не контейнс то добавляем
-        List<Teacher> allTeachers = teacherService.getTeachersList();
-
-        List<Teacher> thisGroupTeachers = group.getTeachers();
-
-        //если id равны то ремув из списка
-        for (int i = 0; i < allTeachers.size(); i++) {
-            for (int j = 0; j < thisGroupTeachers.size(); j++) {
-                if(allTeachers.get(i).getId().equals(thisGroupTeachers.get(j).getId())) {
-                    allTeachers.remove(allTeachers.get(i));
-                }
-            }
-
-        }
-
-        //
-
-        if (!(allTeachers.equals(null)))
-            model.addAttribute("notInGroupStudents", allTeachers);*/
-//todo сделать везде одинаковый стиль гет тичерс и гет тичерслист
-
-
-/*
-
-        List<Teacher> allTeachers = teacherService.getTeachersList();
-
-        List<Teacher> thisGroupTeachers = group.getTeachers();
-
-        //если id равны то ремув из списка
-        for (int i = 0; i < allTeachers.size(); i++) {
-            for (int j = 0; j < thisGroupTeachers.size(); j++) {
-                if(allTeachers.get(i).getId().equals(thisGroupTeachers.get(j).getId())) {
-                    allTeachers.remove(allTeachers.get(i));
-                }
-            }
-
-        }
-
-        if (!(allStudents.equals(null))) {
-            model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
-        }
-*/
 
 
 
 
 
         List<Teacher> allTeachersList = teacherService.getTeachersList();
+
         List<Teacher> thisGroupTeachersList = group.getTeachers();
         List<Teacher> notInThisGroupTeacher = new ArrayList<>();
 
-        int tmpSize = thisGroupTeachersList.size();
-        for (int i = 0; i < allTeachersList.size() ; i++) {
+        if (thisGroupTeachersList.size()==0) {notInThisGroupTeacher = allTeachersList;}
+        else {
 
-            for (int j = 0; j < tmpSize; j++) {
+            int tmpSize = thisGroupTeachersList.size();
 
-                if (!(allTeachersList.get(i).getId().equals(thisGroupTeachersList.get(j).getId()))) {
-                    notInThisGroupTeacher.add(allTeachersList.get(i));
-                    //tmpSize--;
+            //просто ремувами
+            for (int i = 0; i < allTeachersList.size(); i++) {
+
+                for (int j = 0; j < tmpSize; j++) {
+
+                    if (!(allTeachersList.get(i).getId().equals(thisGroupTeachersList.get(j).getId()))) {
+                        notInThisGroupTeacher.add(allTeachersList.get(i));
+                    }
+                    break;
                 }
             }
         }
 
-
-
-        //найти id тех тичеров, которых нет
-
-
-
-        System.out.println(notInThisGroupTeacher);
-        System.out.println(notInThisGroupTeacher);
-
-
-
-
         model.addAttribute("notInGroupTeachers", notInThisGroupTeacher);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //3 раза один и тот же студент. пофиксить?
+
+        /* Выбираем студентов, которых нет в группе */
+        List<Student> allStudents = studentService.getStudentsList();
+        List<Student> thisGroupStudents = group.getStudents();
+
+
+   /*     for (int i = 0; i < allStudents.size(); i++) {
+            for (int j = 0; j < thisGroupStudents.size(); j++) {
+                if (allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId()))
+                    allStudents.remove(i);
+            }
+        }*/
+
+    allStudents.removeAll(thisGroupStudents);
+
+
+       System.out.println(allStudents);
+        /*
+       //если id равны то ремув из списка
+      int tempSize = thisGroupStudents.size();
+        int tempSise = allStudents.size();
+        for (int i = 0; i < tempSise; i++) {
+            for (int j = 0; j < tempSize; j++) {
+                if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
+                    allStudents.remove(allStudents.get(i));
+                    tempSize--;
+                    tempSise--;
+
+                }
+            }
+        }*/
+
+        //убрать проверку
+        //if (!(allStudents.equals(null)))
+            model.addAttribute("notInGroupStudents", allStudents);
+
 
         //todo remove unnecessary commentaries
 
