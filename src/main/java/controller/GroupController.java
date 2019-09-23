@@ -32,9 +32,6 @@ public class GroupController {
     @Autowired
     private StudentService studentService;
 
-
-    //Нарушает правила ограничаения внешнего ключа
-
     @GetMapping("/")//"","/"
     public String listGroups(Model model){
         model.addAttribute("groups",groupService.getGroupsList());
@@ -81,7 +78,6 @@ public class GroupController {
                 //Обнуляем преподов
                 newGroup.setTeachers(Collections.EMPTY_LIST);
 
-
                 //добавляем в базу новую группу, чтобы получить id
                 groupService.add(newGroup);
 
@@ -95,10 +91,7 @@ public class GroupController {
                     studentService.update(tempStudent);
                 }
 
-
-
-                //у каждого студента, которого передали берем айди и находим в базе список его групп
-                //
+              //у каждого студента, которого передали берем айди и находим в базе список его групп
 
                 List<Group> tempListGroups;
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
@@ -374,7 +367,38 @@ public class GroupController {
 */
 
 
-        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
+
+
+
+        List<Teacher> allTeachersList = teacherService.getTeachersList();
+        List<Teacher> thisGroupTeachersList = group.getTeachers();
+        List<Teacher> notInThisGroupTeacher = new ArrayList<>();
+
+        int tmpSize = thisGroupTeachersList.size();
+        for (int i = 0; i < allTeachersList.size() ; i++) {
+
+            for (int j = 0; j < tmpSize; j++) {
+
+                if (!(allTeachersList.get(i).getId().equals(thisGroupTeachersList.get(j).getId()))) {
+                    notInThisGroupTeacher.add(allTeachersList.get(i));
+                    //tmpSize--;
+                }
+            }
+        }
+
+
+
+        //найти id тех тичеров, которых нет
+
+
+
+        System.out.println(notInThisGroupTeacher);
+        System.out.println(notInThisGroupTeacher);
+
+
+
+
+        model.addAttribute("notInGroupTeachers", notInThisGroupTeacher);
 
         //todo remove unnecessary commentaries
 
