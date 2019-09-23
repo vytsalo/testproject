@@ -37,6 +37,9 @@ public class GroupController {
         model.addAttribute("groups",groupService.getGroupsList());
         return "groups/list-groups";
     }
+    //TODO сделать хешсетом а не арейлистом
+
+
 
     //todo если гетлист нулл то ретурт гет тичерслист
     @GetMapping("/add")
@@ -129,24 +132,20 @@ public class GroupController {
                 //Юзать это
                 Group dbGroup = groupService.findById(idGroup);
 
-                //список преподов которые есть в базе
-
-                /* прямо здесь сделать выборку из того что есть
-                *  совпадения + список групп
-                *  */
-
                 List<Teacher> allDBTeachers = dbGroup.getTeachers();
 
                 List<Teacher> teachersThisGroup = newGroup.getTeachers();
 
                 List<Teacher> allTeacherDatabase = teacherService.getTeachersList();
 
+                //todo error in processform while sending the model
+                //todo fix operations
+
                 Teacher tempT;
-                List<Group> grT = new ArrayList<>();
+                List<Group> grT = new ArrayList<>();// --
 
                 //todo проблема в методах add?
                 //удаление преподов
-
 
                 //удаляем эту группу у преподов, которые были там раньше но сейчас нет
                 for (int i = 0; i < allDBTeachers.size(); i++) {
@@ -240,6 +239,28 @@ public class GroupController {
                 System.out.println(newGroup);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 //Студенты, которые сейчас есть в базе
                 List<Student> serviceStudents = groupService.findById(newGroup.getId()).getStudents();
 
@@ -277,6 +298,9 @@ public class GroupController {
 
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
+    //не понятно, от чего зависит
+    //только одни данные заполняются - все норм
+    //два - сразу, или через какое - то время начинается дублирование инфы, добавляется повторно
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
@@ -336,6 +360,10 @@ public class GroupController {
 
 
 
+
+//После добавления преподавателей или студентов, все умножается. Если что-то одно, то норм
+//на груплист отображается норм, а там нет
+//после редактирования и отправки и студентов и преподов, получается вот это
 
 
 
