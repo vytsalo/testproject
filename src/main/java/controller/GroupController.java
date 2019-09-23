@@ -21,6 +21,8 @@ import java.util.*;
 @RequestMapping("/groups")
 public class GroupController {
 
+    //todo загрузка логов и конфигов сразу
+
     @Autowired
     private GroupService groupService;
 
@@ -83,51 +85,35 @@ public class GroupController {
                 //добавляем в базу новую группу, чтобы получить id
                 groupService.add(newGroup);
 
-                //todo загрузка логов и конфигов сразу
+                //группы не добавляет, просто взять группы из старой базы и добавить к ним
+
                 //Назначаем всем студентам группу
-
-
+                Student tempStudent;
                 for (int i = 0; i < studentsThisGroup.size(); i++) {
-                    studentsThisGroup.get(i).setGruppa(newGroup);
-                    studentService.update(studentsThisGroup.get(i));
+                    tempStudent = studentsThisGroup.get(i);
+                    tempStudent.setGruppa(newGroup);
+                    studentService.update(tempStudent);
                 }
 
-            /*    studentsThisGroup.forEach(student -> {
-                   student.setGruppa(newGroup);
-                    //мб из-за этого?
-                   studentService.update(student);
-                });*/
-
-               /* //Добавляем всем преподавателям эту группу
-                teachersThisGroup.forEach(teacher -> {
-                    //if (!(teacher.getGroups().contains(newGroup)))
-                    teacher.addGroup(newGroup);
-                    teacherService.update(teacher);
-                });*/
 
 
-               //TODO ПРЕПОДОВ ДОБАВЛЯЕТ 2 РАЗА СТУДЕНТОВ 3 РАЗА
+                //у каждого студента, которого передали берем айди и находим в базе список его групп
+                //
+
+                List<Group> tempListGroups;
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
-                    for (int j = 0; j < teachersThisGroup.get(i).getGroups().size(); j++) {
-                       // if (!(teachersThisGroup.get(i).getGroups().get(j).getId().equals(newGroup.getId()))) {
-
-                            //if (!(teachersThisGroup.get(i).getGroups().contains(newGroup))) {
-                                teachersThisGroup.get(i).addGroup(newGroup);
-                                teacherService.update(teachersThisGroup.get(i));
-                           // }
-                        }
-                    }
-
-
-
-
-                //todo если добавляет то по 2 раза, а если пусто не добавляет вовсе
+                    //получили группы, которые есть у преподавателя
+                    tempListGroups = teacherService.findById(teachersThisGroup.get(i).getId()).getGroups();
+                    //проверку сделать если контейнс
+                    tempListGroups.add(newGroup);
+                    teachersThisGroup.get(i).setGroups(new ArrayList<>(tempListGroups));
+                    teacherService.update(teachersThisGroup.get(i));
+                }
 
                 //Добавляем студентов и преподавателей в эту группу
                 newGroup.setStudents(studentsThisGroup);
 
                 newGroup.setTeachers(teachersThisGroup);
-
 
                 groupService.update(newGroup);
 

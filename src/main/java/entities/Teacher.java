@@ -38,7 +38,7 @@ public class Teacher extends Human implements Serializable {
         //по id сравнивать?
         //просто добавить, а проверять по факту
         //if (!(this.getGroups().contains(group))){
-            if (!(this.contains(group)))
+            if (!(this.groups.contains(group)))
             groups.add(group);
       //}
 
