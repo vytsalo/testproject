@@ -92,12 +92,10 @@
                             <form:hidden path="teachers[${tagStatus.index}].otch" value="${tcsList.otch}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].date_of_birth" value="${tcsList.date_of_birth}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].phone_number" value="${tcsList.phone_number}" class = "jstlTeachersSending" />
-                   	
-					
-						
-						
-                            <div>${tcsList.id}</div>
-                            </td>
+                   		
+								${tcsList.id}
+							
+							</td>
 
                             <td>${tcsList.fam}</td>
                             <td>${tcsList.name}</td>
@@ -147,16 +145,15 @@
   
   <tbody>
 		
-	<c:forEach items="${notInGroupTeachers}" var="tsList" varStatus="tagStatus">
+	<c:forEach items="${notInGroupTeachers}" var="tsList">
 
 	<!-- поменять класс и добавить путь  -->
 	<tr>
          <td>
-		 
 		       <input type = "hidden" value= "${tsList.id}" class = "jstlTeachersExisting"/>
-				<input type = "hidden" value= "${tsList.name}" class = "jstlTeachersExisting"/>
+			   <input type = "hidden" value= "${tsList.name}" class = "jstlTeachersExisting"/>
 		 		
-		<input type = "hidden" value= "${tsList.fam}" class = "jstlTeachersExisting"/>		   
+			   <input type = "hidden" value= "${tsList.fam}" class = "jstlTeachersExisting"/>		   
 		  
 		       <input type = "hidden" value= "${tsList.otch}" class = "jstlTeachersExisting"/>
 		       <input type = "hidden" value= "${tsList.date_of_birth}" class = "jstlTeachersExisting"/>
@@ -229,13 +226,9 @@
                             <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
 
                             <div>${stdList.id}</div>
-                            </td>
+							
+							</td>
 
-                            <!-- js переделать формирование страницы
-                             переписать код страницы
-                             -->
-
-                            <!-- /HIDDENS  -->
 
                             <td>${stdList.fam}</td>
                             <td>${stdList.name}</td>

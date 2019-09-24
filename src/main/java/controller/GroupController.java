@@ -316,8 +316,7 @@ public class GroupController {
         model.addAttribute("groups", groupService.getGroupsList());
 
 
-
-
+        //TODO view error fix
 
         List<Teacher> allTeachersList = teacherService.getTeachersList();
 
@@ -343,19 +342,6 @@ public class GroupController {
         }
 
         model.addAttribute("notInGroupTeachers", notInThisGroupTeacher);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

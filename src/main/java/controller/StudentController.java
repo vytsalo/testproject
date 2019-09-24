@@ -99,7 +99,21 @@ public class StudentController {
 
                         if (newStudent.getId() == null){
                             //добавляем нового студента
+
+                            Group tempGroup = groupService.findById(newStudent.getGruppa().getId());
+
+                            newStudent.setGruppa(null);
+
                             studentService.add(newStudent);
+
+
+                            tempGroup.addStudent(newStudent);
+
+                            newStudent.setGruppa(tempGroup);
+
+                            studentService.update(newStudent);
+
+
                         }
                         else
                             studentService.update(newStudent);

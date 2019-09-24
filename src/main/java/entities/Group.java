@@ -114,11 +114,28 @@ public class Group implements Serializable {
     }
 
 
+    //с сервисами работать?
     //удаляем студента из группы
     public void deleteStudent(Student student){
-        if (students.contains(student)) {
-            students.remove(student);
+        //не работает
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId().equals(student.getId())){
+                students.remove(i);
+                return;
+            }
         }
+
+
+/*
+        students.forEach(tempSTD -> {
+            if (tempSTD.getId().equals(student.getId()){
+                students.remove(tempSTD);
+                return;
+            }
+        });*/
+
+
+
     }
 
         //говеный метод
