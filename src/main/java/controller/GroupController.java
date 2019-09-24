@@ -273,7 +273,7 @@ public class GroupController {
                 //Если студент был удален из группы, ставим ему группу нулл
                 for (int i = 0; i < serviceStudents.size(); i++) {
                     //temp тут чтоб короче
-                    if (!modelStudents.contains(serviceStudents.get(i))) {
+                    if (!(modelStudents.contains(serviceStudents.get(i)))) {
                         temp = serviceStudents.get(i);
                         temp.setGruppa(null);
                         studentService.update(temp);
@@ -310,6 +310,9 @@ public class GroupController {
         Group group = groupService.findById(Id);
 
         //При редактировании с 0 групп и 0 преподов выводит тоже нули
+
+        //добавляет в базу 1 студента, а выводит 2 в модели
+        //в бд тоже 2 через groupService.findById(new Long(651))
 
         model.addAttribute("group", group);
         model.addAttribute("update", true);

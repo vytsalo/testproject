@@ -116,6 +116,7 @@ public class Group implements Serializable {
 
     //с сервисами работать?
     //удаляем студента из группы
+    //удаляет из списка но не удаляет из базы
     public void deleteStudent(Student student){
         //не работает
         for (int i = 0; i < students.size(); i++) {
