@@ -118,8 +118,6 @@
                 </thead>
                 <tbody>
 
-
-
                     <c:forEach items="${teacher.groups}" var="tcsList" varStatus="tagStatus">
 
 
@@ -128,7 +126,7 @@
 
 
                             <springForm:hidden path="groups[${tagStatus.index}].id" value="${tcsList.id}" class = "jstlGroupsSending" />
-    
+                            
                             <div>${tcsList.id}</div>
 							
 							</td>
@@ -137,13 +135,7 @@
                             <td>${tcsList.title}</td>
                             <td><a href = "#" onclick = "addRow(this,'existingGroups'); rewriteHTML(); ">Удалить</a></td>
 
-					
-
-
-
                         </tr>
-
-
 
                     </c:forEach>
 

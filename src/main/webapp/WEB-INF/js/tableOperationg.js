@@ -51,7 +51,7 @@ function rewriteHTML(){
 		//почему пропускает через 1
 			    for (var j = 0; j < inputs.length; j++) {
 				
-				inputs[j].setAttribute("name","teachers[" + Math.floor(j/2) + "]." + fields[j % 2]);
+				inputs[j].setAttribute("name","groups[" + j + "].id");
 			
    }
                 //перед нажатием на пост

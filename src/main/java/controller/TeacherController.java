@@ -62,12 +62,10 @@ public class TeacherController {
         } else {
 
             if (newTeacher.getId() == null){
-                //не цепляет группы
-
                 //взять те, что есть в базе и добавить
-                List <Group> thisGroupsList = newTeacher.getGroups();
+             //   List <Group> thisGroupsList = newTeacher.getGroups();
 
-                newTeacher.setGroups(new ArrayList<>(Collections.EMPTY_LIST));
+              //  newTeacher.setGroups(new ArrayList<>(Collections.EMPTY_LIST));
 
                 teacherService.add(newTeacher);
             }
@@ -111,10 +109,8 @@ public class TeacherController {
         dateFormat.setLenient(true);
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
 
-
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
 
-        //dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupListEditor(groupService));
 
     }
 
