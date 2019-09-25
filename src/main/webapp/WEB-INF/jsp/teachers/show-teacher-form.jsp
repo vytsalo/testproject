@@ -22,7 +22,7 @@
         <!-- Подключение методов обработки полей -->
         <script src="<c:url value="\js\mask.js" />"></script>
         <!-- Операции с таблицами -->
-        <script src="<c:url value="\js\tableOperations.js" />"></script>
+        <script src="<c:url value="\js\tableOperationg.js" />"></script>
 
 
         <title>Добавление/обновление преподавателя</title>
@@ -102,80 +102,153 @@
                     <springForm:errors path="phone_number" cssClass="error" /> <!-- cssClass="error" -->
                 </p>
 
+
                 <p>
 
-                    <label for="group">Группы</label>
+                    <label for="group">Группы:</label>
+
+
+                <table border = "1 px solid" id="groupsTable">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    <c:forEach items="${teacher.groups}" var="tcsList" varStatus="tagStatus">
+
+
+                        <tr>
+                            <td>
+
+
+                            <springForm:hidden path="groups[${tagStatus.index}].id" value="${tcsList.id}" class = "jstlGroupsSending" />
+    
+                            <div>${tcsList.id}</div>
+							
+							</td>
+
+
+                            <td>${tcsList.title}</td>
+                            <td><a href = "#" onclick = "addRow(this,'existingGroups'); rewriteHTML(); ">Удалить</a></td>
+
+					
+
+
+
+                        </tr>
+
+
+
+                    </c:forEach>
 
 
 
 
-                    <!-- -readonly for working validation -->
-                   <input type="text" id="group" readonly
-                        onclick = "$('#addGroupWindow').modal('show'); return false;"
-                        style="cursor: pointer; vertical-align: 65px;"
-                        minlength="2" maxlength="35" required
-                    />
+                </tbody>
 
-
-                           	<img src="<c:url value="\images\cross.png" />"
-                                       	style="cursor: pointer; vertical-align: 40px; visibility: hidden;"
-                                       	    onclick="
-                                       	    document.getElementById('group').value='';
-                                       	    document.getElementById('groupId').value='';
-                                       	    document.getElementById('deleteGroup').style.visibility = 'hidden';
-                                       	    return false;"
-                                       	alt="" id = "deleteGroup" />
-
-
-<!--
-                    <!-- Само модальное окно -->
-                    <div id="<c:out value="addGroupWindow"/>" class="modal">
-                      <h4>Список групп:</h4>
-
-                              <center>
-
-                                  <table id="mytable" cellspacing="5" border="1">
-                                      <thead>
-                                  	    <tr>
-                                           <th>#ID</th>
-                                           <th>Название</th>
-                                           <th></th>
-                                     	</tr>
-                                  	  </thead>
-
-
-                                    <tbody>
+                </table>
 
 
 
-                      <c:forEach items="${groups}" var="lost">
-                                		<tr>
-                                          <td><c:out value="${lost.id}"/></td>
-                                          <td><c:out value="${lost.title}"/></td>
-                                          <td>
-
-                               <td>
-
-                               <a href = "#" onclick = "setGroup(this)" >Добавить</a>
-
-                               </td>
-
-                                          </td>
-                                      </tr>
-                      </c:forEach>
-
-                                    </tbody>
-
-                                  </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-                      </center>
 
 
-                    </div>
--->
 
-<!-- в хайдден передать id студента в группе? -->
+
+
+
+
 
                 </p>
+
+
+
+
+
+
+
+
+
+   <p>
+
+                    <label for="groups">Существующие группы:</label>
+
+
+                <table border = "1 px solid" id="existingGroups">
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    <c:forEach items="${groups}" var="grsList" varStatus="dugStatus">
+
+
+                        <tr>
+                            <td>
+								
+								
+								<!-- //// -->
+
+                            <input type = "hidden" value="${grsList.id}" class = "jstlGroupsExisting" />
+                            
+                            <div>${grsList.id}</div>
+							
+							</td>
+
+
+                            <td>${grsList.title}</td>
+                            <td>
+							
+							<a href="#" onclick="addRow(this,'groupsTable'); classChange(); rewriteHTML();">Добавить</a>
+							
+							</td>
+
+
+
+
+
+                        </tr>
+
+
+
+                    </c:forEach>
+
+
+
+
+                </tbody>
+
+                </table>
+
+
+
+
+
+
+
+
+
+
+
+                </p>
+
+
+
+
+
+
+
 
                 <p>
                    <input type="submit" id="submit" value="Отправить" />

@@ -49,6 +49,7 @@
          <th>Отчество</th>
          <th>Дата рождения</th>
          <th>Телефон</th>
+         <th>Список групп</th>
          <th>Действия</th>
    		</tr>
 	  </thead>
@@ -61,6 +62,18 @@
           <td><c:out value="${list.otch}"/></td>
           <td><c:out value="${list.date_of_birth}"/></td>
           <td><c:out value="${list.phone_number}"/></td>
+		  <td>
+		  
+		  <c:forEach items="${list.groups}" var="gslist">
+			  <a href = "<c:out value="http://localhost:8082/groups/update/${gslist.id}"/>" >
+				${gslist.title}
+			  </a></br>
+          
+		  </c:forEach>
+		  
+		  
+		  
+		  </td>
           <td>
 
 

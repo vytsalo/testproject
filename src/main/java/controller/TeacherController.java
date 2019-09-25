@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Group;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -13,7 +14,10 @@ import service.TeacherService;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/teachers")
@@ -58,6 +62,13 @@ public class TeacherController {
         } else {
 
             if (newTeacher.getId() == null){
+                //не цепляет группы
+
+                //взять те, что есть в базе и добавить
+                List <Group> thisGroupsList = newTeacher.getGroups();
+
+                newTeacher.setGroups(new ArrayList<>(Collections.EMPTY_LIST));
+
                 teacherService.add(newTeacher);
             }
             else {
@@ -99,6 +110,9 @@ public class TeacherController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(true);
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
+
+
+        dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
 
         //dataBinder.registerCustomEditor(Group.class, "gruppa", new GroupListEditor(groupService));
 
