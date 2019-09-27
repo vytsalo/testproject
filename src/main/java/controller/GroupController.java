@@ -14,6 +14,7 @@ import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
 
+import javax.faces.view.facelets.FaceletContext;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -316,9 +317,48 @@ public class GroupController {
         model.addAttribute("update", true);
         model.addAttribute("groups", groupService.getGroupsList());
 
-        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 
-        model.addAttribute("notInGroupStudents", studentService.getStudentsList());
+        List<Teacher> allTeachers = teacherService.getTeachersList();
+        allTeachers.removeAll(group.getTeachers());
+
+        //не работает
+        List<Student> allStudents = studentService.getStudentsList();
+        List<Student> thisGroupStudents = group.getStudents();
+
+        int asSize = allStudents.size();
+        //int tgsSize = thisGroupStudents.size();
+
+        for (int i = 0; i < asSize; i++) {
+            for (int j = 0; j < thisGroupStudents.size(); j++) {
+                if ((allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId()))){
+                    asSize--;
+                    allStudents.remove(i);
+                }
+            }
+        }
+
+        //try lambdas several actions lambda foreach
+      /*  for (int i = 0; i < asSize; i++) {
+            thisGroupStudents.stream()
+                    .filter(tgs -> tgs.getId().equals(allStudents.get(i)))
+                    .forEach(
+                            asSize--;
+                            allStudents.remove(i);
+                            )
+        }*/
+
+
+
+
+        /*
+        numberList.stream()
+                .filter(i -> i % 2 == 0)
+                .forEach(System.out::println);*/
+
+
+
+        model.addAttribute("notInGroupTeachers", allTeachers);
+        model.addAttribute("notInGroupStudents", allStudents);
 
         //todo remove unnecessary commentaries
 

@@ -98,7 +98,7 @@ public class Teacher extends Human implements Serializable {
     }
 
 
-    public boolean contains(Group group){
+  /*  public boolean contains(Group group){
         List<Group> temp = this.getGroups();
 
         for (int i = 0; i < temp.size(); i++) {
@@ -109,5 +109,5 @@ public class Teacher extends Human implements Serializable {
             }
         }
         return false;
-    }
+    }*/
 }
