@@ -296,6 +296,7 @@ public class GroupController {
         }
     }
 
+    //TODO баг из -за связей 1 к мени и мени ту мени, проверить не увеличиваются ли они еще при передаче
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
     //не понятно, от чего зависит
@@ -304,101 +305,24 @@ public class GroupController {
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
-        //с самого начала отправляет два экземпляра(JSTL FIX)?
         //todo добавить только тех преподов, которых нет в группе
-        //todo два раза добавляет из-за апдейта?
         Group group = groupService.findById(Id);
 
-        //При редактировании с 0 групп и 0 преподов выводит тоже нули
 
-        //добавляет в базу 1 студента, а выводит 2 в модели
-        //в бд тоже 2 через groupService.findById(new Long(651))
+        group.setTeachers(new ArrayList<>(new HashSet<>(group.getTeachers())));
+        group.setStudents(new ArrayList<>(new HashSet<>(group.getStudents())));
 
         model.addAttribute("group", group);
         model.addAttribute("update", true);
         model.addAttribute("groups", groupService.getGroupsList());
 
+        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
 
-        //TODO view error fix
-
-        List<Teacher> allTeachersList = teacherService.getTeachersList();
-
-        List<Teacher> thisGroupTeachersList = group.getTeachers();
-        List<Teacher> notInThisGroupTeacher = new ArrayList<>();
-
-        if (thisGroupTeachersList.size()==0) {notInThisGroupTeacher = allTeachersList;}
-        else {
-
-            int tmpSize = thisGroupTeachersList.size();
-
-            //просто ремувами
-            for (int i = 0; i < allTeachersList.size(); i++) {
-
-                for (int j = 0; j < tmpSize; j++) {
-
-                    if (!(allTeachersList.get(i).getId().equals(thisGroupTeachersList.get(j).getId()))) {
-                        notInThisGroupTeacher.add(allTeachersList.get(i));
-                    }
-                    break;
-                }
-            }
-        }
-
-        model.addAttribute("notInGroupTeachers", notInThisGroupTeacher);
-
-
-
-
-
-//После добавления преподавателей или студентов, все умножается. Если что-то одно, то норм
-//на груплист отображается норм, а там нет
-//после редактирования и отправки и студентов и преподов, получается вот это
-
-
-
-
-        //3 раза один и тот же студент. пофиксить?
-
-        /* Выбираем студентов, которых нет в группе */
-        List<Student> allStudents = studentService.getStudentsList();
-        List<Student> thisGroupStudents = group.getStudents();
-
-
-   /*     for (int i = 0; i < allStudents.size(); i++) {
-            for (int j = 0; j < thisGroupStudents.size(); j++) {
-                if (allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId()))
-                    allStudents.remove(i);
-            }
-        }*/
-
-    allStudents.removeAll(thisGroupStudents);
-
-
-       System.out.println(allStudents);
-        /*
-       //если id равны то ремув из списка
-      int tempSize = thisGroupStudents.size();
-        int tempSise = allStudents.size();
-        for (int i = 0; i < tempSise; i++) {
-            for (int j = 0; j < tempSize; j++) {
-                if(allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId())) {
-                    allStudents.remove(allStudents.get(i));
-                    tempSize--;
-                    tempSise--;
-
-                }
-            }
-        }*/
-
-        //убрать проверку
-        //if (!(allStudents.equals(null)))
-            model.addAttribute("notInGroupStudents", allStudents);
-
+        model.addAttribute("notInGroupStudents", studentService.getStudentsList());
 
         //todo remove unnecessary commentaries
 
         return "groups/show-group-form";
-
     }
 
     @GetMapping("/delete/{Id}")
