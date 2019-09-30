@@ -12,7 +12,6 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@SuppressWarnings("unused")
 public class GroupDaoImpl implements GroupDao {
 
     @PersistenceContext
@@ -52,9 +51,6 @@ public class GroupDaoImpl implements GroupDao {
         else throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
     }
 
-
-    public void addStudent(Student student){
-
-    }
+    public void addStudent(Student student){}
 
 }

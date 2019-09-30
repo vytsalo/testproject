@@ -15,18 +15,6 @@ import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/*
-Вьюхи:
-    Главная: список всех групп
-    Группы:
-        Группа 1 - список преподавателей и студентов
-        Группа 2 - список преподавателей и студентов
-        Группа 3 - список преподавателей и студентов
-*/
-
-
-//todo add custom security login page
-//todo сортировка таблицы по id при загрузке страницы
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -40,57 +28,28 @@ public class StudentController {
     @GetMapping("/")//"","/"
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getStudentsList());
-        return "students/list-students";//вьюшка students.jsp
+        return "students/list-students";//вьюшка list-students.jsp
     }
 
     @GetMapping("/add")
     public String addStudent(Model model){
-        //добавить список групп
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("student", new Student());
-
         //добавляем группы
         model.addAttribute("groups", groupService.getGroupsList());
-
         return "students/show-student-form";
-
     }
 
-    /*
-
-    форматирование даты. при выводе всей инфы - переводится в нормальный формат,
-    а как сделать в сеттерах - геттерах
-    разница между ModelAndView и String - контроллером
-    в каком формате данные передаются
-    */
-
-
-
-    //todo phone input text to tel to get ride of js masks
-    //todo spring security database user accounts
-
-    /**
-     *
-     * @param model
-     * @param newStudent
-     * @param result
-     * @return
-     */
-    @PostMapping("/processform")//valid
+    @PostMapping("/processform")
     public String processStudentForm(Model model, @Valid @ModelAttribute("student") Student newStudent, BindingResult result){
 
-        //https://developer.mozilla.org/ru/docs/Web/HTML/Element/Input/tel
-        //http://programmerbook.ru/html/input/type/tel/
-        //todo use or not html5 features like tel field
-
+        //Если есть ошибки при валидации
         if (result.hasErrors()){
 
-            //в один метод упрятать
+                    //выводим все ошибки
                     System.out.println(result.getAllErrors());
 
-                    //Если есть ошибки - ничего не делать
-                        //Если есть ошибки - добавляем то, что есть
-                        //и перезагружаем форму
+                        //добавляем то, что есть, и перезагружаем форму
 
                         model.addAttribute("student", newStudent);
                         return "students/show-student-form";
@@ -113,13 +72,9 @@ public class StudentController {
 
                             studentService.update(newStudent);
 
-
                         }
                         else
                             studentService.update(newStudent);
-
-                        //todo white errors loading while loading logs
-
 
             /* STUDENT TO GROUP*/
 
@@ -142,23 +97,20 @@ public class StudentController {
                 }
     }
 
-
     //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
     public String updateStudent(Model model,@PathVariable Long Id){
 
+        //находим студента по ID
         Student student = studentService.findById(Id);
 
         model.addAttribute("student", student);
 
-        //Избавиться и в jsp юзать
         model.addAttribute("update", true);
 
         //добавляем группы
         model.addAttribute("groups", groupService.getGroupsList());
 
-        //        return "redirect:/viewemp";//will redirect to viewemp request mapping
-        //        return "forward:/" - проброс
         return "students/show-student-form";
 
     }
@@ -171,12 +123,11 @@ public class StudentController {
         return "redirect:/students/";
     }
 
-    //todo make a ModelandView name (difference between)
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         //строгий формат - false, нестрогий, который будет разбирать - true
-        dateFormat.setLenient(true);//false;
+        dateFormat.setLenient(true);
         /*
         1) создаем поле в сущности с определенным классом - тип поля
         2) как называется поле
@@ -187,8 +138,6 @@ public class StudentController {
         dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
-
     }
 
-    //todo remove useless commentaries
 }

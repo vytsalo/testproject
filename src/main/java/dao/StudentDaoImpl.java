@@ -9,7 +9,6 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-@SuppressWarnings("unused")
 public class StudentDaoImpl implements StudentDao{
 
     @PersistenceContext
@@ -27,7 +26,6 @@ public class StudentDaoImpl implements StudentDao{
         return em.createQuery(criteriaQuery).getResultList();
     }
 
-
     @Override
     public void update(Student student){
         em.merge(student);
@@ -39,18 +37,6 @@ public class StudentDaoImpl implements StudentDao{
         if (student==null)
             throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
         return student;
-    }
-
-
-
-
-    public Student findBySomething(String someStr){
-            // ищет по всем полям совпадения, если есть выводит, исключить повторки?
-
-        //нечувствителен к регистру
-        //несколько символов - строка - несколько символов
-
-        return new Student();
     }
 
     @Override

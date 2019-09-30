@@ -29,27 +29,21 @@ public class TeacherController {
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/")//"","/"
+    @GetMapping("/")
     public String listTeachers(Model model){
         model.addAttribute("teachers",teacherService.getTeachersList());
-        return "teachers/list-teachers";//вьюшка teachers.jsp
+        return "teachers/list-teachers";
     }
 
     @GetMapping("/add")
     public String addTeacher(Model model){
-        //добавить список групп
-        //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("teacher", new Teacher());
-
-        //добавляем группы
         model.addAttribute("groups", groupService.getGroupsList());
-
         return "teachers/show-teacher-form";
 
     }
 
-
-    @PostMapping("/processform")//valid
+    @PostMapping("/processform")
     public String processTeacherForm(Model model, @Valid @ModelAttribute("teacher") Teacher newTeacher, BindingResult result){
 
         if (result.hasErrors()){
@@ -62,10 +56,6 @@ public class TeacherController {
         } else {
 
             if (newTeacher.getId() == null){
-                //взять те, что есть в базе и добавить
-             //   List <Group> thisGroupsList = newTeacher.getGroups();
-
-              //  newTeacher.setGroups(new ArrayList<>(Collections.EMPTY_LIST));
 
                 teacherService.add(newTeacher);
             }
@@ -86,7 +76,7 @@ public class TeacherController {
 
         model.addAttribute("teacher", teacher);
 
-        //isUpdate
+        //isUpdate marker
         model.addAttribute("update", true);
 
         model.addAttribute("groups", groupService.getGroupsList());
@@ -102,7 +92,6 @@ public class TeacherController {
         return "redirect:/teachers/";
     }
 
-    //todo make a ModelandView name (difference between)
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -110,8 +99,6 @@ public class TeacherController {
         dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
 
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
-
-
     }
 
 }

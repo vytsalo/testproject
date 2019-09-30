@@ -1,12 +1,6 @@
 package entities;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -14,9 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//груп переименовать - зарезервированное и отовсюду убрать
-//зарезервированное в таблице
-//сделать рефактор gruppa - group
 @Table(name="gruppa")
 @SuppressWarnings("unused")
 public class Group implements Serializable {
@@ -31,7 +22,7 @@ public class Group implements Serializable {
         this.title = title;
     }
 
-    //объектный тип ID сделать
+    //объектный тип ID
     @Id
     @Column(name="group_id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -45,22 +36,12 @@ public class Group implements Serializable {
 
     //Список преподавателей в этой группе
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
-    //Ленивую инициализацию сделать в каком-то из классов, чтобы не было бесконечной инициализации
-    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)//, fetch=FetchType.EAGER)
-    //@Cascade({org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.SAVE_UPDATE})
-    //persist
-    //new
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private List<Teacher> teachers = new ArrayList<>();
 
-    //group - из другой таблицы
+    //gruppa - из другой таблицы
     //мапедбай - переменная из другого класса
-
-    //должен быть персист
-
-
     @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-
-
     private List<Student> students = new ArrayList<>();
 
     @Override
@@ -104,7 +85,6 @@ public class Group implements Serializable {
         this.students = students;
     }
 
-
     //добавляем студента в список
     public void addStudent(Student student){
         //если список не содержит студента, то добавляем его
@@ -113,73 +93,6 @@ public class Group implements Serializable {
         }
     }
 
-
-    //с сервисами работать?
-    //удаляем студента из группы
-    //удаляет из списка но не удаляет из базы
-    public void deleteStudent(Student student){
-        //не работает
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).getId().equals(student.getId())){
-                students.remove(i);
-                return;
-            }
-        }
-
-
-/*
-        students.forEach(tempSTD -> {
-            if (tempSTD.getId().equals(student.getId()){
-                students.remove(tempSTD);
-                return;
-            }
-        });*/
-
-
-    }
-
-        //говеный метод
-        @Deprecated
-        //добавляем преподавателя в список
-        public void addTeacher(Teacher teacher){
-        //если список не содержит, то добавляем его
-        if (!(this.getTeachers().contains(teacher))){
-            teachers.add(teacher);
-            }
-        }
-
-        //удаляем преподавателя из списка
-        public void deleteTeacher(Teacher teacher) {
-            //вручную
-            //потестить. удаляет ли?
-
-            for (int i = 0; i < teachers.size(); i++) {
-
-
-                if (teacher.getId().equals(teachers.get(i).getId())) {
-                    teachers.remove(i);
-                }
-
-            }
-        }
-
-        public void putStudentsIntoGroup(List<Student> students, Group group){
-
-            for (int i = 0; i < students.size(); i++) {
-                students.get(i).setGruppa(group);
-            }
-    }
-
-        public static boolean gontainz(Teacher teacher, List<Teacher> teachers){
-                for (int i = 0; i < teachers.size(); i++) {
-
-                if (teacher.getId().equals(teachers.get(i).getId()))// equals
-                    return true;
-            }
-            return false;
-        }
-
-    @SuppressWarnings("unused")
     public Group() {}
 
     public Group(Long id, String title, List<Teacher> teachers, List<Student> students) {
@@ -189,9 +102,7 @@ public class Group implements Serializable {
         this.students = students;
     }
 
-    //equals по id
-
-
+    //EQUALS по ID
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -14,16 +14,12 @@ public class Student extends Human implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    //каскад тайп персист
     //Группа, в которой учится студент
-    //, cascade = CascadeType.MERGE
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})//-fetch ЛЕЗИ? ,cascade = CascadeType.ALL
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     //главное управляющее поле, все делается через него, а потом уже через группу
     private Group gruppa;
 
-    //new PersistentList()
-    @SuppressWarnings("unused")
     public Student() {}
 
     public Student(String fam, String name, String otch, Date date_of_birth, String phone_number, Group gruppa) {
@@ -56,9 +52,7 @@ public class Student extends Human implements Serializable {
         this.gruppa = gruppa;
     }
 
-    //getid
     //сравнивает по id
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -21,7 +21,6 @@ public class StudentServiceImpl implements StudentService {
         st_dao.add(student);
     }
 
-    //зачем дополнительно прописывать ридонли, если оно и так ридонли?
     @Transactional(readOnly = true)
     @Override
     public List<Student> getStudentsList(){

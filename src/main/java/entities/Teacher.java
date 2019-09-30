@@ -1,7 +1,5 @@
 package entities;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,28 +33,21 @@ public class Teacher extends Human implements Serializable {
 
     //добавляем группу в список
     public void addGroup(Group group){
-        //по id сравнивать?
-        //просто добавить, а проверять по факту
-        //if (!(this.getGroups().contains(group))){
-            if (!(this.groups.contains(group)))
-            groups.add(group);
-      //}
 
+            if (!(this.groups.contains(group))){
+                groups.add(group);
+            }
     }
 
     //удаляем группу из списка
-    //сделать по id
+    //сделать по id?
     public void removeGroup(Group group){
         //если содержит группу, то удаляем ее
-        //if (groups.contains(group))
-
         for (int i = 0; i < groups.size(); i++) {
             if (groups.get(i).getId().equals(group.getId()))
-                groups.remove(i);//groupservice.findById(id)
+                groups.remove(i);
         }
-        //+тичера из группы
     }
-
 
     public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number, ArrayList<Group> groups) {
         super(fam, name, otch, date_of_birth, phone_number);
@@ -85,10 +76,6 @@ public class Teacher extends Human implements Serializable {
 
     public Teacher(){}
 
-
-
-    //equal не поломает ли все
-    //сравниваем только id
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,18 +83,4 @@ public class Teacher extends Human implements Serializable {
         Teacher that = (Teacher) o;
         return this.getId().equals(that.getId());
     }
-
-
-  /*  public boolean contains(Group group){
-        List<Group> temp = this.getGroups();
-
-        for (int i = 0; i < temp.size(); i++) {
-            if (temp.get(i).getId().equals(group.getId())){
-
-                return true;
-
-            }
-        }
-        return false;
-    }*/
 }

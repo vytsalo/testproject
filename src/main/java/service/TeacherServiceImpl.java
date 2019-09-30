@@ -9,11 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@SuppressWarnings("unused")
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    //екземпляр интерфейса!
+    //Экземпляр интерфейса
     private TeacherDao teach_dao;
 
     @Transactional
@@ -28,7 +27,6 @@ public class TeacherServiceImpl implements TeacherService {
         return teach_dao.getTeachersList();
     }
 
-    //добавить поиск по сущности
     @Override
     @Transactional
     public void update(Teacher teacher) {

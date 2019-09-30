@@ -23,7 +23,6 @@ import java.util.*;
 public class GroupController {
 
     //todo загрузка логов и конфигов сразу
-
     @Autowired
     private GroupService groupService;
 
@@ -38,8 +37,6 @@ public class GroupController {
         model.addAttribute("groups",groupService.getGroupsList());
         return "groups/list-groups";
     }
-
-
 
     //todo если гетлист нулл то ретурт гет тичерслист
     @GetMapping("/add")
@@ -85,8 +82,6 @@ public class GroupController {
                 //добавляем в базу новую группу, чтобы получить id
                 groupService.add(newGroup);
 
-                //группы не добавляет, просто взять группы из старой базы и добавить к ним
-
                 //Назначаем всем студентам группу
                 Student tempStudent;
                 for (int i = 0; i < studentsThisGroup.size(); i++) {
@@ -95,8 +90,8 @@ public class GroupController {
                     studentService.update(tempStudent);
                 }
 
-              //у каждого студента, которого передали берем айди и находим в базе список его групп
 
+              //у каждого студента, которого передали берем айди и находим в базе список его групп
                 List<Group> tempListGroups;
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
                     //получили группы, которые есть у преподавателя
@@ -142,9 +137,7 @@ public class GroupController {
                 //todo fix operations
 
                 Teacher tempT;
-                List<Group> grT = new ArrayList<>();// --
-
-                //удаление преподов
+                List<Group> grT = new ArrayList<>();//--
 
                 //удаляем эту группу у преподов, которые были там раньше но сейчас нет
                 for (int i = 0; i < allDBTeachers.size(); i++) {
@@ -155,8 +148,6 @@ public class GroupController {
                 System.out.println(allDBTeachers);
 
                 //todo поиск куда надо
-
-                //тут ошибка при добавлении преподов в группу умножаются неудаленные
 
                 //добавляем преподавателей в группы
                 if (teachersThisGroup.size()!=0) {
@@ -171,47 +162,17 @@ public class GroupController {
                                 grT.add(newGroup);
                                 tempT.setGroups(new ArrayList<>(grT));
                                 teachersThisGroup.set(j,tempT);
-                                //teachersThisGroup.add(allTeacherDatabase.get(i));
                             }
                         }
                     }
                 }
 
-                //потом добавляем текущую группу
-
-
-                System.out.println(teachersThisGroup);
-                //найти по айди и засетить группы
-
-/*
-
-                if (allDBTeachers.size()!=0) {
-                    for (int i = 0; i < allDBTeachers.size(); i++) {
-                        for (int j = 0; j < modelTeacher.size(); j++) {
-                            if (allDBTeachers.get(i).getId().equals(modelTeacher.get(j).getId())) {
-                                teachersThisGroup.add(allDBTeachers.get(i));
-
-                            }
-                        }
-                    }
-                }*/
-                System.out.println(teachersThisGroup);
-
-
- // newGroup.getTeachers();
-
-
                 //получаем преподавателей для удаления из них группы
                 allDBTeachers.removeAll(teachersThisGroup);
 
-
                 Teacher tempTeacher;
 
-
-                //на этом моменте уже группы 2!
-
                 //todo перенести update на конец
-
                 //проходимся по преподавателям в модели и добавляем им группу
                 //обновляем преподавателей
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
@@ -220,45 +181,12 @@ public class GroupController {
                     teacherService.update(tempTeacher);
                 }
 
-
                 /* преподавателей тоже добавить в группу и группу в преподавателей*/
-
 
                 //находим группу, ставим ей преподов и обновляем
                 //Перезаписываем здесь, а надо добавлять
 
-
                 dbGroup.setTeachers(teachersThisGroup);
-
-
-                //groupService.update(dbGroup);
-
-                System.out.println(teachersThisGroup);
-
-                System.out.println(newGroup);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 //Студенты, которые сейчас есть в базе
                 List<Student> serviceStudents = groupService.findById(newGroup.getId()).getStudents();
@@ -266,7 +194,7 @@ public class GroupController {
                 //получаем список студентов в модели
                 List<Student> modelStudents = newGroup.getStudents();
 
-                Student temp = null;
+                Student temp = null;//--
 
                 //если не контейнс то группа нулл
                 //Если студент был удален из группы, ставим ему группу нулл
@@ -298,9 +226,6 @@ public class GroupController {
     //TODO баг из -за связей 1 к мени и мени ту мени, проверить не увеличиваются ли они еще при передаче
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
-    //не понятно, от чего зависит
-    //только одни данные заполняются - все норм
-    //два - сразу, или через какое - то время начинается дублирование инфы, добавляется повторно
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
@@ -318,12 +243,10 @@ public class GroupController {
         List<Teacher> allTeachers = teacherService.getTeachersList();
         allTeachers.removeAll(group.getTeachers());
 
-        //не работает
         List<Student> allStudents = studentService.getStudentsList();
         List<Student> thisGroupStudents = group.getStudents();
 
         int asSize = allStudents.size();
-        //int tgsSize = thisGroupStudents.size();
 
         for (int i = 0; i < asSize; i++) {
             for (int j = 0; j < thisGroupStudents.size(); j++) {
@@ -334,26 +257,7 @@ public class GroupController {
             }
         }
 
-        //try lambdas several actions lambda foreach
-      /*  for (int i = 0; i < asSize; i++) {
-            thisGroupStudents.stream()
-                    .filter(tgs -> tgs.getId().equals(allStudents.get(i)))
-                    .forEach(
-                            asSize--;
-                            allStudents.remove(i);
-                            )
-        }*/
-
-
-
-
-        /*
-        numberList.stream()
-                .filter(i -> i % 2 == 0)
-                .forEach(System.out::println);*/
-
-
-
+        //Добавляем студентов и преподавателей, которых нет в группе
         model.addAttribute("notInGroupTeachers", allTeachers);
         model.addAttribute("notInGroupStudents", allStudents);
 
@@ -362,9 +266,9 @@ public class GroupController {
         return "groups/show-group-form";
     }
 
+    //удаляем группу по ID
     @GetMapping("/delete/{Id}")
     public String deleteGroup(Model model,@PathVariable Long Id) {
-        //удаляем группу по ID
 
         //todo сделать удаление связей группы, а потом только удаление самой группы?
 
@@ -415,8 +319,6 @@ public class GroupController {
 
         //поле которое отвечает за группу
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
-
     }
-
 
 }

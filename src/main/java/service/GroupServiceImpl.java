@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@SuppressWarnings("unused")
 public class GroupServiceImpl implements GroupService{
 
     @Autowired

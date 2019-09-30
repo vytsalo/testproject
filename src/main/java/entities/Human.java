@@ -14,34 +14,32 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class Human{
 
-
     @Column
-    @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
+    @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String fam;
 
     @Column
-    @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
+    @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String name;
 
     @Column
-    @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
+    @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String otch;
 
     @Column
-    @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
+    @NotNull(message = "Поле не может быть NULL")
     @Past(message = "Время должно быть в прошлом")
-    //https://stackoverflow.com/questions/29183871/date-binding-in-springmvc-in-yyyy-mm-dd-format
     @Temporal(value = TemporalType.DATE)//@Type(type = "date")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date_of_birth;
 
     @Column
-    @NotNull(message = "Поле не может быть NULL")//имеет ли смысл
-    @Size(min = 15, max = 15, message = "Длина поля должна быть 15 символов")//сколько символов - только из-за шаблона
+    @NotNull(message = "Поле не может быть NULL")
+    @Size(min = 15, max = 15, message = "Длина поля должна быть 15 символов")
     //8(963) 145-8916
     private String phone_number;
 
@@ -70,7 +68,6 @@ public abstract class Human{
     }
 
     public Date getDate_of_birth() {
-//new Date(new SimpleDateFormat("dd.MM.yyyy").format(this.date_of_birth))
         return this.date_of_birth;
     }
 

@@ -14,15 +14,12 @@ import javax.persistence.criteria.Root;
 
 import java.util.List;
 
-//CREATE READ UPDATE DELETE
 @Repository
-@SuppressWarnings("unused")
 public class TeacherDaoImlp implements TeacherDao {
 
     @PersistenceContext
     private EntityManager em;
 
-    //добавление записи в конец бд
     @Override
     public void add(Teacher teacher){
         em.persist(teacher);
@@ -40,7 +37,6 @@ public class TeacherDaoImlp implements TeacherDao {
    		em.merge(teacher);
     }
 
-    //ретурнит сущность по id
     @Override
     public Teacher findById(Long teacherId) {
         Teacher teacher = em.find(Teacher.class,teacherId);
@@ -49,7 +45,6 @@ public class TeacherDaoImlp implements TeacherDao {
         return teacher;
     }
 
-    //удаляет сущность по id
     @Override
     public void delete(Long teacherId) {
        Teacher teacher = em.find(Teacher.class, teacherId);
