@@ -38,7 +38,6 @@ public class GroupController {
         model.addAttribute("groups",groupService.getGroupsList());
         return "groups/list-groups";
     }
-    //TODO сделать хешсетом а не арейлистом
 
 
 
@@ -145,7 +144,6 @@ public class GroupController {
                 Teacher tempT;
                 List<Group> grT = new ArrayList<>();// --
 
-                //todo проблема в методах add?
                 //удаление преподов
 
                 //удаляем эту группу у преподов, которые были там раньше но сейчас нет
@@ -306,7 +304,6 @@ public class GroupController {
     @GetMapping("/update/{Id}")
     public String updateGroup(Model model,@PathVariable Long Id){
 
-        //todo добавить только тех преподов, которых нет в группе
         Group group = groupService.findById(Id);
 
 
@@ -371,7 +368,6 @@ public class GroupController {
 
         //todo сделать удаление связей группы, а потом только удаление самой группы?
 
-        //todo вернуть студентов в группы из security update commit
         Group group = groupService.findById(Id);
 
         //удаляем связи группы и преподавателей
@@ -386,18 +382,6 @@ public class GroupController {
 
         //удаляем всех преподавателей у группы
         group.setTeachers(Collections.emptyList());
-
-
-
-
-
-
-
-
-
-
-
-
 
         //удаляем связи группы и преподавателей
         List<Student> thisGroupStudents = group.getStudents();
@@ -431,11 +415,6 @@ public class GroupController {
 
         //поле которое отвечает за группу
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
-
-
-        //todo не переделывает html? не убирает нейм?
-        //dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
-
 
     }
 

@@ -34,6 +34,10 @@
 
 	<section class="container">
 
+<p align = center>
+	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
+	 <!-- Синюю с прокруткой -->
+	</p>
 
 	<div class="table-users">
    <div class="header">Студенты</div>
@@ -117,10 +121,6 @@
    </table>
 </div>
 
-<p align = center>
-	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
-	 <!-- Синюю с прокруткой -->
-	</p>
 	</section>
 
 <br/>

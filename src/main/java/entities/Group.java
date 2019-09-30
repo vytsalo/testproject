@@ -159,11 +159,7 @@ public class Group implements Serializable {
                 if (teacher.getId().equals(teachers.get(i).getId())) {
                     teachers.remove(i);
                 }
-            /*
-            if (teachers.contains(teacher)){
-                teachers.remove(teacher);
-            }
-      */
+
             }
         }
 
@@ -182,13 +178,6 @@ public class Group implements Serializable {
             }
             return false;
         }
-
-    //todo проверка по id
-    //todo fix multiply adding
-    //todo fix empty adding
-    //todo переделку индексов и для групп тоже
-    //<input id="teachers0.groups0" name="teachers[0].groups[0]" value="321" class="jstlTeachersSending" type="hidden">
-
 
     @SuppressWarnings("unused")
     public Group() {}
