@@ -20,7 +20,6 @@ function addRow(btn, id) {
 		
 	}
   
-  alert("Аттрибуты удалены");
 			
   //удалить аттрибут нейм у тегов
   if (id == 'groupsTable'){
@@ -55,7 +54,7 @@ function rewriteHTML(){
 			
    }
                 //перед нажатием на пост
-                alert("Замена успешна");
+           
 }
 
 function classChange(){
@@ -71,7 +70,7 @@ function classChange(){
 		inputs[i].setAttribute("class","jstlGroupsSending");
 
 	}
-		alert("Класс сменен");
+	
 }
 
 
@@ -85,10 +84,10 @@ function addRowToTeachersTable(btn, id) {
 	for (var i = 0; i<elems.length; i++){
 			elems[i].removeAttribute("name");
 	}
-	 alert("Аттрибуты удалены");
+	
   
   
-  alert("Класс сменен");
+
 			
   //удалить аттрибут нейм у тегов
   if (id == 'teachersTable'){
@@ -122,7 +121,7 @@ function rewriteHTMLTeacher(){
 
    }
                 //перед нажатием на пост
-                alert("Замена тичеров успешна");
+             
 }
 
 function classChangeTeacher(){
@@ -133,5 +132,4 @@ function classChangeTeacher(){
 	while(i<inputs.length)
 		inputs[i].setAttribute("class","jstlTeachersSending");
 	
-		alert("Класс сменен");
 }
