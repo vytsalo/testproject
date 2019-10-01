@@ -96,7 +96,7 @@ public class TeacherController {
     public void initBinder(WebDataBinder dataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(true);
-        dataBinder.registerCustomEditor(Date.class, "date_of_birth", new CustomDateEditor(dateFormat, true));
+        dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormat, true));
 
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
     }

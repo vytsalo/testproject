@@ -20,7 +20,7 @@
 </head>
 
 <body>
-
+<jsp:include page="..\testsecurity\auth.jsp" />
      <div id="signup-form">
 
         <div id="signup-inner">
@@ -49,7 +49,7 @@
 			
 			<p>Пожалуйста, заполните поля ниже.</p>
 
-            <form:form method="POST" action="http://localhost:8082/groups/processform" modelAttribute="group" id="send">
+            <form:form method="POST" action="http://212.193.37.103:8082/groups/processform" modelAttribute="group" id="send">
 
 				<form:input type="hidden" value="${group.id}" path="id" />
 
@@ -90,8 +90,8 @@
                             <form:hidden path="teachers[${tagStatus.index}].name" value="${tcsList.name}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].fam" value="${tcsList.fam}" class = "jstlTeachersSending" />
                             <form:hidden path="teachers[${tagStatus.index}].otch" value="${tcsList.otch}" class = "jstlTeachersSending" />
-                            <form:hidden path="teachers[${tagStatus.index}].date_of_birth" value="${tcsList.date_of_birth}" class = "jstlTeachersSending" />
-                            <form:hidden path="teachers[${tagStatus.index}].phone_number" value="${tcsList.phone_number}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].dateOfBirth" value="${tcsList.dateOfBirth}" class = "jstlTeachersSending" />
+                            <form:hidden path="teachers[${tagStatus.index}].phoneNumber" value="${tcsList.phoneNumber}" class = "jstlTeachersSending" />
                    		
 								${tcsList.id}
 							
@@ -100,8 +100,8 @@
                             <td>${tcsList.fam}</td>
                             <td>${tcsList.name}</td>
                             <td>${tcsList.otch}</td>
-                            <td>${tcsList.date_of_birth}</td>
-                            <td>${tcsList.phone_number}</td>
+                            <td>${tcsList.dateOfBirth}</td>
+                            <td>${tcsList.phoneNumber}</td>
 
                             <td><a href = "#" onclick = "addRowToTeachersTable(this,'existingTeachers'); rewriteHTMLTeacher(); ">Удалить</a></td>
                              
@@ -156,8 +156,8 @@
 			   <input type = "hidden" value= "${tsList.fam}" class = "jstlTeachersExisting"/>		   
 		  
 		       <input type = "hidden" value= "${tsList.otch}" class = "jstlTeachersExisting"/>
-		       <input type = "hidden" value= "${tsList.date_of_birth}" class = "jstlTeachersExisting"/>
-		       <input type = "hidden" value= "${tsList.phone_number}" class = "jstlTeachersExisting"/>
+		       <input type = "hidden" value= "${tsList.dateOfBirth}" class = "jstlTeachersExisting"/>
+		       <input type = "hidden" value= "${tsList.phoneNumber}" class = "jstlTeachersExisting"/>
 
 		 <!-- innerHtml = код -->
 		 
@@ -167,8 +167,8 @@
          <td>${tsList.fam}</td>
          <td>${tsList.name}</td>
          <td>${tsList.otch}</td>
-         <td>${tsList.date_of_birth}</td>
-         <td>${tsList.phone_number}</td>
+         <td>${tsList.dateOfBirth}</td>
+         <td>${tsList.phoneNumber}</td>
          <td><a href="#" onclick="addRowToTeachersTable(this,'teachersTable'); classChangeTeacher(); rewriteHTMLTeacher();">Добавить</a></td>
     </tr>
 	
@@ -221,8 +221,8 @@
                             <form:hidden path="students[${tagStatus.index}].name" value="${stdList.name}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].fam" value="${stdList.fam}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" class = "jstlStudentsSending" />
-                            <form:hidden path="students[${tagStatus.index}].date_of_birth" value="${stdList.date_of_birth}" class = "jstlStudentsSending" />
-                            <form:hidden path="students[${tagStatus.index}].phone_number" value="${stdList.phone_number}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].dateOfBirth" value="${stdList.dateOfBirth}" class = "jstlStudentsSending" />
+                            <form:hidden path="students[${tagStatus.index}].phoneNumber" value="${stdList.phoneNumber}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
 
                             <div>${stdList.id}</div>
@@ -233,8 +233,8 @@
                             <td>${stdList.fam}</td>
                             <td>${stdList.name}</td>
                             <td>${stdList.otch}</td>
-                            <td>${stdList.date_of_birth}</td>
-                            <td>${stdList.phone_number}</td>
+                            <td>${stdList.dateOfBirth}</td>
+                            <td>${stdList.phoneNumber}</td>
 
                             <!-- Все поля hidden а вывод в таблицу отдельно? -->
                             <!-- передается только тайтл -->
@@ -329,8 +329,8 @@
 		<input type = "hidden" value= "${sddList.fam}" class = "jstlStudentsExisting"/>		   
 		  
 		       <input type = "hidden" value= "${sddList.otch}" class = "jstlStudentsExisting"/>
-		       <input type = "hidden" value= "${sddList.date_of_birth}" class = "jstlStudentsExisting"/>
-		       <input type = "hidden" value= "${sddList.phone_number}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.dateOfBirth}" class = "jstlStudentsExisting"/>
+		       <input type = "hidden" value= "${sddList.phoneNumber}" class = "jstlStudentsExisting"/>
 		       <input type = "hidden" value= "${sddList.gruppa.id}" class = "jstlStudentsExisting"/>
 		   
 
@@ -342,8 +342,8 @@
          <td>${sddList.fam}</td>
          <td>${sddList.name}</td>
          <td>${sddList.otch}</td>
-         <td>${sddList.date_of_birth}</td>
-         <td>${sddList.phone_number}</td>
+         <td>${sddList.dateOfBirth}</td>
+         <td>${sddList.phoneNumber}</td>
          <td><a href="#" onclick="addRow(this,'studentsTable'); classChange(); rewriteHTML();">Добавить</a></td>
     </tr>
 	

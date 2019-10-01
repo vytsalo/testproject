@@ -49,14 +49,14 @@ public class Teacher extends Human implements Serializable {
         }
     }
 
-    public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number, ArrayList<Group> groups) {
-        super(fam, name, otch, date_of_birth, phone_number);
+    public Teacher(String fam, String name, String otch, Date dateOfBirth, String phoneNumber, ArrayList<Group> groups) {
+        super(fam, name, otch, dateOfBirth, phoneNumber);
         this.groups = groups;
     }
 
     @SuppressWarnings("unused")
-    public Teacher(String fam, String name, String otch, Date date_of_birth, String phone_number) {
-        super(fam, name, otch, date_of_birth, phone_number);
+    public Teacher(String fam, String name, String otch, Date dateOfBirth, String phoneNumber) {
+        super(fam, name, otch, dateOfBirth, phoneNumber);
     }
 
     @Override

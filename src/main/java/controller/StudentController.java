@@ -133,7 +133,7 @@ public class StudentController {
         2) как называется поле
         3) формат-даты
         */
-        //, "date_of_birth", - field
+        //, "dateOfBirth", - field
         //без указания поля будет обрабатывать все поля типа Date
         dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 

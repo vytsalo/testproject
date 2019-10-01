@@ -64,12 +64,12 @@
           <td><c:out value="${list.fam}"/></td>
           <td><c:out value="${list.name}"/></td>
           <td><c:out value="${list.otch}"/></td>
-          <td><c:out value="${list.date_of_birth}"/></td>
-          <td><c:out value="${list.phone_number}"/></td>
+          <td><c:out value="${list.dateOfBirth}"/></td>
+          <td><c:out value="${list.phoneNumber}"/></td>
 		  <td>
 		  
 		  <c:forEach items="${list.groups}" var="gslist">
-			  <a href = "<c:out value="http://localhost:8082/groups/update/${gslist.id}"/>" >
+			  <a href = "<c:out value="http://212.193.37.103:8082/groups/update/${gslist.id}"/>" >
 				${gslist.title}
 			  </a></br>
           
@@ -81,24 +81,10 @@
           <td>
 
 
-
-<!-- Само модальное окно -->
-<div id="<c:out value="ex${list.id}"/>" class="modal">
-  <p>Преподаватель:</p>
-  <p>ID : <c:out value="${list.id}"/></p>
-  <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
-  <p>Дата рождения: <c:out value="${list.date_of_birth}"/></p>
-  <p>Телефон: <c:out value="${list.phone_number}"/></p>
-</div>
-
-<!-- Link to open the modal -->
-            <!-- Перейти на страницу -->
-
-
             <center>
-            <a href = "<c:out value="http://localhost:8082/teachers/update/${list.id}"/>" >Редактировать</a>
+            <a href = "<c:out value="http://212.193.37.103:8082/teachers/update/${list.id}"/>" >Редактировать</a>
             </br>
-            <a href = "<c:out value="http://localhost:8082/teachers/delete/${list.id}"/>" >Удалить</a>
+            <a href = "<c:out value="http://212.193.37.103:8082/teachers/delete/${list.id}"/>" >Удалить</a>
 
             </center>
 
@@ -117,9 +103,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "http://localhost:8082/teachers/add">Добавить</a>
+  <a href = "http://212.193.37.103:8082/teachers/add">Добавить</a>
     <br/>
-  <a href = "http://localhost:8082/" align = center >На главную</a>
+  <a href = "http://212.193.37.103:8082/" align = center >На главную</a>
 
 </p>
 

@@ -22,8 +22,8 @@ public class Student extends Human implements Serializable {
 
     public Student() {}
 
-    public Student(String fam, String name, String otch, Date date_of_birth, String phone_number, Group gruppa) {
-        super(fam, name, otch, date_of_birth, phone_number);
+    public Student(String fam, String name, String otch, Date dateOfBirth, String phoneNumber, Group gruppa) {
+        super(fam, name, otch, dateOfBirth, phoneNumber);
         this.gruppa = gruppa;
     }
 

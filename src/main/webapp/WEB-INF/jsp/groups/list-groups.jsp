@@ -62,9 +62,9 @@
 
               <c:forEach items="${list.teachers}" var="tslist">
 
-                        <a href = "http://localhost:8082/teachers/update/${tslist.id}" >
+                        <a href = "http://212.193.37.103:8082/teachers/update/${tslist.id}" >
 
-                              <c:out value="${tslist}"/><br>
+                              <c:out value="${tslist.fam} ${tslist.name} ${tslist.otch}  ${tslist.dateOfBirth}"/></br>
                          </a>
 
                   </c:forEach>
@@ -77,24 +77,24 @@
 
                           <c:forEach items="${list.students}" var="stlist">
 
-                                    <a href = "http://localhost:8082/students/update/${stlist.id}" >
+                                    <a href = "http://212.193.37.103:8082/students/update/${stlist.id}" >
 
-                                          <c:out value="${stlist}"/><br>
+                                               <c:out value="${stlist.fam} ${stlist.name} ${stlist.otch}  ${stlist.dateOfBirth}"/>
+                                                               </br>
 
                                      </a>
 
-                              </c:forEach>
+                          </c:forEach>
 
            </td>
 
 			<td>
-			
-		    <a href = "<c:out value="http://localhost:8082/groups/update/${list.id}"/>" >Редактировать</a>
+			<center>
+		    <a href = "<c:out value="http://212.193.37.103:8082/groups/update/${list.id}"/>" >Редактировать</a>
             </br>
 
-            <!-- Данная группа содержит студентов или преподавателей. Уверены, что хотите удалить? -->
-            <a href = "<c:out value="http://localhost:8082/groups/delete/${list.id}"/>" >Удалить</a>
-			
+            <a href = "<c:out value="http://212.193.37.103:8082/groups/delete/${list.id}"/>" >Удалить</a>
+			</center>
 			
 			
 			
@@ -117,9 +117,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "http://localhost:8082/groups/add">Добавить</a>
+  <a href = "http://212.193.37.103:8082/groups/add">Добавить</a>
     <br/>
-  <a href = "http://localhost:8082/" align = center >На главную</a>
+  <a href = "http://212.193.37.103:8082/" align = center >На главную</a>
 
 </p>
 

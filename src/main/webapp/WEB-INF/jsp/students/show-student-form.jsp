@@ -68,7 +68,7 @@
 			<p>Пожалуйста, заполните поля ниже.</p>
 
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
-            <springForm:form method="POST" action="http://localhost:8082/students/processform" modelAttribute="student" id="send">
+            <springForm:form method="POST" action="http://212.193.37.103:8082/students/processform" modelAttribute="student" id="send">
 
 				<springForm:input type="hidden" value="${student.id}" path="id" />
 
@@ -96,15 +96,15 @@
                 <p>
                     <label for="date">Дата рождения *</label>
 
-                    <springForm:input type="date" id="date" path="date_of_birth" value="${student.date_of_birth}" required="required" min="1965-01-01" max="2002-12-31"/>
+                    <springForm:input type="date" id="date" path="dateOfBirth" value="${student.dateOfBirth}" required="required" min="1965-01-01" max="2002-12-31"/>
                     <br/>
-                    <springForm:errors path="date_of_birth" cssClass="error" />
+                    <springForm:errors path="dateOfBirth" cssClass="error" />
                 </p>
 
                 <p>
                     <label for="phone">Номер телефона *</label>
-                    <springForm:input type="text" path="phone_number" id="phone" value="${student.phone_number}" required="required" />
-                    <springForm:errors path="phone_number" cssClass="error" /> <!-- cssClass="error" -->
+                    <springForm:input type="text" path="phoneNumber" id="phone" value="${student.phoneNumber}" required="required" />
+                    <springForm:errors path="phoneNumber" cssClass="error" /> <!-- cssClass="error" -->
                 </p>
 
                 <p>

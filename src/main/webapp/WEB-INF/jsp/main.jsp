@@ -20,11 +20,11 @@
 
 <!-- Одним ксс стилем сделать -->
 
-<h3><a href='http://localhost:8082/groups/'>Группы</a></h3>
+<h3><a href='http://212.193.37.103:8082/groups/'>Группы</a></h3>
 
-<h3><a href='http://localhost:8082/teachers/'>Преподаватели</a></h3>
+<h3><a href='http://212.193.37.103:8082/teachers/'>Преподаватели</a></h3>
 
-<h3><a href='http://localhost:8082/students/'>Студенты</a></h3>
+<h3><a href='http://212.193.37.103:8082/students/'>Студенты</a></h3>
 
 
 
@@ -32,10 +32,10 @@
 
 
 <!--
-<a href='http://localhost:8082/students/'>Студенты</a></br>
-<a href='http://localhost:8082/students/add/'>Добавить</a></br>
-<a href='http://localhost:8082/students/update/'>Обновить</a></br>
-<a href='http://localhost:8082/students/delete/'>Удалить</a></br>
+<a href='http://212.193.37.103:8082/students/'>Студенты</a></br>
+<a href='http://212.193.37.103:8082/students/add/'>Добавить</a></br>
+<a href='http://212.193.37.103:8082/students/update/'>Обновить</a></br>
+<a href='http://212.193.37.103:8082/students/delete/'>Удалить</a></br>
 -->
 
 

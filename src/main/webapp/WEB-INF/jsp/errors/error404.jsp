@@ -4,20 +4,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
-<!-- Удалить лишнее, юзаю только джеестеель кор -->
 <html>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <!-- ОНО. РАБОТАЕТ. НЕ. ТРОГАТЬ. -->
 	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
     <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
 
 
-<!-- CSS привести в порядок, удалить ненужное, поменять названия -->
-
-	<title>Добавление/удаление группы</title>
+	<title>Ошибка 404!</title>
 
 </head>
 
@@ -39,12 +35,10 @@
 
             <div align = center>
 
-<!--
-             <img src="<c:url value="\images\error404.png" />" /> -->
              <img src="<c:url value="\images\error404.png" />" />
 
 			<h2>Пожалуйста, проверьте правильность ввода URL
-			    или вернитесь на <a href="http://localhost:8082/">главную страницу</a>.
+			    или вернитесь на <a href="http://212.193.37.103:8082/">главную страницу</a>.
 			</h2<!-- Пожалуйста исправьте следующие ошибки: -->
             </div>
 

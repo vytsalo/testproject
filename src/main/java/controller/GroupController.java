@@ -247,6 +247,7 @@ public class GroupController {
         List<Student> thisGroupStudents = group.getStudents();
 
         int asSize = allStudents.size();
+        int tgsSize = thisGroupStudents.size();
 
         for (int i = 0; i < asSize; i++) {
             for (int j = 0; j < thisGroupStudents.size(); j++) {

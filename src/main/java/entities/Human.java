@@ -35,13 +35,13 @@ public abstract class Human{
     @Temporal(value = TemporalType.DATE)//@Type(type = "date")
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date date_of_birth;
+    private Date dateOfBirth;
 
     @Column
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 15, max = 15, message = "Длина поля должна быть 15 символов")
     //8(963) 145-8916
-    private String phone_number;
+    private String phoneNumber;
 
     public String getFam() {
         return fam;
@@ -67,30 +67,30 @@ public abstract class Human{
         this.otch = otch;
     }
 
-    public Date getDate_of_birth() {
-        return this.date_of_birth;
+    public Date getDateOfBirth() {
+        return this.dateOfBirth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Human() {}
 
-    public Human(String fam, String name, String otch, Date date_of_birth, String phone_number) {
+    public Human(String fam, String name, String otch, Date dateOfBirth, String phoneNumber) {
         this.fam = fam;
         this.name = name;
         this.otch = otch;
-        this.date_of_birth = date_of_birth;
-        this.phone_number = phone_number;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -98,8 +98,8 @@ public abstract class Human{
         return  " fam=" + this.getFam() +
                 " name=" + this.getName() +
                 " otch=" + this.getOtch() +
-                " date_of_birth=" + new SimpleDateFormat("dd.MM.yyyy").format(this.getDate_of_birth()) +
-                " phone_number=" + this.getPhone_number();
+                " dateOfBirth=" + new SimpleDateFormat("dd.MM.yyyy").format(this.getDateOfBirth()) +
+                " phoneNumber=" + this.getPhoneNumber();
     }
 
 }

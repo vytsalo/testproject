@@ -27,4 +27,14 @@ public class MainController {
         return "groups/list-groups";
     }
 
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public ModelAndView authTestPage() {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("testsecurity/auth");
+
+        return model;
+
+    }
+
 }

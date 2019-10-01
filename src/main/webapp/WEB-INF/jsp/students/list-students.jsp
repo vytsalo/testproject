@@ -68,11 +68,11 @@
           <td><c:out value="${list.fam}"/></td>
           <td><c:out value="${list.name}"/></td>
           <td><c:out value="${list.otch}"/></td>
-          <td><c:out value="${list.date_of_birth}"/></td><!-- Формат даты поменять? -->
-          <td><c:out value="${list.phone_number}"/></td>
+          <td><c:out value="${list.dateOfBirth}"/></td><!-- Формат даты поменять? -->
+          <td><c:out value="${list.phoneNumber}"/></td>
           <td>
-          <a href = "http://localhost:8082/groups/update/${list.gruppa.id}" >
-          <c:out value="${list.gruppa}"/>
+          <a href = "http://212.193.37.103:8082/groups/update/${list.gruppa.id}" >
+          <c:out value="${list.gruppa.title}"/>
           </a>
 
           </td>
@@ -89,12 +89,15 @@
   <p>Студент:</p>
   <p>ID : <c:out value="${list.id}"/></p>
   <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
-  <p>Дата рождения: <c:out value="${list.date_of_birth}"/></p>
-  <p>Телефон: <c:out value="${list.phone_number}"/></p>
+  <p>Дата рождения: <c:out value="${list.dateOfBirth}"/></p>
+  <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
   <p>Группа: <c:out value="${list.gruppa}"/></p>
 </div>
 
 <!-- Link to open the modal -->
+
+
+<center>
 <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
 
 
@@ -108,10 +111,11 @@
 
 
             </br>
-            <a href = "<c:out value="http://localhost:8082/students/update/${list.id}"/>" >Редактировать</a>
-            </br>
-            <a href = "<c:out value="http://localhost:8082/students/delete/${list.id}"/>" >Удалить</a>
 
+            <a href = "<c:out value="http://212.193.37.103:8082/students/update/${list.id}"/>" >Редактировать</a>
+            </br>
+            <a href = "<c:out value="http://212.193.37.103:8082/students/delete/${list.id}"/>" >Удалить</a>
+</center>
           </td>
         </tr>
 		</c:forEach>
@@ -126,9 +130,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "http://localhost:8082/students/add">Добавить</a>
+  <a href = "http://212.193.37.103:8082/students/add">Добавить</a>
     <br/>
-  <a href = "http://localhost:8082/" align = center >На главную</a>
+  <a href = "http://212.193.37.103:8082/" align = center >На главную</a>
 
 </p>
 
