@@ -115,7 +115,7 @@ function rewriteHTML(){//remove or add
 		var inputs = tableStud.getElementsByClassName("jstlStudentsSending");
 		
 		//порядок везде одинаковый сделать
-		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number","gruppa"];
+		var fields = ["id", "fam", "name","otch", "dateOfBirth","phoneNumber","gruppa"];
 
 		//почему пропускает через 1
 			    for (var j = 0; j < inputs.length; j++) {
@@ -197,7 +197,7 @@ function rewriteHTMLTeacher(){
 
 		var inputs = tableStud.getElementsByClassName("jstlTeachersSending");
 		
-		var fields = ["id", "fam", "name","otch", "date_of_birth","phone_number"];
+		var fields = ["id", "fam", "name","otch", "dateOfBirth","phoneNumber"];
 
 			    for (var j = 0; j < inputs.length; j++) {
 

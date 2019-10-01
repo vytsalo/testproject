@@ -145,9 +145,7 @@ public class GroupController {
                     teacherService.update(allDBTeachers.get(i));
                 }
 
-                System.out.println(allDBTeachers);
-
-                //todo поиск куда надо
+                  //todo поиск куда надо
 
                 //добавляем преподавателей в группы
                 if (teachersThisGroup.size()!=0) {
@@ -247,13 +245,15 @@ public class GroupController {
         List<Student> thisGroupStudents = group.getStudents();
 
         int asSize = allStudents.size();
-        int tgsSize = thisGroupStudents.size();
 
-        for (int i = 0; i < asSize; i++) {
-            for (int j = 0; j < thisGroupStudents.size(); j++) {
-                if ((allStudents.get(i).getId().equals(thisGroupStudents.get(j).getId()))){
+
+        //TODO FIX ALERT MESSAGE AND ONE TABLEOPERATIONS
+        //Формируем студентов, которых нет в этой группе
+        for (int i = 0; i < thisGroupStudents.size(); i++) {
+            for (int j = 0; j < asSize; j++) {
+                if ((thisGroupStudents.get(i).getId().equals(allStudents.get(j).getId()))){
                     asSize--;
-                    allStudents.remove(i);
+                    allStudents.remove(j);
                 }
             }
         }

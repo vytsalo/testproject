@@ -34,8 +34,6 @@
                         <c:choose>
                             <c:when test="${update}">
                                 <c:out value="Редактирование группы с ID = ${group.id}" />
-
-
                             </c:when>
                             <c:otherwise>
                                 <c:out value="Добавление группы"/>
@@ -148,7 +146,7 @@
 	<c:forEach items="${notInGroupTeachers}" var="tsList">
 
 	<!-- поменять класс и добавить путь  -->
-	<tr>
+	<tr>	
          <td>
 		       <input type = "hidden" value= "${tsList.id}" class = "jstlTeachersExisting"/>
 			   <input type = "hidden" value= "${tsList.name}" class = "jstlTeachersExisting"/>
