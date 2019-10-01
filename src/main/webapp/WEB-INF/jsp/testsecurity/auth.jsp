@@ -10,7 +10,7 @@
 
 
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<h3 align = right>Пользователь: ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/j_spring_security_logout" />" >Выйти</a></h3>
+		<h3 align = right>Пользователь: ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/logout" />" >Выйти</a></h3>
 	</c:if>
 
 

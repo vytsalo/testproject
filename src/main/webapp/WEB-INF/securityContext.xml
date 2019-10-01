@@ -23,6 +23,7 @@
                 <user name="admin" password="{noop}admin" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
-    </authentication-manager>
 
+
+    </authentication-manager>
 </beans:beans>

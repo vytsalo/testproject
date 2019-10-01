@@ -24,54 +24,17 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- / -->
-
-
-<!--
-
-     NEW
-    <filter>
-        <filter-name>oemInViewFilter</filter-name>
-        <filter-class>
-            org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter
-        </filter-class>
-        <init-param>
-            <param-name>entityManagerFactoryBeanName</param-name>
-            <param-value>reportsEntityManagerFactory</param-value>
-        </init-param>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>oemInViewFilter</filter-name>
-        <url-pattern>*.jsp</url-pattern>
-    </filter-mapping>
-     /NEW
--->
-
-
-
-
-
-
-
-
-
 
     <servlet>
 
         <servlet-name>spring</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
-        <!--
-         NEW
--->
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
                 WEB-INF/applicationContext.xml,
                 WEB-INF/securityContext.xml
-<!--
-                WEB-INF/*.xml-->
             </param-value>
         </init-param>
 
@@ -80,14 +43,6 @@
             <param-name>throwExceptionIfNoHandlerFound</param-name>
             <param-value>true</param-value>
         </init-param>
-
-        <!--<init-param>
-            <param-name>throwExceptionIfNoHandlerFound</param-name>
-            <param-value>true</param-value>
-        </init-param>-->
-
-
-
 
 
     </servlet>
@@ -102,8 +57,6 @@
 
     <!-- what does every tag means? -->
 
-    <!-- NEW -->
-
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -115,20 +68,14 @@
     </filter-mapping>
 
 
-    <!-- /NEW -->
-
-
-
-
-
-
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern><!-- после localhost:8082/ что будет? или нет? -->
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 
     <!-- ERROR_PAGES -->
+
 
     <error-page>
         <error-code>400</error-code>
@@ -140,7 +87,7 @@
         <location>/404</location>
     </error-page>
 
-    <error-page><!-- picture with not found nuts patrick -->
+    <error-page>
         <error-code>500</error-code>
         <location>/500</location>
     </error-page>
