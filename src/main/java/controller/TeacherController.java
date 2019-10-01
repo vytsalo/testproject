@@ -14,10 +14,7 @@ import service.TeacherService;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/teachers")
@@ -31,7 +28,16 @@ public class TeacherController {
 
     @GetMapping("/")
     public String listTeachers(Model model){
-        model.addAttribute("teachers",teacherService.getTeachersList());
+
+        List<Teacher> teacherList = teacherService.getTeachersList();
+
+        teacherList.forEach(tcs ->{
+            tcs.setGroups(new ArrayList<>(new HashSet<>(tcs.getGroups())));
+        });
+
+
+        model.addAttribute("teachers",teacherList);
+
         return "teachers/list-teachers";
     }
 
@@ -73,6 +79,8 @@ public class TeacherController {
     public String updateTeacher(Model model,@PathVariable Long Id){
 
         Teacher teacher = teacherService.findById(Id);
+
+        teacher.setGroups(new ArrayList<>(new HashSet<>(teacher.getGroups())));
 
         model.addAttribute("teacher", teacher);
 

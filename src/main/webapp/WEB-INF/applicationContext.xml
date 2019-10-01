@@ -20,19 +20,12 @@
              ">
 
 
-
-
-    <!-- ПУТЬ -->
-
+    <!-- ПУТЬ, ИСКАТЬ РЕСУРСЫ В ВЕБ ИНФ-->
     <mvc:resources mapping="/**" location="/WEB-INF/" />
 
-
-    <!-- ШО ЭТО И ЗАЧЕМ? -->
     <mvc:annotation-driven/>
 
     <tx:annotation-driven transaction-manager="transactionManager" />
-
-
 
 <!-- -valid -->
 
@@ -42,22 +35,12 @@
         in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 
-
-
-
-        <!-- new -->
-       <!-- <beans:property name="viewClass"
-                  value="org.springframework.web.servlet.view.JstlView" />
--->
-
         <beans:property name="prefix" value="/WEB-INF/jsp/" /> <!-- webapp и - папка вебапп ресурсов -->
         <!-- src\main\webapp\webapp/начало пути файла вьюшки webapp/WEB-INF/views/ -->
         <!-- webapp/начало пути файла вьюшки -->
         <beans:property name="suffix" value=".jsp" /><!-- конец пути файла вьюшки -->
     </beans:bean>
 
-
-<!-- namespace  -->
     <beans:bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 
         <beans:property name="jpaVendorAdapter">
@@ -65,7 +48,6 @@
         </beans:property>
 
         <beans:property name="persistenceUnitName" value="LOCAL_PERSISTENCE"/>
-
 
         <!-- not an entity fix -->
         <beans:property name="packagesToScan" value="entities"/>

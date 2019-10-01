@@ -34,7 +34,16 @@ public class GroupController {
 
     @GetMapping("/")//"","/"
     public String listGroups(Model model){
-        model.addAttribute("groups",groupService.getGroupsList());
+
+        List<Group> groups = groupService.getGroupsList();
+
+
+        groups.forEach(grp -> {
+            grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers())));
+        });
+
+
+        model.addAttribute("groups",groups);
         return "groups/list-groups";
     }
 
@@ -183,7 +192,6 @@ public class GroupController {
 
                 //находим группу, ставим ей преподов и обновляем
                 //Перезаписываем здесь, а надо добавлять
-
                 dbGroup.setTeachers(teachersThisGroup);
 
                 //Студенты, которые сейчас есть в базе
@@ -192,7 +200,7 @@ public class GroupController {
                 //получаем список студентов в модели
                 List<Student> modelStudents = newGroup.getStudents();
 
-                Student temp = null;//--
+                Student temp = null;
 
                 //если не контейнс то группа нулл
                 //Если студент был удален из группы, ставим ему группу нулл
@@ -229,7 +237,6 @@ public class GroupController {
 
         Group group = groupService.findById(Id);
 
-
         group.setTeachers(new ArrayList<>(new HashSet<>(group.getTeachers())));
         group.setStudents(new ArrayList<>(new HashSet<>(group.getStudents())));
 
@@ -246,8 +253,6 @@ public class GroupController {
 
         int asSize = allStudents.size();
 
-
-        //TODO FIX ALERT MESSAGE AND ONE TABLEOPERATIONS
         //Формируем студентов, которых нет в этой группе
         for (int i = 0; i < thisGroupStudents.size(); i++) {
             for (int j = 0; j < asSize; j++) {

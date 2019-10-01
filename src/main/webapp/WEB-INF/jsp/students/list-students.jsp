@@ -71,7 +71,7 @@
           <td><c:out value="${list.dateOfBirth}"/></td><!-- Формат даты поменять? -->
           <td><c:out value="${list.phoneNumber}"/></td>
           <td>
-          <a href = "http://212.193.37.103:8082/groups/update/${list.gruppa.id}" >
+          <a href = "/groups/update/${list.gruppa.id}" >
           <c:out value="${list.gruppa.title}"/>
           </a>
 
@@ -91,7 +91,7 @@
   <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
   <p>Дата рождения: <c:out value="${list.dateOfBirth}"/></p>
   <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
-  <p>Группа: <c:out value="${list.gruppa}"/></p>
+  <p>Группа: <c:out value="${list.gruppa.title}"/></p>
 </div>
 
 <!-- Link to open the modal -->
@@ -112,9 +112,9 @@
 
             </br>
 
-            <a href = "<c:out value="http://212.193.37.103:8082/students/update/${list.id}"/>" >Редактировать</a>
+            <a href = "<c:out value="/students/update/${list.id}"/>" >Редактировать</a>
             </br>
-            <a href = "<c:out value="http://212.193.37.103:8082/students/delete/${list.id}"/>" >Удалить</a>
+            <a href = "<c:out value="/students/delete/${list.id}"/>" >Удалить</a>
 </center>
           </td>
         </tr>
@@ -130,9 +130,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "http://212.193.37.103:8082/students/add">Добавить</a>
+  <a href = "/students/add">Добавить</a>
     <br/>
-  <a href = "http://212.193.37.103:8082/" align = center >На главную</a>
+  <a href = "/" align = center >На главную</a>
 
 </p>
 

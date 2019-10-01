@@ -69,7 +69,7 @@
 		  <td>
 		  
 		  <c:forEach items="${list.groups}" var="gslist">
-			  <a href = "<c:out value="http://212.193.37.103:8082/groups/update/${gslist.id}"/>" >
+			  <a href = "<c:out value="/groups/update/${gslist.id}"/>" >
 				${gslist.title}
 			  </a></br>
           
@@ -82,9 +82,9 @@
 
 
             <center>
-            <a href = "<c:out value="http://212.193.37.103:8082/teachers/update/${list.id}"/>" >Редактировать</a>
+            <a href = "<c:out value="/teachers/update/${list.id}"/>" >Редактировать</a>
             </br>
-            <a href = "<c:out value="http://212.193.37.103:8082/teachers/delete/${list.id}"/>" >Удалить</a>
+            <a href = "<c:out value="/teachers/delete/${list.id}"/>" >Удалить</a>
 
             </center>
 
@@ -103,9 +103,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "http://212.193.37.103:8082/teachers/add">Добавить</a>
+  <a href = "/teachers/add">Добавить</a>
     <br/>
-  <a href = "http://212.193.37.103:8082/" align = center >На главную</a>
+  <a href = "/" align = center >На главную</a>
 
 </p>
 

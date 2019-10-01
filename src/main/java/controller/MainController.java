@@ -1,5 +1,6 @@
 package controller;
 
+import entities.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,10 @@ import service.GroupService;
 import service.StudentService;
 import service.TeacherService;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 
 //http://localhost:8082/
 //todo примеры удаленного:валидации и т.д. сделать отдельно
@@ -23,7 +28,20 @@ public class MainController {
 
     @GetMapping("/")
     public String listGroups(Model model){
-        model.addAttribute("groups",groupService.getGroupsList());
+
+
+
+
+        List<Group> groups = groupService.getGroupsList();
+
+
+        groups.forEach(grp -> {
+            grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers())));
+        });
+
+
+        model.addAttribute("groups",groups);
+
         return "groups/list-groups";
     }
 

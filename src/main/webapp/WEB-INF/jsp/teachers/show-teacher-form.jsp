@@ -60,7 +60,7 @@
 			<p>Пожалуйста, заполните поля ниже.</p>
 
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
-            <springForm:form method="POST" action="http://212.193.37.103:8082/teachers/processform" modelAttribute="teacher" id="send">
+            <springForm:form method="POST" action="/teachers/processform" modelAttribute="teacher" id="send">
 
 				<springForm:input type="hidden" value="${teacher.id}" path="id" />
 

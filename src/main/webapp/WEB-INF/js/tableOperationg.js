@@ -3,13 +3,11 @@ function deleteRow(btn) {
   row.parentNode.removeChild(row);
 }
 
-//добавить строку, работает
 function addRow(btn, id) {
   var row = btn.parentNode.parentNode;
   
   document.getElementById(id).getElementsByTagName("tbody")[0].appendChild(row);
-  
-  
+ 
   var sec_table = document.getElementById("existingGroups");
     
 	var elems = sec_table.getElementsByClassName("jstlGroupsSending");

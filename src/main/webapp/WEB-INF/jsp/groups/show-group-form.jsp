@@ -4,7 +4,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
-<!-- Удалить лишнее, юзаю только джеестеель кор -->
 <html>
 
 <head>
@@ -47,7 +46,7 @@
 			
 			<p>Пожалуйста, заполните поля ниже.</p>
 
-            <form:form method="POST" action="http://212.193.37.103:8082/groups/processform" modelAttribute="group" id="send">
+            <form:form method="POST" action="/groups/processform" modelAttribute="group" id="send">
 
 				<form:input type="hidden" value="${group.id}" path="id" />
 
