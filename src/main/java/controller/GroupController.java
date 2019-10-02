@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
+//todo remove this or replace to main controller
 @RequestMapping("/groups")
 public class GroupController {
 
@@ -123,7 +124,9 @@ public class GroupController {
 
 
 
-                //todo где-то тут добавить проверку на
+                //TODO ERROR HANDLERS FIX AUTH
+                //ERROR PAGES при неправильных ссылках все сбивается
+                //http://212.193.37.103:8082/teachers/update/210/as
                 //todo избавиться от сиаутвалю
                 /*
                     найти преподавателей по ID, добавить им эту группу, если её еще нет
@@ -235,6 +238,7 @@ public class GroupController {
     //TODO find a way to remove / in jsp include and CSS links in showgroupform
     //TODO баг из -за связей 1 к мени и мени ту мени, проверить не увеличиваются ли они еще при передаче
     //TODO -/ not working in resources
+    //TODO bug with main group page. conflict between "" and "groups/"
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
     @GetMapping("/update/{Id}")

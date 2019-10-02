@@ -13,7 +13,6 @@
         <link rel="stylesheet" type="text/css" href="../../css/validation.css" />
         <link rel="stylesheet" type="text/css" href="../../css/jquery.modal.min.css" />
 
-
         <!-- Подключение библиотеки jQuery -->
         <script src="../../js/jquery-3.4.1.min.js"></script>
         <script src="../../js/jquery.modal.min.js"></script>
@@ -45,7 +44,7 @@
                     <h1>
 	        			<c:choose>
                             <c:when test="${update}">
-                                <c:out value="Редактирование преподавателя с ID = ${teacher.id}" />
+                               Редактирование преподавателя<br/>с ID = ${teacher.id}
                             </c:when>
                         <c:otherwise>
                             <c:out value="Добавление преподавателя"/>
