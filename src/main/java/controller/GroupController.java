@@ -229,7 +229,10 @@ public class GroupController {
         }
     }
 
+    //TODO get ride of / at the urls beginings
+    //TODO find a way to remove / in jsp include and CSS links in showgroupform
     //TODO баг из -за связей 1 к мени и мени ту мени, проверить не увеличиваются ли они еще при передаче
+    //TODO -/ not working in resources
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
     @GetMapping("/update/{Id}")

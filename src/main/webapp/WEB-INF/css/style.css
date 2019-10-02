@@ -28,7 +28,6 @@
  	border-radius: 2px 2px 2px 2px;
  }
  #submit {
- 	background: url('<c:url value="\images\submit_bg.gif" />') repeat-x scroll 0 0 transparent;
  	style="cursor:pointer";
  	border: 1px solid #B7D6DF;
  	border-radius: 2px 2px 2px 2px;
@@ -44,7 +43,6 @@
  	width: auto;
  }
  #submit:hover {
- 	background: url('<c:url value="\images\submit_hover_bg.gif" />') repeat-x scroll 0 0 transparent;
  	border: 1px solid #9FBAC0;
  	cursor: pointer;
  }

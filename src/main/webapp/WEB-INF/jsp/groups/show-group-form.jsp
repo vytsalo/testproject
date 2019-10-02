@@ -9,17 +9,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
-    <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
-
-    <script src="<c:url value="\js\tableOperationz.js" />"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/validation.css" />
+    <script src="../../js/tableOperationz.js"></script>
 
 	<title>Добавление/удаление группы</title>
 
 </head>
 
 <body>
-<jsp:include page="..\testsecurity\auth.jsp" />
+<jsp:include page="../testsecurity/auth.jsp" />
      <div id="signup-form">
 
         <div id="signup-inner">
@@ -27,7 +26,7 @@
         	<div class="clearfix" id="header">
         	
         		
-			    <img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
+			    <img id="signup-icon" src="../../images/group.png" alt="" />
 
                     <h1>
                         <c:choose>
