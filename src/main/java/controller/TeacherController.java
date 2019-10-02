@@ -87,6 +87,7 @@ public class TeacherController {
         //isUpdate marker
         model.addAttribute("update", true);
 
+        //todo make a notInThisTeacherGroups
         model.addAttribute("groups", groupService.getGroupsList());
 
         return "teachers/show-teacher-form";

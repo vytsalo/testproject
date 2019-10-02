@@ -68,11 +68,9 @@
 			<p>Пожалуйста, заполните поля ниже.</p>
 
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
-            <springForm:form method="POST" action="/students/processform" modelAttribute="student" id="send">
+            <springForm:form method="POST" action="../../students/processform" modelAttribute="student" id="send">
 
 				<springForm:input type="hidden" value="${student.id}" path="id" />
-
-                         <!-- https://www.journaldev.com/2668/spring-validation-example-mvc-validator -->
                 <p>
                     <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
                     <!-- привести в вид атрибутов по порядку -->
@@ -111,17 +109,13 @@
 
                     <label for="group">Группа</label>
 
-
-                    <!-- -readonly for working validation -->
                    <input type="text" id="group" value="${student.gruppa.title}" readonly
                         onclick = "$('#addGroupWindow').modal('show'); return false;"
                         style="cursor: pointer; vertical-align: 65px;"
                         minlength="2" maxlength="35" required
                     />
-
-
-                           	<img src="<c:url value="\images\cross.png" />"
-                                       	style="cursor: pointer; vertical-align: 40px;"
+                           	<img src="../../images/cross.png"
+                           	                style="cursor: pointer; vertical-align: 40px;"
                                        	    onclick="
                                        	    document.getElementById('group').value='';
                                        	    document.getElementById('groupId').value='';
@@ -132,18 +126,10 @@
                <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
 
 
-
-
-                    <!-- vertical-align: 65px; -->
-
-
-
                     <!-- Само модальное окно -->
                     <div id="<c:out value="addGroupWindow"/>" class="modal">
                       <h4>Список групп:</h4>
-
                               <center>
-
                                   <table id="mytable" cellspacing="5" border="1">
                                       <thead>
                                   	    <tr>
@@ -152,57 +138,33 @@
                                            <th></th>
                                      	</tr>
                                   	  </thead>
-
-
                                     <tbody>
-
-
 
                       <c:forEach items="${groups}" var="lost">
                                 		<tr>
                                           <td><c:out value="${lost.id}"/></td>
                                           <td><c:out value="${lost.title}"/></td>
                                           <td>
-
                                <td>
-
                                <a href = "#" onclick = "setGroup(this)" >Добавить</a>
-
                                </td>
-
                                           </td>
                                       </tr>
                       </c:forEach>
-
                                     </tbody>
-
                                   </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                       </center>
-
-
                     </div>
-
-
-<!-- в хайдден передать id студента в группе? -->
-
                 </p>
-
                 <p>
                    <input type="submit" id="submit" value="Отправить" />
                 </p>
-
             </springForm:form>
-
                 <div id="required">
                 <p>* Поля, обязательные для заполнения</p>
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 </html>

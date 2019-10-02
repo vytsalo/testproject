@@ -45,7 +45,7 @@
 			
 			<p>Пожалуйста, заполните поля ниже.</p>
 
-            <form:form method="POST" action="/groups/processform" modelAttribute="group" id="send">
+            <form:form method="POST" action="../../groups/processform" modelAttribute="group" id="send">
 
 				<form:input type="hidden" value="${group.id}" path="id" />
 

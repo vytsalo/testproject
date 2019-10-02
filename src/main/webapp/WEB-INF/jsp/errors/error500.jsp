@@ -10,8 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
-	<link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
-    <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
+	<link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/validation.css" />
 
 
 	<title>Ошибка 500!</title>
@@ -19,10 +19,10 @@
 </head>
 
 <body>
-<jsp:include page="..\testsecurity\auth.jsp" />
+<jsp:include page="../testsecurity/auth.jsp" />
      <div id="signup-form">
         	<div class="clearfix" id="header">
-			    <img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
+			    <img id="signup-icon" src="../../images/group.png" alt="" />
                     <h1>
                        Ошибка. Такая сущность не найдена!
 				    </h1>
@@ -31,10 +31,10 @@
 
             <div align = center>
 
-             <img src="<c:url value="\images\error500.png" />" />
+             <img src="../../images/error500.png" />
 
 			<h2>Пожалуйста, проверьте правильность ввода ID
-			    или вернитесь на <a href="/">главную страницу</a>.
+			    или вернитесь на <a href="../../">главную страницу</a>.
 			</h2>
             </div>
 

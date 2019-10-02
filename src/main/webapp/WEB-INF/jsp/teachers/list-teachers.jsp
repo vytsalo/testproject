@@ -10,23 +10,23 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="<c:url value="\css\tables.css" />" />
+<link rel="stylesheet" type="text/css" href="../css/tables.css" />
 
-<link rel="stylesheet" type="text/css" href="<c:url value="\css\jquery.modal.min.css" />" />
+<link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
 
         <!-- Подключение js-файла поиска -->
-<script src="<c:url value="\js\search.js" />"></script>
-<script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
-<script src="<c:url value="\js\jquery.modal.min.js" />"></script>
-<script src="<c:url value="\js\jquery.tablesorter.min.js" />"></script>
-<script src="<c:url value="\js\tableOperations.js" />"></script>
+<script src="../js/search.js" />"></script>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/jquery.modal.min.js"></script>
+<script src="../js/jquery.tablesorter.min.js"></script>
+<script src="../js/tableOperations.js"></script>
 
 
 
 <title>Список преподавателей</title>
 </head>
 <body onload = "javascript:sortTable()">
-<jsp:include page="..\testsecurity\auth.jsp" />
+<jsp:include page="../testsecurity/auth.jsp" />
 
 	<section class="container">
 
@@ -42,11 +42,6 @@
 
 	  <thead>
 	    <tr>
-	    <!--
-
-	    <img src = "<c:url value="\images\sortImages.png" />" />
-
-	    -->
          <th>#ID</th>
          <th>Фамилия</th>
          <th>Имя</th>
@@ -69,7 +64,7 @@
 		  <td>
 		  
 		  <c:forEach items="${list.groups}" var="gslist">
-			  <a href = "<c:out value="/groups/update/${gslist.id}"/>" >
+			  <a href = "../groups/update/${gslist.id}" >
 				${gslist.title}
 			  </a></br>
           
@@ -82,9 +77,9 @@
 
 
             <center>
-            <a href = "<c:out value="/teachers/update/${list.id}"/>" >Редактировать</a>
+            <a href = "update/${list.id}">Редактировать</a>
             </br>
-            <a href = "<c:out value="/teachers/delete/${list.id}"/>" >Удалить</a>
+            <a href = "delete/${list.id}">Удалить</a>
 
             </center>
 
@@ -103,9 +98,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "/teachers/add">Добавить</a>
+  <a href = "add">Добавить</a>
     <br/>
-  <a href = "/" align = center >На главную</a>
+  <a href = "../" align = center >На главную</a>
 
 </p>
 

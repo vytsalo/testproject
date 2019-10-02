@@ -9,21 +9,20 @@
 <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="\css\style.css" />" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="\css\validation.css" />" />
-        <link rel="stylesheet" type="text/css" href="<c:url value="\css\jquery.modal.min.css" />" />
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/validation.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/jquery.modal.min.css" />
 
 
         <!-- Подключение библиотеки jQuery -->
-        <script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
-        <script src="<c:url value="\js\jquery.modal.min.js" />"></script>
+        <script src="../../js/jquery-3.4.1.min.js"></script>
+        <script src="../../js/jquery.modal.min.js"></script>
         <!-- Подключение jQuery плагина Masked Input -->
-        <script src="<c:url value="\js\jquery.maskedinput.min.js" />"></script>
+        <script src="../../js/jquery.maskedinput.min.js"></script>
         <!-- Подключение методов обработки полей -->
-        <script src="<c:url value="\js\mask.js" />"></script>
+        <script src="../../js/mask.js"></script>
         <!-- Операции с таблицами -->
-        <script src="<c:url value="\js\tableOperationg.js" />"></script>
-
+        <script src="../../js/tableOperationg.js"></script>
 
         <title>Добавление/обновление преподавателя</title>
 
@@ -32,7 +31,7 @@
 
 
 <body>
-<jsp:include page="..\testsecurity\auth.jsp" />
+<jsp:include page="../testsecurity/auth.jsp" />
 
 
     <div id="signup-form">
@@ -41,14 +40,13 @@
 
         	<div class="clearfix" id="header">
 
-				<img id="signup-icon" src="<c:url value="\images\group.png" />" alt="" />
+				<img id="signup-icon" src="../../images/group.png" alt="" />
 
                     <h1>
 	        			<c:choose>
                             <c:when test="${update}">
                                 <c:out value="Редактирование преподавателя с ID = ${teacher.id}" />
                             </c:when>
-
                         <c:otherwise>
                             <c:out value="Добавление преподавателя"/>
                             </c:otherwise>
@@ -60,7 +58,7 @@
 			<p>Пожалуйста, заполните поля ниже.</p>
 
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
-            <springForm:form method="POST" action="/teachers/processform" modelAttribute="teacher" id="send">
+            <springForm:form method="POST" action="../../teachers/processform" modelAttribute="teacher" id="send">
 
 				<springForm:input type="hidden" value="${teacher.id}" path="id" />
 

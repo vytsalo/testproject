@@ -8,35 +8,24 @@
 <html>
 <head>
 
-
-
-<link rel="stylesheet" type="text/css" href="<c:url value="\css\tables.css" />" />
-
-<link rel="stylesheet" type="text/css" href="<c:url value="\css\jquery.modal.min.css" />" />
+<link rel="stylesheet" type="text/css" href="../css/tables.css" />
+<link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
 
         <!-- Подключение js-файла поиска -->
-<script src="<c:url value="\js\search.js" />"></script>
-<script src="<c:url value="\js\jquery-3.4.1.min.js" />"></script>
-<script src="<c:url value="\js\jquery.modal.min.js" />"></script>
-<script src="<c:url value="\js\jquery.tablesorter.min.js" />"></script>
-<script src="<c:url value="\js\tableOperations.js" />"></script>
-
-
+<script src="../js/search.js"></script>
+<script src="../js/jquery-3.4.1.min.js"></script>
+<script src="../js/jquery.modal.min.js"></script>
+<script src="../js/jquery.tablesorter.min.js"></script>
+<script src="../js/tableOperations.js"></script>
 
 <title>Список студентов</title>
 </head>
 <body onload = "javascript:sortTable()">
-<jsp:include page="..\testsecurity\auth.jsp" />
-
-  <!--for demo wrap-->
-
-
+<jsp:include page="../testsecurity/auth.jsp" />
 
 	<section class="container">
-
 <p align = center>
 	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
-	 <!-- Синюю с прокруткой -->
 	</p>
 
 	<div class="table-users">
@@ -46,11 +35,7 @@
 
 	  <thead>
 	    <tr>
-	    <!--
 
-	    <img src = "<c:url value="\images\sortImages.png" />" />
-
-	    -->
          <th>#ID</th>
          <th>Фамилия</th>
          <th>Имя</th>
@@ -68,10 +53,10 @@
           <td><c:out value="${list.fam}"/></td>
           <td><c:out value="${list.name}"/></td>
           <td><c:out value="${list.otch}"/></td>
-          <td><c:out value="${list.dateOfBirth}"/></td><!-- Формат даты поменять? -->
+          <td><c:out value="${list.dateOfBirth}"/></td>
           <td><c:out value="${list.phoneNumber}"/></td>
           <td>
-          <a href = "/groups/update/${list.gruppa.id}" >
+          <a href = "../groups/update/${list.gruppa.id}" >
           <c:out value="${list.gruppa.title}"/>
           </a>
 
@@ -94,27 +79,15 @@
   <p>Группа: <c:out value="${list.gruppa.title}"/></p>
 </div>
 
-<!-- Link to open the modal -->
-
 
 <center>
 <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
 
-
-            <!-- Перейти на страницу -->
-
-
-
-
-
-
-
-
             </br>
 
-            <a href = "<c:out value="/students/update/${list.id}"/>" >Редактировать</a>
+            <a href = "update/${list.id}">Редактировать</a>
             </br>
-            <a href = "<c:out value="/students/delete/${list.id}"/>" >Удалить</a>
+            <a href = "delete/${list.id}">Удалить</a>
 </center>
           </td>
         </tr>
@@ -130,9 +103,9 @@
 <br/>
 
 <p  align=center>
-  <a href = "/students/add">Добавить</a>
+  <a href = "add">Добавить</a>
     <br/>
-  <a href = "/" align = center >На главную</a>
+  <a href = "../" align = center >На главную</a>
 
 </p>
 

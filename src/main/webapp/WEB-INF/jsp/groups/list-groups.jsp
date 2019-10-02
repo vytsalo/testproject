@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
 
         <!-- Подключение js-файла поиска -->
-<script src="../"js/search.js"></script>
+<script src="../js/search.js"></script>
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/jquery.modal.min.js"></script>
 <script src="../js/jquery.tablesorter.min.js"></script>
