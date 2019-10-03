@@ -1,27 +1,66 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
 <html>
 <head>
-<title>Группы</title>
+<link rel="stylesheet" type="text/css" href="css/mainpage.css" />
 </head>
-<body align="center">
+<body>
 
-<jsp:include page="testsecurity\auth.jsp" />
+<jsp:include page="testsecurity/auth.jsp" />
+<div class="pricingTable">
+  <h2 class="pricingTable-title">Приложение "Университет"</h2>
+  <h3 class="pricingTable-subtitle">Выберите страницу для перехода</h3>
 
-<h2>Главная</h2>
+  <ul class="pricingTable-firstTable">
 
-<br/>
+	<li class="pricingTable-firstTable_table">
+      <h1 class="pricingTable-firstTable_table__header">Студенты</h1>
+       <br/>
+      <h4>Содержащаяся информация:</h4>
+      <ul class="pricingTable-firstTable_table__options">
+        <li>ФИО</li>
+        <li>Дата рождения</li>
+        <li>Телефон</li>
+        <li>Группа</li>
+      </ul>
+      <div class="pricingTable-firstTable_table__getstart" onclick ="window.location='students/'" >Перейти</div>
+    </li>
 
-<hr/>
 
-<br/>
+	<li class="pricingTable-firstTable_table">
+      <h1 class="pricingTable-firstTable_table__header">Группы
+      </h1>
+      <br/>
+      <h4>Содержащаяся информация:</h4>
+      <ul class="pricingTable-firstTable_table__options">
+        <li>Название группы</li>
+        <li>Список студентов</li>
+        <li>Список преподавателей</li>
+      </ul>
+      <div class="pricingTable-firstTable_table__getstart" onclick ="window.location='groups/'">Перейти</div>
+    </li>
 
-<h3><a href='/groups/'>Группы</a></h3>
 
-<h3><a href='/teachers/'>Преподаватели</a></h3>
+	<li class="pricingTable-firstTable_table">
+      <h1 class="pricingTable-firstTable_table__header">Преподаватели</h1>
+       <br/>
+      <h4>Содержащаяся информация:</h4>
+      <ul class="pricingTable-firstTable_table__options">
+        <li>ФИО</li>
+        <li>Дата рождения</li>
+        <li>Телефон</li>
+        <li>Список групп</li>
+      </ul>
+      <div class="pricingTable-firstTable_table__getstart" onclick ="window.location='teachers/'">Перейти</div>
+    </li>
 
-<h3><a href='/students/'>Студенты</a></h3>
+
+  </ul>
+</div>
 
 </body>
 </html>

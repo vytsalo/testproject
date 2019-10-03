@@ -29,20 +29,7 @@ public class MainController {
     @GetMapping("/")
     public String listGroups(Model model){
 
-
-
-
-        List<Group> groups = groupService.getGroupsList();
-
-
-        groups.forEach(grp -> {
-            grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers())));
-        });
-
-
-        model.addAttribute("groups",groups);
-
-        return "groups/list-groups";
+        return "main";
     }
 
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
