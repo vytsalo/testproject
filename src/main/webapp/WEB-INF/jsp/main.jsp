@@ -7,10 +7,9 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
-</head>
-<body>
 
-<jsp:include page="testsecurity/auth.jsp" />
+<title>Приложение "Университет"</title></head>
+<body>
 <div class="pricingTable">
   <h2 class="pricingTable-title">Приложение "Университет"</h2>
   <h3 class="pricingTable-subtitle">Выберите страницу для перехода</h3>

@@ -89,10 +89,10 @@
 
 			<td>
 			<center>
-		    <a href = "<c:out value="groups/update/${list.id}"/>" >Редактировать</a>
+		    <a href = "update/${list.id}">Редактировать</a>
             </br>
 
-            <a href = "<c:out value="groups/delete/${list.id}"/>" >Удалить</a>
+            <a href = "delete/${list.id}">Удалить</a>
 			</center>
 
 			
@@ -116,7 +116,7 @@
 <p  align=center>
   <a href = "add">Добавить</a>
     <br/>
-  <a href = "" align = center >На главную</a>
+  <a href = "../" align = center >На главную</a>
 
 </p>
 
