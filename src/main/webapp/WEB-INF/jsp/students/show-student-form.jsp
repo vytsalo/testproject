@@ -145,7 +145,7 @@
                                           <td><c:out value="${lost.title}"/></td>
                                           <td>
                                <td>
-                               <a href = "#" onclick = "setGroup(this)" >Добавить</a>
+                               <a href = "#" onclick = "setGroup(this); return false;" >Добавить</a>
                                </td>
                                           </td>
                                       </tr>

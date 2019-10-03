@@ -8,15 +8,27 @@
 <p>
 <!-- Если нет авторизации - поле логина -->
 
+<c:choose>
+	<c:when test="${pageContext.request.remoteUser != null}">
+		<br/>
+		<h3 align = right>Пользователь: ${pageContext.request.remoteUser} | <a href="<c:url value="/logout" />" >Выйти</a></h3>
+	</c:when>
 
-	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<h3 align = right>Пользователь: ${pageContext.request.userPrincipal.name} | <a href="<c:url value="/logout" />" >Выйти</a></h3>
-	</c:if>
+    <c:otherwise>
+        <br/>
+    	<h3 align = right><a href = "login">Войти в систему</a></h3>
+    </c:otherwise>
 
+
+</c:choose>
+
+
+
+	<!-- ОЗЕРВИЗЕ ВОЙТИ В СИСТЕМУ -->
 
 	<!-- Alternative
-	<c:if test="${pageContext.request.remoteUser != null}">
-		<h2>Добро пожаловать : ${pageContext.request.remoteUser}</h2>
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+		<h2>Добро пожаловать : ${pageContext.request.userPrincipal.name != null}</h2>
 	</c:if>
  	-->
 

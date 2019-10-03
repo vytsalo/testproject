@@ -130,7 +130,7 @@
 
 
                             <td>${tcsList.title}</td>
-                            <td><a href = "#" onclick = "addRow(this,'existingGroups'); rewriteHTML(); ">Удалить</a></td>
+                            <td><a href = "#" onclick = "addRow(this,'existingGroups'); rewriteHTML(); return false;">Удалить</a></td>
 
                         </tr>
 
@@ -199,7 +199,7 @@
                             <td>${grsList.title}</td>
                             <td>
 							
-							<a href="#" onclick="addRow(this,'groupsTable'); classChange(); rewriteHTML();">Добавить</a>
+							<a href="#" onclick="addRow(this,'groupsTable'); classChange(); rewriteHTML(); return false;">Добавить</a>
 							
 							</td>
 

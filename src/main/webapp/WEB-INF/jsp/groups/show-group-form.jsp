@@ -99,7 +99,7 @@
                             <td>${tcsList.dateOfBirth}</td>
                             <td>${tcsList.phoneNumber}</td>
 
-                            <td><a href = "#" onclick = "addRowToTeachersTable(this,'existingTeachers'); rewriteHTMLTeacher(); ">Удалить</a></td>
+                            <td><a href = "#" onclick = "addRowToTeachersTable(this,'existingTeachers'); rewriteHTMLTeacher(); return false; ">Удалить</a></td>
                              
 
                         </tr>
@@ -165,7 +165,7 @@
          <td>${tsList.otch}</td>
          <td>${tsList.dateOfBirth}</td>
          <td>${tsList.phoneNumber}</td>
-         <td><a href="#" onclick="addRowToTeachersTable(this,'teachersTable'); classChangeTeacher(); rewriteHTMLTeacher();">Добавить</a></td>
+         <td><a href="#" onclick="addRowToTeachersTable(this,'teachersTable'); classChangeTeacher(); rewriteHTMLTeacher(); return false;">Добавить</a></td>
     </tr>
 	
 	</c:forEach>
@@ -236,7 +236,7 @@
                             <!-- передается только тайтл -->
 
 
-                            <td><a href = "#" onclick = "addRow(this,'existingStudents'); rewriteHTML(); ">Удалить</a></td>
+                            <td><a href = "#" onclick = "addRow(this,'existingStudents'); rewriteHTML(); return false;">Удалить</a></td>
 
 
 
@@ -340,7 +340,7 @@
          <td>${sddList.otch}</td>
          <td>${sddList.dateOfBirth}</td>
          <td>${sddList.phoneNumber}</td>
-         <td><a href="#" onclick="addRow(this,'studentsTable'); classChange(); rewriteHTML();">Добавить</a></td>
+         <td><a href="#" onclick="addRow(this,'studentsTable'); classChange(); rewriteHTML(); return false;">Добавить</a></td>
     </tr>
 	
 	</c:forEach>
