@@ -20,26 +20,44 @@ public class DateEditor extends PropertyEditorSupport {
         }
     }
 
+    //не заходит
     //в какой формат переводит(для вывода)
     @Override
     //не работает
     public String getAsText() {
+       /* SimpleDateFormat dateVormat = new SimpleDateFormat("dd.MM.yyyy");
 
-        String sdf = "";
+        return dateVormat.format((Date)getValue());
 
+*/
+
+ String sdf = "";
+
+        String val = (String) getValue() ;
+
+        if (val!=null){
         try {
+            //Формат в бд
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            dateFormat.setLenient(true);//-
+            //dateFormat.setLenient(true);//-
 
+
+
+
+            System.out.println(val);
             //какая переменная должна быть
-            Date date = dateFormat.parse((String)getValue());
+            Date date = dateFormat.parse(val);
+            //Формат, который нужен
             sdf = new SimpleDateFormat("dd.MM.yyyy").format(date);
 
             System.out.println(sdf);
         } catch (ParseException p) {p.printStackTrace();}
 
+
+    }
         return sdf;
     }
+
 
 }

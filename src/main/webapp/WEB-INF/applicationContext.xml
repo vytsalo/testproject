@@ -83,5 +83,4 @@
         <beans:property name="entityManagerFactory" ref="emf" />
     </beans:bean>
 
-
 </beans:beans>

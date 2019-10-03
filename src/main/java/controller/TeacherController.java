@@ -131,6 +131,7 @@ public class TeacherController {
         //  dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormat, true));
 
         dataBinder.registerCustomEditor(Date.class, new DateEditor());
+
         //dataBinder.registerCustomEditor(String.class, new DateEditor());
 
 
@@ -149,8 +150,9 @@ public class TeacherController {
             }
 
         });
-        dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
+
     }*/
 
+        dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
     }
 }

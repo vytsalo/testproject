@@ -18,14 +18,19 @@ import service.GroupService;
 // TODO MAKE A TABLES WITH STYLES IN LISTS
 // TODO LOGIN FORM IF USER IS NOT AUTHORISE
 // TODO UL LI IN THE LIST?
-
 // TODO
+
+
 /*
 1. заменить формат даты на удобный для пользователя
 2. добавление студентов и преподавателей в группы сделать поиском
 4. после логаута отправлять пользователя на главную страницу - logout redirect
 5. локализовать страницы логина/логаута// Кнопка войти, если нет авторизации
 */
+
+//TODO TEACHER'S ENTER THE SITE BUG
+//HOW TO KNOW WHERE AM I?
+
 @Controller
 public class MainController {
 
