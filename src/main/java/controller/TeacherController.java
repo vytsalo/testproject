@@ -13,13 +13,15 @@ import service.GroupService;
 import service.TeacherService;
 
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
 @RequestMapping("/teachers")
 public class TeacherController {
-    
+
     @Autowired
     private TeacherService teacherService;
 
@@ -27,22 +29,22 @@ public class TeacherController {
     private GroupService groupService;
 
     @GetMapping("/")
-    public String listTeachers(Model model){
+    public String listTeachers(Model model) {
 
         List<Teacher> teacherList = teacherService.getTeachersList();
 
-        teacherList.forEach(tcs ->{
+        teacherList.forEach(tcs -> {
             tcs.setGroups(new ArrayList<>(new HashSet<>(tcs.getGroups())));
         });
 
 
-        model.addAttribute("teachers",teacherList);
+        model.addAttribute("teachers", teacherList);
 
         return "teachers/list-teachers";
     }
 
     @GetMapping("/add")
-    public String addTeacher(Model model){
+    public String addTeacher(Model model) {
         model.addAttribute("teacher", new Teacher());
         model.addAttribute("groups", groupService.getGroupsList());
         return "teachers/show-teacher-form";
@@ -50,9 +52,9 @@ public class TeacherController {
     }
 
     @PostMapping("/processform")
-    public String processTeacherForm(Model model, @Valid @ModelAttribute("teacher") Teacher newTeacher, BindingResult result){
+    public String processTeacherForm(Model model, @Valid @ModelAttribute("teacher") Teacher newTeacher, BindingResult result) {
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
 
             System.out.println(result.getAllErrors());
 
@@ -61,11 +63,10 @@ public class TeacherController {
 
         } else {
 
-            if (newTeacher.getId() == null){
+            if (newTeacher.getId() == null) {
 
                 teacherService.add(newTeacher);
-            }
-            else {
+            } else {
                 teacherService.update(newTeacher);
             }
 
@@ -76,7 +77,7 @@ public class TeacherController {
     }
 
     @GetMapping("/update/{Id}")
-    public String updateTeacher(Model model,@PathVariable Long Id){
+    public String updateTeacher(Model model, @PathVariable Long Id) {
 
         Teacher teacher = teacherService.findById(Id);
 
@@ -86,7 +87,6 @@ public class TeacherController {
 
         //isUpdate marker
         model.addAttribute("update", true);
-
 
 
         List<Group> thisTeacherGroups = teacher.getGroups();
@@ -118,19 +118,39 @@ public class TeacherController {
     }
 
     @GetMapping("/delete/{Id}")
-    public String deleteGroup(Model model,@PathVariable Long Id) {
+    public String deleteGroup(Model model, @PathVariable Long Id) {
         teacherService.delete(Id);
-        model.addAttribute("teachers",teacherService.getTeachersList());
+        model.addAttribute("teachers", teacherService.getTeachersList());
         return "redirect:/teachers/";
     }
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(true);
-        dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormat, true));
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        //dateFormat.setLenient(true);
+        //  dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormat, true));
 
+        dataBinder.registerCustomEditor(Date.class, new DateEditor());
+        //dataBinder.registerCustomEditor(String.class, new DateEditor());
+
+
+        //new DateCustomEditor
+      /*  dataBinder.registerCustomEditor(Date.class,"dateOfBirth", new PropertyEditorSupport() {
+            public void setAsText(String value) {
+                try {
+                    setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));
+                } catch(ParseException e) {
+                    setValue(null);
+                }
+            }
+
+            public String getAsText() {
+                return new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
+            }
+
+        });
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
-    }
+    }*/
 
+    }
 }
