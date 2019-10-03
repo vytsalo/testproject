@@ -10,6 +10,9 @@
 
 <title>Приложение "Университет"</title></head>
 <body>
+
+<jsp:include page="testsecurity/auth.jsp" />
+
 <div class="pricingTable">
   <h2 class="pricingTable-title">Приложение "Университет"</h2>
   <h3 class="pricingTable-subtitle">Выберите страницу для перехода</h3>

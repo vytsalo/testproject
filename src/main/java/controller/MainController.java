@@ -20,6 +20,25 @@ import java.util.List;
 
 //http://localhost:8082/
 //todo примеры удаленного:валидации и т.д. сделать отдельно
+
+//TODO MAKE A COMMON STYLE OF AUTH JSP PAGES.
+// TODO MAKE A TABLES WITH STYLES IN FORMS
+// TODO MAKE A TABLES WITH STYLES IN LISTS
+// TODO LOGIN FORM IF USER IS NOT AUTHORISE
+// TODO UL LI IN THE LIST?
+
+
+
+
+
+// TODO
+/*
+ 1. заменить формат даты на удобный для пользователя
+2. добавление студентов и преподавателей в группы сделать поиском
+3. убрать скачки к заголовку страницы при переходе по ссылкам(смотри return false)
+4. после логаута отправлять пользователя на главную страницу - logout redirect
+5. локализовать страницы логина/логаута// Кнопка войти, если нет авторизации
+*/
 @Controller
 public class MainController {
 
