@@ -14,7 +14,21 @@
         <intercept-url pattern="/**/update/**" access="isAuthenticated()" />
 
 
-    </http>
+
+        <!-- form login -->
+      <!--
+        <form-login login-page="/login" default-target-url="/list" authentication-failure-url="/accessdenied" />
+        -->
+
+        <!--Редирект на главную страницу при успешном логауте -->
+        <!-- Как пофиксить "" -->
+        <logout
+                logout-success-url="http://212.193.37.103:8082"
+                delete-cookies="JSESSIONID" />
+
+
+
+         </http>
 
 
     <authentication-manager>
@@ -27,4 +41,6 @@
 
 
     </authentication-manager>
+
+
 </beans:beans>

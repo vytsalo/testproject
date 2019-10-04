@@ -33,7 +33,7 @@ public class DateEditor extends PropertyEditorSupport {
 
  String sdf = "";
 
-        String val = (String) getValue() ;
+        String val = getValue().toString() ;
 
         if (val!=null){
         try {
@@ -41,8 +41,6 @@ public class DateEditor extends PropertyEditorSupport {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             //dateFormat.setLenient(true);//-
-
-
 
             System.out.println(val);
             //какая переменная должна быть
