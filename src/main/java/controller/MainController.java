@@ -18,7 +18,7 @@ import service.GroupService;
 // TODO MAKE A TABLES WITH STYLES IN LISTS
 // TODO LOGIN FORM IF USER IS NOT AUTHORISE
 // TODO UL LI IN THE LIST?
-// TODO
+// TODO REPLACE ALL LINKS TO C:URL
 
 //TODO начать с самого начала от корня - сиюрл валю
 //работает на любой странице

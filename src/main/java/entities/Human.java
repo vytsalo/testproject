@@ -98,7 +98,7 @@ public abstract class Human{
         return  " fam=" + this.getFam() +
                 " name=" + this.getName() +
                 " otch=" + this.getOtch() +
-                " dateOfBirth=" + new SimpleDateFormat("dd.MM.yyyy").format(this.getDateOfBirth()) +
+                " dateOfBirth=" + this.getDateOfBirth().toString() +
                 " phoneNumber=" + this.getPhoneNumber();
     }
 

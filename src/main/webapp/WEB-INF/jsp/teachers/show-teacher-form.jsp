@@ -56,6 +56,10 @@
 
 			<p>Пожалуйста, заполните поля ниже.</p>
 
+                <h1>${teacher.dateOfBirth}
+                </h1>
+
+
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
             <springForm:form method="POST" action="../../teachers/processform" modelAttribute="teacher" id="send">
 

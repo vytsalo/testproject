@@ -22,9 +22,7 @@
 
         <!--Редирект на главную страницу при успешном логауте -->
         <!-- Как пофиксить "" -->
-        <logout
-                logout-success-url="/"
-        />
+        <logout logout-success-url="/" />
          </http>
 
 

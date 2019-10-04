@@ -37,7 +37,6 @@ public class TeacherController {
             tcs.setGroups(new ArrayList<>(new HashSet<>(tcs.getGroups())));
         });
 
-
         model.addAttribute("teachers", teacherList);
 
         return "teachers/list-teachers";
@@ -111,6 +110,7 @@ public class TeacherController {
 
 
         //todo make a notInThisTeacherGroups
+
         model.addAttribute("groups", allGroups);
 
         return "teachers/show-teacher-form";
@@ -130,7 +130,11 @@ public class TeacherController {
         //dateFormat.setLenient(true);
         //  dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new CustomDateEditor(dateFormat, true));
 
-        dataBinder.registerCustomEditor(Date.class, new DateEditor());
+
+        //teacherService
+        dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new DateEditor(teacherService));
+
+
 
         //dataBinder.registerCustomEditor(String.class, new DateEditor());
 
