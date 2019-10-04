@@ -41,7 +41,7 @@ public class DateEditor extends PropertyEditorSupport {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             //dateFormat.setLenient(true);//-
-            
+
 
 
             System.out.println(val);
