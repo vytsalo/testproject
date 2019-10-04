@@ -23,11 +23,8 @@
         <!--Редирект на главную страницу при успешном логауте -->
         <!-- Как пофиксить "" -->
         <logout
-                logout-success-url="http://212.193.37.103:8082"
-                delete-cookies="JSESSIONID" />
-
-
-
+                logout-success-url="/"
+        />
          </http>
 
 

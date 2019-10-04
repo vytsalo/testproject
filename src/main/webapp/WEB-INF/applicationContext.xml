@@ -29,7 +29,7 @@
 
 <!-- -valid -->
 
-    <context:component-scan base-package="controller,dao,service,valid" /> <!-- new + valid -->
+    <context:component-scan base-package="controller,dao,service" /> <!-- new + valid -->
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources
         in the /WEB-INF/views directory -->

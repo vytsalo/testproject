@@ -25,13 +25,8 @@ public class DateEditor extends PropertyEditorSupport {
     @Override
     //не работает
     public String getAsText() {
-       /* SimpleDateFormat dateVormat = new SimpleDateFormat("dd.MM.yyyy");
 
-        return dateVormat.format((Date)getValue());
-
-*/
-
- String sdf = "";
+    String sdf = "";
 
         String val = getValue().toString() ;
 
@@ -49,10 +44,10 @@ public class DateEditor extends PropertyEditorSupport {
             sdf = new SimpleDateFormat("dd.MM.yyyy").format(date);
 
             System.out.println(sdf);
-        } catch (ParseException p) {p.printStackTrace();}
+            } catch (ParseException p) {p.printStackTrace();}
 
 
-    }
+                    }
         return sdf;
     }
 

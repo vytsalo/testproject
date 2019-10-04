@@ -16,7 +16,7 @@
 
     <c:otherwise>
         <br/>
-    	<h3 align = right><a href = "login">Войти в систему</a></h3>
+    	<h3 align = right><a href="<c:url value="/login" />">Войти в систему</a></h3>
     </c:otherwise>
 
 
