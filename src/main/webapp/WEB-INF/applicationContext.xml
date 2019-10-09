@@ -69,7 +69,7 @@
 
                 <!-- Если база пустая необходимо поставить криэйт, а только на 2 запуске апдейт -->
                 <!-- to CREATE -->
-                <beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
+                <beans:prop key="hibernate.hbm2ddl.auto">validate</beans:prop>
                 <beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</beans:prop><!-- 95 -->
                 <beans:prop key="hibernate.max_fetch_depth">3</beans:prop>
                 <beans:prop key="hibernate.show_sql">true</beans:prop>

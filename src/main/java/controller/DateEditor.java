@@ -40,16 +40,18 @@ public class DateEditor extends PropertyEditorSupport {
     public String getAsText() {
 
         //dd.MM.yyyy
-        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        Date date = (Date) getValue();
 
-        String gg = dateFormat.format(date);
+        if (getValue() == null) {
+            return "";
+        } else {
 
-        //new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
+            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+            Date date = (Date) getValue();
 
+            String gg = dateFormat.format(date);
 
-        return gg;
-
+            return gg;
+        }
         /*
 
     String sdf = "";

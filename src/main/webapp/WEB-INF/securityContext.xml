@@ -15,14 +15,23 @@
 
 
 
-        <!-- form login -->
-      <!--
-        <form-login login-page="/login" default-target-url="/list" authentication-failure-url="/accessdenied" />
-        -->
+
+        <form-login
+
+                login-page="/login"
+                default-target-url="/"
+
+        />
 
         <!--Редирект на главную страницу при успешном логауте -->
         <!-- Как пофиксить "" -->
-        <logout logout-success-url="/" />
+        <logout
+                logout-success-url="/"
+
+        />
+
+
+
          </http>
 
 

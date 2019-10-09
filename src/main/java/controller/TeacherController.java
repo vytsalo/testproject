@@ -132,7 +132,7 @@ public class TeacherController {
 
 
         //teacherService
-        dataBinder.registerCustomEditor(Date.class, "dateOfBirth", new DateEditor(teacherService));
+        dataBinder.registerCustomEditor(Date.class, new DateEditor());
 
 
 
