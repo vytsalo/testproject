@@ -66,9 +66,9 @@ public class StudentController {
                             studentService.add(newStudent);
 
 
-                            tempGroup.addStudent(newStudent);
+                           tempGroup.addStudent(newStudent);
 
-                            newStudent.setGruppa(tempGroup);
+                          newStudent.setGruppa(tempGroup);
 
                             studentService.update(newStudent);
 

@@ -52,6 +52,9 @@
         <!-- not an entity fix -->
         <beans:property name="packagesToScan" value="entities"/>
 
+<!--
+        <mapping class="uk.org.adamretter.org.uk.someapp.web.orm.generated.Customer"/>
+        -->
 
         <beans:property name="jpaProperties">
 
@@ -65,26 +68,55 @@
                 <!-- WAS VALIDATE -->
 
                 <!-- Если база пустая необходимо поставить криэйт, а только на 2 запуске апдейт -->
-                <beans:prop key="hbm2ddl.auto">create</beans:prop>
+                <!-- to CREATE -->
+                <beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
                 <beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</beans:prop><!-- 95 -->
                 <beans:prop key="hibernate.max_fetch_depth">3</beans:prop>
                 <beans:prop key="hibernate.show_sql">true</beans:prop>
                 <beans:prop key="hibernate.format_sql">true</beans:prop>
                 <beans:prop key="hibernate.connection.autocommit">false</beans:prop>
 
+                <!--
+                схема паблик - правильно!
+                <beans:prop key="hibernate.default_schema">public</beans:prop>
+                @Table(name = "user", schema = "public")
+
+
+
+                make an sql prepared statement for creating tables and insert hibernates
+
+
+                -->
+
+
+
+                <!-- ВЕЗДЕ И В СУЩНОСТЯХ ПОСТАВИТЬ СХЕМУ? -->
+
                 <beans:prop key="hibernate.connection.driver_class">org.postgresql.Driver</beans:prop>
 
                 <!-- CNANGED PORT TO 8080 FIX PROBLEM WITH DRIVER#CONNECT-->
+                <!-- -localhost -->
                 <beans:prop key="hibernate.connection.url">jdbc:postgresql://localhost:8080/postgres</beans:prop>
                 <beans:prop key="hibernate.connection.username">postgres</beans:prop>
                 <beans:prop key="hibernate.connection.password">background</beans:prop>
 
+
+
+                <!-- remove schema table? -->
+                <beans:prop key="hibernate.default_schema">public</beans:prop>
+
+
+
+
             </beans:props>
+
+
+
         </beans:property>
 
         </beans:bean>
 
-    <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager"><!-- id="transactionManager"  -->
+    <beans:bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <beans:property name="entityManagerFactory" ref="emf" />
     </beans:bean>
 

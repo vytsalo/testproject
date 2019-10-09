@@ -45,7 +45,7 @@
         </init-param>
 
         <!-- Загружает конфиги и логи сразу при запуске приложения -->
-        <load-on-startup>1</load-on-startup><!-- МИНУСАНУТЬ -->
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
 

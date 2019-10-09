@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="teacher")
+@Table(name="teacher", schema = "public")//, schema = "public"
 @SuppressWarnings("unused")
 public class Teacher extends Human implements Serializable {
 

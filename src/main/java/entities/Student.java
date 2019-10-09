@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name="student")
+@Table(name="student", schema = "public")//, schema = "public"
 public class Student extends Human implements Serializable {
 
     @Id

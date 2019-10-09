@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="gruppa")
+@Table(name="gruppa", schema = "public")//, schema = "public" or public.gruppa
 @SuppressWarnings("unused")
 public class Group implements Serializable {
 
@@ -25,6 +25,7 @@ public class Group implements Serializable {
     //объектный тип ID
     @Id
     @Column(name="group_id")
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
