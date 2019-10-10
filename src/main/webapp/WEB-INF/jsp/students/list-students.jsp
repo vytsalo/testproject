@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <html>
 <head>
@@ -53,8 +54,13 @@
           <td><c:out value="${list.fam}"/></td>
           <td><c:out value="${list.name}"/></td>
           <td><c:out value="${list.otch}"/></td>
-          <td><c:out value="${list.dateOfBirth}"/></td>
-          <td><c:out value="${list.phoneNumber}"/></td>
+
+
+            <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
+
+
+
+            <td><c:out value="${list.phoneNumber}"/></td>
           <td>
           <a href = "../groups/update/${list.gruppa.id}" >
           <c:out value="${list.gruppa.title}"/>
@@ -74,7 +80,8 @@
   <p>Студент:</p>
   <p>ID : <c:out value="${list.id}"/></p>
   <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
-  <p>Дата рождения: <c:out value="${list.dateOfBirth}"/></p>
+  <p>Дата рождения:
+            <fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></p>
   <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
   <p>Группа: <c:out value="${list.gruppa.title}"/></p>
 </div>

@@ -16,10 +16,6 @@ import java.util.Date;
 @Component
 public class DateEditor extends PropertyEditorSupport {
 
-
-    @Autowired
-    TeacherService teacherService;
-
     //Из какого формата конвертирует в бд(принимает)
     @Override
     public void setAsText(String value) {
@@ -52,7 +48,4 @@ public class DateEditor extends PropertyEditorSupport {
     public DateEditor() {
     }
 
-    public DateEditor(TeacherService teacherService) {
-        this.teacherService = teacherService;
-    }
 }

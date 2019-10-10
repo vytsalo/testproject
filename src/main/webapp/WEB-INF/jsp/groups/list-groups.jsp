@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
+<!-- change TAGLIB URI -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -41,7 +42,7 @@
    <table cellspacing="0" class="order-table table" id = "mytable">
 
 	  <thead>
-
+        <tr>
          <th>#ID</th>
          <th>Название</th>
          <th>Преподаватели</th>
@@ -63,8 +64,16 @@
 
                         <a href = "../teachers/update/${tslist.id}" >
 
-                              <c:out value="${tslist.fam} ${tslist.name} ${tslist.otch}  ${tslist.dateOfBirth}"/></br>
-                         </a>
+
+                                ${tslist.fam} ${tslist.name} ${tslist.otch}
+
+
+                                    <fmt:formatDate value="${tslist.dateOfBirth}" pattern="dd.MM.yyyy" />
+
+
+                                    <br/>
+
+            </a>
 
                   </c:forEach>
 
@@ -77,8 +86,10 @@
                           <c:forEach items="${list.students}" var="stlist">
 
                                     <a href = "../students/update/${stlist.id}" >
+${stlist.fam} ${stlist.name} ${stlist.otch} ДАТА
 
-                                               <c:out value="${stlist.fam} ${stlist.name} ${stlist.otch}  ${stlist.dateOfBirth}"/>
+        <!--
+        -->
                                                                </br>
 
                                      </a>

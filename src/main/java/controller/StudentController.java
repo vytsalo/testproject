@@ -59,6 +59,8 @@ public class StudentController {
                         if (newStudent.getId() == null){
                             //добавляем нового студента
 
+                            if (newStudent.getGruppa()!=null){
+
                             Group tempGroup = groupService.findById(newStudent.getGruppa().getId());
 
                             newStudent.setGruppa(null);
@@ -71,6 +73,10 @@ public class StudentController {
                           newStudent.setGruppa(tempGroup);
 
                             studentService.update(newStudent);
+
+                            } else studentService.add(newStudent);
+
+
 
                         }
                         else
@@ -125,9 +131,6 @@ public class StudentController {
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        //строгий формат - false, нестрогий, который будет разбирать - true
-        dateFormat.setLenient(true);
         /*
         1) создаем поле в сущности с определенным классом - тип поля
         2) как называется поле
@@ -135,7 +138,7 @@ public class StudentController {
         */
         //, "dateOfBirth", - field
         //без указания поля будет обрабатывать все поля типа Date
-        dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+        dataBinder.registerCustomEditor(Date.class, new DateEditor());
 
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
     }

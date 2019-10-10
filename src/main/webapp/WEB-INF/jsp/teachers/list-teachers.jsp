@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- change TAGLIB URI -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
@@ -59,6 +60,8 @@
           <td><c:out value="${list.fam}"/></td>
           <td><c:out value="${list.name}"/></td>
           <td><c:out value="${list.otch}"/></td>
+
+
           <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
           <td><c:out value="${list.phoneNumber}"/></td>
 
