@@ -59,7 +59,7 @@ public class MainController {
                                     Model model) {
         String errorMessge = null;
         if(error != null) {
-            errorMessge = "Имя пользователя или пароль неверны!!";
+            errorMessge = "Имя пользователя или пароль неверны!!!";
         }
         model.addAttribute("errorMessge", errorMessge);
         return "testsecurity/login";
