@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
 
         <!-- Подключение js-файла поиска -->
-<script src="../js/search.js" />"></script>
+<script src="../js/search.js" ></script>
 <script src="../js/jquery-3.4.1.min.js"></script>
 <script src="../js/jquery.modal.min.js"></script>
 <script src="../js/jquery.tablesorter.min.js"></script>
@@ -59,9 +59,10 @@
           <td><c:out value="${list.fam}"/></td>
           <td><c:out value="${list.name}"/></td>
           <td><c:out value="${list.otch}"/></td>
-          <td><c:out value="${list.dateOfBirth}"/></td>
+          <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
           <td><c:out value="${list.phoneNumber}"/></td>
-		  <td>
+
+            <td>
 		  
 		  <c:forEach items="${list.groups}" var="gslist">
 			  <a href = "../groups/update/${gslist.id}" >

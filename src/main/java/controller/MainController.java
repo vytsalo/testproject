@@ -30,13 +30,19 @@ import service.GroupService;
 
 /*
 1. заменить формат даты на удобный для пользователя СПРОСИТЬ
-2. добавление студентов и преподавателей в группы сделать поиском - добавить строку поиска
+2. добавление студентов и преподавателей в группы сделать поиском - добавить строку поиска как?
 4. после логаута отправлять пользователя на главную страницу - logout redirect +
-5. локализовать страницы логина/логаута// Кнопка войти, если нет авторизации
+5. локализовать страницы логина/логаута// Кнопка войти, если нет авторизации +
 */
+
+
+//TODO как сделать поиском?
 
 //TODO TEACHER'S ENTER THE SITE BUG
 //HOW TO KNOW WHERE AM I?
+
+//TODO hibernate search query all fields
+
 
 @Controller
 public class MainController {
@@ -50,17 +56,16 @@ public class MainController {
         return "main";
     }
 
-
-
-    //-- logout
     //refactoring
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(@RequestParam(value = "error", required = false) String error,
                                     Model model) {
         String errorMessge = null;
+
         if(error != null) {
-            errorMessge = "Имя пользователя или пароль неверны!!!";
+            errorMessge = "Неверный логин или пароль";
         }
+
         model.addAttribute("errorMessge", errorMessge);
         return "testsecurity/login";
     }
@@ -73,23 +78,7 @@ public class MainController {
     //стаковерфлоу
     //https://howtodoinjava.com/spring5/security5/login-form-example/
     //https://www.mkyong.com/spring-security/spring-security-form-login-example/
-    @GetMapping("/logout")
-    public String logoutPage(Model model){
 
-        return "redirect:/";
-    }
-
-
-
-
-
-    /*
-    @GetMapping("/login")
-    public String loginPage(Model model){
-
-        return "testsecurity/login";
-    }
-*/
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
     public ModelAndView authTestPage() {
 

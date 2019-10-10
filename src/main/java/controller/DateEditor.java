@@ -9,8 +9,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
 //TODO addTeacherServices
 
 
@@ -21,8 +19,6 @@ public class DateEditor extends PropertyEditorSupport {
 
     @Autowired
     TeacherService teacherService;
-
-
 
     //Из какого формата конвертирует в бд(принимает)
     @Override
@@ -39,50 +35,18 @@ public class DateEditor extends PropertyEditorSupport {
     @Override
     public String getAsText() {
 
-        //dd.MM.yyyy
-
         if (getValue() == null) {
             return "";
         } else {
 
+            //new SimpleDateFormat("dd.MM.yyyy").format((Date)getValue());
             DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
             Date date = (Date) getValue();
 
             String gg = dateFormat.format(date);
 
-            return gg;
+            return gg;// работает, если вызывать метод toString к этому объекту Date
         }
-        /*
-
-    String sdf = "";
-
-        String val = getValue().toString() ;
-
-
-
-        if (val!=null){
-        try {
-            //Формат в бд
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-
-
-
-
-            //dateFormat.setLenient(true);//-
-
-            System.out.println(val);
-            //какая переменная должна быть
-            Date date = dateFormat.parse(val);
-            //Формат, который нужен
-            sdf = new SimpleDateFormat("dd.MM.yyyy").format(date);
-
-            System.out.println(sdf);
-            } catch (ParseException p) {p.printStackTrace();}
-
-
-                    }
-        return sdf;*/
     }
 
     public DateEditor() {

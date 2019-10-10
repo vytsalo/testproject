@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
 
@@ -56,8 +57,10 @@
 
 			<p>Пожалуйста, заполните поля ниже.</p>
 
-                <h1>${teacher.dateOfBirth}
+                <h1><fmt:formatDate value="${teacher.dateOfBirth}" pattern="dd.MM.yyyy"/>
                 </h1>
+
+                <br/>
 
 
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->

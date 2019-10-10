@@ -20,6 +20,7 @@ import java.util.*;
 
 @Controller
 //todo remove this or replace to main controller
+
 @RequestMapping("/groups")
 public class GroupController {
 

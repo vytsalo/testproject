@@ -15,11 +15,12 @@
 		<br/>
 		<h3 align = right>Пользователь: ${pageContext.request.remoteUser} |
 
-	<!-- сабмитит форму по клику на ссылку -->
+
+	<!-- add class to a link>
+        <!-- сабмитит форму по клику на ссылку -->
 	<a href="javascript:document.forms['test'].submit()">Выйти</a>
 
 </h3>
-
 
 
 <form:form action="${pageContext.request.contextPath}/logout"

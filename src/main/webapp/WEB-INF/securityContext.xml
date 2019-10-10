@@ -11,15 +11,12 @@
         <!-- isAnonymous() -->
         <intercept-url pattern="/**/add/**" access="isAuthenticated()" />
         <intercept-url pattern="/**/delete/**" access="isAuthenticated()" />
-        <intercept-url pattern="/**/update/**" access="isAuthenticated()" />
-
-
+        <intercept-url pattern="/**/update/**" access="isAuthenticated()"  />
 
 
         <form-login
 
                 login-page="/login"
-                default-target-url="/"
 
         />
 
@@ -39,6 +36,7 @@
         <authentication-provider>
             <user-service>
                 <user name="uzer64" password="{noop}123456" authorities="ROLE_USER" />
+                <user name="user" password="{noop}123" authorities="ROLE_USER" />
                 <user name="admin" password="{noop}admin" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
