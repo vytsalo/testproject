@@ -2,6 +2,8 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html>
 <body>
 
@@ -11,8 +13,27 @@
 <c:choose>
 	<c:when test="${pageContext.request.remoteUser != null}">
 		<br/>
-		<h3 align = right>Пользователь: ${pageContext.request.remoteUser} | <a href="<c:url value="/logout" />" >Выйти</a></h3>
-	</c:when>
+		<h3 align = right>Пользователь: ${pageContext.request.remoteUser} |
+
+	<!-- сабмитит форму по клику на ссылку -->
+	<a href="javascript:document.forms['test'].submit()">Выйти</a>
+
+</h3>
+
+
+
+<form:form action="${pageContext.request.contextPath}/logout"
+		   method="post" modelAttribute="_csrf" name='test'>
+	<form:button value="submit" hidden = "hidden"></form:button>
+
+</form:form>
+
+
+
+
+
+
+</c:when>
 
     <c:otherwise>
         <br/>
