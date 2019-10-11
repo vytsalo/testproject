@@ -1,6 +1,8 @@
 package entities;
 
+import org.hibernate.search.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -8,28 +10,35 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @MappedSuperclass
+//-LONG PATH
+@org.hibernate.search.annotations.Indexed
 public abstract class Human{
 
     @Column
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String fam;
 
     @Column
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
+
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String name;
 
     @Column
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
+
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String otch;
 
     @Column
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
     @NotNull(message = "Поле не может быть NULL")
     @Past(message = "Время должно быть в прошлом")
     @Temporal(value = TemporalType.DATE)//@Type(type = "date")
@@ -38,6 +47,7 @@ public abstract class Human{
     private Date dateOfBirth;
 
     @Column
+    @Field(index= Index.YES, analyze= Analyze.YES, store= Store.NO)
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 15, max = 15, message = "Длина поля должна быть 15 символов")
     //8(963) 145-8916

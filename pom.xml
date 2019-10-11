@@ -16,6 +16,7 @@
     <properties>
         <spring-version>5.1.2.RELEASE</spring-version>
         <spring-security-version>5.1.6.RELEASE</spring-security-version>
+        <!-- UPDATE HIBERNATE TO VERSION 5+ -->
         <hibernate-version>4.3.11.Final</hibernate-version>
     </properties>
 
@@ -23,6 +24,26 @@
     <!-- Как можно ближе версии делать во избежании ошибок -->
     <!-- SPRINGS -->
     <dependencies>
+
+
+<!--
+
+ Люсена для поиска
+        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.lucene/lucene-core &ndash;&gt;
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>7.5.0</version>
+        </dependency>
+-->
+
+
+
+
+
+
+
+
 
         <dependency>
             <groupId>org.springframework</groupId>
@@ -105,11 +126,25 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.1.Final</version>
         </dependency>
-        <dependency>
 
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
             <version>5.2.1.Final</version>
+        </dependency>
+
+
+        <!-- new for search -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>5.2.1.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-elasticsearch</artifactId>
+            <version>RELEASE</version>
         </dependency>
 
 
@@ -280,6 +315,11 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.1-GA</version>
         </dependency>
 
 

@@ -21,6 +21,9 @@ import service.GroupService;
 // TODO UL LI IN THE LIST?
 // TODO REPLACE ALL LINKS TO C:URL
 
+
+//TODO MAKE A GENERIC INTERFACES FOR GROUP STUDENTS AND TEACHERS DAO AND SERVICES
+
 //TODO начать с самого начала от корня - сиюрл валю
 //работает на любой странице
 //<a href="<c:url value="/logout" />" >Выйти</a>

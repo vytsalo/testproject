@@ -9,4 +9,7 @@ public interface TeacherService {
     void update(Teacher teacher);
     Teacher findById(Long teacherId);
     void delete(Long teacherId);
+
+    List<Teacher> getTeachersByParamList(String query);
+
 }

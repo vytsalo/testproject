@@ -21,4 +21,7 @@ public interface TeacherDao {
     //удаление по объекту
     void delete(Long teacherId);
 
+    //поиск по критерию
+    List<Teacher> searchByQuery(String query);
+
 }

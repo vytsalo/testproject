@@ -57,12 +57,6 @@
 
 			<p>Пожалуйста, заполните поля ниже.</p>
 
-                <h1><fmt:formatDate value="${teacher.dateOfBirth}" pattern="dd.MM.yyyy"/>
-                </h1>
-
-                <br/>
-
-
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
             <springForm:form method="POST" action="../../teachers/processform" modelAttribute="teacher" id="send">
 

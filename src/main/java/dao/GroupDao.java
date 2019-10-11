@@ -1,8 +1,10 @@
 package dao;
-import entities.Group;
+        import entities.Group;
+        import java.util.List;
 
-import java.util.List;
 
+        //Object
+//public interface GroupDao <T>{
 public interface GroupDao {
     void add(Group group);
     List<Group> getGroupsList();

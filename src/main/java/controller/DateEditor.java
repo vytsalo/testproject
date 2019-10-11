@@ -1,8 +1,6 @@
 package controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import service.TeacherService;
 
 import java.beans.PropertyEditorSupport;
 import java.text.DateFormat;
@@ -19,6 +17,7 @@ public class DateEditor extends PropertyEditorSupport {
     //Из какого формата конвертирует в бд(принимает)
     @Override
     public void setAsText(String value) {
+
         try {
             setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));
         } catch (Exception ex) {

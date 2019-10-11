@@ -44,4 +44,11 @@ public class TeacherServiceImpl implements TeacherService {
     public void delete(Long teacherId) {
         teach_dao.delete(teacherId);
     }
+
+
+    @Override
+    @Transactional
+    public List<Teacher> getTeachersByParamList(String query) {
+        return teach_dao.searchByQuery(query);
+    }
 }

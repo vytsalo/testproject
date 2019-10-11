@@ -2,13 +2,13 @@ package dao;
 
 import entities.Teacher;
 import org.hibernate.Criteria;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -52,4 +52,22 @@ public class TeacherDaoImlp implements TeacherDao {
        else throw new EntityNotFoundException("Преподаватель с ID = " + teacherId + " не найден");
     }
 
+
+    //Поиск по всем полям по строке
+    @Override
+    public List<Teacher> searchByQuery(String query) {
+        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
+        QueryBuilder qb = fullTextEntityManager.getSearchFactory()
+                .buildQueryBuilder().forEntity(Teacher.class).get();
+        org.apache.lucene.search.Query luceneQuery = qb
+                .keyword()
+                .onFields("fam", "name", "otch", "dateOfBirth", "phoneNumber")
+                .matching(query)
+                .createQuery();
+
+        Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Teacher.class);
+        List result = jpaQuery.getResultList();
+
+        return result;
+    }
 }
