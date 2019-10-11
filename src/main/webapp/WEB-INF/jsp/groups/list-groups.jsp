@@ -86,10 +86,13 @@
                           <c:forEach items="${list.students}" var="stlist">
 
                                     <a href = "../students/update/${stlist.id}" >
-${stlist.fam} ${stlist.name} ${stlist.otch} ДАТА
+${stlist.fam} ${stlist.name} ${stlist.otch}
 
-        <!--
-        -->
+    <fmt:formatDate value="${stlist.dateOfBirth}" pattern="dd.MM.yyyy" />
+
+
+    <!--
+    -->
                                                                </br>
 
                                      </a>
