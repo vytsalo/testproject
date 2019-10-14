@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import java.util.ArrayList;
@@ -62,7 +64,7 @@ public class TeacherDaoImlp implements TeacherDao {
                 .buildQueryBuilder().forEntity(Teacher.class).get();
         org.apache.lucene.search.Query luceneQuery = qb
                 .keyword()
-                .onFields("fam", "name", "otch", "dateOfBirth", "phoneNumber")
+                .onFields("fam", "name", "otch", "phoneNumber")
                 .matching(query)
                 .createQuery();
 
@@ -75,93 +77,99 @@ public class TeacherDaoImlp implements TeacherDao {
 
     @Override
     public List<Teacher> searchByString(String str) {
-
-//set parameter - как переменная в запросе
-
-        // Работает только по 1 полю
-/*
-        return em.createQuery(
-                "SELECT c FROM Teacher c WHERE lower(c.fam) LIKE lower(?1)")
-                .setParameter(1, "%" + str + "%")
-                .getResultList();
-*/
-
-//Сделать для каждого поля селект и юнион
+        //http://jquery.malsup.com/form/
 
 
-        List<Teacher> q1= em.createQuery(
-                "SELECT c FROM Teacher c WHERE lower(c.fam) LIKE lower(?1)")
-                .setParameter("1", "%" + str + "%")
-                .getResultList();
 
-        List<Teacher> q2= em.createQuery(
-                "SELECT c FROM Teacher c WHERE lower(c.name) LIKE lower(?1)")
-                .setParameter("1", "%" + str + "%")
-                .getResultList();
-
-        List<Teacher> q3= em.createQuery(
-                "SELECT c FROM Teacher c WHERE lower(c.otch) LIKE lower(?1)")
-                .setParameter("1", "%" + str + "%")
-                .getResultList();
-
-/* List<Teacher> q4= em.createQuery(
-                "SELECT c FROM Teacher c WHERE c.dateOfBirth LIKE ?1")
-                .setParameter("1", "%" + str + "%")
-                .getResultList();*/
-
-        List<Teacher> q5= em.createQuery(
-                "SELECT c FROM Teacher c WHERE lower(c.phoneNumber) LIKE lower(?1)")
-                .setParameter("1", "%" + str + "%")
-                .getResultList();
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Teacher> criteriaQuery = criteriaBuilder.createQuery(Teacher.class);
+        Root<Teacher> TeacherRoot = criteriaQuery.from(Teacher.class);
 
 
-        List<Teacher> results = new ArrayList<>();
-        results.addAll(q1);
-        results.addAll(q2);
-        results.addAll(q3);
-        //results.addAll(q4);
-        results.addAll(q5);
+//https://stackoverflow.com/questions/16611904/ignorecase-in-criteria-builder-in-jpa
+        Predicate predicateForBlueColor
+                = criteriaBuilder.equal(TeacherRoot.get("color"), "blue");
+        Predicate predicateForRedColor
+                = criteriaBuilder.equal(TeacherRoot.get("color"), "red");
+        Predicate predicateForColor
+                = criteriaBuilder.or(
+                        predicateForBlueColor,
+                        predicateForRedColor,
+                        criteriaBuilder.equal(criteriaBuilder.lower(TeacherRoot.get("color")), str.toLowerCase()));
 
-        return results;
- /* return em.createQuery(
-                "SELECT c FROM Teacher c WHERE lower(c.fam) LIKE lower(:str)" +
-                        " UNION " +
-                        "SELECT c FROM Teacher c WHERE lower(c.name) LIKE lower(:str)" +
-                        " UNION " +
-                        "SELECT c FROM Teacher c WHERE lower(c.otch) LIKE lower(:str)" +
-                        " UNION " +
-                        "SELECT c FROM Teacher c WHERE lower(c.phoneNumber) LIKE lower(:str)" +
-                        " UNION " +
-                        "SELECT c FROM Teacher c WHERE lower(c.dateOfBirth) LIKE lower(:str)")
-                .setParameter("str", "%" + str + "%")
-                .getResultList();*/
+        //adding where like
+        //https://stackoverflow.com/questions/4635777/hibernate-jpa-criteriabuilder-ignore-case-queries
+        //https://www.baeldung.com/jpa-and-or-criteria-predicates
+
+        //predicateForFam
 
 
 
 /*
- 100% working
-    return em.createQuery(
-                "SELECT c FROM Teacher c WHERE c.fam LIKE ?1")
-                .setParameter(1, "%" + str + "%")
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+
+        CriteriaQuery<Person> personCriteriaQuery = criteriaBuilder.createQuery(Person.class);
+        Root<Person> personRoot = personCriteriaQuery.from(Person.class);
+
+        personCriteriaQuery.select(personRoot);
+        personCriteriaQuery.where(criteriaBuilder.like(personRoot.get(Person_.description), "%"+filter.getDescription().toUpperCase()+"%"));
+        List<Person> pageResults = entityManager.createQuery(personCriteriaQuery).getResultList();
+        */
+
+
+
+
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Teacher> criteriaQuery = cb.createQuery(Teacher.class);
+        Root<Teacher> root = criteriaQuery.from(Teacher.class);
+        criteriaQuery.select(root);
+        criteriaQuery
+                    .where(cb.equal(root.get("fam"), str))
+                    .where(cb.equal(root.get("phoneNumber"),str));// toUpperCase() in the end where
+        return em.createQuery(criteriaQuery)
                 .getResultList();
-        almost working
-        return em.createQuery("from " + Teacher.class.getName()).setParameter("fam",str).getResultList();
-*/
+
+//https://www.baeldung.com/jpa-and-or-criteria-predicates
 
 
-       /*
-        //where like
-        TypedQuery<Teacher> query =
-                em.createQuery("FROM Teacher where " +
-                        "fam=:" + str, Teacher.class);
-        query.setParameter(1, "fam");
-        return query.getResultList();
-        Query query=em.createQuery("SELECT e FROM Employee e WHERE e.empId = ? and  e.empDepartment = ?");
-        query.setParameter(1, employeId);
-        query.setParameter(2, empDepartment);
-*/
+    //и в SQL сделать
+      /*  return em.createQuery(
+                "SELECT c FROM Teacher c WHERE to_char(c." + "dateOfBirth, 'yyyy-mm-dd'" + ") LIKE ?1 or " + "lower(c." + "fam" + ") LIKE lower(?1)")
+                .setParameter("1", "%" + str + "%")
+                .getResultList();*/
+
+
+
+
 
     }
+
+
+    /*
+
+    select * from teacher where(fam like ? && name like ?)
+
+
+    */
+
+
+/*
+    CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+
+    CriteriaQuery<Post> criteria = builder.createQuery(Post.class);
+    Root<Post> root = criteria.from(Post.class);
+
+criteria.where(
+        builder.equal(root.get("owner"), "Vlad")
+        );
+
+    List<Post> posts = entityManager
+            .createQuery(criteria)
+            .getResultList();
+
+    assertEquals(1, posts.size());
+    */
 
 
 }

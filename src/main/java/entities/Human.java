@@ -1,5 +1,8 @@
 package entities;
 
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
+import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
 import org.hibernate.search.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,6 +17,22 @@ import java.util.Date;
 
 @MappedSuperclass
 //-LONG PATH
+
+//                        @Parameter(name = "language", value = "English")
+@AnalyzerDef(name = "customanalyzer",
+        tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+        filters = {
+                @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+                @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+                        @Parameter(name = "language", value = "Russian")
+                })
+        })
+/*
+* куча ограничений
+* ищет только точное совпадение
+* язык прописывать надо
+* куча настроек
+* */
 @org.hibernate.search.annotations.Indexed
 public abstract class Human{
 
