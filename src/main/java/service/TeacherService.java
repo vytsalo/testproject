@@ -12,4 +12,7 @@ public interface TeacherService {
 
     List<Teacher> getTeachersByParamList(String query);
 
+    List<Teacher> getTeachersBySome(String str);
+
+
 }

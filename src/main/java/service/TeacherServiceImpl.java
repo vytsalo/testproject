@@ -51,4 +51,12 @@ public class TeacherServiceImpl implements TeacherService {
     public List<Teacher> getTeachersByParamList(String query) {
         return teach_dao.searchByQuery(query);
     }
+
+    @Override
+    @Transactional
+    public List<Teacher> getTeachersBySome(String str) {
+        return teach_dao.searchByString(str);
+    }
+
+
 }

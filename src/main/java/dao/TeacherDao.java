@@ -24,4 +24,8 @@ public interface TeacherDao {
     //поиск по критерию
     List<Teacher> searchByQuery(String query);
 
+    // Поиск по строке
+    List<Teacher> searchByString(String query);
+
+
 }

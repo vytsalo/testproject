@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -70,4 +71,97 @@ public class TeacherDaoImlp implements TeacherDao {
 
         return result;
     }
+
+
+    @Override
+    public List<Teacher> searchByString(String str) {
+
+//set parameter - как переменная в запросе
+
+        // Работает только по 1 полю
+/*
+        return em.createQuery(
+                "SELECT c FROM Teacher c WHERE lower(c.fam) LIKE lower(?1)")
+                .setParameter(1, "%" + str + "%")
+                .getResultList();
+*/
+
+//Сделать для каждого поля селект и юнион
+
+
+        List<Teacher> q1= em.createQuery(
+                "SELECT c FROM Teacher c WHERE lower(c.fam) LIKE lower(?1)")
+                .setParameter("1", "%" + str + "%")
+                .getResultList();
+
+        List<Teacher> q2= em.createQuery(
+                "SELECT c FROM Teacher c WHERE lower(c.name) LIKE lower(?1)")
+                .setParameter("1", "%" + str + "%")
+                .getResultList();
+
+        List<Teacher> q3= em.createQuery(
+                "SELECT c FROM Teacher c WHERE lower(c.otch) LIKE lower(?1)")
+                .setParameter("1", "%" + str + "%")
+                .getResultList();
+
+/* List<Teacher> q4= em.createQuery(
+                "SELECT c FROM Teacher c WHERE c.dateOfBirth LIKE ?1")
+                .setParameter("1", "%" + str + "%")
+                .getResultList();*/
+
+        List<Teacher> q5= em.createQuery(
+                "SELECT c FROM Teacher c WHERE lower(c.phoneNumber) LIKE lower(?1)")
+                .setParameter("1", "%" + str + "%")
+                .getResultList();
+
+
+        List<Teacher> results = new ArrayList<>();
+        results.addAll(q1);
+        results.addAll(q2);
+        results.addAll(q3);
+        //results.addAll(q4);
+        results.addAll(q5);
+
+        return results;
+ /* return em.createQuery(
+                "SELECT c FROM Teacher c WHERE lower(c.fam) LIKE lower(:str)" +
+                        " UNION " +
+                        "SELECT c FROM Teacher c WHERE lower(c.name) LIKE lower(:str)" +
+                        " UNION " +
+                        "SELECT c FROM Teacher c WHERE lower(c.otch) LIKE lower(:str)" +
+                        " UNION " +
+                        "SELECT c FROM Teacher c WHERE lower(c.phoneNumber) LIKE lower(:str)" +
+                        " UNION " +
+                        "SELECT c FROM Teacher c WHERE lower(c.dateOfBirth) LIKE lower(:str)")
+                .setParameter("str", "%" + str + "%")
+                .getResultList();*/
+
+
+
+/*
+ 100% working
+    return em.createQuery(
+                "SELECT c FROM Teacher c WHERE c.fam LIKE ?1")
+                .setParameter(1, "%" + str + "%")
+                .getResultList();
+        almost working
+        return em.createQuery("from " + Teacher.class.getName()).setParameter("fam",str).getResultList();
+*/
+
+
+       /*
+        //where like
+        TypedQuery<Teacher> query =
+                em.createQuery("FROM Teacher where " +
+                        "fam=:" + str, Teacher.class);
+        query.setParameter(1, "fam");
+        return query.getResultList();
+        Query query=em.createQuery("SELECT e FROM Employee e WHERE e.empId = ? and  e.empDepartment = ?");
+        query.setParameter(1, employeId);
+        query.setParameter(2, empDepartment);
+*/
+
+    }
+
+
 }
