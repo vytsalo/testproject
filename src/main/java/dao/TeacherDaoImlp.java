@@ -75,62 +75,51 @@ public class TeacherDaoImlp implements TeacherDao {
     }
 
 
+    //http://jquery.malsup.com/form/
+//https://stackoverflow.com/questions/16611904/ignorecase-in-criteria-builder-in-jpa
+    //adding where like
+    //https://stackoverflow.com/questions/4635777/hibernate-jpa-criteriabuilder-ignore-case-queries
+    //https://www.baeldung.com/jpa-and-or-criteria-predicates
+// + SQL EXAMPLE
     @Override
     public List<Teacher> searchByString(String str) {
-        //http://jquery.malsup.com/form/
-
-
 
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Teacher> criteriaQuery = criteriaBuilder.createQuery(Teacher.class);
         Root<Teacher> TeacherRoot = criteriaQuery.from(Teacher.class);
 
+        Predicate predicateForName
+                = criteriaBuilder.like(criteriaBuilder.lower(TeacherRoot.get("name")), "%" + str.toLowerCase() + "%");
 
-//https://stackoverflow.com/questions/16611904/ignorecase-in-criteria-builder-in-jpa
-        Predicate predicateForBlueColor
-                = criteriaBuilder.equal(TeacherRoot.get("color"), "blue");
-        Predicate predicateForRedColor
-                = criteriaBuilder.equal(TeacherRoot.get("color"), "red");
-        Predicate predicateForColor
-                = criteriaBuilder.or(
-                        predicateForBlueColor,
-                        predicateForRedColor,
-                        criteriaBuilder.equal(criteriaBuilder.lower(TeacherRoot.get("color")), str.toLowerCase()));
+        Predicate predicateForFam
+                = criteriaBuilder.like(criteriaBuilder.lower(TeacherRoot.get("fam")), "%" + str.toLowerCase() + "%");
 
-        //adding where like
-        //https://stackoverflow.com/questions/4635777/hibernate-jpa-criteriabuilder-ignore-case-queries
-        //https://www.baeldung.com/jpa-and-or-criteria-predicates
+        Predicate predicateForOtch
+                = criteriaBuilder.like(criteriaBuilder.lower(TeacherRoot.get("otch")), "%" + str.toLowerCase() + "%");
 
-        //predicateForFam
+        Predicate predicateForPhone
+                = criteriaBuilder.like(TeacherRoot.get("phoneNumber"), "%" + str + "%");
+
+        Predicate predicateForDate
+                = criteriaBuilder.like(TeacherRoot.get("dateOfBirth").as(String.class), "%" + str + "%");
 
 
 
-/*
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        Predicate predicateFinal = criteriaBuilder.or(
+                predicateForName,
+                predicateForFam,
+                predicateForOtch,
+                predicateForPhone,
+                predicateForDate);
 
-        CriteriaQuery<Person> personCriteriaQuery = criteriaBuilder.createQuery(Person.class);
-        Root<Person> personRoot = personCriteriaQuery.from(Person.class);
+        criteriaQuery.where(predicateFinal);
 
-        personCriteriaQuery.select(personRoot);
-        personCriteriaQuery.where(criteriaBuilder.like(personRoot.get(Person_.description), "%"+filter.getDescription().toUpperCase()+"%"));
-        List<Person> pageResults = entityManager.createQuery(personCriteriaQuery).getResultList();
-        */
+        return em.createQuery(criteriaQuery).getResultList();
+
+    }
 
 
 
-
-
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Teacher> criteriaQuery = cb.createQuery(Teacher.class);
-        Root<Teacher> root = criteriaQuery.from(Teacher.class);
-        criteriaQuery.select(root);
-        criteriaQuery
-                    .where(cb.equal(root.get("fam"), str))
-                    .where(cb.equal(root.get("phoneNumber"),str));// toUpperCase() in the end where
-        return em.createQuery(criteriaQuery)
-                .getResultList();
-
-//https://www.baeldung.com/jpa-and-or-criteria-predicates
 
 
     //и в SQL сделать
@@ -140,36 +129,6 @@ public class TeacherDaoImlp implements TeacherDao {
                 .getResultList();*/
 
 
-
-
-
-    }
-
-
-    /*
-
-    select * from teacher where(fam like ? && name like ?)
-
-
-    */
-
-
-/*
-    CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-
-    CriteriaQuery<Post> criteria = builder.createQuery(Post.class);
-    Root<Post> root = criteria.from(Post.class);
-
-criteria.where(
-        builder.equal(root.get("owner"), "Vlad")
-        );
-
-    List<Post> posts = entityManager
-            .createQuery(criteria)
-            .getResultList();
-
-    assertEquals(1, posts.size());
-    */
 
 
 }
