@@ -45,16 +45,9 @@ public class TeacherServiceImpl implements TeacherService {
         teach_dao.delete(teacherId);
     }
 
-
     @Override
     @Transactional
-    public List<Teacher> getTeachersByParamList(String query) {
-        return teach_dao.searchByQuery(query);
-    }
-
-    @Override
-    @Transactional
-    public List<Teacher> getTeachersBySome(String str) {
+    public List<Teacher> getTeachersByParam(String str) {
         return teach_dao.searchByString(str);
     }
 

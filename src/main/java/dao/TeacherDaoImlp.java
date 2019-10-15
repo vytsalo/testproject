@@ -55,34 +55,28 @@ public class TeacherDaoImlp implements TeacherDao {
        else throw new EntityNotFoundException("Преподаватель с ID = " + teacherId + " не найден");
     }
 
-
-    //Поиск по всем полям по строке
-    @Override
-    public List<Teacher> searchByQuery(String query) {
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(em);
-        QueryBuilder qb = fullTextEntityManager.getSearchFactory()
-                .buildQueryBuilder().forEntity(Teacher.class).get();
-        org.apache.lucene.search.Query luceneQuery = qb
-                .keyword()
-                .onFields("fam", "name", "otch", "phoneNumber")
-                .matching(query)
-                .createQuery();
-
-        Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, Teacher.class);
-        List result = jpaQuery.getResultList();
-
-        return result;
-    }
-
-
     //http://jquery.malsup.com/form/
 //https://stackoverflow.com/questions/16611904/ignorecase-in-criteria-builder-in-jpa
     //adding where like
     //https://stackoverflow.com/questions/4635777/hibernate-jpa-criteriabuilder-ignore-case-queries
     //https://www.baeldung.com/jpa-and-or-criteria-predicates
 // + SQL EXAMPLE
+
+
+
+    //поиск по нескольким параметрам сразу, например, фамилию и имя
+/*
+WHERE id = 3 or id = 4
+Or the equivalent in:
+
+WHERE id in (3,4)
+
+ */
     @Override
     public List<Teacher> searchByString(String str) {
+
+
+
 
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Teacher> criteriaQuery = criteriaBuilder.createQuery(Teacher.class);
@@ -102,8 +96,6 @@ public class TeacherDaoImlp implements TeacherDao {
 
         Predicate predicateForDate
                 = criteriaBuilder.like(TeacherRoot.get("dateOfBirth").as(String.class), "%" + str + "%");
-
-
 
         Predicate predicateFinal = criteriaBuilder.or(
                 predicateForName,

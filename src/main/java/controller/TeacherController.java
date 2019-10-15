@@ -47,7 +47,6 @@ public class TeacherController {
         model.addAttribute("teacher", new Teacher());
         model.addAttribute("groups", groupService.getGroupsList());
         return "teachers/show-teacher-form";
-
     }
 
     @PostMapping("/processform")
