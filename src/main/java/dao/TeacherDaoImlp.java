@@ -104,6 +104,8 @@ WHERE id in (3,4)
                 predicateForPhone,
                 predicateForDate);
 
+
+        //add orderBy
         criteriaQuery.where(predicateFinal);
 
         return em.createQuery(criteriaQuery).getResultList();

@@ -20,37 +20,29 @@
 
     <script>
         // wait for the DOM to be loaded
-      /*  $(document).ready(function() {
-            // bind 'searchForm' and provide a simple callback function
-            $('#searchForm').ajaxForm(function() {
+        $(document).ready(function() {
+            // bind form using ajaxForm
+            $('#searchForm').ajaxForm({
+                // dataType identifies the expected content type of the server response
+                dataType:  'json',
 
+                //when page starts table is invisible
 
-                success: function(response){
-                    var resdata = response;
-                    alert(resdata['name']);
+                // success identifies the function to invoke when the server response
+                // has been received
+                //процесс джейсон - типа оверрайд?
+                success: function processJson(data) {
+                    //'data' is the json object returned from the server
+                    //in the table
+                        //$('#existingTeachers')
+                    alert(data[0]['id'] + " " + data[0].fam + " " + data[0].name + " " + data[0].otch + " " + data[0].phoneNumber + " " + data[0].dateOfBirth);
+
                 }
 
-
-
-
-
-/!*
-                   success: function(responseText){
-                    alert(responseText);
-
-                }
-*!/
-
-                /!*$.getJSON('http://localhost:8082/ajaxprocessform', function(data) {
-
-                 alert(data);
-                 //data is the JSON string
-                 });*!/
-
-
+                //getTableById().innerHtml -
 
             });
-        });*/
+        });
     </script>
 </head>
 <body>
@@ -72,10 +64,51 @@
 
         <br/>
 
-            <input type = "text" value="${searchStr}">
+            Результаты:
+
+            <table border = "1 px solid" id="teachersTable" visible = "false">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Дата рождения</th>
+                    <th>Телефон</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                    <tr>
+                        <td>
+
+
+                        </td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        <td><a href = "#">Добавить</a></td>
+
+
+                    </tr>
+
+
+                </tbody>
+
+            </table>
+
 
 
         </center>
+
+
 
     </form>
 
