@@ -47,7 +47,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     @Transactional
-    public List<Teacher> getTeachersByParam(String str) {
+    public List<Teacher> findByParam(String str) {
         return teach_dao.searchByString(str);
     }
 

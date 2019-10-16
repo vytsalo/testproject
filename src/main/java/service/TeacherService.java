@@ -10,7 +10,7 @@ public interface TeacherService {
     Teacher findById(Long teacherId);
     void delete(Long teacherId);
 
-    List<Teacher> getTeachersByParam(String str);
+    List<Teacher> findByParam(String str);
 
 
 }

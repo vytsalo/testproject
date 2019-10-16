@@ -20,12 +20,37 @@
 
     <script>
         // wait for the DOM to be loaded
-        $(document).ready(function() {
+      /*  $(document).ready(function() {
             // bind 'searchForm' and provide a simple callback function
             $('#searchForm').ajaxForm(function() {
-                alert("Thank you for using Ajax!");
+
+
+                success: function(response){
+                    var resdata = response;
+                    alert(resdata['name']);
+                }
+
+
+
+
+
+/!*
+                   success: function(responseText){
+                    alert(responseText);
+
+                }
+*!/
+
+                /!*$.getJSON('http://localhost:8082/ajaxprocessform', function(data) {
+
+                 alert(data);
+                 //data is the JSON string
+                 });*!/
+
+
+
             });
-        });
+        });*/
     </script>
 </head>
 <body>

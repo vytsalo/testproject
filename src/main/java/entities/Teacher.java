@@ -8,6 +8,7 @@ import java.util.List;
 //todo leave only one interface dao and service EntitiesDao EntitiesService
 @Entity
 @Table(name="teacher", schema = "public")//, schema = "public"
+
 @SuppressWarnings("unused")
 public class Teacher extends Human implements Serializable {
 
