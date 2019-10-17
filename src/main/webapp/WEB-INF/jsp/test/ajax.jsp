@@ -17,9 +17,24 @@
     <title>AjaxTest</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
 
     <script>
         // wait for the DOM to be loaded
+
+
+
+        function getFormattedDate(date) {
+            var d = new Date(date);
+            return '${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}';
+        }
+
+
+
+
+
+
+
         $(document).ready(function() {
             // bind form using ajaxForm
             $('#searchForm').ajaxForm({
@@ -52,8 +67,12 @@
 
                         //таблицу невидимой делаем
                         $('#existingTeachers').hide();
-                        $("#results").append("<p style='color:red;text-align:center;'>Нет результатов</p>")
 
+                        //показываем блок
+                        $("#results").show();
+
+                        //показываем надпись, что результатов нет
+                        $("#results p").show();
 
                     } else {
 
@@ -61,8 +80,6 @@
 
                 // выводим полученные данные в таблицу
                         $("#results p").hide();
-
-
 
 
                 for (var i=0; i< data.length; i++) {
@@ -110,7 +127,7 @@
 
 
 <!-- закинуть в блок и хайд всего блока -->
-<body onload="$('#results').hide();">
+<body onload="$('#results').hide(); ">
 
 <!-- searchForm -->
 <!-- modelAttribute="searchString" -->
@@ -153,6 +170,8 @@
                 </tbody>
 
             </table>
+
+            <p style='color:red;text-align:center;'>Нет результатов</p>
         </div>
 
 
