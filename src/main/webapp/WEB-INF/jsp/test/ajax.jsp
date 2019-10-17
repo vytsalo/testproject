@@ -31,29 +31,94 @@
                 // success identifies the function to invoke when the server response
                 // has been received
                 //процесс джейсон - типа оверрайд?
+
+
+                //при успехе
                 success: function processJson(data) {
                     //'data' is the json object returned from the server
-                    //in the table
-                        //$('#existingTeachers')
-                    alert(data[0]['id'] + " " + data[0].fam + " " + data[0].name + " " + data[0].otch + " " + data[0].phoneNumber + " " + data[0].dateOfBirth);
+                   // alert(data[0]['id'] + " " + data[0].fam + " " + data[0].name + " " + data[0].otch + " " + data[0].phoneNumber + " " + data[0].dateOfBirth);
 
+
+                    //Очищаем таблицу от предыдущих результатов
+                    $('#existingTeachers tbody').empty();
+
+
+                    //$('#results').empty();
+
+
+
+                    //Красными буквами нет результатов
+                    if (data.length==0) {
+
+                        //таблицу невидимой делаем
+                        $('#existingTeachers').hide();
+                        $("#results").append("<p style='color:red;text-align:center;'>Нет результатов</p>")
+
+
+                    } else {
+
+
+
+                // выводим полученные данные в таблицу
+                        $("#results p").hide();
+
+
+
+
+                for (var i=0; i< data.length; i++) {
+                    $("#existingTeachers tbody").append(
+                        "<tr>" +
+                            "<td>" + data[i].id + "</td>" +
+                            "<td>" + data[i].fam + "</td>" +
+                            "<td>" + data[i].name + "</td>" +
+                            "<td>" + data[i].otch + "</td>" +
+                            "<td>" + data[i].dateOfBirth + "</td>" +
+                            "<td>" + data[i].phoneNumber + "</td>" +
+                            "<td><a href = '#'>Добавить</a></td>" +
+                        "</tr>"
+                    );
+
+                }
+
+
+                        $('#existingTeachers').show();
+
+                //показываем результаты
+                    $('#results').show();
+
+
+
+
+
+                    }
                 }
 
                 //getTableById().innerHtml -
 
             });
         });
+
+
+
+
+
+
+
+
     </script>
 </head>
-<body>
+
+
+<!-- закинуть в блок и хайд всего блока -->
+<body onload="$('#results').hide();">
 
 <!-- searchForm -->
 <!-- modelAttribute="searchString" -->
 
 
 <form id="searchForm" action="../ajaxprocessform" method="post" >
+    <center>
 
-        <center>
             Введите критерий поиска:
         <br/>
             <input type="text" name="searchString" /><!-- name = field -->
@@ -64,9 +129,13 @@
 
         <br/>
 
+
+
+        <div id = "results">
+
             Результаты:
 
-            <table border = "1 px solid" id="teachersTable" visible = "false">
+            <table border = "1 px solid" id="existingTeachers" visible = "false">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -81,29 +150,10 @@
 
                 <tbody>
 
-
-                    <tr>
-                        <td>
-
-
-                        </td>
-
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-                        <td><a href = "#">Добавить</a></td>
-
-
-                    </tr>
-
-
                 </tbody>
 
             </table>
-
+        </div>
 
 
         </center>
