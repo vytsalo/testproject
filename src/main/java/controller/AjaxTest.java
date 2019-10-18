@@ -17,10 +17,17 @@ import java.util.List;
 @Controller
 public class AjaxTest {
 
+
+
+    // TODO перенос в тичерсконтроллер
+    // showTeachersByParam
+
+
     @Autowired
     TeacherService teacherService;
 
 
+    //model
     @GetMapping("/ajaxtest")
     public String ajaxPage(Model model, @ModelAttribute("searchString") String searchString){
 
@@ -31,7 +38,6 @@ public class AjaxTest {
 
 
     //нажиматься если она не емпти?
-
 
     //как получить ответ от сервера?
 
@@ -46,24 +52,13 @@ public class AjaxTest {
     @PostMapping(value = "/ajaxprocessform", produces={"application/json; charset=UTF-8"})
     @ResponseBody
     public String processAjaxPage(Model model, @ModelAttribute("searchString") String searchString) {
-
-
+        //получаем списки
         List<Teacher> slistItems = teacherService.findByParam(searchString);
 
-        //обнуляем списки, чтобы вывести
-        slistItems.forEach(t -> t.setGroups(new ArrayList<>()));//new ArrayList<>(Collections.emptyList())
-
-      /*  String jsonsStr = new Gson().toJson(slistItems);
-
-        System.out.println(jsonsStr);*/
+        //обнуляем списки групп, чтобы вывести
+        slistItems.forEach(t -> t.setGroups(new ArrayList<>()));
 
         return new Gson().toJson(slistItems);
-
-      //  return "test/ajax";
-
-
-
-
 
     }
 
@@ -73,14 +68,12 @@ public class AjaxTest {
     @RequestMapping(value="/users", method = RequestMethod.GET)
     public @ResponseBody List<Teacher> getTeachers() {
         List<Teacher> slistItems = teacherService.getTeachersList();
-
-        //обнуляем списки, чтобы вывести
         slistItems.forEach(t -> t.setGroups(new ArrayList<>(Collections.emptyList())));
-
         return slistItems;
     }
 */
 
+/*
 
     @RequestMapping(value="/users", method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
     public @ResponseBody String getTeachers() {
@@ -90,12 +83,15 @@ public class AjaxTest {
         //обнуляем списки, чтобы вывести
         slistItems.forEach(t -> t.setGroups(new ArrayList<>()));//new ArrayList<>(Collections.emptyList())
 
-      /*  String jsonsStr = new Gson().toJson(slistItems);
+      */
+/*  String jsonsStr = new Gson().toJson(slistItems);
 
-        System.out.println(jsonsStr);*/
+        System.out.println(jsonsStr);*//*
+
 
         return new Gson().toJson(slistItems);
     }
+*/
 
 
 

@@ -9,10 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,46 +72,48 @@ WHERE id in (3,4)
     @Override
     public List<Teacher> searchByString(String str) {
 
-
-
-
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Teacher> criteriaQuery = criteriaBuilder.createQuery(Teacher.class);
-        Root<Teacher> TeacherRoot = criteriaQuery.from(Teacher.class);
+        Root<Teacher> teacherRoot = criteriaQuery.from(Teacher.class);
 
         Predicate predicateForName
-                = criteriaBuilder.like(criteriaBuilder.lower(TeacherRoot.get("name")), "%" + str.toLowerCase() + "%");
+                = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("name")), "%" + str.toLowerCase() + "%");
 
         Predicate predicateForFam
-                = criteriaBuilder.like(criteriaBuilder.lower(TeacherRoot.get("fam")), "%" + str.toLowerCase() + "%");
+                = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("fam")), "%" + str.toLowerCase() + "%");
 
         Predicate predicateForOtch
-                = criteriaBuilder.like(criteriaBuilder.lower(TeacherRoot.get("otch")), "%" + str.toLowerCase() + "%");
+                = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("otch")), "%" + str.toLowerCase() + "%");
 
-        Predicate predicateForPhone
-                = criteriaBuilder.like(TeacherRoot.get("phoneNumber"), "%" + str + "%");
 
-        Predicate predicateForDate
-                = criteriaBuilder.like(TeacherRoot.get("dateOfBirth").as(String.class), "%" + str + "%");
+        //todo get rid of phone & date
 
+        //conjunctions & and
+
+     /*   Predicate predicateForDate
+                = criteriaBuilder.like(teacherRoot.get("dateOfBirth").as(String.class), "%" + str + "%");
+*/
+
+        //собираем предикат из других выборкой или
+        //and()
         Predicate predicateFinal = criteriaBuilder.or(
                 predicateForName,
                 predicateForFam,
-                predicateForOtch,
-                predicateForPhone,
-                predicateForDate);
+                predicateForOtch);
 
+        /*
+        Predicate pr1 = cb.like(article.get(Article_.code), "%" + searchQuery + "%");
+        Predicate pr2 = cb.like(article.get(Article_.oem_code), "%" + searchQuery + "%");
+        Predicate pr3 = cb.conjunction();*/
 
-        //add orderBy
+        //Находим результаты удовлетворяющие предикату
         criteriaQuery.where(predicateFinal);
+        //Сортируем по убыванию по полю ID
+        criteriaQuery.orderBy(criteriaBuilder.desc(teacherRoot.get("id")));
 
         return em.createQuery(criteriaQuery).getResultList();
 
     }
-
-
-
-
 
     //и в SQL сделать
       /*  return em.createQuery(

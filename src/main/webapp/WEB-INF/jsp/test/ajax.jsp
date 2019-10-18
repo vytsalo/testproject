@@ -23,13 +23,69 @@
         // wait for the DOM to be loaded
 
 
+/*
 
         function getFormattedDate(date) {
             var d = new Date(date.toString());
             return '${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}';
         }
+*/
 
 
+        
+        
+        
+        
+        function convertDateFromNarcomanicFormatToRegular(date,spliterator) {
+
+            var monthString = date.substring(0,3);
+
+            var day = date.substring(4,6);
+            var year = date.substring(8);
+            var month;
+
+            switch(monthString) {
+                case 'янв':
+                    month = 1;
+                    break;
+                case 'фев':
+                    month = 2;
+                    break;
+                case 'мар':
+                    month = 3;
+                    break;
+                case 'апр':
+                    month = 4;
+                    break;
+                case 'май':
+                    month = 5;
+                    break;
+                case 'июн':
+                    month = 6;
+                    break;
+                case 'июл':
+                    month = 7;
+                    break;
+                case 'авг':
+                    month = 8;
+                    break;
+                case 'сен':
+                    month = 9;
+                    break;
+                case 'окт':
+                    month = 10;
+                    break;
+                case 'ноя':
+                    month = 11;
+                    break;
+                case 'дек':
+                    month = 12;
+                    break;
+            }
+
+            return day + spliterator + month + spliterator + year;
+
+        }
 
 
 
@@ -96,7 +152,7 @@
                             "<td>" + data[i].fam + "</td>" +
                             "<td>" + data[i].name + "</td>" +
                             "<td>" + data[i].otch + "</td>" +
-                            "<td>" + data[i].dateOfBirth + "</td>" +
+                            "<td>" + convertDateFromNarcomanicFormatToRegular(data[i].dateOfBirth,'.') + "</td>" +
                             "<td>" + data[i].phoneNumber + "</td>" +
                             "<td><a href = '#'>Добавить</a></td>" +
                         "</tr>"
@@ -139,7 +195,7 @@
 
 
 <!-- закинуть в блок и хайд всего блока -->
-<body onload="$('#results').hide(); ">
+<body onload="$('#results').hide();">
 
 <!-- searchForm -->
 <!-- modelAttribute="searchString" -->
