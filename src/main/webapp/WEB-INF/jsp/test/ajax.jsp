@@ -25,7 +25,7 @@
 
 
         function getFormattedDate(date) {
-            var d = new Date(date);
+            var d = new Date(date.toString());
             return '${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}';
         }
 
@@ -33,11 +33,18 @@
 
 
 
+//как сделать индикатор того, что поиск совершился? например, если он ничего не нашел, 2 раза подряд
+        //выводится надпись о том, результатов нет, и она так и остается
+
+
+
 
 
         $(document).ready(function() {
             // bind form using ajaxForm
-            $('#searchForm').ajaxForm({
+
+
+                $('#searchForm').ajaxForm({
                 // dataType identifies the expected content type of the server response
                 dataType:  'json',
 
@@ -97,7 +104,7 @@
 
                 }
 
-
+                        //показываем таблицу
                         $('#existingTeachers').show();
 
                 //показываем результаты
@@ -106,11 +113,16 @@
 
 
 
-
                     }
+                    //очищаем поле поиска
+                    $('input[name=searchString]').val('');
+
+
+
                 }
 
                 //getTableById().innerHtml -
+
 
             });
         });
