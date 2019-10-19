@@ -17,25 +17,8 @@
     <title>AjaxTest</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
-    <script src="https://momentjs.com/downloads/moment.min.js"></script>
 
     <script>
-        // wait for the DOM to be loaded
-
-
-/*
-
-        function getFormattedDate(date) {
-            var d = new Date(date.toString());
-            return '${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}';
-        }
-*/
-
-
-        
-        
-        
-        
         function convertDateFromNarcomanicFormatToRegular(date,spliterator) {
 
             var monthString = date.substring(0,3);
@@ -87,131 +70,52 @@
 
         }
 
+       
+	   
+	   function sendAjaxJson() {  
+//поменять все на джейкуерри
 
+	   var csrf = $('#csrf').val();
+	   alert(csrf);
+	   var searchString = $('#searchString').val();
+	   alert(searchString);
 
-//как сделать индикатор того, что поиск совершился? например, если он ничего не нашел, 2 раза подряд
-        //выводится надпись о том, результатов нет, и она так и остается
+	   
+	   	
+		$.ajax({
+			   url : '../ajaxprocessform',
+			   type : 'POST',
+			   dataType:'text',
+			   data : searchString ,//searchString:searchString
+			   headers: { 'X-CSRF-Token' : csrf },
+			   processData: false,  // tell jQuery not to process the data
+			   contentType: false  // tell jQuery not to set contentType			  
+		}).done(function(data) {
+				   console.log(data);
+				   alert(data);
+			   });
 
-
-
-
-
-        $(document).ready(function() {
-            // bind form using ajaxForm
-
-
-                $('#searchForm').ajaxForm({
-                // dataType identifies the expected content type of the server response
-                dataType:  'json',
-
-                //when page starts table is invisible
-
-                // success identifies the function to invoke when the server response
-                // has been received
-                //процесс джейсон - типа оверрайд?
-
-
-                //при успехе
-                success: function processJson(data) {
-                    //'data' is the json object returned from the server
-                   // alert(data[0]['id'] + " " + data[0].fam + " " + data[0].name + " " + data[0].otch + " " + data[0].phoneNumber + " " + data[0].dateOfBirth);
-
-
-                    //Очищаем таблицу от предыдущих результатов
-                    $('#existingTeachers tbody').empty();
-
-
-                    //$('#results').empty();
-
-
-
-                    //Красными буквами нет результатов
-                    if (data.length==0) {
-
-                        //таблицу невидимой делаем
-                        $('#existingTeachers').hide();
-
-                        //показываем блок
-                        $("#results").show();
-
-                        //показываем надпись, что результатов нет
-                        $("#results p").show();
-
-                    } else {
-
-
-
-                // выводим полученные данные в таблицу
-                        $("#results p").hide();
-
-
-                for (var i=0; i< data.length; i++) {
-                    $("#existingTeachers tbody").append(
-                        "<tr>" +
-                            "<td>" + data[i].id + "</td>" +
-                            "<td>" + data[i].fam + "</td>" +
-                            "<td>" + data[i].name + "</td>" +
-                            "<td>" + data[i].otch + "</td>" +
-                            "<td>" + convertDateFromNarcomanicFormatToRegular(data[i].dateOfBirth,'.') + "</td>" +
-                            "<td>" + data[i].phoneNumber + "</td>" +
-                            "<td><a href = '#'>Добавить</a></td>" +
-                        "</tr>"
-                    );
-
-                }
-
-                        //показываем таблицу
-                        $('#existingTeachers').show();
-
-                //показываем результаты
-                    $('#results').show();
-
-
-
-
-                    }
-                    //очищаем поле поиска
-                    $('input[name=searchString]').val('');
-
-
-
-                }
-
-                //getTableById().innerHtml -
-
-
-            });
-        });
-
-
-
-
-
-
-
-
+	   }
+	   
+	  
     </script>
 </head>
 
-
-<!-- закинуть в блок и хайд всего блока -->
 <body onload="$('#results').hide();">
 
-<!-- searchForm -->
-<!-- modelAttribute="searchString" -->
-
-
-<form id="searchForm" action="../ajaxprocessform" method="post" >
     <center>
 
             Введите критерий поиска:
         <br/>
-            <input type="text" name="searchString" /><!-- name = field -->
+		
+		
+<div class = "myDiv1">
 
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" modelAttribute="searchString" />
+    <input type = "text" id="searchString">
+    <input type = "button" value = "Поиск" onclick = "sendAjaxJson();">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
 
-            <input type="submit" value="Поиск" />
-
+</div>
         <br/>
 
 
@@ -244,13 +148,6 @@
 
 
         </center>
-
-
-
-    </form>
-
-
-
 
 </body>
 </html>

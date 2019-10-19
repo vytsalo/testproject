@@ -29,9 +29,9 @@ public class AjaxTest {
 
     //model
     @GetMapping("/ajaxtest")
-    public String ajaxPage(Model model, @ModelAttribute("searchString") String searchString){
+    public String ajaxPage(Model model){
 
-        model.addAttribute("searchString",searchString);
+        //model.addAttribute("searchString",searchString);
         return "test/ajax";
 
     }
@@ -51,7 +51,8 @@ public class AjaxTest {
 
     @PostMapping(value = "/ajaxprocessform", produces={"application/json; charset=UTF-8"})
     @ResponseBody
-    public String processAjaxPage(Model model, @ModelAttribute("searchString") String searchString) {
+    //почему добавляется равно
+    public String processAjaxPage(Model model, @RequestBody String searchString) {
         //получаем списки
         List<Teacher> slistItems = teacherService.findByParam(searchString);
 
