@@ -19,6 +19,9 @@
     <script src="http://malsup.github.com/jquery.form.js"></script>
 
     <script>
+	//$(document).ready(function() {});
+	
+
         function convertDateFromNarcomanicFormatToRegular(date,spliterator) {
 
             var monthString = date.substring(0,3);
@@ -73,30 +76,91 @@
        
 	   
 	   function sendAjaxJson() {  
-//поменять все на джейкуерри
 
 	   var csrf = $('#csrf').val();
 	   alert(csrf);
 	   var searchString = $('#searchString').val();
 	   alert(searchString);
-
-	   
 	   	
+		//dataType:'text',
 		$.ajax({
 			   url : '../ajaxprocessform',
 			   type : 'POST',
-			   dataType:'text',
 			   data : searchString ,//searchString:searchString
 			   headers: { 'X-CSRF-Token' : csrf },
 			   processData: false,  // tell jQuery not to process the data
 			   contentType: false  // tell jQuery not to set contentType			  
-		}).done(function(data) {
-				   console.log(data);
-				   alert(data);
-			   });
+		}).done( function(data){
+				alert(data);
+				processJson(data);
+				}
+		
+		
+		
+		);
 
 	   }
 	   
+	  //data content type json
+	  function processJson(data) {
+                    //'data' is the json object returned from the server
+                   // alert(data[0]['id'] + " " + data[0].fam + " " + data[0].name + " " + data[0].otch + " " + data[0].phoneNumber + " " + data[0].dateOfBirth);
+                    //Очищаем таблицу от предыдущих результатов
+                    $('#existingTeachers tbody').empty();
+                    //$('#results').empty();
+                    //Красными буквами нет результатов
+                    if (data.length==0) {
+                        //таблицу невидимой делаем
+                        $('#existingTeachers').hide();
+                        //показываем блок
+                        $("#results").show();
+                        //показываем надпись, что результатов нет
+                        $("#results p").show();
+                    } else {
+                // выводим полученные данные в таблицу
+                        $("#results p").hide();
+                for (var i=0; i< data.length; i++) {
+                    $("#existingTeachers tbody").append(
+                        "<tr>" +
+                            "<td>" + data[i].id + "</td>" +
+                            "<td>" + data[i].fam + "</td>" +
+                            "<td>" + data[i].name + "</td>" +
+                            "<td>" + data[i].otch + "</td>" +
+                            "<td>" + data[i].dateOfBirth + "</td>" +
+                            "<td>" + data[i].phoneNumber + "</td>" +
+                            "<td><a href = '#'>Добавить</a></td>" +
+                        "</tr>"
+                    );
+                }
+                        //показываем таблицу
+                        $('#existingTeachers').show();
+                //показываем результаты
+                    $('#results').show();
+                    }
+                    //очищаем поле поиска
+                    $('input[name=searchString]').val('');
+                }
+	  
+	  
+	  
+	  
+	  
+	
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  
     </script>
 </head>
