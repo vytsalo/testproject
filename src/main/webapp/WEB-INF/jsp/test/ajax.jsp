@@ -78,9 +78,9 @@
 	   function sendAjaxJson() {  
 
 	   var csrf = $('#csrf').val();
-	   alert(csrf);
+	   //alert(csrf);
 	   var searchString = $('#searchString').val();
-	   alert(searchString);
+	   //alert(searchString);
 	   	
 		//dataType:'text',
 		$.ajax({
@@ -91,21 +91,16 @@
 			   processData: false,  // tell jQuery not to process the data
 			   contentType: false  // tell jQuery not to set contentType			  
 		}).done( function(data){
-				alert(data);
+				//alert(data);
 				processJson(data);
-				}
-		
-		
-		
-		);
-
+				});
 	   }
 	   
-	  //data content type json
+	  //processJson to processData
 	  function processJson(data) {
                     //'data' is the json object returned from the server
-                   // alert(data[0]['id'] + " " + data[0].fam + " " + data[0].name + " " + data[0].otch + " " + data[0].phoneNumber + " " + data[0].dateOfBirth);
-                    //Очищаем таблицу от предыдущих результатов
+                  
+				  //Очищаем таблицу от предыдущих результатов
                     $('#existingTeachers tbody').empty();
                     //$('#results').empty();
                     //Красными буквами нет результатов
@@ -126,7 +121,7 @@
                             "<td>" + data[i].fam + "</td>" +
                             "<td>" + data[i].name + "</td>" +
                             "<td>" + data[i].otch + "</td>" +
-                            "<td>" + data[i].dateOfBirth + "</td>" +
+                            "<td>" + convertDateFromNarcomanicFormatToRegular(data[i].dateOfBirth,'.') + "</td>" +
                             "<td>" + data[i].phoneNumber + "</td>" +
                             "<td><a href = '#'>Добавить</a></td>" +
                         "</tr>"
@@ -138,7 +133,8 @@
                     $('#results').show();
                     }
                     //очищаем поле поиска
-                    $('input[name=searchString]').val('');
+                    //баг с бад рекуест - нельзя отправлять пустое поле
+					//$('#searchString').val('');
                 }
 	  
 	  
