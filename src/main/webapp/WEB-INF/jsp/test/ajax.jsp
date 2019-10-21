@@ -6,23 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
-
 
 <html>
 <head>
     <title>AjaxTest</title>
+    <!-- Файлы в папку -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
 
     <script>
-	//$(document).ready(function() {});
-	
+//в отдельный файл обработку даты и аджакс
 
-        function convertDateFromNarcomanicFormatToRegular(date,spliterator) {
+//AjaxHandler.js
+//dateConverter
+
+
+//скрываем результаты
+$(document).ready(function (){$('#results').hide()});
+
+$('#results').hide();
+        function dateConverter(date, spliterator) {
 
             var monthString = date.substring(0,3);
 
@@ -30,6 +33,7 @@
             var year = date.substring(8);
             var month;
 
+            //массив циклом?
             switch(monthString) {
                 case 'янв':
                     month = 1;
@@ -73,36 +77,32 @@
 
         }
 
-       
-	   
-	   function sendAjaxJson() {  
+
+       function sendAjax() {
 
 	   var csrf = $('#csrf').val();
-	   //alert(csrf);
 	   var searchString = $('#searchString').val();
-	   //alert(searchString);
-	   	
-		//dataType:'text',
+
+	   //Чтобы не было бад рекуэста или сделать проверку на пустоту поля?
+	   if (searchString == '') searchString='%';
+
 		$.ajax({
 			   url : '../ajaxprocessform',
 			   type : 'POST',
-			   data : searchString ,//searchString:searchString
+			   data : searchString ,
 			   headers: { 'X-CSRF-Token' : csrf },
-			   processData: false,  // tell jQuery not to process the data
-			   contentType: false  // tell jQuery not to set contentType			  
+			   contentType: false  // tell jQuery not to set contentType
 		}).done( function(data){
-				//alert(data);
-				processJson(data);
+				processData(data);
 				});
 	   }
-	   
-	  //processJson to processData
-	  function processJson(data) {
-                    //'data' is the json object returned from the server
-                  
-				  //Очищаем таблицу от предыдущих результатов
+
+
+
+        //'data' is the json object returned from the server
+        function processData(data) {
+ 				  //Очищаем таблицу от предыдущих результатов
                     $('#existingTeachers tbody').empty();
-                    //$('#results').empty();
                     //Красными буквами нет результатов
                     if (data.length==0) {
                         //таблицу невидимой делаем
@@ -115,13 +115,14 @@
                 // выводим полученные данные в таблицу
                         $("#results p").hide();
                 for (var i=0; i< data.length; i++) {
+                    //в первую строку запихнуть инпуты
                     $("#existingTeachers tbody").append(
                         "<tr>" +
                             "<td>" + data[i].id + "</td>" +
                             "<td>" + data[i].fam + "</td>" +
                             "<td>" + data[i].name + "</td>" +
                             "<td>" + data[i].otch + "</td>" +
-                            "<td>" + convertDateFromNarcomanicFormatToRegular(data[i].dateOfBirth,'.') + "</td>" +
+                            "<td>" + dateConverter(data[i].dateOfBirth,'.') + "</td>" +
                             "<td>" + data[i].phoneNumber + "</td>" +
                             "<td><a href = '#'>Добавить</a></td>" +
                         "</tr>"
@@ -132,36 +133,12 @@
                 //показываем результаты
                     $('#results').show();
                     }
-                    //очищаем поле поиска
-                    //баг с бад рекуест - нельзя отправлять пустое поле
-					//$('#searchString').val('');
                 }
-	  
-	  
-	  
-	  
-	  
-	
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+
     </script>
 </head>
 
-<body onload="$('#results').hide();">
+<body>
 
     <center>
 
@@ -172,7 +149,7 @@
 <div class = "myDiv1">
 
     <input type = "text" id="searchString">
-    <input type = "button" value = "Поиск" onclick = "sendAjaxJson();">
+    <input type = "button" value = "Поиск" onclick = "sendAjax();">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
 
 </div>
@@ -203,7 +180,7 @@
 
             </table>
 
-            <p style='color:red;text-align:center;'>Нет результатов</p>
+            <p style='color:red;text-align:center;'>Нет результатов.<br/> Попробуйте смягчить условия поиска</p>
         </div>
 
 

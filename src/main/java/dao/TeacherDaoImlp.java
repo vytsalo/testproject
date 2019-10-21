@@ -86,7 +86,7 @@ WHERE id in (3,4)
                 = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("otch")), "%" + str.toLowerCase() + "%");
 
 
-        //todo get rid of phone & date
+        //criteriaBuilder.concat(teacherRoot.get("name"), criteriaBuilder.concat("%", criteriaBuilder.concat(teacherRoot.get(teacherRoot.get("fam"),"%"))));
 
         //conjunctions & and
 
@@ -96,11 +96,11 @@ WHERE id in (3,4)
 
         //собираем предикат из других выборкой или
         //and()
-        Predicate predicateFinal = criteriaBuilder.or(
+        //criteriaBuilder.conjunction();
+        Predicate predicateFinal =  criteriaBuilder.or(
                 predicateForName,
                 predicateForFam,
                 predicateForOtch);
-
         /*
         Predicate pr1 = cb.like(article.get(Article_.code), "%" + searchQuery + "%");
         Predicate pr2 = cb.like(article.get(Article_.oem_code), "%" + searchQuery + "%");
@@ -110,6 +110,9 @@ WHERE id in (3,4)
         criteriaQuery.where(predicateFinal);
         //Сортируем по убыванию по полю ID
         criteriaQuery.orderBy(criteriaBuilder.desc(teacherRoot.get("id")));
+
+        //убираем повторки
+        //criteriaQuery.distinct(true);
 
         return em.createQuery(criteriaQuery).getResultList();
 
