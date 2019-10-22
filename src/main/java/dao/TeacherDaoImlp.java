@@ -2,6 +2,7 @@ package dao;
 
 import entities.Teacher;
 import org.hibernate.Criteria;
+import org.hibernate.annotations.Formula;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
@@ -69,54 +70,68 @@ Or the equivalent in:
 WHERE id in (3,4)
 
  */
+
+
+    /**
+     * как описывается документация
+     * @param str = "Иванов Сергей Петрович"
+     * @return
+     */
+    //Синтаксис PostgreSQL
+
+    //TODO
+    //закинуть в отдельный файл аджаксовые
+    //перекинуть в контроллер и форму
+    //сделать для студентов и групп
+
     @Override
     public List<Teacher> searchByString(String str) {
 
+        //добавить разделители между словами " "
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Teacher> criteriaQuery = criteriaBuilder.createQuery(Teacher.class);
         Root<Teacher> teacherRoot = criteriaQuery.from(Teacher.class);
 
-        Predicate predicateForName
-                = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("name")), "%" + str.toLowerCase() + "%");
+        Expression concatForOtch = criteriaBuilder.concat(criteriaBuilder.lower(teacherRoot.get("otch"))," ");
 
-        Predicate predicateForFam
-                = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("fam")), "%" + str.toLowerCase() + "%");
+        Expression concatForName = criteriaBuilder.concat(criteriaBuilder.lower(teacherRoot.get("name"))," ");
 
-        Predicate predicateForOtch
-                = criteriaBuilder.like(criteriaBuilder.lower(teacherRoot.get("otch")), "%" + str.toLowerCase() + "%");
+        Expression concatForFam = criteriaBuilder.concat(criteriaBuilder.lower(teacherRoot.get("fam"))," ");
 
+        Expression almostFinalExpression = criteriaBuilder.concat(concatForName,concatForOtch);
 
-        //criteriaBuilder.concat(teacherRoot.get("name"), criteriaBuilder.concat("%", criteriaBuilder.concat(teacherRoot.get(teacherRoot.get("fam"),"%"))));
+        Expression finalExpression = criteriaBuilder.concat(concatForFam,almostFinalExpression);
 
-        //conjunctions & and
+        Expression fullExpression = criteriaBuilder.concat("%", finalExpression);
 
-     /*   Predicate predicateForDate
-                = criteriaBuilder.like(teacherRoot.get("dateOfBirth").as(String.class), "%" + str + "%");
-*/
+        //"%fam% %name%  %otch%"
+        Predicate pr = criteriaBuilder.like(fullExpression,"%" + str.toLowerCase() + "%");
 
-        //собираем предикат из других выборкой или
-        //and()
-        //criteriaBuilder.conjunction();
-        Predicate predicateFinal =  criteriaBuilder.or(
-                predicateForName,
-                predicateForFam,
-                predicateForOtch);
-        /*
-        Predicate pr1 = cb.like(article.get(Article_.code), "%" + searchQuery + "%");
-        Predicate pr2 = cb.like(article.get(Article_.oem_code), "%" + searchQuery + "%");
-        Predicate pr3 = cb.conjunction();*/
-
-        //Находим результаты удовлетворяющие предикату
-        criteriaQuery.where(predicateFinal);
+        //вхере
+        criteriaQuery.where(pr);
         //Сортируем по убыванию по полю ID
         criteriaQuery.orderBy(criteriaBuilder.desc(teacherRoot.get("id")));
 
         //убираем повторки
-        //criteriaQuery.distinct(true);
+        criteriaQuery.distinct(true);
 
         return em.createQuery(criteriaQuery).getResultList();
 
     }
+
+
+    /*
+     List cats = session.createCriteria(Cat.class)
+     .add( Restrictions.like("name", "Iz%") )
+     .add( Restrictions.gt( "weight", new Float(minWeight) ) )
+     .addOrder( Order.asc("age") )
+     .list();
+     */
+
+
+
+
+
 
     //и в SQL сделать
       /*  return em.createQuery(

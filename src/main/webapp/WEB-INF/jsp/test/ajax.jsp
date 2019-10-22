@@ -83,10 +83,7 @@ $('#results').hide();
 	   var csrf = $('#csrf').val();
 	   var searchString = $('#searchString').val();
 
-	   //Чтобы не было бад рекуэста или сделать проверку на пустоту поля?
-	   if (searchString == '') searchString='%';
-
-		$.ajax({
+	   $.ajax({
 			   url : '../ajaxprocessform',
 			   type : 'POST',
 			   data : searchString ,

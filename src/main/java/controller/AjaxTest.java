@@ -52,7 +52,12 @@ public class AjaxTest {
     @PostMapping(value = "/ajaxprocessform", produces={"application/json; charset=UTF-8"})
     @ResponseBody
     //почему добавляется равно
-    public String processAjaxPage(Model model, @RequestBody String searchString) {
+    //required false для того, чтобы не было бад рекуэста
+    //response body allow null values
+    //https://stackoverflow.com/questions/12934045/null-values-as-empty-strings-when-using-responsebody-annotation
+    public String processAjaxPage(Model model, @RequestBody(required = false) String searchString) {
+        if (searchString==null) searchString="";
+
         //получаем списки
         List<Teacher> slistItems = teacherService.findByParam(searchString);
 
