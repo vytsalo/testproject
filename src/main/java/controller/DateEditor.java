@@ -9,8 +9,7 @@ import java.util.Date;
 
 //TODO addTeacherServices
 
-
-//почему то вызывается только при открытии формы
+//пакет editors
 @Component
 public class DateEditor extends PropertyEditorSupport {
 

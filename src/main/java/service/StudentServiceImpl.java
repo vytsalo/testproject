@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
-@Service("studentService")
+@Service("studentService")//параметр - имя бина, необходимо для того, чтобы распознать к какой сущности применяется интерфейс
 @SuppressWarnings("unused")
 public class StudentServiceImpl implements EntitiesService<Student> {
 
     //TODO сделать одинаковыми стили
     @Autowired
-    //@Qualifier("teachersDao")
     private EntitiesDao<Student> st_dao;
 
     @Transactional

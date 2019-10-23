@@ -24,6 +24,7 @@ import java.util.*;
 public class GroupController {
 
     @Autowired
+    //Квалифаер - id бина, который описали
     @Qualifier("groupService")
     EntitiesService<Group> groupService;
 
