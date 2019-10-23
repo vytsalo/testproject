@@ -24,6 +24,7 @@
 
     <!-- sendAjax(id класса) -->
     <script src="../../js/ajaxOperationsTeachers.js"></script>
+    <script src="../../js/ajaxDateConverters.js"></script>
 
 
 
