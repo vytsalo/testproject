@@ -1,18 +1,15 @@
 package service;
 
 import dao.EntitiesDao;
-import dao.StudentDao;
 import entities.Student;
-import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
 @SuppressWarnings("unused")
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements EntitiesService<Student> {
 
     //TODO сделать одинаковыми стили
     @Autowired
@@ -26,7 +23,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Student> getStudentsList(){
+    public List<Student> getList(){
         return st_dao.getList();
     }
 
@@ -47,5 +44,12 @@ public class StudentServiceImpl implements StudentService {
     public void delete(Long teacherId){
         st_dao.delete(teacherId);
     }
+
+    @Override
+    @Transactional
+    public List<Student> findByParam(String str) {
+        return st_dao.searchByString(str);
+    }
+
 
 }

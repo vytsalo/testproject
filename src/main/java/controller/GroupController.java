@@ -11,11 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import service.GroupService;
-import service.StudentService;
-import service.TeacherService;
+import service.EntitiesService;
 
-import javax.faces.view.facelets.FaceletContext;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,25 +22,22 @@ import java.util.*;
 @RequestMapping("/groups")
 public class GroupController {
 
-    //todo загрузка логов и конфигов сразу
     @Autowired
-    private GroupService groupService;
+    private EntitiesService<Group> groupService;
 
     @Autowired
-    private TeacherService teacherService;
+    private EntitiesService<Teacher> teacherService;
 
     @Autowired
-    private StudentService studentService;
+    private EntitiesService<Student> studentService;
 
     @GetMapping("/")//"","/"
     public String listGroups(Model model){
 
-        List<Group> groups = groupService.getGroupsList();
+        List<Group> groups = groupService.getList();
 
 
-        groups.forEach(grp -> {
-            grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers())));
-        });
+        groups.forEach(grp -> grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers()))));
 
 
         model.addAttribute("groups",groups);
@@ -57,9 +51,9 @@ public class GroupController {
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("group", new Group());
 
-        model.addAttribute("notInGroupStudents", studentService.getStudentsList());
+        model.addAttribute("notInGroupStudents", studentService.getList());
 
-        model.addAttribute("notInGroupTeachers", teacherService.getTeachersList());
+        model.addAttribute("notInGroupTeachers", teacherService.getList());
 
         return "groups/show-group-form";
     }
@@ -147,7 +141,7 @@ public class GroupController {
 
                 List<Teacher> teachersThisGroup = newGroup.getTeachers();
 
-                List<Teacher> allTeacherDatabase = teacherService.getTeachersList();
+                List<Teacher> allTeacherDatabase = teacherService.getList();
 
                 //todo error in processform while sending the model
                 //todo fix operations
@@ -253,13 +247,13 @@ public class GroupController {
 
         model.addAttribute("group", group);
         model.addAttribute("update", true);
-        model.addAttribute("groups", groupService.getGroupsList());
+        model.addAttribute("groups", groupService.getList());
 
 
-        List<Teacher> allTeachers = teacherService.getTeachersList();
+        List<Teacher> allTeachers = teacherService.getList();
         allTeachers.removeAll(group.getTeachers());
 
-        List<Student> allStudents = studentService.getStudentsList();
+        List<Student> allStudents = studentService.getList();
         List<Student> thisGroupStudents = group.getStudents();
 
         int asSize = allStudents.size();
@@ -322,7 +316,7 @@ public class GroupController {
 
         groupService.delete(Id);
 
-        model.addAttribute("groups",groupService.getGroupsList());
+        model.addAttribute("groups",groupService.getList());
         return "redirect:/groups/";
     }
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import service.TeacherService;
+import service.EntitiesService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +17,14 @@ import java.util.List;
 @Controller
 public class AjaxTest {
 
-
+//TODO all autowired's are private
 
     // TODO перенос в тичерсконтроллер
     // showTeachersByParam
 
 
     @Autowired
-    TeacherService teacherService;
+    EntitiesService<Teacher> teacherService;
 
 
     //model

@@ -2,7 +2,6 @@ package dao;
 
 import entities.Group;
 import entities.Student;
-import entities.Teacher;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

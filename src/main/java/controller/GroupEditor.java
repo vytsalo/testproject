@@ -1,19 +1,19 @@
 package controller;
 
+import entities.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import service.GroupService;
+import service.EntitiesService;
+
 import java.beans.PropertyEditorSupport;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 //Проперти эдитор для определенного поля
 @Component
 public class GroupEditor extends PropertyEditorSupport {
 
     @Autowired
-    GroupService groupService;
+    EntitiesService<Group> groupService;
 
     @Override
     public void setAsText(String text) throws IllegalArgumentException {
@@ -30,7 +30,7 @@ public class GroupEditor extends PropertyEditorSupport {
         }
     }
 
-    public GroupEditor(GroupService groupService) {
+    public GroupEditor(EntitiesService<Group> groupService) {
         this.groupService = groupService;
     }
 

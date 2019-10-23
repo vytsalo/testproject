@@ -3,19 +3,14 @@ package controller;
 import entities.Group;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import service.GroupService;
-import service.TeacherService;
+import service.EntitiesService;
 
 import javax.validation.Valid;
-import java.beans.PropertyEditorSupport;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -23,15 +18,15 @@ import java.util.*;
 public class TeacherController {
 
     @Autowired
-    private TeacherService teacherService;
+    private EntitiesService<Teacher> teacherService;
 
     @Autowired
-    private GroupService groupService;
+    private EntitiesService<Group> groupService;
 
     @GetMapping("/")
     public String listTeachers(Model model) {
 
-        List<Teacher> teacherList = teacherService.getTeachersList();
+        List<Teacher> teacherList = teacherService.getList();
 
         teacherList.forEach(tcs -> {
             tcs.setGroups(new ArrayList<>(new HashSet<>(tcs.getGroups())));
@@ -45,7 +40,7 @@ public class TeacherController {
     @GetMapping("/add")
     public String addTeacher(Model model) {
         model.addAttribute("teacher", new Teacher());
-        model.addAttribute("groups", groupService.getGroupsList());
+        model.addAttribute("groups", groupService.getList());
         return "teachers/show-teacher-form";
     }
 
@@ -68,7 +63,7 @@ public class TeacherController {
                 teacherService.update(newTeacher);
             }
 
-            model.addAttribute("teachers", teacherService.getTeachersList());
+            model.addAttribute("teachers", teacherService.getList());
 
             return "redirect:/teachers/";
         }
@@ -89,7 +84,7 @@ public class TeacherController {
 
         List<Group> thisTeacherGroups = teacher.getGroups();
 
-        List<Group> allGroups = groupService.getGroupsList();
+        List<Group> allGroups = groupService.getList();
 
         allGroups.removeAll(thisTeacherGroups);
 
@@ -119,7 +114,7 @@ public class TeacherController {
     @GetMapping("/delete/{Id}")
     public String deleteGroup(Model model, @PathVariable Long Id) {
         teacherService.delete(Id);
-        model.addAttribute("teachers", teacherService.getTeachersList());
+        model.addAttribute("teachers", teacherService.getList());
         return "redirect:/teachers/";
     }
 

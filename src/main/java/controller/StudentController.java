@@ -3,16 +3,14 @@ package controller;
 import entities.Group;
 import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import service.GroupService;
-import service.StudentService;
+import service.EntitiesService;
+
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -20,14 +18,14 @@ import java.util.Date;
 public class StudentController {
 
     @Autowired
-    private StudentService studentService;
+    private EntitiesService<Student> studentService;
 
     @Autowired
-    private GroupService groupService;
+    private EntitiesService<Group> groupService;
 
     @GetMapping("/")//"","/"
     public String listStudents(Model model){
-        model.addAttribute("students",studentService.getStudentsList());
+        model.addAttribute("students",studentService.getList());
         return "students/list-students";//вьюшка list-students.jsp
     }
 
@@ -36,7 +34,7 @@ public class StudentController {
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
         model.addAttribute("student", new Student());
         //добавляем группы
-        model.addAttribute("groups", groupService.getGroupsList());
+        model.addAttribute("groups", groupService.getList());
         return "students/show-student-form";
     }
 
@@ -97,7 +95,7 @@ public class StudentController {
             }
             /* /STUDENT TO GROUP*/
 
-            model.addAttribute("students", studentService.getStudentsList());
+            model.addAttribute("students", studentService.getList());
 
                     return "redirect:/students/";//Редирект чтобы не открывался сам процессформ
                 }
@@ -115,7 +113,7 @@ public class StudentController {
         model.addAttribute("update", true);
 
         //добавляем группы
-        model.addAttribute("groups", groupService.getGroupsList());
+        model.addAttribute("groups", groupService.getList());
 
         return "students/show-student-form";
 
@@ -125,7 +123,7 @@ public class StudentController {
     public String deleteGroup(Model model,@PathVariable Long Id) {
         //удаляем группу по ID
         studentService.delete(Id);
-        model.addAttribute("students",studentService.getStudentsList());
+        model.addAttribute("students",studentService.getList());
         return "redirect:/students/";
     }
 
