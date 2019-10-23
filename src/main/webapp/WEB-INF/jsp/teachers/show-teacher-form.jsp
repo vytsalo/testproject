@@ -186,22 +186,22 @@
 
                         <tr>
                             <td>
-								
-								
+
+
 								<!-- //// -->
 
                             <input type = "hidden" value="${grsList.id}" class = "jstlGroupsExisting" />
-                            
+
                             <div>${grsList.id}</div>
-							
+
 							</td>
 
 
                             <td>${grsList.title}</td>
                             <td>
-							
+
 							<a href="#" onclick="addRow(this,'groupsTable'); classChange(); rewriteHTML(); return false;">Добавить</a>
-							
+
 							</td>
 
 
