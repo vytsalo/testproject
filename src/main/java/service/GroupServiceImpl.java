@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Service("groupService")
 public class GroupServiceImpl implements EntitiesService<Group>{
 
     @Autowired
+
     private EntitiesDao<Group> gr_dao;
 
     @Transactional

@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
-@Service
+@Service("studentService")
 @SuppressWarnings("unused")
 public class StudentServiceImpl implements EntitiesService<Student> {
 
     //TODO сделать одинаковыми стили
     @Autowired
+    //@Qualifier("teachersDao")
     private EntitiesDao<Student> st_dao;
 
     @Transactional

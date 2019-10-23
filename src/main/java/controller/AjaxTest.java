@@ -1,6 +1,7 @@
 package controller;
 
 import com.google.gson.Gson;
+import entities.Group;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class AjaxTest {
 
     @Autowired
     EntitiesService<Teacher> teacherService;
+
+    @Autowired
+    EntitiesService<Group> groupService;
 
 
     //model

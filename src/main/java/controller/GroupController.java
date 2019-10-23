@@ -5,6 +5,7 @@ import entities.Group;
 import entities.Student;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +24,17 @@ import java.util.*;
 public class GroupController {
 
     @Autowired
-    private EntitiesService<Group> groupService;
+    @Qualifier("groupService")
+    EntitiesService<Group> groupService;
 
     @Autowired
-    private EntitiesService<Teacher> teacherService;
+    @Qualifier("teacherService")
+    EntitiesService<Teacher> teacherService;
 
     @Autowired
-    private EntitiesService<Student> studentService;
+    @Qualifier("studentService")
+
+    EntitiesService<Student> studentService;
 
     @GetMapping("/")//"","/"
     public String listGroups(Model model){
