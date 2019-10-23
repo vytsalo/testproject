@@ -1,5 +1,6 @@
 package service;
 
+import dao.EntitiesDao;
 import dao.TeacherDao;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     //Экземпляр интерфейса
-    private TeacherDao teach_dao;
+    private EntitiesDao<Teacher> teach_dao;
 
     @Transactional
     @Override
@@ -24,7 +25,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Transactional(readOnly = true)
     @Override
     public List<Teacher> getTeachersList(){
-        return teach_dao.getTeachersList();
+        return teach_dao.getList();
     }
 
     @Override

@@ -3,9 +3,12 @@ package dao;
 import entities.Student;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -45,5 +48,12 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
         if (student != null) em.remove(student);
         else throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
     }
+
+
+    //Поиск по тайтлу группы
+    public List<Student> searchByString(String str) {
+        return new ArrayList<>();
+    }
+
 
 }

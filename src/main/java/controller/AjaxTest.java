@@ -76,7 +76,7 @@ public class AjaxTest {
     //Передаем список групп напрямую, без продюсеса
     @RequestMapping(value="/users", method = RequestMethod.GET)
     public @ResponseBody List<Teacher> getTeachers() {
-        List<Teacher> slistItems = teacherService.getTeachersList();
+        List<Teacher> slistItems = teacherService.getList();
         slistItems.forEach(t -> t.setGroups(new ArrayList<>(Collections.emptyList())));
         return slistItems;
     }
@@ -87,7 +87,7 @@ public class AjaxTest {
     @RequestMapping(value="/users", method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
     public @ResponseBody String getTeachers() {
 
-        List<Teacher> slistItems = teacherService.getTeachersList();
+        List<Teacher> slistItems = teacherService.getList();
 
         //обнуляем списки, чтобы вывести
         slistItems.forEach(t -> t.setGroups(new ArrayList<>()));//new ArrayList<>(Collections.emptyList())

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TeacherDaoImlp implements TeacherDao {
+public class TeacherDaoImlp implements EntitiesDao<Teacher> {
 
     @PersistenceContext
     private EntityManager em;
@@ -27,7 +27,7 @@ public class TeacherDaoImlp implements TeacherDao {
     }
 
     @Override
-    public List<Teacher> getTeachersList(){
+    public List<Teacher> getList(){
         CriteriaQuery<Teacher> criteriaQuery = em.getCriteriaBuilder().createQuery(Teacher.class);
         Root<Teacher> root = criteriaQuery.from(Teacher.class);
         return  em.createQuery(criteriaQuery).getResultList();

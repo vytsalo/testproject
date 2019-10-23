@@ -2,6 +2,7 @@ package dao;
 
 import entities.Group;
 import entities.Student;
+import entities.Teacher;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -43,6 +45,7 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
         return group;
     }
 
+    //паределка под критерии
     //удаляет сущность по id
     @Override
     public void delete(Long groupId) {
@@ -51,6 +54,12 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
         else throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
     }
 
+    //Поиск по тайтлу группы
+      public List<Group> searchByString(String str) {
+            return new ArrayList<>();
+    }
+
     public void addStudent(Student student){}
+
 
 }

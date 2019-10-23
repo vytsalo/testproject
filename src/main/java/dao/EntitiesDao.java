@@ -1,5 +1,7 @@
 package dao;
 
+import entities.Teacher;
+
 import java.util.List;
 
 /**
@@ -12,4 +14,5 @@ public interface EntitiesDao<T> {
     void update(T entity);
     T findById(Long entityId);
     void delete(Long entityId);
+    List<T> searchByString(String str);
 }
