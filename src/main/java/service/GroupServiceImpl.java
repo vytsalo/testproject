@@ -1,5 +1,6 @@
 package service;
 
+import dao.EntitiesDao;
 import dao.GroupDao;
 import entities.Group;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 public class GroupServiceImpl implements GroupService{
 
     @Autowired
-    private GroupDao gr_dao;
+    private EntitiesDao<Group> gr_dao;
 
     @Transactional
     @Override
@@ -23,7 +24,7 @@ public class GroupServiceImpl implements GroupService{
     @Transactional
     @Override
     public List<Group> getGroupsList(){
-        return gr_dao.getGroupsList();
+        return gr_dao.getList();
     }
 
     @Transactional
@@ -35,7 +36,7 @@ public class GroupServiceImpl implements GroupService{
     @Transactional
     @Override
     public Group findById(Long groupId){
-        return gr_dao.findById(groupId);
+        return (Group)gr_dao.findById(groupId);
     }
 
     @Transactional

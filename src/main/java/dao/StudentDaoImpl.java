@@ -9,7 +9,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class StudentDaoImpl implements StudentDao{
+public class StudentDaoImpl implements EntitiesDao<Student>{
 
     @PersistenceContext
     private EntityManager em;
@@ -20,7 +20,7 @@ public class StudentDaoImpl implements StudentDao{
     }
 
     @Override
-    public List<Student> getStudentsList(){
+    public List<Student> getList(){
         CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
         Root<Student> root = criteriaQuery.from(Student.class);
         return em.createQuery(criteriaQuery).getResultList();

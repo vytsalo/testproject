@@ -12,7 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class GroupDaoImpl implements GroupDao {
+public class GroupDaoImpl implements EntitiesDao<Group> {
 
     @PersistenceContext
     private EntityManager em;
@@ -23,7 +23,7 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public List<Group> getGroupsList() {
+    public List<Group> getList() {
         CriteriaQuery<Group> criteriaQuery = em.getCriteriaBuilder().createQuery(Group.class);
         Root<Group> root = criteriaQuery.from(Group.class);
         return em.createQuery(criteriaQuery).getResultList();
