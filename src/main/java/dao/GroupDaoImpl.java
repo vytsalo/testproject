@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +43,6 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
         return group;
     }
 
-    //паределка под критерии
     //удаляет сущность по id
     @Override
     public void delete(Long groupId) {
@@ -54,11 +52,22 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
     }
 
     //Поиск по тайтлу группы
-      public List<Group> searchByString(String str) {
-            return new ArrayList<>();
+    @Override
+    public List<Group> searchByString(String str) {
+
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);
+        Root<Group> groupRoot = criteriaQuery.from(Group.class);
+
+        Predicate predicateForTitle
+                = criteriaBuilder.like(criteriaBuilder.lower(groupRoot.get("title")), "%" + str.toLowerCase() + "%");
+
+        criteriaQuery.where(predicateForTitle);
+        criteriaQuery.orderBy(criteriaBuilder.desc(groupRoot.get("id")));
+        criteriaQuery.distinct(true);
+
+        return em.createQuery(criteriaQuery).getResultList();
+
     }
-
-    public void addStudent(Student student){}
-
 
 }

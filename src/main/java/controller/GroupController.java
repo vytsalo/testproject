@@ -20,11 +20,15 @@ import java.util.*;
 @Controller
 //todo remove this or replace to main controller
 
+//TODO searchByParam in student & group
+
+//TODO make table invisible if list is empty
+
 @RequestMapping("/groups")
 public class GroupController {
 
     @Autowired
-    //Квалифаер - id бина, который описали
+    //Квалифаер - id бина, который описали для того, чтобы можно было выполнить связывание
     @Qualifier("groupService")
     EntitiesService<Group> groupService;
 

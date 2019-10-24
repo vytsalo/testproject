@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Created by vasilevvs on 23.10.2019.
- * interface for all Entities
+ * interface for all Dao Entities
  */
 public interface EntitiesDao<T> {
     //Добавление объекта
