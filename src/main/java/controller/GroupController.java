@@ -24,6 +24,10 @@ import java.util.*;
 
 //TODO make table invisible if list is empty
 
+//TODO make a right controller
+
+//TODO переписать метод с поиском даты
+
 @RequestMapping("/groups")
 public class GroupController {
 
@@ -364,7 +368,19 @@ public class GroupController {
 
     }
 
+    @PostMapping(value = "/ajaxstudent", produces={"application/json; charset=UTF-8"})
+    @ResponseBody
+    public String processAjaxStudent(Model model, @RequestBody(required = false) String searchStringStudent) {
+        if (searchStringStudent==null) searchStringStudent="";
 
+        List<Student> slistItems = studentService.findByParam(searchStringStudent);
+
+        //обнуляем списки групп, чтобы вывести
+        slistItems.forEach(s -> s.setGruppa(null));//--
+
+        return new Gson().toJson(slistItems);
+
+    }
 
 
 

@@ -24,6 +24,7 @@
 
     <!-- sendAjax(id класса) -->
     <script src="../../js/ajaxOperationsTeachers.js"></script>
+    <script src="../../js/ajaxOperationsStudents.js"></script>
     <script src="../../js/ajaxDateConverters.js"></script>
 
 
@@ -131,15 +132,7 @@
 <br/>
 <br/>
 <br/>
-
-
-<%--<h4>
-	Список существующих преподавателей
-</h4>--%>
-
-
-<!--notInGroupTeachers -->
-
+<%--
 	<p>
 
         <center>
@@ -194,8 +187,8 @@
 
 
 
-							
-				</p>
+
+				</p>--%>
                 				<!--/TEACHERS -->
 				
 				
@@ -299,113 +292,71 @@
 <br/>
 <br/>
 
-
-<h4>
-	Список существующих студентов
-</h4>
-
-
-
-<!--notInGroupStudents -->
-
-<table id="existingStudents" cellspacing="0" border="1">
-       <thead>
-	    <tr>
-         <th>#ID</th>
-         <th>Фамилия</th>
-         <th>Имя</th>
-         <th>Отчество</th>
-         <th>Дата рождения</th>
-         <th>Телефон</th>
-         <th>Действия</th>
-   		</tr>
-	  </thead>
-  
-  
-  <tbody>
-		<!-- th to td -->
-		
-		
-		<!-- notInGroupStudents -->
-
-		<!-- Добавлять скрытые инпуты, а потом при переносе в таблицу - добавлять 
-		добавлять класс
-		name=""  -->
-	
-	<c:forEach items="${notInGroupStudents}" var="sddList" varStatus="tagStatus">
-
-	<!-- поменять класс и добавить путь  -->
-	<tr>
-         <td>
-		 
-		       <input type = "hidden" value= "${sddList.id}" class = "jstlStudentsExisting"/>
-				<input type = "hidden" value= "${sddList.name}" class = "jstlStudentsExisting"/>
-		 		
-		<input type = "hidden" value= "${sddList.fam}" class = "jstlStudentsExisting"/>		   
-		  
-		       <input type = "hidden" value= "${sddList.otch}" class = "jstlStudentsExisting"/>
-		       <input type = "hidden" value= "${sddList.dateOfBirth}" class = "jstlStudentsExisting"/>
-		       <input type = "hidden" value= "${sddList.phoneNumber}" class = "jstlStudentsExisting"/>
-		       <input type = "hidden" value= "${sddList.gruppa.id}" class = "jstlStudentsExisting"/>
-		   
-
-		 <!-- innerHtml = код -->
-		 
-		 
-		 
-		 ${sddList.id}</td>
-         <td>${sddList.fam}</td>
-         <td>${sddList.name}</td>
-         <td>${sddList.otch}</td>
-         <td>${sddList.dateOfBirth}</td>
-         <td>${sddList.phoneNumber}</td>
-         <td><a href="#" onclick="addRow(this,'studentsTable'); classChange(); rewriteHTML(); return false;">Добавить</a></td>
-    </tr>
-	
-	</c:forEach>
-	
-  </tbody>
-
-</table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
                 </p>
 
+
+
+
+
+
+
+
+         <p>
+
+             <center>
+
+                 Введите критерий поиска:
+                 <br/>
+
+
+                 <div class = "myDiv2">
+
+                     <input type = "text" id="searchStringStudent">
+                     <input type = "button" value = "Поиск" onclick = "sendAjaxStudent();">
+                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf2" />
+
+                 </div>
+                 <br/>
+
+
+
+                 <div id = "studentsResults">
+
+                     Результаты:
+
+                     <table border = "1 px solid" id="existingStudents" visible = "false">
+                         <thead>
+                         <tr>
+                             <th>ID</th>
+                             <th>Фамилия</th>
+                             <th>Имя</th>
+                             <th>Отчество</th>
+                             <th>Дата рождения</th>
+                             <th>Телефон</th>
+                             <th>Действие</th>
+                         </tr>
+                         </thead>
+
+                         <tbody>
+
+                         </tbody>
+
+                     </table>
+
+         <p style='color:red;text-align:center;'>Нет результатов.<br/> Попробуйте смягчить условия поиска</p>
+     </div>
+
+
+</center>
+
+
+
+
+
+
+
+
+</p>
 
 
 
@@ -414,20 +365,6 @@
 				<!-- /STUDENTS -->
 				
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-
-	     
                 <p>
                 <input type="submit" id="submit" value="Отправить" />
                 </p>
