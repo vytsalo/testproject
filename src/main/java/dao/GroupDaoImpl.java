@@ -47,7 +47,7 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
     @Override
     public void delete(Long groupId) {
         Group group = em.find(Group.class, groupId);
-        if (group != null) em.remove(group);
+        if (group != null) { em.remove(group);}
         else throw new EntityNotFoundException("Группа с ID = " + groupId + " не найдена");
     }
 

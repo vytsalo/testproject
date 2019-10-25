@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import entities.Group;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,6 +118,31 @@ public class TeacherController {
         model.addAttribute("teachers", teacherService.getList());
         return "redirect:/teachers/";
     }
+
+
+
+    //Контроллер для пересылки Ajax
+    @PostMapping(value = "/ajaxgroup", produces={"application/json; charset=UTF-8"})
+    @ResponseBody
+    public String processAjaxGroup(Model model, @RequestBody(required = false) String searchString) {
+        if (searchString==null) searchString="";
+
+        //получаем списки групп, удовлетворяющих параметру
+        List<Group> glistItems = groupService.findByParam(searchString);
+
+        //обнуляем списки преподов и студентов, чтобы вывести
+        glistItems.forEach(g -> {
+            g.setTeachers(new ArrayList<>());
+            g.setStudents(new ArrayList<>());
+        });
+
+        return new Gson().toJson(glistItems);
+
+    }
+
+
+
+
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {

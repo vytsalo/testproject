@@ -132,7 +132,6 @@
 <br/>
 <br/>
 <br/>
-<%--
 	<p>
 
         <center>
@@ -145,8 +144,6 @@
 
                 <input type = "text" id="searchString">
                 <input type = "button" value = "Поиск" onclick = "sendAjax();">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
-
             </div>
             <br/>
 
@@ -188,7 +185,7 @@
 
 
 
-				</p>--%>
+				</p>
                 				<!--/TEACHERS -->
 				
 				
@@ -313,7 +310,6 @@
 
                      <input type = "text" id="searchStringStudent">
                      <input type = "button" value = "Поиск" onclick = "sendAjaxStudent();">
-                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf2" />
 
                  </div>
                  <br/>
@@ -363,8 +359,12 @@
 
 
 				<!-- /STUDENTS -->
-				
-				
+
+
+
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
+
+
                 <p>
                 <input type="submit" id="submit" value="Отправить" />
                 </p>

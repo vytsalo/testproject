@@ -19,14 +19,13 @@ public class GroupEditor extends PropertyEditorSupport {
     public void setAsText(String text) throws IllegalArgumentException {
 
         if (StringUtils.isEmpty(text)) {
-            //пустая строка - нулл - объект
+
             setValue(null);
 
         }   else {
 
             //устанавливаем группу с определенным ID
             setValue(groupService.findById(Long.parseLong(text)));
-
         }
     }
 

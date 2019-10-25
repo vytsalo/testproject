@@ -154,10 +154,19 @@
                                   </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
                       </center>
                     </div>
+
+
+
+
+
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
+
+
                 </p>
                 <p>
                    <input type="submit" id="submit" value="Отправить" />
                 </p>
+
             </springForm:form>
                 <div id="required">
                 <p>* Поля, обязательные для заполнения</p>

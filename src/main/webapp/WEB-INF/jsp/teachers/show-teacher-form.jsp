@@ -24,6 +24,9 @@
         <!-- Операции с таблицами -->
         <script src="../../js/tableOperationg.js"></script>
 
+        <!-- AJAX GROUP -->
+        <script src="../../js/ajaxOperationsGroups.js"></script>
+
         <title>Добавление/обновление преподавателя</title>
 
 </head>
@@ -160,6 +163,7 @@
 
 
 
+<%--
 
 
 
@@ -233,12 +237,69 @@
 
                 </p>
 
+--%>
+
+
+
+
+
+            <p>
+
+                <center>
+
+                    Введите критерий поиска:
+                    <br/>
+
+
+                    <div class = "myDiv2">
+
+                        <input type = "text" id="searchString">
+                        <input type = "button" value = "Поиск" onclick = "sendAjaxGroup();">
+
+                    </div>
+                    <br/>
+
+
+
+                    <div id = "results">
+
+                        Результаты:
+
+                        <table border = "1 px solid" id="existingGroups" visible = "false">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            </tbody>
+
+                        </table>
+
+            <p style='color:red;text-align:center;'>Нет результатов.<br/> Попробуйте смягчить условия поиска</p>
+        </div>
+
+
+        </center>
 
 
 
 
 
 
+
+
+        </p>
+
+
+
+
+
+
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
 
                 <p>
                    <input type="submit" id="submit" value="Отправить" />

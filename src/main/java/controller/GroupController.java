@@ -17,8 +17,13 @@ import service.EntitiesService;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+//TODO make a search for groupsList in students and teachers
+//Контроллер с аджаксом отдельно вынести AjaxController
 
-//TODO FIX BUG METHOD NOT ALLOWED UPDATE PAGE
+//TODO try to get Rid of empty tables
+
+
+//TODO make one method for every ajax operation
 
 @Controller
 //todo remove this or replace to main controller
@@ -66,6 +71,7 @@ public class GroupController {
     public String addGroup(Model model){
         //добавить список групп
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
+
         model.addAttribute("group", new Group());
 
         model.addAttribute("notInGroupStudents", studentService.getList());

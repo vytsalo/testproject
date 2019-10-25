@@ -1,6 +1,10 @@
 //скрываем результаты
-//resultsTeacher
+//рефактор второго аджакса как resultsTeacher
 $(document).ready(function (){$('#studentsResults').hide()});
+
+//        alert(location.href);
+//просто передать энтити
+        
 
         //в какой то файл пихнуть, где конфиги, чтобы обращаться к переменной из других файлов
         //вынести в отдельный файл настройки?
@@ -8,28 +12,40 @@ $(document).ready(function (){$('#studentsResults').hide()});
         var ajaxLinkStudents = rootAddress + '/groups/ajaxstudent';
 
         //отправка AJAX - запроса на сервер
-       function sendAjaxStudent() {
-	   var csrf2 = $('#csrf2').val();
-	   var searchStringStudent = $('#searchStringStudent').val();
 
-	   //csrf сделать одно поле для всего ксрф
-           //попробовать передать ксрф вручную без поля
+/**
+ * params: id - строки, где храниться запрос(или сама строка)
+ * params: url - запроса
+ * params:
+ *
+ */
+       function sendAjaxStudent() {
+	   var searchStringStudent = $('#searchStringStudent').val();
 	   $.ajax({
 			   url : ajaxLinkStudents,//studentAjaxProcessForm
 			   type : 'POST',
 			   data : searchStringStudent ,
-			   headers: { 'X-CSRF-Token' : csrf2 },
+			   headers: { 'X-CSRF-Token' : $('#csrf').val() },
 			   contentType: false  // tell jQuery not to set contentType
 		}).done( function(data){
 				processDataStudent(data);
 				});
 	   }
 
-
-	   //add addButtonHandler
-
         //обработка полученного с AJAX JSON'а
         //'data' is the json object returned from the server
+/**
+ * Сделать параметр сущность - Student и везде будет добавляться студент, в таблицу и в ID
+ *
+ *
+ * params: data - json param getting as a server response(data)
+ * params: tableId - таблицы Existing + Entity? куда записываются данные от запроса(jstlStudentsExisting)
+ * params: blockResultId (failedBlockResultId) - блока результатов (studentsResults)
+ * params: newTableId для присвоения измененным данным(jstl + Entity + Existing)
+ * params: tableToAdd таблица для добавления студентов(для отправки формы) (studentsTable)
+ * обработка полученного с AJAX JSON'а
+ * 'data' is the json object returned from the server
+ **/
         function processDataStudent(data) {
  				  //Очищаем таблицу от предыдущих результатов
                     $('#existingStudents tbody').empty();
@@ -43,7 +59,7 @@ $(document).ready(function (){$('#studentsResults').hide()});
                         $("#studentsResults p").show();
                     } else {
                 // выводим полученные данные в таблицу
-                        $("#results p").hide();
+                        $("#studentsResults p").hide();
                 for (var i=0; i< data.length; i++) {
                     //в первую строку запихнуть инпуты
                     $("#existingStudents tbody").append(
@@ -71,11 +87,10 @@ $(document).ready(function (){$('#studentsResults').hide()});
                     );
                 }
                         //показываем таблицу
+                        //показываем таблицу
                    $('#existingStudents').show();
                 //показываем результаты
                    $('#studentsResults').show();
-
-                $('#studentsResults p').hide();
 
                     }
                 }

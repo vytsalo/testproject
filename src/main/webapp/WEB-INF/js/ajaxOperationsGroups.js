@@ -1,15 +1,12 @@
 //скрываем результаты
 $(document).ready(function (){$('#results').hide()});
 
-
-
-
 var rootAddress = location.protocol + '//' + location.host;
-var ajaxLinkTeachers = rootAddress + '/groups/ajaxprocessform';
+var ajaxLinkTeachers = rootAddress + '/teachers/ajaxgroup';
 
 
         //отправка AJAX - запроса на сервер
-       function sendAjax() {
+       function sendAjaxGroup() {
 	   var csrf = $('#csrf').val();
 	   var searchString = $('#searchString').val();//searchStringForTeachers
 
@@ -34,11 +31,11 @@ var ajaxLinkTeachers = rootAddress + '/groups/ajaxprocessform';
         //'data' is the json object returned from the server
         function processData(data) {
  				  //Очищаем таблицу от предыдущих результатов
-                    $('#existingTeachers tbody').empty();
+                    $('#existingGroups tbody').empty();
                     //Красными буквами нет результатов
                     if (data.length==0) {
                         //таблицу невидимой делаем
-                        $('#existingTeachers').hide();
+                        $('#existingGroups').hide();
                         //показываем блок
                         $("#results").show();
                         //показываем надпись, что результатов нет
@@ -48,34 +45,23 @@ var ajaxLinkTeachers = rootAddress + '/groups/ajaxprocessform';
                         $("#results p").hide();
                 for (var i=0; i< data.length; i++) {
                     //в первую строку запихнуть инпуты
-                    $("#existingTeachers tbody").append(
+                    $("#existingGroups tbody").append(
                         "<tr>" +
                             "<td>" +
 
-                        "<input type = 'hidden' value= '" +  data[i].id + "' class = 'jstlTeachersExisting'/>" +
-                        "<input type = 'hidden' value= '" +  data[i].fam + "' class = 'jstlTeachersExisting'/>" +
-                        "<input type = 'hidden' value= '" +  data[i].name + "' class = 'jstlTeachersExisting'/>" +
-                        "<input type = 'hidden' value= '" +  data[i].otch + "' class = 'jstlTeachersExisting'/>" +
-                        "<input type = 'hidden' value= '" +  dateConverterForProcess(dateConverter(data[i].dateOfBirth, '.')) + "' class = 'jstlTeachersExisting'/>" +
-                        "<input type = 'hidden' value= '" +  data[i].phoneNumber + "' class = 'jstlTeachersExisting'/>" +
-
+                        "<input type = 'hidden' value= '" +  data[i].id + "' class = 'jstlGroupsExisting'/>" +
+                        "<input type = 'hidden' value= '" +  data[i].title + "' class = 'jstlGroupsExisting'/>" +
 
                         <!-- не меняется надпись кнопки с добавить на удалить -->
                         data[i].id + "</td>" +
-                            "<td>" + data[i].fam + "</td>" +
-                            "<td>" + data[i].name + "</td>" +
-                            "<td>" + data[i].otch + "</td>" +
-                            "<td>" + dateConverter(data[i].dateOfBirth,'.') + "</td>" +
-                            "<td>" + data[i].phoneNumber + "</td>" +
+                            "<td>" + data[i].title + "</td>" +
 
-
-
-                            "<td><a href = '#' onclick='addRowToTeachersTable(this,\"teachersTable\"); classChangeTeacher(); rewriteHTMLTeacher(); return false;'>Добавить</a></td>" +
+                            "<td><a href = '#' onclick='addRow(this,\"groupsTable\"); classChange(); rewriteHTML(); return false;'>Добавить</a></td>" +
                         "</tr>"
                     );
                 }
                         //показываем таблицу
-                        $('#existingTeachers').show();
+                        $('#existingGroups').show();
                 //показываем результаты
                     $('#results').show();
                     }
