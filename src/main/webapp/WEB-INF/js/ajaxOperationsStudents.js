@@ -7,6 +7,8 @@ $(document).ready(function (){$('#studentsResults').hide()});
 	   var csrf2 = $('#csrf2').val();
 	   var searchStringStudent = $('#searchStringStudent').val();
 
+	   //csrf сделать одно поле для всего ксрф
+           //попробовать передать ксрф вручную без поля
 	   $.ajax({
 			   url : 'ajaxstudent',//studentAjaxProcessForm
 			   type : 'POST',
@@ -47,7 +49,7 @@ $(document).ready(function (){$('#studentsResults').hide()});
                         "<input type = 'hidden' value= '" +  data[i].fam + "' class = 'jstlStudentsExisting'/>" +
                         "<input type = 'hidden' value= '" +  data[i].name + "' class = 'jstlStudentsExisting'/>" +
                         "<input type = 'hidden' value= '" +  data[i].otch + "' class = 'jstlStudentsExisting'/>" +
-                        "<input type = 'hidden' value= '" +  dateConverterForProcess(data[i].dateOfBirth) + "' class = 'jstlStudentsExisting'/>" +
+                        "<input type = 'hidden' value= '" +  dateConverterForProcess(dateConverter(data[i].dateOfBirth, '.')) + "' class = 'jstlStudentsExisting'/>" +
                         "<input type = 'hidden' value= '" +  data[i].phoneNumber + "' class = 'jstlStudentsExisting'/>" +
 
 
@@ -64,8 +66,11 @@ $(document).ready(function (){$('#studentsResults').hide()});
                     );
                 }
                         //показываем таблицу
-                        $('#existingStudents').show();
+                   $('#existingStudents').show();
                 //показываем результаты
-                    $('#studentsResults').show();
+                   $('#studentsResults').show();
+
+                $('#studentsResults p').hide();
+
                     }
                 }

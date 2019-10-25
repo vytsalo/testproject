@@ -17,6 +17,9 @@ import service.EntitiesService;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
+//TODO FIX BUG METHOD NOT ALLOWED UPDATE PAGE
+
 @Controller
 //todo remove this or replace to main controller
 
@@ -362,11 +365,15 @@ public class GroupController {
         List<Teacher> slistItems = teacherService.findByParam(searchString);
 
         //обнуляем списки групп, чтобы вывести
-        slistItems.forEach(t -> t.setGroups(new ArrayList<>()));
+        slistItems.forEach(t -> t.setGroups(new ArrayList<>()));// минусануть
 
         return new Gson().toJson(slistItems);
 
     }
+
+    //студенту засетить эту группу
+
+
 
     @PostMapping(value = "/ajaxstudent", produces={"application/json; charset=UTF-8"})
     @ResponseBody

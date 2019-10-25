@@ -1,110 +1,34 @@
-//функция для конвертации даты
+//сделать конвертер только для даты процесс, а потом привод её в нормальный формат
 function dateConverter(date, spliterator) {
-            alert(date);
-            var monthString = date.substring(0,3);
-            var day = date.substring(4,6);
-            var year = date.substring(8);
-            var month;
 
-            //массив циклом?
-            switch(monthString) {
-                case 'янв':
-                    month = "01";
-                    break;
-                case 'фев':
-                    month = "02";
-                    break;
-                case 'мар':
-                    month = "03";
-                    break;
-                case 'апр':
-                    month = "04";
-                    break;
-                case 'мая':
-                    month = "05";
-                    break;
-                case 'июн':
-                    month = "06";
-                    break;
-                case 'июл':
-                    month = "07";
-                    break;
-                case 'авг':
-                    month = "08";
-                    break;
-                case 'сен':
-                    month = "09";
-                    break;
-                case 'окт':
-                    month = 10;
-                    break;
-                case 'ноя':
-                    month = 11;
-                    break;
-                case 'дек':
-                    month = 12;
-                    break;
-            }
+var i1 = date.indexOf(' ');
 
-            return day + spliterator + month + spliterator + year;
+var month = date.substring(0, i1);
 
-        }
+var day = date.substring(i1+1, date.indexOf(','));
 
+if (day<10) day= '0' + day;
 
+var year = date.substring(date.lastIndexOf(' ')+1);
 
+var months = ["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"];
 
+for (var i=0; i<months.length; i++){
+if (month == months[i]){
+month = i+1;
+if (month<10) month= '0' + month;
+break;
+}
+}
+//alert(day + spliterator + month + spliterator + year);
+return day + spliterator + month + spliterator + year;
+}
+
+//25.05.2017
 function dateConverterForProcess(date) {
-
-    var monthString = date.substring(0,3);
-
-    var day = date.substring(4,6);
-    var year = date.substring(8);
-    var month;
-
-    if (day<10) day='0' + day;//toString
-
-
-
-    //массив циклом?
-    switch(monthString) {
-        case 'янв':
-            month = "01";
-            break;
-        case 'фев':
-            month = "02";
-            break;
-        case 'мар':
-            month = "03";
-            break;
-        case 'апр':
-            month = "04";
-            break;
-        case 'мая':
-            month = "05";
-            break;
-        case 'июн':
-            month = "06";
-            break;
-        case 'июл':
-            month = "07";
-            break;
-        case 'авг':
-            month = "08";
-            break;
-        case 'сен':
-            month = "09";
-            break;
-        case 'окт':
-            month = 10;
-            break;
-        case 'ноя':
-            month = 11;
-            break;
-        case 'дек':
-            month = 12;
-            break;
-    }
-
-    return  year + "-" + month + "-" + day;
-
+var month = date.substring(0,2);
+var day = date.substring(3,5);
+var year = date.substring(6);
+//alert(year + "-" + month + "-" + day);
+return year + "-" + month + "-" + day;
 }

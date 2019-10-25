@@ -231,8 +231,8 @@
                             <form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].dateOfBirth" value="${stdList.dateOfBirth}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].phoneNumber" value="${stdList.phoneNumber}" class = "jstlStudentsSending" />
-                            <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
-
+                          <%--  <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
+--%>
                             <div>${stdList.id}</div>
 							
 							</td>

@@ -114,18 +114,34 @@ function rewriteHTML(){//remove or add
 		var inputs = tableStud.getElementsByClassName("jstlStudentsSending");
 		
 		//порядок везде одинаковый сделать
-		var fields = ["id", "fam", "name","otch", "dateOfBirth","phoneNumber","gruppa"];
+		var fields = ["id", "fam", "name","otch", "dateOfBirth","phoneNumber"];
 
 		//почему пропускает через 1
 			    for (var j = 0; j < inputs.length; j++) {
 
                 //students[0].id
-				inputs[j].setAttribute("name","students[" + Math.floor(j/7) + "]." + fields[j % 7]);
+				inputs[j].setAttribute("name","students[" + Math.floor(j/6) + "]." + fields[j % 6]);
 				//if из другой таблицы
 				// removeAttribute(name);
 
-   }
+/*
+
+                    var tableStud = document.getElementById("teachersTable");
+
+                    var inputs = tableStud.getElementsByClassName("jstlTeachersSending");
+
+                    var fields = ["id", "fam", "name","otch", "dateOfBirth","phoneNumber"];
+
+                    for (var j = 0; j < inputs.length; j++) {
+
+                        inputs[j].setAttribute("name","teachers[" + Math.floor(j/6) + "]." + fields[j % 6]);
+
+
+
+
+                    }*/
             
+}
 }
 
 //+class Change
