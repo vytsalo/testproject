@@ -41,15 +41,14 @@ function rewriteHTML(){
 		var tableStud = document.getElementById("groupsTable");
 		
 		var inputs = tableStud.getElementsByClassName("jstlGroupsSending");
-		
-		//порядок везде одинаковый сделать
-		var fields = ["id", "title"];
 
 		//почему пропускает через 1
 			    for (var j = 0; j < inputs.length; j++) {
 				
 				inputs[j].setAttribute("name","groups[" + j + "].id");
-			
+				//он перезаписывает предыдущее, поэтому ошибка
+				//inputs[j].setAttribute("name","groups[" + j + "].title");
+
    }
                 //перед нажатием на пост
            

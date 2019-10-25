@@ -127,7 +127,7 @@
                                        	    return false;"
                                        	alt="" id = "deleteGroup" />
 
-               <springForm:input type="text" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
+               <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
 
 
                     <!-- Само модальное окно -->

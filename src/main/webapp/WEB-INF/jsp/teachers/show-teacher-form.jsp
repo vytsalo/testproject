@@ -125,9 +125,31 @@
                         <tr>
                             <td>
 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+                            <springForm:input path="groups[${tagStatus.index}].id" value="${tcsList.id}" class = "jstlGroupsSending" />
 
-                            <springForm:hidden path="groups[${tagStatus.index}].id" value="${tcsList.id}" class = "jstlGroupsSending" />
-                            
+
+
+
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+
+
+
                             <div>${tcsList.id}</div>
 							
 							</td>

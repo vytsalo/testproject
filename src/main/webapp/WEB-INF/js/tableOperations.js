@@ -4,9 +4,6 @@ function GetCellValues(rowNum, colNum) {
 
 function setGroup(element) {
 		//в хайдден передаем айди
-
-
-
 	//здесь ошибка
 	document.getElementById('groupId').value = 
 		GetCellValues(element.parentNode.parentNode.rowIndex,1);//нулевое значение ячейки

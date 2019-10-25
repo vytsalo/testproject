@@ -16,15 +16,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//TODO REMOVE FIXED TABLE SIZE
+//TODO writeaddRowGroup
+
+//TODO ошибка в function rewriteHTML() в tableOperationg
+
 @Controller
 @RequestMapping("/students")
 public class StudentController {
-
-    /*
-    The specified value "Wed Dec 12 00:00:00 GMT+04:00 1990" does not conform to the required format, "yyyy-MM-dd".
-    * */
-
-/*удалил нужное поле? передается учитель*/
 
     @Autowired
     private EntitiesService<Student> studentService;
