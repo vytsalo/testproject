@@ -17,6 +17,8 @@ import service.EntitiesService;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+//todo stackoverflow intellij idea debug does not show any error information using log4j
+//TODO remove dublicates from ajaxFindTeachers etc in this teacher groups
 //TODO make a search for groupsList in students and teachers
 //Контроллер с аджаксом отдельно вынести AjaxController
 

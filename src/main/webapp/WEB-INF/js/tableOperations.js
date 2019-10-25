@@ -1,11 +1,15 @@
 function GetCellValues(rowNum, colNum) {
-	return document.getElementById('mytable').rows[rowNum].cells[colNum].innerHTML;
+	return document.getElementById('existingGroups').rows[rowNum].cells[colNum].innerHTML;
 }
 
 function setGroup(element) {
 		//в хайдден передаем айди
+
+
+
+	//здесь ошибка
 	document.getElementById('groupId').value = 
-		GetCellValues(element.parentNode.parentNode.rowIndex,0);	
+		GetCellValues(element.parentNode.parentNode.rowIndex,1);//нулевое значение ячейки
 		//в поле группы передаем ее титле
 	document.getElementById('group').value = 
 		GetCellValues(element.parentNode.parentNode.rowIndex,1);

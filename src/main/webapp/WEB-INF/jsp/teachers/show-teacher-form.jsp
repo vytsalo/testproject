@@ -91,7 +91,7 @@
                 <p>
                     <label for="date">Дата рождения *</label>
 
-                    <springForm:input type="date" id="date" path="dateOfBirth" value="${teacher.dateOfBirth}" required="required" min="1965-01-01" max="2002-12-31"/>
+                    <springForm:input type="date" id="date" path="dateOfBirth" value="${teacher.dateOfBirth}" required="required" min="1950-01-01" max="2005-12-31" />
                     <br/>
                     <springForm:errors path="dateOfBirth" cssClass="error" />
                 </p>

@@ -30,6 +30,11 @@
         <script src="../../js/mask.js"></script>
         <!-- Операции с таблицами -->
         <script src="../../js/tableOperations.js"></script>
+        <!-- операции с таблицами студентов -->
+        <script src="../../js/tableOperationz.js"></script>
+
+        <!--  -->
+        <script src="../../js/ajaxOperationsGroup.js"></script>
 
 
         <title>Добавление/удаление студента</title>
@@ -93,7 +98,7 @@
                 <p>
                     <label for="date">Дата рождения *</label>
 
-                    <springForm:input type="date" id="date" path="dateOfBirth" value="${student.dateOfBirth}" required="required" min="1965-01-01" max="2002-12-31"/>
+                    <springForm:input type="date" id="date" path="dateOfBirth" value="${student.dateOfBirth}" required="required" min="1950-01-01" max="2005-12-31" />
                     <br/>
                     <springForm:errors path="dateOfBirth" cssClass="error" />
                 </p>
@@ -122,38 +127,112 @@
                                        	    return false;"
                                        	alt="" id = "deleteGroup" />
 
-               <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
+               <springForm:input type="text" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
 
 
                     <!-- Само модальное окно -->
                     <div id="<c:out value="addGroupWindow"/>" class="modal">
-                      <h4>Список групп:</h4>
-                              <center>
-                                  <table id="mytable" cellspacing="5" border="1">
-                                      <thead>
-                                  	    <tr>
-                                           <th>#ID</th>
-                                           <th>Название</th>
-                                           <th></th>
-                                     	</tr>
-                                  	  </thead>
-                                    <tbody>
 
-                      <c:forEach items="${groups}" var="lost">
-                                		<tr>
-                                          <td><c:out value="${lost.id}"/></td>
-                                          <td><c:out value="${lost.title}"/></td>
-                                          <td>
-                               <td>
-                               <a href = "#" onclick = "setGroup(this); return false;" >Добавить</a>
-                               </td>
-                                          </td>
-                                      </tr>
-                      </c:forEach>
-                                    </tbody>
-                                  </table>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-                      </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p>
+
+                <center>
+
+                    Введите критерий поиска:
+                    <br/>
+
+
+                    <div class = "myDiv2">
+
+                        <input type = "text" id="searchString">
+                        <input type = "button" value = "Поиск" onclick = "sendAjaxGroup();">
+
                     </div>
+                    <br/>
+
+
+
+                    <div id = "results">
+
+                        Результаты:
+
+                        <table border = "1 px solid" id="existingGroups" visible = "false">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            </tbody>
+
+                        </table>
+
+            <p style='color:red;text-align:center;'>Нет результатов.<br/> Попробуйте смягчить условия поиска</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+        </center>
+
+
+
+
+
+
+
+
+        </p>
+
+
+    </div>
 
 
 

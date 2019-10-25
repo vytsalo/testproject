@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import entities.Group;
 import entities.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,19 @@ import org.springframework.web.bind.annotation.*;
 import service.EntitiesService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/students")
 public class StudentController {
+
+    /*
+    The specified value "Wed Dec 12 00:00:00 GMT+04:00 1990" does not conform to the required format, "yyyy-MM-dd".
+    * */
+
+/*удалил нужное поле? передается учитель*/
 
     @Autowired
     private EntitiesService<Student> studentService;
@@ -126,6 +135,28 @@ public class StudentController {
         model.addAttribute("students",studentService.getList());
         return "redirect:/students/";
     }
+
+
+
+    //Контроллер для пересылки Ajax студентам
+    @PostMapping(value = "/ajaxgroup", produces={"application/json; charset=UTF-8"})
+    @ResponseBody
+    public String processAjaxGroup(Model model, @RequestBody(required = false) String searchString) {
+        if (searchString==null) searchString="";
+
+        //получаем списки групп, удовлетворяющих параметру
+        List<Group> glistItems = groupService.findByParam(searchString);
+
+        //обнуляем списки преподов и студентов, чтобы вывести
+        glistItems.forEach(g -> {
+            g.setTeachers(new ArrayList<>());
+            g.setStudents(new ArrayList<>());
+        });
+
+        return new Gson().toJson(glistItems);
+
+    }
+
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
