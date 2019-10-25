@@ -42,12 +42,16 @@ function rewriteHTML(){
 		
 		var inputs = tableStud.getElementsByClassName("jstlGroupsSending");
 
+		var fields = ["id", "title"];
+
 		//почему пропускает через 1
 			    for (var j = 0; j < inputs.length; j++) {
-				
+				//инпут 0 найм 0
+				//инпут 1 нейм 0
 				inputs[j].setAttribute("name","groups[" + j + "].id");
+				var i = j;
+				inputs[++j].setAttribute("name","groups[" + i + "].title");
 				//он перезаписывает предыдущее, поэтому ошибка
-				//inputs[j].setAttribute("name","groups[" + j + "].title");
 
    }
                 //перед нажатием на пост
