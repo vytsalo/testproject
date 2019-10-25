@@ -2,6 +2,11 @@
 //resultsTeacher
 $(document).ready(function (){$('#studentsResults').hide()});
 
+        //в какой то файл пихнуть, где конфиги, чтобы обращаться к переменной из других файлов
+        //вынести в отдельный файл настройки?
+        var rootAddress = location.protocol + '//' + location.host;
+        var ajaxLinkStudents = rootAddress + '/groups/ajaxstudent';
+
         //отправка AJAX - запроса на сервер
        function sendAjaxStudent() {
 	   var csrf2 = $('#csrf2').val();
@@ -10,7 +15,7 @@ $(document).ready(function (){$('#studentsResults').hide()});
 	   //csrf сделать одно поле для всего ксрф
            //попробовать передать ксрф вручную без поля
 	   $.ajax({
-			   url : 'ajaxstudent',//studentAjaxProcessForm
+			   url : ajaxLinkStudents,//studentAjaxProcessForm
 			   type : 'POST',
 			   data : searchStringStudent ,
 			   headers: { 'X-CSRF-Token' : csrf2 },
