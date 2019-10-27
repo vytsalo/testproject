@@ -17,43 +17,27 @@ import service.EntitiesService;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-//todo stackoverflow intellij idea debug does not show any error information using log4j
 //TODO remove dublicates from ajaxFindTeachers etc in this teacher groups
-//TODO make a search for groupsList in students and teachers
-//Контроллер с аджаксом отдельно вынести AjaxController
-
-//TODO try to get Rid of empty tables
-
-
-//TODO make one method for every ajax operation
+//TODO make table invisible if list is empty
+// TODO make one method for every ajax operation
 
 @Controller
-//todo remove this or replace to main controller
-
-//TODO searchByParam in student & group
-
-//TODO make table invisible if list is empty
-
-//TODO make a right controller
-
-//TODO переписать метод с поиском даты
-
 @RequestMapping("/groups")
 public class GroupController {
 
     @Autowired
     //Квалифаер - id бина, который описали для того, чтобы можно было выполнить связывание
     @Qualifier("groupService")
-    EntitiesService<Group> groupService;
+    private EntitiesService<Group> groupService;
 
     @Autowired
     @Qualifier("teacherService")
-    EntitiesService<Teacher> teacherService;
+    private EntitiesService<Teacher> teacherService;
 
     @Autowired
     @Qualifier("studentService")
 
-    EntitiesService<Student> studentService;
+    private EntitiesService<Student> studentService;
 
     @GetMapping("/")//"","/"
     public String listGroups(Model model){
@@ -68,12 +52,9 @@ public class GroupController {
         return "groups/list-groups";
     }
 
-    //todo если гетлист нулл то ретурт гет тичерслист
     @GetMapping("/add")
     public String addGroup(Model model){
-        //добавить список групп
         //Просто создаем пустой экземпляр, а потом пост его обрабатывает
-
         model.addAttribute("group", new Group());
 
         model.addAttribute("notInGroupStudents", studentService.getList());
@@ -143,12 +124,6 @@ public class GroupController {
             }
             else {
 
-
-
-                //TODO ERROR HANDLERS FIX AUTH
-                //ERROR PAGES при неправильных ссылках все сбивается
-                //http://212.193.37.103:8082/teachers/update/210/as
-                //todo избавиться от сиаутвалю
                 /*
                     найти преподавателей по ID, добавить им эту группу, если её еще нет
                     обновить преподавателя
@@ -168,9 +143,6 @@ public class GroupController {
 
                 List<Teacher> allTeacherDatabase = teacherService.getList();
 
-                //todo error in processform while sending the model
-                //todo fix operations
-
                 Teacher tempT;
                 List<Group> grT = new ArrayList<>();//--
 
@@ -179,8 +151,6 @@ public class GroupController {
                     allDBTeachers.get(i).removeGroup(dbGroup);//newGroup
                     teacherService.update(allDBTeachers.get(i));
                 }
-
-                  //todo поиск куда надо
 
                 //добавляем преподавателей в группы
                 if (teachersThisGroup.size()!=0) {
@@ -205,7 +175,6 @@ public class GroupController {
 
                 Teacher tempTeacher;
 
-                //todo перенести update на конец
                 //проходимся по преподавателям в модели и добавляем им группу
                 //обновляем преподавателей
                 for (int i = 0; i < teachersThisGroup.size(); i++) {
@@ -255,11 +224,7 @@ public class GroupController {
         }
     }
 
-    //TODO get ride of / at the urls beginings
-    //TODO find a way to remove / in jsp include and CSS links in showgroupform
     //TODO баг из -за связей 1 к мени и мени ту мени, проверить не увеличиваются ли они еще при передаче
-    //TODO -/ not working in resources
-    //TODO bug with main group page. conflict between "" and "groups/"
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
     @GetMapping("/update/{Id}")
@@ -297,8 +262,6 @@ public class GroupController {
         model.addAttribute("notInGroupTeachers", allTeachers);
         model.addAttribute("notInGroupStudents", allStudents);
 
-        //todo remove unnecessary commentaries
-
         return "groups/show-group-form";
     }
 
@@ -306,7 +269,7 @@ public class GroupController {
     @GetMapping("/delete/{Id}")
     public String deleteGroup(Model model,@PathVariable Long Id) {
 
-        //todo сделать удаление связей группы, а потом только удаление самой группы?
+        //удаление связей группы, а потом только удаление самой группы?
 
         Group group = groupService.findById(Id);
 
@@ -344,9 +307,6 @@ public class GroupController {
         model.addAttribute("groups",groupService.getList());
         return "redirect:/groups/";
     }
-
-
-
 
     //нажиматься если она не емпти?
 
@@ -397,20 +357,12 @@ public class GroupController {
 
     }
 
-
-
-
-
-
-
-
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(true);//false;
+        dateFormat.setLenient(true);
         dataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-
         //поле которое отвечает за группу
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
     }

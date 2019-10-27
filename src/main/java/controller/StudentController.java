@@ -17,9 +17,6 @@ import java.util.Date;
 import java.util.List;
 
 //TODO REMOVE FIXED TABLE SIZE
-//TODO writeaddRowGroup
-
-//TODO ошибка в function rewriteHTML() в tableOperationg
 
 @Controller
 @RequestMapping("/students")

@@ -18,17 +18,11 @@ import java.util.List;
 @Controller
 public class AjaxTest {
 
-//TODO all autowired's are private
-
-    // TODO перенос в тичерсконтроллер
-    // showTeachersByParam
-
+    @Autowired
+    private EntitiesService<Teacher> teacherService;
 
     @Autowired
-    EntitiesService<Teacher> teacherService;
-
-    @Autowired
-    EntitiesService<Group> groupService;
+    private EntitiesService<Group> groupService;
 
 
     //model

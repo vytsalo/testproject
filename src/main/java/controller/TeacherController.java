@@ -89,21 +89,6 @@ public class TeacherController {
 
         allGroups.removeAll(thisTeacherGroups);
 
-/*
-       int asSize = allStudents.size();
-
-        //Формируем студентов, которых нет в этой группе
-        for (int i = 0; i < thisGroupStudents.size(); i++) {
-            for (int j = 0; j < asSize; j++) {
-                if ((thisGroupStudents.get(i).getId().equals(allStudents.get(j).getId()))){
-                    asSize--;
-                    allStudents.remove(j);
-                }
-            }
-        }
-        */
-
-
         //todo make a notInThisTeacherGroups
 
         model.addAttribute("groups", allGroups);
