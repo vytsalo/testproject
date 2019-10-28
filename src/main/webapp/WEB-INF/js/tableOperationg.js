@@ -41,16 +41,33 @@ function rewriteHTML(){
 		var tableStud = document.getElementById("groupsTable");
 		
 		var inputs = tableStud.getElementsByClassName("jstlGroupsSending");
-
+		//				0		1
 		var fields = ["id", "title"];
 
-		//почему пропускает через 1
-			    for (var j = 0; j < inputs.length; j++) {
+		/*    остаток деления на 2
+
+				номер группы
+		0 1			0
+		2 3			1
+		4 5			2
+
+		какая группа
+
+		inputs[j] - порядковый номер инпута - все верно
+
+
+
+		* */
+
+				//на следующей итерации будет уже 2
+			    for (var j = 0; j < inputs.length; j++) {//+=2
 				//инпут 0 найм 0
 				//инпут 1 нейм 0
-				inputs[j].setAttribute("name","groups[" + j + "].id");
-				var i = j;
-				inputs[++j].setAttribute("name","groups[" + i + "].title");
+					//alert(inputs[j]);
+				//inputs[j%2].setAttribute("name","groups[" + Math.floor(j/2) + "]." + fields[j%2]); //"].id");
+				inputs[j].setAttribute("name","groups[" + Math.floor(j/2) + "].id");
+				j++;
+				inputs[j].setAttribute("name","groups[" + Math.floor(j/2) + "].title");
 				//он перезаписывает предыдущее, поэтому ошибка
 
    }

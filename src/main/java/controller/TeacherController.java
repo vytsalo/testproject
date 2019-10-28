@@ -59,7 +59,39 @@ public class TeacherController {
 
             if (newTeacher.getId() == null) {
 
+                /*
+
+                Обнуляем список групп
+                Добавляем препода без групп
+                Добавляем всем группам этого препода
+                Обновляем группы
+
+                Устанавливаем преподу группы
+                Обновляем препода
+
+
+                 */
+
+
+                //проблема в индексах?
+
+                ArrayList<Group> thisTeacherGroups = new ArrayList<>(newTeacher.getGroups());
+
+                newTeacher.setGroups(new ArrayList<>());
+
                 teacherService.add(newTeacher);
+
+                //индексы сломаны
+
+                thisTeacherGroups.forEach(g -> {
+                    g.addTeacher(newTeacher);
+                    groupService.update(g);
+                });
+
+                newTeacher.setGroups(thisTeacherGroups);
+
+                teacherService.update(newTeacher);
+
             } else {
                 teacherService.update(newTeacher);
             }
@@ -120,6 +152,7 @@ public class TeacherController {
             g.setTeachers(new ArrayList<>());
             g.setStudents(new ArrayList<>());
         });
+
 
         return new Gson().toJson(glistItems);
 

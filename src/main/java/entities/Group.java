@@ -94,6 +94,16 @@ public class Group implements Serializable {
         }
     }
 
+    //добавляем преподавателя в список
+    public void addTeacher(Teacher teacher){
+        //если список не содержит препода, то добавляем его
+        if (!(teachers.contains(teacher))){
+            teachers.add(teacher);
+        }
+    }
+
+
+
     public Group() {}
 
     public Group(Long id, String title, List<Teacher> teachers, List<Student> students) {

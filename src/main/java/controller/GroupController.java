@@ -357,6 +357,10 @@ public class GroupController {
 
     }
 
+    //object references an unsaved transient instance - save the transient instance before flushing
+
+    //при добавлении второй группы, у которой уже есть обхекты - ошибка. сделать обработку
+
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
 
