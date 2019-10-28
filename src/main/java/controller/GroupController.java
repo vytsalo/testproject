@@ -21,17 +21,32 @@ import java.util.*;
 //TODO make table invisible if list is empty
 // TODO make one method for every ajax operation
 
+//TODO сделать вывод поиска только тех преподавателей, которых нет в группе и т.д.
+//не выводить повторки
+
+
+//TODO refactoring some fields into entities
+
+
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
 
+    //todo QUESTION
+    // каким образом он связывает? находит тип в бд, который соответствует таблице
+
+
+    //автовафред находит бины, которые соответствуют таким типам и привязывает значение
+    //описали интерфейс, а автовайред находит его реализацию
     @Autowired
-    //Квалифаер - id бина, который описали для того, чтобы можно было выполнить связывание
+    //Квалифаер - параметр - имя бина, который описали для того, чтобы можно было выполнить связывание по имени бина
+    //квалифаер уточняет
     @Qualifier("groupService")
     private EntitiesService<Group> groupService;
 
     @Autowired
     @Qualifier("teacherService")
+
     private EntitiesService<Teacher> teacherService;
 
     @Autowired

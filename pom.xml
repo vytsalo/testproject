@@ -203,7 +203,7 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.2.11</version>
+            <version>2.2.11</version><!-- new version 2.3.1 -->
         </dependency>
 
         <dependency>
@@ -378,6 +378,33 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+
+
+
+<!-- NEW -->
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <compilerArgument>-proc:none</compilerArgument>
+                            <includes>
+                                <include>fun/n/learn/annotation/LogMeCustomAnnotationProcessor.java</include>
+                                <!--include dependencies required for LogMeCustomAnnotationProcessor -->
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-project</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+<!-- /NEW -->
+
+
             </plugin>
 
 

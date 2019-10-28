@@ -7,12 +7,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
-@Service("studentService")//параметр - имя бина, необходимо для того, чтобы распознать к какой сущности применяется интерфейс
+//TODO differences between @Autowired and @Inject
+
+
+
+
+/*
+@Inject is a standard annotation for dependency injection and @Autowired is spring specific.
+* */
+//параметр - имя бина, необходимо для того, чтобы распознать к какой сущности применяется интерфейс
+@Service("studentService")
 @SuppressWarnings("unused")
 public class StudentServiceImpl implements EntitiesService<Student> {
 
     //TODO сделать одинаковыми стили
     @Autowired
+    //почему нельзя сделать класс StudentDao
+    //почему делаем реализацию через интерфейс и поиск соответствующего класса реализации
+    //пишем интерфейс и класс <Student>, для которого ищем реализацию
     private EntitiesDao<Student> st_dao;
 
     @Transactional
