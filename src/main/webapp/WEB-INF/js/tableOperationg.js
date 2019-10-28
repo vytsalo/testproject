@@ -59,11 +59,9 @@ function rewriteHTML(){
 
 		* */
 
-				//на следующей итерации будет уже 2
 			    for (var j = 0; j < inputs.length; j++) {//+=2
 				//инпут 0 найм 0
 				//инпут 1 нейм 0
-					//alert(inputs[j]);
 				//inputs[j%2].setAttribute("name","groups[" + Math.floor(j/2) + "]." + fields[j%2]); //"].id");
 				inputs[j].setAttribute("name","groups[" + Math.floor(j/2) + "].id");
 				j++;

@@ -83,6 +83,7 @@ public class TeacherController {
 
                 //индексы сломаны
 
+                //передавать только тайтл?
                 thisTeacherGroups.forEach(g -> {
                     g.addTeacher(newTeacher);
                     groupService.update(g);

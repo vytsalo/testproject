@@ -126,6 +126,7 @@
                             <td>
 
                             <springForm:hidden path="groups[${tagStatus.index}].id" value="${tcsList.id}" class = "jstlGroupsSending" />
+                            <springForm:hidden path="groups[${tagStatus.index}].title" value="${tcsList.title}" class = "jstlGroupsSending" />
 
 
 
