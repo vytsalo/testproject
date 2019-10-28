@@ -28,6 +28,10 @@ import java.util.*;
 //TODO refactoring some fields into entities
 
 
+
+//TODO конфликт версий или какие - то библиотеки ненужные
+
+
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
