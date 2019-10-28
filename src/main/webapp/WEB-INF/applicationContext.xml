@@ -96,7 +96,7 @@
 
                 <!-- CNANGED PORT TO 8080 FIX PROBLEM WITH DRIVER#CONNECT-->
                 <!-- -localhost -->
-                <beans:prop key="hibernate.connection.url">jdbc:postgresql://localhost:8080/postgres</beans:prop>
+                <beans:prop key="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</beans:prop>
                 <beans:prop key="hibernate.connection.username">postgres</beans:prop>
                 <beans:prop key="hibernate.connection.password">background</beans:prop>
 
