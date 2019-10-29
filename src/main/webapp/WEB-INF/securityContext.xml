@@ -15,7 +15,7 @@
 
         <!-- logout processing error html -->
 
-
+<!-- get rid of processing -->
         <form-login
 
                 login-page="/login"

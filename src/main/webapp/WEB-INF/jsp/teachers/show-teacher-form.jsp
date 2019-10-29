@@ -257,7 +257,7 @@
                     <div class = "myDiv2">
 
                         <input type = "text" id="searchString">
-                        <input type = "button" value = "Поиск" onclick = "sendAjaxGroup();">
+                        <input type = "button" value = "Поиск" onclick = "sendAjaxGroup('../ajaxgroup');">
 
                     </div>
                     <br/>

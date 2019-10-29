@@ -1,20 +1,23 @@
 //скрываем результаты
 $(document).ready(function (){$('#results').hide()});
 
+
+//Groups for teachers
 var rootAddress = location.protocol + '//' + location.host;
 var ajaxLinkTeachers = rootAddress + '/teachers/ajaxgroup';
-
-
+alert(ajaxLinkTeachers);
+//передать текущую ссылку в методе? сиюрлом валю
+// url: ../../webapp/
         //отправка AJAX - запроса на сервер
-       function sendAjaxGroup() {
+        //param url
+       function sendAjaxGroup(str) {
 	   var csrf = $('#csrf').val();
 	   var searchString = $('#searchString').val();//searchStringForTeachers
-
-
+//
 
 	   //добавить нормальный линк и удалить лишнее
 	   $.ajax({
-			   url : ajaxLinkTeachers,
+			   url : str,
 			   type : 'POST',
 			   data : searchString ,
 			   headers: { 'X-CSRF-Token' : csrf },

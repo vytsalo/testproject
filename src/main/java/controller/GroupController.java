@@ -18,6 +18,15 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
+//TODO test with another start url like localhost vytsalo
+
+//TODO teachers update ajax broken
+
+
+
+
+//TODO TEST ALL URL'S TO VYTSALO START
+
 //TODO REMOVE NOT NECASSARY DEPENDENCIES
 
 
