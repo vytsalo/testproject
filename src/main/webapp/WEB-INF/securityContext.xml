@@ -13,10 +13,13 @@
         <intercept-url pattern="/**/delete/**" access="isAuthenticated()" />
         <intercept-url pattern="/**/update/**" access="isAuthenticated()"  />
 
+        <!-- logout processing error html -->
+
 
         <form-login
 
                 login-page="/login"
+                login-processing-url="/login"
 
         />
 
