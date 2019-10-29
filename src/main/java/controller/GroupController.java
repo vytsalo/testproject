@@ -17,6 +17,10 @@ import service.EntitiesService;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
+//TODO REMOVE NOT NECASSARY DEPENDENCIES
+
+
 //TODO remove dublicates from ajaxFindTeachers etc in this teacher groups
 //TODO make table invisible if list is empty
 // TODO make one method for every ajax operation

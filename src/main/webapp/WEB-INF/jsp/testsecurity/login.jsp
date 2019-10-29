@@ -22,7 +22,7 @@
 
     <div class="form" >
 
-        <form class="login-form" method="post" action="/login">
+        <form class="login-form" method="post" action="login">
 
             <c:if test="${not empty errorMessge}">
                 <div style="color:red; font-weight: bold; ">
