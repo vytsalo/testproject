@@ -1,5 +1,7 @@
 package controller;
 
+
+
 import com.google.gson.Gson;
 import entities.Group;
 import entities.Student;
@@ -18,9 +20,23 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
+//TODO все урлы поменять на сиюрл
+
+
+//TODO ПОМЕНЯТЬ ССЫЛКИ АДЖАКС ЗАПРОСОВ ВЕЗДЕ
+
+//TODO В ЛОГИНЕ ОШИБКА - КСС НЕ ГРУЗИТ
+
+//TODO заполнение разное, а Ajax - метод тот же в учителях и студентах при загрузке групп
+
 //TODO test with another start url like localhost vytsalo
 
 //TODO teachers update ajax broken
+
+
+//TODO CURL VALUE EXPLANATION
+// the answer will be the Context Folder of your project plus the URL you put in.
+
 
 
 

@@ -3,9 +3,11 @@ $(document).ready(function (){$('#results').hide()});
 
 
 
+/*
 
 var rootAddress = location.protocol + '//' + location.host;
 var ajaxLinkTeachers = rootAddress + '/groups/ajaxprocessform';
+*/
 
 
         //отправка AJAX - запроса на сервер
@@ -17,7 +19,7 @@ var ajaxLinkTeachers = rootAddress + '/groups/ajaxprocessform';
 
 	   //добавить нормальный линк и удалить лишнее
 	   $.ajax({
-			   url : ajaxLinkTeachers,
+			   url : '../ajaxprocessform',
 			   type : 'POST',
 			   data : searchString ,
 			   headers: { 'X-CSRF-Token' : csrf },

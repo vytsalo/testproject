@@ -10,14 +10,14 @@ alert(ajaxLinkTeachers);
 // url: ../../webapp/
         //отправка AJAX - запроса на сервер
         //param url
-       function sendAjaxGroup(str) {
+       function sendAjaxGroup() {
 	   var csrf = $('#csrf').val();
 	   var searchString = $('#searchString').val();//searchStringForTeachers
 //
 
 	   //добавить нормальный линк и удалить лишнее
 	   $.ajax({
-			   url : str,
+			   url : '../ajaxgroup',
 			   type : 'POST',
 			   data : searchString ,
 			   headers: { 'X-CSRF-Token' : csrf },

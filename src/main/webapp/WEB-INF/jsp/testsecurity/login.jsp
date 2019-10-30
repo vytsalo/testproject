@@ -6,7 +6,7 @@
 
 <html>
 <head>
-
+<!-- ../login -->
         <link rel="stylesheet" type="text/css" href="../css/login.css" />
 
     <title>Вход в систему</title>

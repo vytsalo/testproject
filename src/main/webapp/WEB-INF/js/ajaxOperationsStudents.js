@@ -22,7 +22,7 @@ $(document).ready(function (){$('#studentsResults').hide()});
        function sendAjaxStudent() {
 	   var searchStringStudent = $('#searchStringStudent').val();
 	   $.ajax({
-			   url : ajaxLinkStudents,//studentAjaxProcessForm
+			   url : '../ajaxstudent',//studentAjaxProcessForm
 			   type : 'POST',
 			   data : searchStringStudent ,
 			   headers: { 'X-CSRF-Token' : $('#csrf').val() },

@@ -8,33 +8,40 @@
 
 <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-        <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-
-        <link rel="stylesheet" type="text/css" href="../../css/validation.css" />
 
 
-        <link rel="stylesheet" type="text/css" href="../../css/jquery.modal.min.css" />
+
+
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <link rel="stylesheet" type="text/css" href="<c:url value="/css/style.css"/>" />
+
+        <link rel="stylesheet" type="text/css" href="../css/validation.css" />
+
+
+        <link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
 
 
         <!-- Подключение библиотеки jQuery -->
-        <script src="../../js/jquery-3.4.1.min.js"></script>
+        <script src="../js/jquery-3.4.1.min.js"></script>
 
-        <script src="../../js/jquery.modal.min.js"></script>
+        <script src="../js/jquery.modal.min.js"></script>
 
 
         <!-- Подключение jQuery плагина Masked Input -->
-        <script src="../../js/jquery.maskedinput.min.js"></script>
+        <script src="../js/jquery.maskedinput.min.js"></script>
         <!-- Подключение методов обработки полей -->
-        <script src="../../js/mask.js"></script>
+        <script src="../js/mask.js"></script>
         <!-- Операции с таблицами -->
-        <script src="../../js/tableOperations.js"></script>
+        <script src="../js/tableOperations.js"></script>
         <!-- операции с таблицами студентов -->
-        <script src="../../js/tableOperationz.js"></script>
+        <script src="../js/tableOperationz.js"></script>
 
         <!--  -->
-        <script src="../../js/ajaxOperationsGroup.js"></script>
+        <script src="../js/ajaxOperationsGroup.js"></script>
 
 
         <title>Добавление/удаление студента</title>
@@ -53,7 +60,7 @@
 
         	<div class="clearfix" id="header">
 
-				<img id="signup-icon" src="../../images/group.png" alt="" />
+				<img id="signup-icon" src="../images/group.png" alt="" />
 
                     <h1>
 	        			<c:choose>
@@ -72,7 +79,7 @@
 			<p>Пожалуйста, заполните поля ниже.</p>
 
             <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
-            <springForm:form method="POST" action="../../students/processform" modelAttribute="student" id="send">
+            <springForm:form method="POST" action="../students/processform" modelAttribute="student" id="send">
 
 				<springForm:input type="hidden" value="${student.id}" path="id" />
                 <p>
@@ -118,7 +125,7 @@
                         style="cursor: pointer; vertical-align: 65px;"
                         minlength="2" maxlength="35" required
                     />
-                           	<img src="../../images/cross.png"
+                           	<img src="../images/cross.png"
                            	                style="cursor: pointer; vertical-align: 40px;"
                                        	    onclick="
                                        	    document.getElementById('group').value='';

@@ -14,7 +14,7 @@ var ajaxLinkTeachers = rootAddress + '/students/ajaxgroup';
 
 	   //добавить нормальный линк и удалить лишнее
 	   $.ajax({
-			   url : ajaxLinkTeachers,
+			   url : '../students/ajaxgroup',
 			   type : 'POST',
 			   data : searchString ,
 			   headers: { 'X-CSRF-Token' : csrf },
