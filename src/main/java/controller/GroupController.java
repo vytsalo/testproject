@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-//TODO все урлы поменять на сиюрл
+//TODO все урлы поменять на сиюрл(некоторые остались)
 
 
 //TODO ПОМЕНЯТЬ ССЫЛКИ АДЖАКС ЗАПРОСОВ ВЕЗДЕ

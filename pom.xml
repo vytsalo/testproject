@@ -3,6 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" >
 
+    <!-- PROJECT OBJECT MODEL -->
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.test_hibernate</groupId>
     <artifactId>vcproject</artifactId>
@@ -19,6 +21,9 @@
         <!-- UPDATE HIBERNATE TO VERSION 5+  (5.4)-->
         <hibernate-version>4.3.11.Final</hibernate-version>
     </properties>
+
+
+
 
     <!-- версии одинаковые сделать c одинаковым групайди -->
     <!-- Как можно ближе версии делать во избежании ошибок -->
