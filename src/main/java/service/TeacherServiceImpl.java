@@ -12,8 +12,6 @@ import java.util.List;
 @Service("teacherService")
 public class TeacherServiceImpl implements EntitiesService<Teacher> {
 
-
-
     @Autowired
     //Экземпляр интерфейса
     private EntitiesDao<Teacher> teach_dao;

@@ -45,6 +45,28 @@ public class TeacherController {
         return "teachers/show-teacher-form";
     }
 
+
+
+
+    //ToDo Сделать список аккордеонами
+    //таблица с фиксированными размерами и клиентским поиском
+    @PostMapping(value = "/ajaxprocessform", produces={"application/json; charset=UTF-8"})
+    @ResponseBody
+    public String processAjaxPage(Model model, @RequestBody(required = false) String searchString) {
+        if (searchString==null) searchString="";
+
+        //получаем списки
+        List<Teacher> slistItems = teacherService.findByParam(searchString);
+
+        //обнуляем списки групп, чтобы вывести
+        slistItems.forEach(t -> t.setGroups(new ArrayList<>()));
+
+        return new Gson().toJson(slistItems);
+
+    }
+
+
+
     @PostMapping("/processform")
     public String processTeacherForm(Model model, @Valid @ModelAttribute("teacher") Teacher newTeacher, BindingResult result) {
 

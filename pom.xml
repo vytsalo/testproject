@@ -3,26 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" >
 
-    <!-- PROJECT OBJECT MODEL -->
-
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.test_hibernate</groupId>
-    <artifactId>vcproject</artifactId>
+    <groupId>com.sgu.eip</groupId>
+    <artifactId>eip-core-module</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-
-    <name>mywebapp</name>
+    <name>eipsgu</name>
 
 
     <!-- Описание версий фреймворков -->
     <properties>
         <spring-version>5.1.2.RELEASE</spring-version>
         <spring-security-version>5.1.6.RELEASE</spring-security-version>
-        <!-- UPDATE HIBERNATE TO VERSION 5+  (5.4)-->
         <hibernate-version>4.3.11.Final</hibernate-version>
+        <java.version>11</java.version>
     </properties>
-
-
 
 
     <!-- версии одинаковые сделать c одинаковым групайди -->
@@ -30,42 +25,35 @@
     <!-- SPRINGS -->
     <dependencies>
 
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring-version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring-version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring-version}</version>
         </dependency>
-
         <!-- /SPRINGS -->
 
 
         <!-- SPRINGS SECURITY -->
-
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
@@ -77,8 +65,6 @@
             <artifactId>spring-security-core</artifactId>
             <version>${spring-security-version}</version>
         </dependency>
-
-        <!-- new -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -131,34 +117,6 @@
 
         <!-- /HIBERNATES -->
 
-
-        <!-- JAVAXES -->
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.2.11</version><!-- new version 2.3.1 -->
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.2.11</version>
-        </dependency>
-
       <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -192,10 +150,6 @@
             <version>1.1.1</version>
         </dependency>
 
-        <!-- /JAVAXES -->
-
-
-        <!-- OTHERS -->
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -209,89 +163,22 @@
             <version>9.3-1102-jdbc41</version>
         </dependency>
 
-
-
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
         <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-core</artifactId>
-            <version>3.0</version>
-        </dependency>
-
-        <!-- /OTHERS -->
-
-
-
-        <!-- NEWS -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>2.0.0.Final</version>
-        </dependency>
-
-
-
-
-
-        <!-- HIBERNATES -->
-
-
-
-        <!--/HIBERNATES -->
-
-
-
-        <!-- ELS -->
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>2.2.4</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>javax.el</artifactId>
-            <version>2.2.4</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- /ELS -->
-
-        <!-- /NEWS -->
-
-
-
-        <!--WAT MINUS-->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.8.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.5</version>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>3.1.1</version>
         </dependency>
         <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.18.1-GA</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
         </dependency>
-
 
     </dependencies>
 
@@ -300,8 +187,6 @@
         <sourceDirectory>src/main/java/</sourceDirectory> <!-- код java -->
 
         <finalName>mywebapp</finalName>
-
-        <!-- билд - настройки для папок sources и resources -->
 
         <plugins>
 
@@ -316,7 +201,6 @@
                 <version>2.1</version>
                 <configuration>
                     <port>8080</port>
-                    <path>/vytsalo</path><!-- /vytsalo -->
                 </configuration>
             </plugin>
 
@@ -324,13 +208,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
 
-
-
-<!-- NEW -->
                 <executions>
                     <execution>
                         <id>default-compile</id>
@@ -351,7 +232,6 @@
                     </execution>
                 </executions>
 
-<!-- /NEW -->
 
 
             </plugin>

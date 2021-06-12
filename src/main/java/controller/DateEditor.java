@@ -7,7 +7,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//пакет editors
 @Component
 public class DateEditor extends PropertyEditorSupport {
 
@@ -36,7 +35,6 @@ public class DateEditor extends PropertyEditorSupport {
         }
     }
 
-    public DateEditor() {
-    }
+    public DateEditor() {}
 
 }

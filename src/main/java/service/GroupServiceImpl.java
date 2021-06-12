@@ -12,7 +12,6 @@ import java.util.List;
 public class GroupServiceImpl implements EntitiesService<Group>{
 
     @Autowired
-
     private EntitiesDao<Group> gr_dao;
 
     @Transactional

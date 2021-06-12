@@ -51,7 +51,6 @@ import java.util.*;
 // TODO make one method for every ajax operation
 
 //TODO сделать вывод поиска только тех преподавателей, которых нет в группе и т.д.
-//не выводить повторки
 
 
 //TODO refactoring some fields into entities
@@ -92,9 +91,7 @@ public class GroupController {
 
         List<Group> groups = groupService.getList();
 
-
         groups.forEach(grp -> grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers()))));
-
 
         model.addAttribute("groups",groups);
         return "groups/list-groups";
@@ -166,8 +163,6 @@ public class GroupController {
                 newGroup.setStudents(studentsThisGroup);
 
                 newGroup.setTeachers(teachersThisGroup);
-
-                groupService.update(newGroup);
 
             }
             else {
@@ -263,9 +258,8 @@ public class GroupController {
                     studentService.update(temp);
                 }
 
-                groupService.update(newGroup);
-
             }
+            groupService.update(newGroup);
 
             return "redirect:/groups/";//Редирект чтобы не открывался сам процессформ
 

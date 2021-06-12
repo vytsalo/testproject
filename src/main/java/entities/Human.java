@@ -34,9 +34,8 @@ public abstract class Human{
     @Column
     @NotNull(message = "Поле не может быть NULL")
     @Past(message = "Время должно быть в прошлом")
-    @Temporal(value = TemporalType.DATE)//@Type(type = "date")
+    @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "dd.MM.yyyy")
-    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date dateOfBirth;
 
     @Column
