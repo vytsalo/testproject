@@ -43,7 +43,7 @@ import java.util.*;
 
 //TODO TEST ALL URL'S TO VYTSALO START
 
-//TODO REMOVE NOT NECASSARY DEPENDENCIES
+//TODO REMOVE NOT NECESSARY DEPENDENCIES
 
 
 //TODO remove dublicates from ajaxFindTeachers etc in this teacher groups

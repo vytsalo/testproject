@@ -184,11 +184,13 @@
 
                     Введите критерий поиска:
                     <br/>
+                    <br/>
 
-
-                    <div class = "myDiv2">
+                <div class = "myDiv2">
 
                         <input type = "text" id="searchString">
+
+
                         <input type = "button" value = "Поиск" onclick = "sendAjaxGroup();">
 
                     </div>
