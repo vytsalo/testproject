@@ -22,7 +22,7 @@
 <title>Список студентов</title>
 </head>
 <body onload = "javascript:sortTable()">
-<jsp:include page="../testsecurity/auth.jsp" />
+<jsp:include page="../security/auth.jsp" />
 
 	<section class="container">
 <p align = center>

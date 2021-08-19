@@ -12,43 +12,43 @@ import java.util.List;
 public class GroupServiceImpl implements EntitiesService<Group>{
 
     @Autowired
-    private EntitiesDao<Group> gr_dao;
+    private EntitiesDao<Group> groupDao;
 
     @Transactional
     @Override
     public void add(Group group){
-        gr_dao.add(group);
+        groupDao.add(group);
     }
 
     @Transactional
     @Override
     public List<Group> getList(){
-        return gr_dao.getList();
+        return groupDao.getList();
     }
 
     @Transactional
     @Override
     public void update(Group group){
-        gr_dao.update(group);
+        groupDao.update(group);
     }
 
     @Transactional
     @Override
     public Group findById(Long groupId){
-        return (Group)gr_dao.findById(groupId);
+        return groupDao.findById(groupId);
     }
 
     @Transactional
     @Override
     public void delete(Long groupId){
-        gr_dao.delete(groupId);
+        groupDao.delete(groupId);
     }
 
 
     @Override
     @Transactional
     public List<Group> findByParam(String str) {
-        return gr_dao.searchByString(str);
+        return groupDao.searchByString(str);
     }
 
 

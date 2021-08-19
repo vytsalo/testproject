@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//TODO REMOVE FIXED TABLE SIZE
-
 @Controller
 @RequestMapping("/students")
 public class StudentController {
@@ -66,14 +64,14 @@ public class StudentController {
 
                             Group tempGroup = groupService.findById(newStudent.getGruppa().getId());
 
-                            newStudent.setGruppa(null);
+                            newStudent.setGroup(null);
 
                             studentService.add(newStudent);
 
 
                            tempGroup.addStudent(newStudent);
 
-                          newStudent.setGruppa(tempGroup);
+                          newStudent.setGroup(tempGroup);
 
                             studentService.update(newStudent);
 

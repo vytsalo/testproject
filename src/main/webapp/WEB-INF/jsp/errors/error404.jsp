@@ -11,7 +11,7 @@
 	<title>Ошибка 404!</title>
 </head>
 <body>
-<jsp:include page="../testsecurity/auth.jsp" />
+<jsp:include page="../security/auth.jsp" />
      <div id="signup-form">
         	<div class="clearfix" id="header">
 			    <img id="signup-icon" src="../../images/group.png" alt="" />

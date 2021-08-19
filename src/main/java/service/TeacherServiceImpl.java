@@ -3,7 +3,6 @@ package service;
 import dao.EntitiesDao;
 import entities.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,42 +13,42 @@ public class TeacherServiceImpl implements EntitiesService<Teacher> {
 
     @Autowired
     //Экземпляр интерфейса
-    private EntitiesDao<Teacher> teach_dao;
+    private EntitiesDao<Teacher> teacherDao;
 
     @Transactional
     @Override
     public void add(Teacher teacher){
-        teach_dao.add(teacher);
+        teacherDao.add(teacher);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<Teacher> getList(){
-        return teach_dao.getList();
+        return teacherDao.getList();
     }
 
     @Override
     @Transactional
     public void update(Teacher teacher) {
-        teach_dao.update(teacher);
+        teacherDao.update(teacher);
     }
 
     @Override
     @Transactional
     public Teacher findById(Long teacherId) {
-        return teach_dao.findById(teacherId);
+        return teacherDao.findById(teacherId);
     }
 
     @Override
     @Transactional
     public void delete(Long teacherId) {
-        teach_dao.delete(teacherId);
+        teacherDao.delete(teacherId);
     }
 
     @Override
     @Transactional
     public List<Teacher> findByParam(String str) {
-        return teach_dao.searchByString(str);
+        return teacherDao.searchByString(str);
     }
 
 

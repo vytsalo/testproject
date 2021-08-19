@@ -6,18 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-
-//TODO differences between @Autowired and @Inject
-
-
-
-
 /*
 @Inject is a standard annotation for dependency injection and @Autowired is spring specific.
 * */
 //параметр - имя бина, необходимо для того, чтобы распознать к какой сущности применяется интерфейс
 @Service("studentService")
-@SuppressWarnings("unused")
 public class StudentServiceImpl implements EntitiesService<Student> {
 
     //TODO сделать одинаковыми стили
@@ -25,42 +18,42 @@ public class StudentServiceImpl implements EntitiesService<Student> {
     //почему нельзя сделать класс StudentDao
     //почему делаем реализацию через интерфейс и поиск соответствующего класса реализации
     //пишем интерфейс и класс <Student>, для которого ищем реализацию
-    private EntitiesDao<Student> st_dao;
+    private EntitiesDao<Student> studentDao;
 
     @Transactional
     @Override
     public void add(Student student){
-        st_dao.add(student);
+        studentDao.add(student);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<Student> getList(){
-        return st_dao.getList();
+        return studentDao.getList();
     }
 
     @Transactional
     @Override
     public void update(Student student){
-        st_dao.update(student);
+        studentDao.update(student);
     }
 
     @Transactional
     @Override
     public Student findById(Long studentId){
-        return (Student) st_dao.findById(studentId);
+        return studentDao.findById(studentId);
     }
 
     @Transactional
     @Override
     public void delete(Long teacherId){
-        st_dao.delete(teacherId);
+        studentDao.delete(teacherId);
     }
 
     @Override
     @Transactional
     public List<Student> findByParam(String str) {
-        return st_dao.searchByString(str);
+        return studentDao.searchByString(str);
     }
 
 

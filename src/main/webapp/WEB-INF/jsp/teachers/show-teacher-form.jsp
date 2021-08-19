@@ -24,17 +24,16 @@
         <!-- Операции с таблицами -->
         <script src="../../js/tableOperationg.js"></script>
 
-        <!-- AJAX GROUP -->
         <script src="../../js/ajaxOperationsGroups.js"></script>
 
-        <title>Добавление/обновление преподавателя</title>
+        <title>Личное дело преподавателя</title>
 
 </head>
 
 
 
 <body>
-<jsp:include page="../testsecurity/auth.jsp" />
+<jsp:include page="../security/auth.jsp" />
 
 
     <div id="signup-form">
@@ -48,7 +47,7 @@
                     <h1>
 	        			<c:choose>
                             <c:when test="${update}">
-                               Редактирование преподавателя<br/>с ID = ${teacher.id}
+                                Личное дело преподавателя:
                             </c:when>
                         <c:otherwise>
                             <c:out value="Добавление преподавателя"/>
@@ -57,18 +56,13 @@
     				</h1>
             </div>
 
-
-			<p>Пожалуйста, заполните поля ниже.</p>
-
-            <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
             <springForm:form method="POST" action="../../teachers/processform" modelAttribute="teacher" id="send">
 
 				<springForm:input type="hidden" value="${teacher.id}" path="id" />
 
                 <p>
-                    <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
-                    <!-- привести в вид атрибутов по порядку -->
-                    <springForm:input type="text" id="fam" path="fam" value="${teacher.fam}" minlength="2" maxlength="35" required="required" /><!-- рекуиред -->
+                    <label for="fam">Фамилия *</label>
+                    <springForm:input type="text" id="fam" path="fam" value="${teacher.fam}" minlength="2" maxlength="35" required="required" />
                     <br/>
                     <springForm:errors path="fam" cssClass="error" />
                 </p>

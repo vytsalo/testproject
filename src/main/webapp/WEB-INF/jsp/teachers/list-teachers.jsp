@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!-- change TAGLIB URI -->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
@@ -27,7 +26,7 @@
 <title>Список преподавателей</title>
 </head>
 <body onload = "javascript:sortTable()">
-<jsp:include page="../testsecurity/auth.jsp" />
+<jsp:include page="../security/auth.jsp" />
 
 	<section class="container">
 

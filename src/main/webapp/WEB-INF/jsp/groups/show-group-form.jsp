@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" --%>
 <html>
 
 <head>
@@ -14,27 +13,20 @@
     <script src="../../js/tableOperationz.js"></script>
 
 
-
-
-
-    <!-- AJAXES -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
 
-
-    <!-- sendAjax(id класса) -->
     <script src="../../js/ajaxOperationsTeachers.js"></script>
     <script src="../../js/ajaxOperationsStudents.js"></script>
     <script src="../../js/ajaxDateConverters.js"></script>
 
 
-
-	<title>Добавление/удаление группы</title>
+	<title>Группа ${group.title}</title>
 
 </head>
 
 <body>
-<jsp:include page="../testsecurity/auth.jsp" />
+<jsp:include page="../security/auth.jsp" />
      <div id="signup-form">
 
         <div id="signup-inner">
@@ -47,7 +39,7 @@
                     <h1>
                         <c:choose>
                             <c:when test="${update}">
-                                <c:out value="Редактирование группы с ID = ${group.id}" />
+                                <c:out value="Группа ${group.title}" />
                             </c:when>
                             <c:otherwise>
                                 <c:out value="Добавление группы"/>
@@ -57,9 +49,6 @@
 				    </h1>
             
             </div>
-			
-			
-			<p>Пожалуйста, заполните поля ниже.</p>
 
             <form:form method="POST" action="../../groups/processform" modelAttribute="group" id="send">
 
@@ -71,11 +60,7 @@
                 </p>
 
 				<p>
-                <label for="teachers">Список преподавателей группы</label>
-                
-				
-				<!-- везде разные переменные -->
-				<!--TEACHERS -->
+                <label for="teachers">Список преподавателей</label>
 				
 				<table border = "1 px solid" id="teachersTable">
                 <thead>
@@ -89,7 +74,6 @@
                     <th>Действие</th>
                     </tr>
                 </thead>
-                <!-- group - модель, студенты - аттрибут -->
 
                 <tbody>
 
@@ -120,10 +104,8 @@
 
                         </tr>
 					</c:forEach>
-                   
 
                 </tbody>
-
                 </table>
 
 				
@@ -139,14 +121,12 @@
             Введите критерий поиска:
             <br/>
 
-
             <div class = "myDiv1">
 
                 <input type = "text" id="searchString">
                 <input type = "button" value = "Поиск" onclick = "sendAjax();">
             </div>
             <br/>
-
 
 
             <div id = "results">
@@ -180,21 +160,11 @@
 
 
 
-
-
-
-
-
 				</p>
-                				<!--/TEACHERS -->
-				
-				
-				
-				<!-- STUDENTS -->
 
 
   <p>
-                <label for="students">Список студентов группы</label>
+                <label for="students">Список студентов</label>
 
 
                 <table border = "1 px solid" id="studentsTable">
@@ -209,7 +179,6 @@
                     <th>Действие</th>
                     </tr>
                 </thead>
-                <!-- group - модель, студенты - аттрибут -->
 
                 <tbody>
 
@@ -228,8 +197,7 @@
                             <form:hidden path="students[${tagStatus.index}].otch" value="${stdList.otch}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].dateOfBirth" value="${stdList.dateOfBirth}" class = "jstlStudentsSending" />
                             <form:hidden path="students[${tagStatus.index}].phoneNumber" value="${stdList.phoneNumber}" class = "jstlStudentsSending" />
-                          <%--  <form:hidden path="students[${tagStatus.index}].gruppa" value="${stdList.gruppa.id}" class = "jstlStudentsSending" />
---%>
+
                             <div>${stdList.id}</div>
 							
 							</td>
@@ -241,14 +209,7 @@
                             <td>${stdList.dateOfBirth}</td>
                             <td>${stdList.phoneNumber}</td>
 
-                            <!-- Все поля hidden а вывод в таблицу отдельно? -->
-                            <!-- передается только тайтл -->
-
-
                             <td><a href = "#" onclick = "addRow(this,'existingStudents'); rewriteHTML(); return false;">Удалить</a></td>
-
-
-
 
 
                         </tr>
@@ -258,31 +219,9 @@
                     </c:forEach>
 
 
-
-
                 </tbody>
 
                 </table>
-
-
-
-
-
-
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <br/>
 <br/>
@@ -290,11 +229,6 @@
 <br/>
 
                 </p>
-
-
-
-
-
 
 
 
@@ -347,18 +281,8 @@
 
 
 
-
-
-
-
-
 </p>
 
-
-
-
-
-				<!-- /STUDENTS -->
 
 
 

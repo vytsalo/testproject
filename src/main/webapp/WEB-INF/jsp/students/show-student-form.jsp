@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="springForm" uri="http://www.springframework.org/tags/form" %>
@@ -7,12 +7,6 @@
 <html>
 
 <head>
-
-
-
-
-
-
 
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,7 +21,6 @@
 
         <!-- Подключение библиотеки jQuery -->
         <script src="<c:url value="/js/jquery-3.4.1.min.js"/>"></script>
-
         <script src="<c:url value="/js/jquery.modal.min.js"/>"></script>
 
 
@@ -39,19 +32,17 @@
         <script src="<c:url value="/js/tableOperations.js"/>" ></script>
         <!-- операции с таблицами студентов -->
         <script src="<c:url value="/js/tableOperationz.js"/>"></script>
-
-        <!--  -->
         <script src="<c:url value="/js/ajaxOperationsGroup.js"/>"></script>
 
 
-        <title>Добавление/удаление студента</title>
+        <title>Личное дело студента</title>
 
 </head>
 
 
 
 <body>
-<jsp:include page="../testsecurity/auth.jsp" />
+<jsp:include page="../security/auth.jsp" />
 
 
     <div id="signup-form">
@@ -65,8 +56,8 @@
                     <h1>
 	        			<c:choose>
                             <c:when test="${update}">
-                                <c:out value="Редактирование студента с ID = ${student.id}" />
-                            </c:when>
+                                Личное дело студента:
+                                    </c:when>
 
                         <c:otherwise>
                             <c:out value="Добавление студента"/>
@@ -76,21 +67,14 @@
             </div>
 
 
-			<p>Пожалуйста, заполните поля ниже.</p>
-
-            <!-- http://212.193.37.103:8080/vytsalo/students/update/160 -->
-
-            <!-- Поменять на урл в спринг форму -->
             <c:url value="/students/processform" var = "postUrl" />
 
-            <!-- Поменять лейбли и айдишники --> <!-- -ID? -->
             <springForm:form method="POST"  action="${postUrl}" modelAttribute="student" id="send">
 
 				<springForm:input type="hidden" value="${student.id}" path="id" />
                 <p>
-                    <label for="fam">Фамилия *</label><!-- можно ли связываться с неймом, а не с айди -->
-                    <!-- привести в вид атрибутов по порядку -->
-                    <springForm:input type="text" id="fam" path="fam" value="${student.fam}" minlength="2" maxlength="35" required="required" /><!-- рекуиред -->
+                    <label for="fam">Фамилия *</label>
+                    <springForm:input type="text" id="fam" path="fam" value="${student.fam}" minlength="2" maxlength="35" required="required" />
                     <springForm:errors path="fam" cssClass="error" />
                 </p>
 
@@ -118,20 +102,18 @@
                 <p>
                     <label for="phone">Номер телефона *</label>
                     <springForm:input type="text" path="phoneNumber" id="phone" value="${student.phoneNumber}" required="required" />
-                    <springForm:errors path="phoneNumber" cssClass="error" /> <!-- cssClass="error" -->
+                    <springForm:errors path="phoneNumber" cssClass="error" />
                 </p>
 
                 <p>
-
                     <label for="group">Группа</label>
 
-                   <input type="text" id="group" value="${student.gruppa.title}" readonly
+
+                    <input type="text" id="group" value="${student.gruppa.title}" readonly
                         onclick = "$('#addGroupWindow').modal('show'); return false;"
                         style="cursor: pointer; vertical-align: 65px;"
                         minlength="2" maxlength="35" required
                     />
-
-
 
 
                     <img src="<c:url value="/images/cross.png" />"
@@ -145,63 +127,24 @@
 
                <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
 
-
                     <!-- Само модальное окно -->
-                    <div id="<c:out value="addGroupWindow"/>" class="modal">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <div id="<c:out value="addGroupWindow"/>" class="modal" />
 
 
             <p>
-
                 <center>
-
                     Введите критерий поиска:
                     <br/>
                     <br/>
-
+            </center>
                 <div class = "myDiv2">
-
                         <input type = "text" id="searchString">
-
-
                         <input type = "button" value = "Поиск" onclick = "sendAjaxGroup();">
-
                     </div>
                     <br/>
 
-
-
                     <div id = "results">
-
                         Результаты:
-
                         <table border = "1 px solid" id="existingGroups" visible = "false">
                             <thead>
                             <tr>
@@ -209,55 +152,19 @@
                                 <th>Название</th>
                             </tr>
                             </thead>
-
                             <tbody>
-
                             </tbody>
-
                         </table>
 
-            <p style='color:red;text-align:center;'>Нет результатов.<br/> Попробуйте смягчить условия поиска</p>
+                    <p style='color:red;text-align:center;'>Нет результатов.<br/> Попробуйте смягчить условия поиска</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
-        </center>
-
-
-
-
-
-
-
+                    </div>
 
         </p>
 
-
     </div>
 
-
-
-
-
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" id = "csrf" />
-
 
                 </p>
                 <p>

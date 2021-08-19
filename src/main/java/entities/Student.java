@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name="student", schema = "public")//, schema = "public"
+@Table(name="student")
 public class Student extends Human implements Serializable {
 
     @Id
@@ -15,7 +15,7 @@ public class Student extends Human implements Serializable {
     private Long id;
 
     //Группа, в которой учится студент
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @ManyToOne(fetch = FetchType.EAGER, cascade =CascadeType.MERGE) //{CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     //главное управляющее поле, все делается через него, а потом уже через группу
     private Group gruppa;
@@ -47,8 +47,7 @@ public class Student extends Human implements Serializable {
         return gruppa;
     }
 
-    @SuppressWarnings("unused")
-    public void setGruppa(Group gruppa) {
+    public void setGroup(Group gruppa) {
         this.gruppa = gruppa;
     }
 

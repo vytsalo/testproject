@@ -20,16 +20,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-//TODO все урлы поменять на сиюрл(некоторые остались)
 
 
-//TODO ПОМЕНЯТЬ ССЫЛКИ АДЖАКС ЗАПРОСОВ ВЕЗДЕ
-
-//TODO В ЛОГИНЕ ОШИБКА - КСС НЕ ГРУЗИТ
 
 //TODO заполнение разное, а Ajax - метод тот же в учителях и студентах при загрузке групп
 
-//TODO test with another start url like localhost vytsalo
 
 //TODO teachers update ajax broken
 
@@ -86,7 +81,7 @@ public class GroupController {
 
     private EntitiesService<Student> studentService;
 
-    @GetMapping("/")//"","/"
+    @GetMapping("/")
     public String listGroups(Model model){
 
         List<Group> groups = groupService.getList();
@@ -143,7 +138,7 @@ public class GroupController {
                 Student tempStudent;
                 for (int i = 0; i < studentsThisGroup.size(); i++) {
                     tempStudent = studentsThisGroup.get(i);
-                    tempStudent.setGruppa(newGroup);
+                    tempStudent.setGroup(newGroup);
                     studentService.update(tempStudent);
                 }
 
@@ -246,7 +241,7 @@ public class GroupController {
                     //temp тут чтоб короче
                     if (!(modelStudents.contains(serviceStudents.get(i)))) {
                         temp = serviceStudents.get(i);
-                        temp.setGruppa(null);
+                        temp.setGroup(null);
                         studentService.update(temp);
                     }
                 }
@@ -254,7 +249,7 @@ public class GroupController {
                 //Для каждого студента устанавливаем текущую группу
                 for (int i = 0; i < modelStudents.size(); i++) {
                     temp = modelStudents.get(i);
-                    temp.setGruppa(newGroup);
+                    temp.setGroup(newGroup);
                     studentService.update(temp);
                 }
 
@@ -333,7 +328,7 @@ public class GroupController {
 
         //удаляем группу у преподавателя
         thisGroupStudents.forEach(tGS ->{
-            tGS.setGruppa(null);
+            tGS.setGroup(null);
             //заапдейтили, очистили список
             studentService.update(tGS);
         });
@@ -350,24 +345,9 @@ public class GroupController {
         return "redirect:/groups/";
     }
 
-    //нажиматься если она не емпти?
-
-    //как получить ответ от сервера?
-
-    //триггер надо какой-то для джаваскрипта написать?
-
-//responseBody
-    //https://devcolibri.com/spring-mvc-%D0%B8-ajax-%D0%B8%D0%BB%D0%B8-%D0%BA%D0%B0%D0%BA-%D1%8F-%D0%B1%D0%BE%D1%80%D0%BE%D0%BB%D1%81%D1%8F-%D1%81-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC-json-%D0%BE%D1%82/
-    //http://develnotes.org/article83750#.XaWsaEYzbct
-    //вывод через js
-    // https://ru.stackoverflow.com/questions/547558/%D0%9A%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5-%D0%B8%D0%B7-json-%D0%B2-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%B5-spring-mvc
-
     @PostMapping(value = "/ajaxprocessform", produces={"application/json; charset=UTF-8"})
     @ResponseBody
-    //почему добавляется равно
-    //required false для того, чтобы не было бад рекуэста
-    //response body allow null values
-    //https://stackoverflow.com/questions/12934045/null-values-as-empty-strings-when-using-responsebody-annotation
+
     public String processAjaxPage(Model model, @RequestBody(required = false) String searchString) {
         if (searchString==null) searchString="";
 
@@ -381,10 +361,6 @@ public class GroupController {
 
     }
 
-    //студенту засетить эту группу
-
-
-
     @PostMapping(value = "/ajaxstudent", produces={"application/json; charset=UTF-8"})
     @ResponseBody
     public String processAjaxStudent(Model model, @RequestBody(required = false) String searchStringStudent) {
@@ -393,7 +369,7 @@ public class GroupController {
         List<Student> slistItems = studentService.findByParam(searchStringStudent);
 
         //обнуляем списки групп, чтобы вывести
-        slistItems.forEach(s -> s.setGruppa(null));//--
+        slistItems.forEach(s -> s.setGroup(null));//--
 
         return new Gson().toJson(slistItems);
 

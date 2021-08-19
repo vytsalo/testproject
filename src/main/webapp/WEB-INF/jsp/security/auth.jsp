@@ -16,8 +16,6 @@
 		<h3 align = right>Пользователь: ${pageContext.request.remoteUser} |
 
 
-	<!-- add class to a link>
-        <!-- сабмитит форму по клику на ссылку -->
 	<a href="javascript:document.forms['test'].submit()">Выйти</a>
 
 </h3>

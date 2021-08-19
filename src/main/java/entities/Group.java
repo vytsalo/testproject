@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="gruppa", schema = "public")//, schema = "public" or public.gruppa
-@SuppressWarnings("unused")
+@Table(name="gruppa")
 public class Group implements Serializable {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -25,7 +24,6 @@ public class Group implements Serializable {
     //объектный тип ID
     @Id
     @Column(name="group_id")
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
@@ -52,7 +50,6 @@ public class Group implements Serializable {
                 ", title='" + title + '}';
    }
 
-    @SuppressWarnings("unused")
     public String getTitle() {
         return title;
     }
@@ -77,7 +74,6 @@ public class Group implements Serializable {
         return id;
     }
 
-    //надо ли?
     public void setId(Long id) {
         this.id = id;
     }
