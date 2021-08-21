@@ -13,7 +13,7 @@
 <jsp:include page="security/auth.jsp" />
 
 <div class="pricingTable">
-  <h2 class="pricingTable-title">Приложение "Университет"</h2>
+  <h2 class="pricingTable-title">Единое информационное пространство</h2>
   <h3 class="pricingTable-subtitle">Выберите страницу для перехода</h3>
 
   <ul class="pricingTable-firstTable">

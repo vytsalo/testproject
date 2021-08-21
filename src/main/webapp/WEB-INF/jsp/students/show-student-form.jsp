@@ -109,10 +109,10 @@
                     <label for="group">Группа</label>
 
 
-                    <input type="text" id="group" value="${student.gruppa.title}" readonly
-                        onclick = "$('#addGroupWindow').modal('show'); return false;"
-                        style="cursor: pointer; vertical-align: 65px;"
-                        minlength="2" maxlength="35" required
+                    <input type="text" id="group" value="${student.group.title}" readonly
+                           onclick = "$('#addGroupWindow').modal('show'); return false;"
+                           style="cursor: pointer; vertical-align: 65px;"
+                           minlength="2" maxlength="35" required
                     />
 
 
@@ -125,7 +125,7 @@
                                        	    return false;"
                                        	alt="" id = "deleteGroup" />
 
-               <springForm:input type="hidden" id = "groupId" value="${student.gruppa.id}" path="gruppa" readonly="readonly" />
+               <springForm:input type="hidden" id = "groupId" value="${student.group.id}" path="group" readonly="readonly" />
 
                     <!-- Само модальное окно -->
                     <div id="<c:out value="addGroupWindow"/>" class="modal" />

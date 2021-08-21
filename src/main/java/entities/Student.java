@@ -14,8 +14,9 @@ public class Student extends Human implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    //todo два раза записываются - поэтому дублируются?
     //Группа, в которой учится студент
-    @ManyToOne(fetch = FetchType.EAGER, cascade =CascadeType.MERGE) //{CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     //главное управляющее поле, все делается через него, а потом уже через группу
     private Group gruppa;
@@ -43,21 +44,12 @@ public class Student extends Human implements Serializable {
         this.id = id;
     }
 
-    public Group getGruppa() {
+    public Group getGroup() {
         return gruppa;
     }
 
     public void setGroup(Group gruppa) {
         this.gruppa = gruppa;
-    }
-
-    //сравнивает по id
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student that = (Student) o;
-        return this.id == that.id;
     }
 
 }

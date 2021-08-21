@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import entities.Group;
 
 @Repository
 public class StudentDaoImpl implements EntitiesDao<Student>{
@@ -24,7 +25,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     @Override
     public List<Student> getList(){
         CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
-        Root<Student> root = criteriaQuery.from(Student.class);
+        criteriaQuery.from(Student.class);
         return em.createQuery(criteriaQuery).getResultList();
     }
 
@@ -35,8 +36,8 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
 
     @Override
     public Student findById(Long studentId){
-        Student student=em.find(Student.class, studentId);
-        if (student==null)
+        Student student = em.find(Student.class, studentId);
+        if (student == null)
             throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
         return student;
     }
@@ -44,6 +45,13 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     @Override
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);
+        //todo entity manager remove without dependencies
+        Group group = student.getGroup();
+        student.setGroup(null);
+        ArrayList<Student> students = new ArrayList<>(group.getStudents());
+        students.remove(student);
+        group.setStudents(students);
+
         if (student != null) em.remove(student);
         else throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
     }
@@ -52,7 +60,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     //Поиск по тайтлу группы
     @Override
     public List<Student> searchByString(String str) {
-
+//todo refactor
         //добавить разделители между словами " "
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
@@ -73,7 +81,6 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
         //"%fam% %name%  %otch%"
         Predicate pr = criteriaBuilder.like(fullExpression,"%" + str.toLowerCase() + "%");
 
-        //вхере
         criteriaQuery.where(pr);
         //Сортируем по убыванию по полю ID
         criteriaQuery.orderBy(criteriaBuilder.desc(studentRoot.get("id")));

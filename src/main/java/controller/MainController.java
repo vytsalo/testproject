@@ -50,7 +50,7 @@ public class MainController {
 
     @GetMapping("/init")
     public String init() throws ParseException {
-        //todo в классе UTILS сделать генерацию
+        //todo в классе UTILS сделать генерацию ФИО и имени
         //todo сделать реальные группы
 
         Group group1 = new Group("147");
@@ -82,6 +82,22 @@ public class MainController {
         studentService.update(student3);
 
 
+        Student student4 = new Student("Харламов","Александр", "Алексеевич",
+                new SimpleDateFormat("dd.mm.YYYY").parse("22.08.1995"), "89056984585", null);
+        studentService.add(student4);
+        student4.setGroup(group1);
+        studentService.update(student4);
+
+
+
+        Student student5 = new Student("Тарасов","Максим", "Алексеевич",
+                new SimpleDateFormat("dd.mm.YYYY").parse("23.04.1997"), "89056984585", null);
+        studentService.add(student5);
+        student5.setGroup(group1);
+        studentService.update(student5);
+
+
+
         Teacher teacher1 = new Teacher("Блинков","Юрий", "Анатольевич",
                 new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1970"), "89056984585", null);
         teacherService.add(teacher1);
@@ -93,6 +109,13 @@ public class MainController {
         teacherService.add(teacher2);
         teacher2.setGroups(groupsList);
         teacherService.update(teacher2);
+
+
+        Teacher teacher3 = new Teacher("Бессонов","Леонид", "Валентинович",
+                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1965"), "89056984585", null);
+        teacherService.add(teacher3);
+        teacher3.setGroups(groupsList);
+        teacherService.update(teacher3);
 
         return "redirect:/";
     }

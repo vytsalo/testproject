@@ -1,123 +1,110 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <html>
-<head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="../css/auth.css" />
 
-<link rel="stylesheet" type="text/css" href="../css/tables.css" />
-<link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
+        <link rel="stylesheet" type="text/css" href="../css/list-table.css" />
+        <link rel="stylesheet" type="text/css" href="../css/jquery.modal.min.css" />
+        <script src="../js/jquery-3.4.1.min.js"></script>
+        <script src="../js/jquery.modal.min.js"></script>
 
-        <!-- Подключение js-файла поиска -->
-<script src="../js/search.js"></script>
-<script src="../js/jquery-3.4.1.min.js"></script>
-<script src="../js/jquery.modal.min.js"></script>
-<script src="../js/jquery.tablesorter.min.js"></script>
-<script src="../js/tableOperations.js"></script>
+        <title>Список студентов</title>
 
-<title>Список студентов</title>
-</head>
-<body onload = "javascript:sortTable()">
-<jsp:include page="../security/auth.jsp" />
+    </head>
 
-	<section class="container">
-<p align = center>
-	 Введите данные для поиска <input type="search" class="light-table-filter" data-table="order-table" placeholder="Поиск">
-	</p>
+<body>
 
-	<div class="table-users">
-   <div class="header">Студенты</div>
+    <jsp:include page="../security/auth.jsp" />
 
-   <table cellspacing="0" class="order-table table" id = "mytable">
+    <h2 align="center" color = "#50C878" >Список студентов:</h2>
 
-	  <thead>
-	    <tr>
+    <c:choose>
+        <c:when test="${empty students}">
+            <h3 align="center">Пусто</h3>
+        </c:when>
+            <c:otherwise>
 
-         <th>#ID</th>
-         <th>Фамилия</th>
-         <th>Имя</th>
-         <th>Отчество</th>
-         <th>Дата рождения</th>
-         <th>Телефон</th>
-         <th>Группа</th>
-         <th>Действия</th>
-   		</tr>
-	  </thead>
+                <table class="list-table">
+                    <thead>
+                    <tr>
+                        <th>Номер</th>
+                            <%--<th>Номер зачетной книжки</th>--%>
+                        <th>Фамилия</th>
+                        <th>Имя</th>
+                        <th>Отчество</th>
+                        <th>Дата рождения</th>
+                        <th>Телефон</th>
+                        <th>Группа</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
 
-	<c:forEach items="${students}" var="list">
-		<tr>
-          <td><c:out value="${list.id}"/></td>
-          <td><c:out value="${list.fam}"/></td>
-          <td><c:out value="${list.name}"/></td>
-          <td><c:out value="${list.otch}"/></td>
+                    <tbody>
 
+                    <c:forEach items="${students}" var="list" varStatus="i">
+                        <tr>
+                            <td><c:out value="${i.index+1}"/></td>
+                                <%--<td><c:out value="${list.id}"/></td>--%>
+                            <td><c:out value="${list.fam}"/></td>
+                            <td><c:out value="${list.name}"/></td>
+                            <td><c:out value="${list.otch}"/></td>
+                            <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
+                            <td><c:out value="${list.phoneNumber}"/></td>
+                            <td>
+                                <a href = "../groups/update/${list.group.id}" >
+                                    <c:out value="${list.group.title}"/>
+                                </a>
+                            </td>
 
-            <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
+                            <td>
+                                <!-- Модальное окно -->
+                                <div id="<c:out value="ex${list.id}"/>" class="modal">
+                                    <p><c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
+                                    <p>Дата рождения:
+                                        <fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></p>
+                                    <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
+                                    <p>Группа: <c:out value="${list.group.title}"/></p>
+                                </div>
 
-
-
-            <td><c:out value="${list.phoneNumber}"/></td>
-          <td>
-          <a href = "../groups/update/${list.gruppa.id}" >
-          <c:out value="${list.gruppa.title}"/>
-          </a>
-
-          </td>
-
-
-
-
-          <td>
-
-
-
-<!-- Само модальное окно -->
-<div id="<c:out value="ex${list.id}"/>" class="modal">
-  <p>Студент:</p>
-  <p>ID : <c:out value="${list.id}"/></p>
-  <p>ФИО: <c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
-  <p>Дата рождения:
-            <fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></p>
-  <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
-  <p>Группа: <c:out value="${list.gruppa.title}"/></p>
-</div>
+                                <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
+                                </br>
+                                <a href = "update/${list.id}">Редактировать</a>
+                                </br>
+                                <a href = "delete/${list.id}">Удалить</a>
+                            </td>
 
 
-<center>
-<a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
+                        </tr>
+                    </c:forEach>
 
-            </br>
 
-            <a href = "update/${list.id}">Редактировать</a>
-            </br>
-            <a href = "delete/${list.id}">Удалить</a>
-</center>
-          </td>
-        </tr>
-		</c:forEach>
+                    <tr>
+                        <td colspan = 8 class="active-td">
+                            <a href = "/students/add" >
+                                <img src = "../images/plus_button3.png" width = 32 height = 32 />
+                                <br/>
+                                Добавить
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
 
 
-   </table>
-</div>
 
-	</section>
+            </c:otherwise>
+    </c:choose>
 
+<center><a href = "/"> На главную </a></center>
 <br/>
-
-<p  align=center>
-  <a href = "add">Добавить</a>
-    <br/>
-  <a href = "../" align = center >На главную</a>
-
-</p>
-
-
-
-
+<br/>
+<br/>
 </body>
 </html>

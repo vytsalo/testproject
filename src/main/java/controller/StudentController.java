@@ -26,7 +26,7 @@ public class StudentController {
     @Autowired
     private EntitiesService<Group> groupService;
 
-    @GetMapping("/")//"","/"
+    @GetMapping("/")
     public String listStudents(Model model){
         model.addAttribute("students",studentService.getList());
         return "students/list-students";//вьюшка list-students.jsp
@@ -60,9 +60,9 @@ public class StudentController {
                         if (newStudent.getId() == null){
                             //добавляем нового студента
 
-                            if (newStudent.getGruppa()!=null){
+                            if (newStudent.getGroup()!=null){
 
-                            Group tempGroup = groupService.findById(newStudent.getGruppa().getId());
+                            Group tempGroup = groupService.findById(newStudent.getGroup().getId());
 
                             newStudent.setGroup(null);
 
@@ -86,7 +86,7 @@ public class StudentController {
             /* STUDENT TO GROUP*/
 
 
-            Group currentGroup = newStudent.getGruppa();
+            Group currentGroup = newStudent.getGroup();
 
             //если у студента есть группа
             if (currentGroup!=null) {
@@ -123,31 +123,29 @@ public class StudentController {
     }
 
     @GetMapping("/delete/{Id}")
-    public String deleteGroup(Model model,@PathVariable Long Id) {
+    public String deleteGroup(Model model, @PathVariable Long Id) {
         //удаляем группу по ID
         studentService.delete(Id);
         model.addAttribute("students",studentService.getList());
         return "redirect:/students/";
     }
 
-
-
     //Контроллер для пересылки Ajax студентам
     @PostMapping(value = "/ajaxgroup", produces={"application/json; charset=UTF-8"})
     @ResponseBody
-    public String processAjaxGroup(Model model, @RequestBody(required = false) String searchString) {
+    public String processAjaxGroup(@RequestBody(required = false) String searchString) {
         if (searchString==null) searchString="";
 
         //получаем списки групп, удовлетворяющих параметру
-        List<Group> glistItems = groupService.findByParam(searchString);
+        List<Group> groupList = groupService.findByParam(searchString);
 
         //обнуляем списки преподов и студентов, чтобы вывести
-        glistItems.forEach(g -> {
+        groupList.forEach(g -> {
             g.setTeachers(new ArrayList<>());
             g.setStudents(new ArrayList<>());
         });
 
-        return new Gson().toJson(glistItems);
+        return new Gson().toJson(groupList);
 
     }
 

@@ -1,0 +1,49 @@
+.list-table {
+    border-collapse: collapse;
+    font-size: 0.95em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: 25px auto;
+}
+
+.list-table th,
+.list-table td {
+    padding: 15px 50px;
+}
+
+.list-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+	text-align: center;
+}
+
+.list-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;//--убрать?
+}
+
+.list-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;//#00BFFF
+}
+
+.list-table thead tr {
+    background-color: #6495ED;
+    color: #ffffff;
+    text-align: center;
+	font-size: 1.05em;
+	cursor:pointer;
+}
+
+.list-table td a {
+  color: #50C878;
+  font-weight: bold;
+    //#50C878
+    //#00BFFF
+    //#6871fc
+    //#FFA500
+} 
+
+/*
+.table-title h2 {
+    color: #50C878;
+    text-align: center;
+}*/
