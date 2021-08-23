@@ -53,7 +53,7 @@ public class StudentServiceImpl implements EntitiesService<Student> {
     @Override
     @Transactional
     public List<Student> findByParam(String str) {
-        return studentDao.searchByString(str);
+        return studentDao.searchByTitle(str);
     }
 
 

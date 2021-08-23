@@ -106,7 +106,7 @@ public class StudentController {
 
     //Обработка исключений не найдена страница
     @GetMapping("/update/{Id}")
-    public String updateStudent(Model model,@PathVariable Long Id){
+    public String updateStudent(Model model, @PathVariable Long Id){
 
         //находим студента по ID
         Student student = studentService.findById(Id);
@@ -126,7 +126,7 @@ public class StudentController {
     public String deleteGroup(Model model, @PathVariable Long Id) {
         //удаляем группу по ID
         studentService.delete(Id);
-        model.addAttribute("students",studentService.getList());
+        model.addAttribute("students", studentService.getList());
         return "redirect:/students/";
     }
 

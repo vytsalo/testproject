@@ -13,24 +13,15 @@
         <intercept-url pattern="/**/delete/**" access="isAuthenticated()" />
         <intercept-url pattern="/**/update/**" access="isAuthenticated()"  />
 
-        <!-- logout processing error html -->
-
-<!-- get rid of processing -->
         <form-login
-
                 login-page="/login"
                 login-processing-url="/login"
-
         />
 
-        <!--Редирект на главную страницу при успешном логауте -->
-        <!-- Как пофиксить "" -->
         <logout
                 logout-success-url="/"
 
         />
-
-
 
          </http>
 

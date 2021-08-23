@@ -20,6 +20,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     @Override
     public void add(Student student) {
         em.persist(student);
+        //em.flush();
     }
 
     @Override
@@ -59,7 +60,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
 
     //Поиск по тайтлу группы
     @Override
-    public List<Student> searchByString(String str) {
+    public List<Student> searchByTitle(String str) {
 //todo refactor
         //добавить разделители между словами " "
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

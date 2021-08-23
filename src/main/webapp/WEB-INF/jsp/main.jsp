@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="css/mainpage.css" />
 
-<title>Приложение "Университет"</title></head>
+<title>Единое информационное пространство</title></head>
 <body>
 
 <jsp:include page="security/auth.jsp" />

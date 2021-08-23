@@ -6,8 +6,16 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/auth.css" />
+	<link rel="stylesheet" type="text/css" href="../css/button.css" />
 </head>
 <body>
+
+
+
+<nav>
+	<a href="#" class="button" align = right >Войти</a>
+</nav>
+
 
 <p>
 <!-- Если нет авторизации - поле логина -->

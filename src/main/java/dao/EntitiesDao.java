@@ -18,7 +18,7 @@ public interface EntitiesDao<T> {
     //удаление сущности по ID
     void delete(Long entityId);
     //поиск списка сущностей по ID
-    List<T> searchByString(String str);
+    List<T> searchByTitle(String str);
 }
 
 

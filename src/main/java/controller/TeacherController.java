@@ -45,10 +45,6 @@ public class TeacherController {
         return "teachers/show-teacher-form";
     }
 
-
-
-
-    //ToDo Сделать список аккордеонами
     //таблица с фиксированными размерами и клиентским поиском
     @PostMapping(value = "/ajaxprocessform", produces={"application/json; charset=UTF-8"})
     @ResponseBody
@@ -56,12 +52,12 @@ public class TeacherController {
         if (searchString==null) searchString="";
 
         //получаем списки
-        List<Teacher> slistItems = teacherService.findByParam(searchString);
+        List<Teacher> teacherList = teacherService.findByParam(searchString);
 
         //обнуляем списки групп, чтобы вывести
-        slistItems.forEach(t -> t.setGroups(new ArrayList<>()));
+        teacherList.forEach(t -> t.setGroups(new ArrayList<>()));
 
-        return new Gson().toJson(slistItems);
+        return new Gson().toJson(teacherList);
 
     }
 
@@ -137,14 +133,11 @@ public class TeacherController {
         //isUpdate marker
         model.addAttribute("update", true);
 
-
         List<Group> thisTeacherGroups = teacher.getGroups();
 
         List<Group> allGroups = groupService.getList();
 
         allGroups.removeAll(thisTeacherGroups);
-
-        //todo make a notInThisTeacherGroups
 
         model.addAttribute("groups", allGroups);
 
@@ -160,7 +153,6 @@ public class TeacherController {
     }
 
 
-
     //Контроллер для пересылки Ajax
     @PostMapping(value = "/ajaxgroup", produces={"application/json; charset=UTF-8"})
     @ResponseBody
@@ -168,21 +160,18 @@ public class TeacherController {
         if (searchString==null) searchString="";
 
         //получаем списки групп, удовлетворяющих параметру
-        List<Group> glistItems = groupService.findByParam(searchString);
+        List<Group> groupList = groupService.findByParam(searchString);
 
         //обнуляем списки преподов и студентов, чтобы вывести
-        glistItems.forEach(g -> {
+        groupList.forEach(g -> {
             g.setTeachers(new ArrayList<>());
             g.setStudents(new ArrayList<>());
         });
 
 
-        return new Gson().toJson(glistItems);
+        return new Gson().toJson(groupList);
 
     }
-
-
-
 
 
     @InitBinder
@@ -194,29 +183,6 @@ public class TeacherController {
 
         //teacherService
         dataBinder.registerCustomEditor(Date.class,"dateOfBirth",  new DateEditor());
-
-
-
-        //dataBinder.registerCustomEditor(String.class, new DateEditor());
-
-
-        //new DateCustomEditor
-      /*  dataBinder.registerCustomEditor(Date.class,"dateOfBirth", new PropertyEditorSupport() {
-            public void setAsText(String value) {
-                try {
-                    setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));
-                } catch(ParseException e) {
-                    setValue(null);
-                }
-            }
-
-            public String getAsText() {
-                return new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
-            }
-
-        });
-
-    }*/
 
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
     }

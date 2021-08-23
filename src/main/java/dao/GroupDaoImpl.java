@@ -1,14 +1,14 @@
 package dao;
 
 import entities.Group;
-import entities.Student;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
@@ -25,7 +25,7 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
     @Override
     public List<Group> getList() {
         CriteriaQuery<Group> criteriaQuery = em.getCriteriaBuilder().createQuery(Group.class);
-        Root<Group> root = criteriaQuery.from(Group.class);
+        criteriaQuery.from(Group.class);
         return em.createQuery(criteriaQuery).getResultList();
     }
 
@@ -53,7 +53,7 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
 
     //Поиск по тайтлу группы
     @Override
-    public List<Group> searchByString(String str) {
+    public List<Group> searchByTitle(String str) {
 
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Group> criteriaQuery = criteriaBuilder.createQuery(Group.class);

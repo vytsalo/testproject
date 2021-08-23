@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: vasilevvs
-  Date: 15.10.2019
-  Time: 10:27
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -15,11 +9,6 @@
     <script src="http://malsup.github.com/jquery.form.js"></script>
 
     <script>
-//в отдельный файл обработку даты и аджакс
-
-//AjaxHandler.js
-//dateConverter
-
 
 //скрываем результаты
 $(document).ready(function (){$('#results').hide()});
@@ -132,7 +121,6 @@ function dateConverterForProcess(date) {
 
 }
 
-
        function sendAjax() {
 
 	   var csrf = $('#csrf').val();
@@ -148,7 +136,6 @@ function dateConverterForProcess(date) {
 				processData(data);
 				});
 	   }
-
 
 
         //'data' is the json object returned from the server

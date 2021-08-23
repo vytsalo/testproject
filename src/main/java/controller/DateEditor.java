@@ -17,7 +17,7 @@ public class DateEditor extends PropertyEditorSupport {
         try {
             setValue(new SimpleDateFormat("yyyy-MM-dd").parse(value));
         } catch (Exception ex) {
-            setValue(null);
+            setValue("");
         }
     }
 
@@ -28,10 +28,7 @@ public class DateEditor extends PropertyEditorSupport {
         if (getValue() == null) {
             return "";
         } else {
-            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-            Date date = (Date) getValue();
-            String gg = dateFormat.format(date);
-            return gg;
+            return new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
         }
     }
 

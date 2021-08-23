@@ -48,7 +48,7 @@ public class GroupServiceImpl implements EntitiesService<Group>{
     @Override
     @Transactional
     public List<Group> findByParam(String str) {
-        return groupDao.searchByString(str);
+        return groupDao.searchByTitle(str);
     }
 
 

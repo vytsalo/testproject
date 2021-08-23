@@ -48,7 +48,7 @@ public class TeacherServiceImpl implements EntitiesService<Teacher> {
     @Override
     @Transactional
     public List<Teacher> findByParam(String str) {
-        return teacherDao.searchByString(str);
+        return teacherDao.searchByTitle(str);
     }
 
 

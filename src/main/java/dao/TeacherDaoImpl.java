@@ -66,7 +66,7 @@ public class TeacherDaoImpl implements EntitiesDao<Teacher> {
     }
 
     @Override
-    public List<Teacher> searchByString(String str) {
+    public List<Teacher> searchByTitle(String str) {
 
         //добавить разделители между словами " "
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

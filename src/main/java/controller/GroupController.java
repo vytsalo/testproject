@@ -45,23 +45,9 @@ import java.util.*;
 //TODO make table invisible if list is empty
 // TODO make one method for every ajax operation
 
-//TODO сделать вывод поиска только тех преподавателей, которых нет в группе и т.д.
-
-
-//TODO refactoring some fields into entities
-
-
-
-//TODO конфликт версий или какие - то библиотеки ненужные
-
-
 @Controller
 @RequestMapping("/groups")
 public class GroupController {
-
-    //todo QUESTION
-    // каким образом он связывает? находит тип в бд, который соответствует таблице
-
 
     //автовафред находит бины, которые соответствуют таким типам и привязывает значение
     //описали интерфейс, а автовайред находит его реализацию
@@ -73,20 +59,18 @@ public class GroupController {
 
     @Autowired
     @Qualifier("teacherService")
-
     private EntitiesService<Teacher> teacherService;
 
     @Autowired
     @Qualifier("studentService")
-
     private EntitiesService<Student> studentService;
 
     @GetMapping("/")
     public String listGroups(Model model){
 
         List<Group> groups = groupService.getList();
-
-        groups.forEach(grp -> grp.setTeachers(new ArrayList<>(new HashSet<>(grp.getTeachers()))));
+        //todo почему hashset? есть повторки?
+        groups.forEach(group -> group.setTeachers(new ArrayList<>(new HashSet<>(group.getTeachers()))));
 
         model.addAttribute("groups",groups);
         return "groups/list-groups";
@@ -265,7 +249,7 @@ public class GroupController {
     //выполняется метод, потом только страница получается. модель которую тут заполняем
     //в этой же страничке используется
     @GetMapping("/update/{Id}")
-    public String updateGroup(Model model,@PathVariable Long Id){
+    public String updateGroup(Model model, @PathVariable Long Id){
 
         Group group = groupService.findById(Id);
 
@@ -304,7 +288,7 @@ public class GroupController {
 
     //удаляем группу по ID
     @GetMapping("/delete/{Id}")
-    public String deleteGroup(Model model,@PathVariable Long Id) {
+    public String deleteGroup(Model model, @PathVariable Long Id) {
 
         //удаление связей группы, а потом только удаление самой группы?
 
@@ -366,12 +350,12 @@ public class GroupController {
     public String processAjaxStudent(Model model, @RequestBody(required = false) String searchStringStudent) {
         if (searchStringStudent==null) searchStringStudent="";
 
-        List<Student> slistItems = studentService.findByParam(searchStringStudent);
+        List<Student> studentList = studentService.findByParam(searchStringStudent);
 
         //обнуляем списки групп, чтобы вывести
-        slistItems.forEach(s -> s.setGroup(null));//--
+        studentList.forEach(s -> s.setGroup(null));
 
-        return new Gson().toJson(slistItems);
+        return new Gson().toJson(studentList);
 
     }
 

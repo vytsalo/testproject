@@ -8,17 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import service.EntitiesService;
 import service.HumanService;
+
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 // TODO MAKE A COMMON STYLE OF AUTH JSP PAGES.
 // TODO MAKE A TABLES WITH STYLES IN FORMS
@@ -53,69 +48,7 @@ public class MainController {
         //todo в классе UTILS сделать генерацию ФИО и имени
         //todo сделать реальные группы
 
-        Group group1 = new Group("147");
-        groupService.add(group1);
-
-        Group group2 = new Group("148");
-        groupService.add(group2);
-
-        ArrayList<Group> groupsList = new ArrayList(Arrays.asList(group1, group2));
-
-        Student student1 = new Student("Булаев","Александр", "Николаевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("12.08.1995"), "89061453385", null);
-        studentService.add(student1);
-        student1.setGroup(group1);
-        studentService.update(student1);
-
-
-        Student student2 = new Student("Вечтомов","Дмитрий", "Викторович",
-                new SimpleDateFormat("dd.mm.YYYY").parse("22.03.1995"), "89061453385", null);
-        studentService.add(student2);
-        student2.setGroup(group1);
-        studentService.update(student2);
-
-
-        Student student3 = new Student("Васильев","Виталий", "Сергеевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1994"), "89056984585", null);
-        studentService.add(student3);
-        student3.setGroup(group1);
-        studentService.update(student3);
-
-
-        Student student4 = new Student("Харламов","Александр", "Алексеевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("22.08.1995"), "89056984585", null);
-        studentService.add(student4);
-        student4.setGroup(group1);
-        studentService.update(student4);
-
-
-
-        Student student5 = new Student("Тарасов","Максим", "Алексеевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("23.04.1997"), "89056984585", null);
-        studentService.add(student5);
-        student5.setGroup(group1);
-        studentService.update(student5);
-
-
-
-        Teacher teacher1 = new Teacher("Блинков","Юрий", "Анатольевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1970"), "89056984585", null);
-        teacherService.add(teacher1);
-        teacher1.setGroups(groupsList);
-        teacherService.update(teacher1);
-
-        Teacher teacher2 = new Teacher("Дудов","Сергей", "Иванович",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1950"), "89056984585", null);
-        teacherService.add(teacher2);
-        teacher2.setGroups(groupsList);
-        teacherService.update(teacher2);
-
-
-        Teacher teacher3 = new Teacher("Бессонов","Леонид", "Валентинович",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1965"), "89056984585", null);
-        teacherService.add(teacher3);
-        teacher3.setGroups(groupsList);
-        teacherService.update(teacher3);
+       humanService.initDB();
 
         return "redirect:/";
     }
