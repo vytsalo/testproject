@@ -20,11 +20,15 @@
     <context:component-scan base-package="controller, dao, service" />
 
 
-    <bean id="transactionManager"
+    <!--<bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
+-->
 
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- начало пути файла вьюшки  -->
@@ -32,7 +36,6 @@
         <!-- конец пути файла вьюшки -->
         <property name="suffix" value=".jsp" />
     </bean>
-
 
 
     <bean id="dataSource"
@@ -59,78 +62,16 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
-                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.max_fetch_depth">2</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.connection.autocommit">false</prop>
+
             </props>
         </property>
 
     </bean>
-
-
-
-
-
-    <!--
-
-        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-           &lt;!&ndash; <property name="dataSource" ref="dataSource" />
-    &ndash;&gt;
-            <property name="persistenceUnitName" value="jpaProperties" />
-
-    &lt;!&ndash;
-            <property name="persistenceUnitName" value="LOCAL_PERSISTENCE" />
-    &ndash;&gt;
-            <property name="packagesToScan" >
-                <list>
-                    <value>entities</value>
-                </list>
-            </property>
-
-            <property name="jpaProperties">
-                <props>
-                    <prop key="hibernate.hbm2ddl.auto">create</prop>
-                    <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
-                    <prop key="hibernate.max_fetch_depth">2</prop>
-                    <prop key="hibernate.show_sql">true</prop>
-                    <prop key="hibernate.format_sql">true</prop>
-                    <prop key="hibernate.connection.autocommit">false</prop>
-
-                    <prop key="hibernate.connection.driver_class">org.postgresql.Driver</prop>
-                    <prop key="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</prop>
-                    <prop key="hibernate.connection.username">postgres</prop>
-                    <prop key="hibernate.connection.password">postgres</prop>
-                    <prop key="hibernate.default_schema">public</prop>
-                </props>
-            </property>
-        </bean>-->
-
-
-    <!--    <bean id="entityManagerFactory"
-              class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-            <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
-            <property name="jpaVendorAdapter">
-                <bean
-                        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-            </property>
-
-        </bean>-->
-
-    <!--  <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-            name = "persistenceUnit">
-          <property name="dataSource" ref="dataSource"/>
-          <property name="jpaVendorAdapter">
-              <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-          </property>
-      </bean>-->
-    <!--
-        /initialize em with hibernate-->
-    <!--
-        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-            <property name="driverClassName" value="org.postgresql.Driver"/>
-            <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
-            <property name="username" value="postgres"/>
-            <property name="password" value="postgres"/>
-        </bean>-->
-
 
 </beans>

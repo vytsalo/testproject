@@ -91,7 +91,7 @@
                         <br/>
 
                         <div class = "table-action">
-                            <a href = "/students/search" ><img src = "../images/search/searchIcon7.png" />
+                            <a href = "/students/search" ><img src = "../images/searchIcon.png" />
                                 <br/>Поиск
                             </a>
                         </div>
