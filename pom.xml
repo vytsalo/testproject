@@ -8,7 +8,6 @@
     <artifactId>eip-core-module</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>eipsgu</name>
 
     <!-- Описание версий фреймворков -->
     <properties>
@@ -81,18 +80,13 @@
             <artifactId>hibernate-search-orm</artifactId>
             <version>5.2.1.Final</version>
         </dependency>
-     <!--   <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-        </dependency>-->
+
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>9.1-901.jdbc4</version>
         </dependency>
         <!-- /HIBERNATES -->
-
 
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
@@ -130,45 +124,4 @@
 
     </dependencies>
 
-    <build>
-
-        <sourceDirectory>src/main/java/</sourceDirectory> <!-- код java -->
-
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <port>8080</port>
-                </configuration>
-            </plugin>
-
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webXml>src\main\webapp\WEB-INF\web.xml</webXml>
-                </configuration>
-            </plugin>
-
-     <!--       &lt;!&ndash; MINUSES? &ndash;&gt;
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>-->
-
-
-        </plugins>
-    </build>
 </project>
