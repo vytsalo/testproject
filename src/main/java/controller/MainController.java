@@ -44,7 +44,7 @@ public class MainController {
     }
 
     @GetMapping("/init")
-    public String init() throws ParseException {
+    public String init() throws ParseException, IOException {
         //todo в классе UTILS сделать генерацию ФИО и имени
         //todo сделать реальные группы
 
@@ -55,7 +55,7 @@ public class MainController {
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error, Model model) {
-        if (error != null) {
+        if (error == "") {
             model.addAttribute("errorMessage", "Неверный логин или пароль");
         }
         return "security/login";

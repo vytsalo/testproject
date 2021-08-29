@@ -1,5 +1,7 @@
 package dao;
 
+import entities.Student;
+
 import java.util.List;
 
 /**
@@ -11,6 +13,7 @@ public interface EntitiesDao<T> {
     void add(T entity);
     //получить список объектов
     List<T> getList();
+    List<T> getListWithPagination(int page, int size);
     //обновление
     void update(T entity);
     //поиск сущности по ID

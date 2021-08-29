@@ -51,5 +51,8 @@ public class GroupServiceImpl implements EntitiesService<Group>{
         return groupDao.searchByTitle(str);
     }
 
-
+    @Override
+    public List<Group> getListWithPagination(int page, int size) {
+        return null;
+    }
 }

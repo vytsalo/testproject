@@ -70,4 +70,8 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
 
     }
 
+    @Override
+    public List<Group> getListWithPagination(int page, int size) {
+        return null;
+    }
 }

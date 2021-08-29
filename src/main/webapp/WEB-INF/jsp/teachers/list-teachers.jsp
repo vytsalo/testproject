@@ -62,7 +62,7 @@
                         <c:forEach items="${list.groups}" var="gslist">
                             <a href = "../groups/update/${gslist.id}" >
                                     ${gslist.title}
-                            </a></br>
+                            </a> &nbsp;
 
                         </c:forEach>
 

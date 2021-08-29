@@ -13,7 +13,6 @@
 <jsp:include page="security/auth.jsp" />
 
 <div class="pricingTable">
-  <h2 class="pricingTable-title">Единое информационное пространство</h2>
   <h3 class="pricingTable-subtitle">Выберите страницу для перехода</h3>
 
   <ul class="pricingTable-firstTable">
@@ -28,7 +27,7 @@
         <li>Телефон</li>
         <li>Группа</li>
       </ul>
-      <div class="pricingTable-firstTable_table__getstart" onclick ="window.location='students/'" >Перейти</div>
+      <div class="pricingTable-firstTable_table__getstart" onclick ="window.location='students?page=1'" >Перейти</div>
     </li>
 
 

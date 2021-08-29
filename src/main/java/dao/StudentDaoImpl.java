@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.OrderBy;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -29,6 +30,27 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
         criteriaQuery.from(Student.class);
         return em.createQuery(criteriaQuery).getResultList();
     }
+
+    @Override
+    public List<Student> getListWithPagination(int page, int size){
+        //с сортировкой
+    /*    CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Student> criteria = cb.createQuery(Student.class);
+        Root<Student> root = criteria.from(Student.class);
+        return em.createQuery(criteria.select(root)
+                .orderBy(cb.asc(root.get("fam"))))
+                .setFirstResult(page)
+                .setMaxResults(size).getResultList();*/
+
+
+        CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
+        criteriaQuery.from(Student.class);
+        return em.createQuery(criteriaQuery)
+                .setFirstResult(page)
+                .setMaxResults(size)
+                .getResultList();
+    }
+
 
     @Override
     public void update(Student student){

@@ -9,14 +9,18 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.io.*;
+import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 
 @Service
@@ -31,6 +35,11 @@ public class HumanServiceImpl implements HumanService {
     @Autowired
     private EntitiesService<Teacher> teacherService;
 
+
+    List<String> names = importLinesFromFile("male-names.txt");
+    List<String> female_names = importLinesFromFile("female-names.txt");
+    List<String> fams = importLinesFromFile("fams.txt");
+    List<String> patronyms = importLinesFromFile("patronyms.txt");
 
 
     //все вкладки заполняются
@@ -117,147 +126,148 @@ public class HumanServiceImpl implements HumanService {
 
 
 
-    public void initDB() throws ParseException {
+    public void initDB() {
 
-        List<String> groupTitles = new ArrayList<>(List.of("111", "211", "147", "148", "217", "227"));
+        List<Group> groupList =
+        Stream.of("111", "211", "147", "148", "217", "227")
+                .map(title -> {
+                    Group group = new Group(title);
+                    groupService.add(group);
+                    return group;
+                }).collect(toList());
 
-        List<Group> groupList = new ArrayList<>();
-
-        groupTitles.forEach(title -> {
-            Group group = new Group(title);
-            groupService.add(group);
-            groupList.add(group);
-        });
-
-
-        Integer studentsCount = 10;
-
-        //todo женский пол добавлять вручную
-        List<String> names = new ArrayList<>(List.of("Иван", "Сергей", "Виталий", "Антон", "Дмитрий", "Александр"));
-        List<String> fams = new ArrayList<>(List.of("Харламов", "Амелин", "Васильев", "Абросимов", "Булаев", "Тарасов"));
-        List<String> patronyms = new ArrayList<>(List.of("Сергеевич", "Викторович", "Артемович", "Денисович", "Алексеевич", "Александрович"));
+            int humansCount = 25;
 /*
+        IntStream.rangeClosed(1, 8)
+                .forEach(System.out::println);*/
 
-        Date date = new Date(); // Or where ever you get it from
-        Date daysAgo = new DateTime(date).minusDays(300).toDate();
-*/
+            for (int i = 0; i < humansCount; i++) {
 
+                Student student = generateStudent();
+                studentService.add(student);
+                student.setGroup(groupList.get(new Random().nextInt(groupList.size() - 1)));
+                studentService.update(student);
 
-        for (int i = 0; i < studentsCount; i++) {
+                Teacher teacher = generateTeacher();
+                teacherService.add(teacher);
+                teacher.setGroups(new ArrayList<>(groupList));
+                teacherService.update(teacher);
 
-            Student student = new Student(
-                    getRandomString(fams),
-                    getRandomString(names),
-                    getRandomString(patronyms),
-                    getRandomDate(),
-                    getRandomPhoneNumber(),
-                    null);
-            //student.setId((long) (1000 + i));
-            studentService.add(student);
-            student.setGroup(groupList.get(new Random().nextInt(groupList.size()-1)));
-            studentService.update(student);
-
-        }
-
-        /*IntStream.rangeClosed(1, studentsCount)
-                .forEach(
-
-
-                );*/
-
-
-
-
-
-
-        /*Group group1 = new Group("147");
-        groupService.add(group1);
-
-        Group group2 = new Group("148");
-        groupService.add(group2);
-
-        ArrayList<Group> groupsList = new ArrayList(Arrays.asList(group1, group2));
-
-        Student student1 = new Student("Булаев","Александр", "Николаевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("12.08.1995"), "89061453385", null);
-        studentService.add(student1);
-        student1.setGroup(group1);
-        studentService.update(student1);
-
-
-        Student student2 = new Student("Вечтомов","Дмитрий", "Викторович",
-                new SimpleDateFormat("dd.mm.YYYY").parse("22.03.1995"), "89061453385", null);
-        studentService.add(student2);
-        student2.setGroup(group1);
-        studentService.update(student2);
-
-
-        Student student3 = new Student("Васильев","Виталий", "Сергеевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1994"), "89056984585", null);
-        studentService.add(student3);
-        student3.setGroup(group1);
-        studentService.update(student3);
-
-
-        Student student4 = new Student("Харламов","Александр", "Алексеевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("22.08.1995"), "89056984585", null);
-        studentService.add(student4);
-        student4.setGroup(group1);
-        studentService.update(student4);
-
-
-
-        Student student5 = new Student("Тарасов","Максим", "Алексеевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("23.04.1997"), "89056984585", null);
-        studentService.add(student5);
-        student5.setGroup(group1);
-        studentService.update(student5);
-
-
-
-        Teacher teacher1 = new Teacher("Блинков","Юрий", "Анатольевич",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1970"), "89056984585", null);
-        teacherService.add(teacher1);
-        teacher1.setGroups(groupsList);
-        teacherService.update(teacher1);
-
-        Teacher teacher2 = new Teacher("Дудов","Сергей", "Иванович",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1950"), "89056984585", null);
-        teacherService.add(teacher2);
-        teacher2.setGroups(groupsList);
-        teacherService.update(teacher2);
-
-
-        Teacher teacher3 = new Teacher("Бессонов","Леонид", "Валентинович",
-                new SimpleDateFormat("dd.mm.YYYY").parse("08.11.1965"), "89056984585", null);
-        teacherService.add(teacher3);
-        teacher3.setGroups(groupsList);
-        teacherService.update(teacher3);*/
-
+            }
 
     }
 
-
     private String getRandomString(List<String> list){
-        return list.get(new Random().nextInt(list.size()-1 - 0) + 0);
+        return list.get(new Random().nextInt(list.size()-1));
     }
 
     private String getRandomPhoneNumber(){
-        Random r = new Random();
-        //8(963) 145-8916
-        //int i1 = 8; // returns random number between 0 and 7
-        int i3 = r.nextInt(89) + 10;
-        int i4 = r.nextInt(899) + 100; // returns random number between 0 and 741
-        int i5 = r.nextInt(8999) + 1000; // returns random number between 0 and 9999
-
-        String phoneNumber = String.format("8(9%d) %d-%d", i3, i4, i5);
-        return phoneNumber;
+        Random random = new Random();        //8(963) 145-8916
+        int i1 = random.nextInt(89) + 10;
+        int i2 = random.nextInt(899) + 100;
+        int i3 = random.nextInt(8999) + 1000;
+        return String.format("8(9%d) %d-%d", i1, i2, i3);
     }
 
     private Date getRandomDate() throws ParseException {
        return new Date(ThreadLocalRandom.current()
                 .nextLong(new SimpleDateFormat("dd.mm.YYYY").parse("01.01.1970").getTime(),
                         new GregorianCalendar(2002, Calendar.JANUARY, 1).getTime().getTime()));
+    }
+
+    private List<String> importLinesFromFile(String filename) {
+
+        try {
+            File resource = new ClassPathResource(filename).getFile();
+            return Files.readAllLines(resource.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    //generateHuman+type Teacher or Student
+    private Student generateStudent(){
+        //передаем t или s
+
+        // Object o = new Object();
+        //   (Student) o
+
+        /*try {
+            Object k = Class.forName(humanClass.getName()).getConstructor(String.class).newInstance();
+
+            Class.forName(humanClass.getName()).cast(k);
+
+        } catch (Exception e){
+
+            e.printStackTrace();
+        }
+*/
+
+        Student student = null;
+
+        //0 - мужчина, 1 - женщина
+        int gender = new Random().nextInt(2);
+
+        try {
+
+            if (gender==0) {
+                student =  new Student(
+                        getRandomString(fams),
+                        getRandomString(names),
+                        getRandomString(patronyms),
+                        getRandomDate(),
+                        getRandomPhoneNumber(),
+                        null);
+            } else {
+                student =  new Student(
+                        getRandomString(fams) + "а",
+                        getRandomString(female_names),
+                        getRandomString(patronyms).replace("вич","вна"),
+                        getRandomDate(),
+                        getRandomPhoneNumber(),
+                        null);
+            }
+
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+
+      return student;
+    }
+
+
+    private Teacher generateTeacher(){
+
+        Teacher teacher = null;
+
+        //0 - мужчина, 1 - женщина
+        int gender = new Random().nextInt(2);
+
+        try {
+            if (gender==0) {
+                teacher =  new Teacher(
+                        getRandomString(fams),
+                        getRandomString(names),
+                        getRandomString(patronyms),
+                        getRandomDate(),
+                        getRandomPhoneNumber(),
+                        null);
+            } else {
+                teacher =  new Teacher(
+                        getRandomString(fams) + "а",
+                        getRandomString(female_names),
+                        getRandomString(patronyms).replace("вич","вна"),
+                        getRandomDate(),
+                        getRandomPhoneNumber(),
+                        null);
+            }
+
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+
+        return teacher;
     }
 
 }

@@ -14,7 +14,7 @@ public class Teacher extends Human implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToMany(targetEntity = Group.class, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Group.class, fetch = FetchType.EAGER)//, fetch = FetchType.LAZY)
     @JoinTable(name = "teacher_groups",
             //имя колонки id с этой таблицы
             joinColumns = { @JoinColumn(name = "teacher_id") },

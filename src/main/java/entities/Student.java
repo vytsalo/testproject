@@ -14,9 +14,22 @@ public class Student extends Human implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    //todo два раза записываются - поэтому дублируются?
     //Группа, в которой учится студент
-    @ManyToOne(fetch = FetchType.EAGER)
+
+    /* LazyInitializationException could not initialize proxy - no Session
+    Когда фетч тайп лези и хибернейт пытается вызвать объект, а вместо него прокси.
+    todo прочитать про прокси объекты
+
+    * 1) fetchType = eager
+    * распространяется на все запросы
+    *
+    * 2) <beans:prop key="hibernate.enable_lazy_load_no_trans">true</beans:prop>
+    * Будет запускать новую транзакцию при обращении к связанным сущностям. Не рекомендуется - сильно нагружает систему
+    *
+    * 3) criteria.setFetchMode("roles", FetchMode.EAGER);
+    * best - настраивается по запросу(в критерии). Загружает дочерние сущности в том же запросе
+     *  */
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name="fk_groups")//имя - любое присоединяемое
     //главное управляющее поле, все делается через него, а потом уже через группу
     private Group gruppa;

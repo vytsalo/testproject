@@ -6,5 +6,5 @@ import java.text.ParseException;
 public interface HumanService {
 
     void exportToExcel() throws IOException;
-    void initDB() throws ParseException;
+    void initDB() throws ParseException, IOException;
 }

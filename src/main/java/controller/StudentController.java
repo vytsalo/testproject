@@ -26,9 +26,12 @@ public class StudentController {
     @Autowired
     private EntitiesService<Group> groupService;
 
-    @GetMapping("/")
-    public String listStudents(Model model){
-        model.addAttribute("students",studentService.getList());
+    //todo переделать в модель энд вью
+    @GetMapping//http://localhost:8081/students?page=1 так чтобы было
+    public String listStudents(Model model, @RequestParam(value = "page") int page){
+        int size = 10;
+        model.addAttribute("students", studentService.getListWithPagination(((page-1) * size) ,size));
+        model.addAttribute("page", page);
         return "students/list-students";//вьюшка list-students.jsp
     }
 

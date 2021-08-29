@@ -100,4 +100,8 @@ public class TeacherDaoImpl implements EntitiesDao<Teacher> {
 
     }
 
+    @Override
+    public List<Teacher> getListWithPagination(int page, int size) {
+        return null;
+    }
 }

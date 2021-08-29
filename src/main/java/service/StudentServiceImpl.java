@@ -32,6 +32,14 @@ public class StudentServiceImpl implements EntitiesService<Student> {
         return studentDao.getList();
     }
 
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<Student> getListWithPagination(int page, int size){
+        return studentDao.getListWithPagination(page,size);
+    }
+
+
     @Transactional
     @Override
     public void update(Student student){

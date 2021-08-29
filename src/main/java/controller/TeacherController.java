@@ -29,9 +29,14 @@ public class TeacherController {
 
         List<Teacher> teacherList = teacherService.getList();
 
-        teacherList.forEach(tcs -> {
-            tcs.setGroups(new ArrayList<>(new HashSet<>(tcs.getGroups())));
-        });
+        teacherList.forEach(teacher ->
+                Collections.sort(teacher.getGroups(), Comparator.comparing(Group::getTitle))
+        );
+      /*  teacherList.forEach(tcs -> {
+            //Collections.sort
+
+            tcs.setGroups(Collections.sort(tcs.getGroups(), Comparator.comparing(Group::getTitle)));
+        });*/
 
         model.addAttribute("teachers", teacherList);
 
