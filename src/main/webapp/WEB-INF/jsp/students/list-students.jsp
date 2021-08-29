@@ -163,9 +163,9 @@
 
                                 <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
                                 </br>
-                                <a href = "update/${list.id}">Редактировать</a>
+                                <a href = "students/update/${list.id}">Редактировать</a>
                                 </br>
-                                <a href = "delete/${list.id}">Удалить</a>
+                                <a href = "students/delete/${list.id}">Удалить</a>
                             </td>
 
 

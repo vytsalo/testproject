@@ -130,7 +130,8 @@ public class StudentController {
         //удаляем группу по ID
         studentService.delete(Id);
         model.addAttribute("students", studentService.getList());
-        return "redirect:/students/";
+
+        return "redirect:/students?page=1";//todo редиректить на ссылку pageFrom, откуда пришли
     }
 
     //Контроллер для пересылки Ajax студентам
