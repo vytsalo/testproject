@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Group;
+import entities.Student;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -73,5 +74,17 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
     @Override
     public List<Group> getListWithPagination(int page, int size) {
         return null;
+    }
+
+/*
+    CriteriaQuery<Person> c = cb.createQuery(Person.class);
+    Root<Person> person = c.from(Person.class);
+person.fetch("address");
+c.select(person);*/
+
+    public Group getStudentGroup(Long id){
+
+        em.createQuery("select group_id from \"student_groups\" where student_id = " + id);
+        return new Group();
     }
 }

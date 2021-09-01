@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="students_group")
+@Table(name="groups")
 public class Group implements Serializable {
 
     public Group(String title, ArrayList<Teacher> teachers, ArrayList<Student> students) {
@@ -40,8 +40,13 @@ public class Group implements Serializable {
 
     //gruppa - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "gruppa", targetEntity = Student.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "group", targetEntity = Student.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Student> students = new ArrayList<>();
+/*
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyId")
+    private Company company;*/
 
     @Override
     public String toString() {

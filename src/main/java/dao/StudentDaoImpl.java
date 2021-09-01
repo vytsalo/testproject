@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Student;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
 
     @Override
     public void add(Student student) {
-        em.persist(student);
+        em.persist(student);//todo merge
         //em.flush();
     }
 
@@ -42,6 +43,21 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
                 .setFirstResult(page)
                 .setMaxResults(size).getResultList();*/
 
+
+        /*faqQuestions = (FaqQuestions) session.get(FaqQuestions.class,
+                questionId);
+        Hibernate.initialize(faqQuestions.getFaqAnswers());
+        */
+
+/*
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery q = cb.createQuery(Order.class);
+        Root o = q.from(Order.class);
+        o.fetch("items", JoinType.INNER);
+        q.select(o);
+        q.where(cb.equal(o.get("id"), orderId));
+
+        Order order = (Order)this.em.createQuery(q).getSingleResult();*/
 
         CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
         criteriaQuery.from(Student.class);

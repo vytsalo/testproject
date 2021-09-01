@@ -28,24 +28,9 @@
                     .append('<a href="students?page=10">10</a>')
                     .append('<a href="" id = "next-page">»</a>');
 
-
-
-             /*   div = $("<div>").html("Loading......");
-                $("body").prepend(div);*/
-
-/*
-                this.$OuterDiv = $('<div></div>')
-                    .hide()
-                    .append($('<table></table>')
-                        .attr({ cellSpacing : 0 })
-                        .addClass("text")
-                    )
-                ;*/
-
                 const urlParams = new URLSearchParams(window.location.search);
                 const pageNumber = urlParams.get('page');
                 $("#pagination a:eq(" + pageNumber + ")").attr('class', 'active');
-
 
                 $('#next-page').attr('href', 'students?page=' + (+pageNumber + 1));
                 $('#previous-page').attr('href', 'students?page=' + (+pageNumber - 1));
@@ -145,10 +130,12 @@
                             <td><c:out value="${list.otch}"/></td>
                             <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
                             <td><c:out value="${list.phoneNumber}"/></td>
-                            <td>
-                                <a href = "../groups/update/${list.group.id}" >
+                            <td><a href = "" > <%--javascript:getGroup()--%>
+                               Группа
+                            </a>
+                            <%--    <a href = "../groups/update/${list.group.id}" >
                                     <c:out value="${list.group.title}"/>
-                                </a>
+                                </a>--%>
                             </td>
 
                             <td>
@@ -158,7 +145,7 @@
                                     <p>Дата рождения:
                                         <fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></p>
                                     <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
-                                    <p>Группа: <c:out value="${list.group.title}"/></p>
+                                    <p>Группа: <%--<c:out value="${list.group.title}"/>--%></p>
                                 </div>
 
                                 <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>

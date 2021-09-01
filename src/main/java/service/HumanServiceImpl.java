@@ -136,6 +136,16 @@ public class HumanServiceImpl implements HumanService {
                     return group;
                 }).collect(toList());
 
+
+        studentService.add(new Student(
+                "getRaSing(fams)",
+                "getRang(names)",
+                "getRdomg(patronyms)",
+                new Date(),
+                "getReNber()",
+                groupList.get(1)));
+
+
             int humansCount = 25;
 /*
         IntStream.rangeClosed(1, 8)

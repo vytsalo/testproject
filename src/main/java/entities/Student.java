@@ -3,7 +3,6 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name="student")
@@ -29,16 +28,21 @@ public class Student extends Human implements Serializable {
     * 3) criteria.setFetchMode("roles", FetchMode.EAGER);
     * best - настраивается по запросу(в критерии). Загружает дочерние сущности в том же запросе
      *  */
-    @ManyToOne//(fetch = FetchType.LAZY)
-    @JoinColumn(name="fk_groups")//имя - любое присоединяемое
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    //@JoinColumn(name="fk_groups")//имя - любое присоединяемое todo БЫЛО
     //главное управляющее поле, все делается через него, а потом уже через группу
-    private Group gruppa;
+    @JoinTable(name = "student_groups",
+            //имя колонки id с этой таблицы
+            joinColumns = { @JoinColumn(name = "student_id") },
+            //имя колонки id со второй таблицы (внешний ключ)
+            inverseJoinColumns = { @JoinColumn(name = "group_id") })
+    private Group group;
 
     public Student() {}
 
-    public Student(String fam, String name, String otch, Date dateOfBirth, String phoneNumber, Group gruppa) {
+    public Student(String fam, String name, String otch, Date dateOfBirth, String phoneNumber, Group group) {
         super(fam, name, otch, dateOfBirth, phoneNumber);
-        this.gruppa = gruppa;
+        this.group = group;
     }
 
     public Long getId() {
@@ -49,7 +53,7 @@ public class Student extends Human implements Serializable {
     public String toString() {
         return "Student{" +
                 "id = " +  id +
-                " gruppa = " + gruppa +
+                " gruppa = " + group +
                  super.toString() + "}\n";
     }
 
@@ -58,11 +62,11 @@ public class Student extends Human implements Serializable {
     }
 
     public Group getGroup() {
-        return gruppa;
+        return group;
     }
 
     public void setGroup(Group gruppa) {
-        this.gruppa = gruppa;
+        this.group = gruppa;
     }
 
 }
