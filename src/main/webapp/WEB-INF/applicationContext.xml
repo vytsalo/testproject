@@ -46,10 +46,22 @@
     </bean>
 
 
+<!--
+Hibernate will create the database when the entity manager factory is created (actually when Hibernate's SessionFactory
+ is created by the entity manager factory). If a file named import.sql exists in the root of the
+ class path ('/import.sql') Hibernate will execute the SQL statements read from the file after the creation
+  of the database schema. It is important to remember that before Hibernate creates the schema it empties it
+   (delete all tables, constraints, or any other database object that is going to be created in the process
+   of building the schema).
+-->
+    <!--
+    Если файл import.sql - то можно не указывать
+    -->
+
     <!--data-source="dataSource"-->
-    <jdbc:initialize-database>
+<!--    <jdbc:initialize-database>
         <jdbc:script location="classpath:/import.sql" />
-    </jdbc:initialize-database>
+    </jdbc:initialize-database>-->
 
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -69,22 +81,6 @@
                 <prop key="hibernate.max_fetch_depth">2</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
-
-         <!--       <prop key="hibernate.hbm2ddl.import_files">import.sql</prop>-->
-
-
-<!--                <prop key="hibernate.connection.useUnicode"  >true</prop>
-                <prop key="hibernate.connection.characterEncoding"  >UTF-8</prop>
-                <prop key="hibernate.connection.charSet" >UTF-8</prop>
-                <prop key="hibernate.hbm2ddl.charset_name" >UTF-8</prop>-->
-<!--
-Hibernate will create the database when the entity manager factory is created (actually when Hibernate's SessionFactory
- is created by the entity manager factory). If a file named import.sql exists in the root of the
- class path ('/import.sql') Hibernate will execute the SQL statements read from the file after the creation
-  of the database schema. It is important to remember that before Hibernate creates the schema it empties it
-   (delete all tables, constraints, or any other database object that is going to be created in the process
-   of building the schema).
-                <prop key="javax.persistence.sql-load-script-source" >classpath:/import.sql</prop>-->
 
             </props>
         </property>

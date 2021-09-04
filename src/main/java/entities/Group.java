@@ -24,7 +24,7 @@ public class Group implements Serializable {
     //объектный тип ID
     @Id
     @Column(name="group_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //Название группы
@@ -35,12 +35,12 @@ public class Group implements Serializable {
 
     //Список преподавателей в этой группе
     //Мапедбай - связь с другим классом. - переменная групс, которая тоже замаплена как менитумени
-    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
     private List<Teacher> teachers = new ArrayList<>();
 
     //gruppa - из другой таблицы
     //мапедбай - переменная из другого класса
-    @OneToMany(mappedBy = "group", targetEntity = Student.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "group", targetEntity = Student.class, fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Student> students = new ArrayList<>();
 /*
 

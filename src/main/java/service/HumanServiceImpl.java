@@ -137,32 +137,13 @@ public class HumanServiceImpl implements HumanService {
                 }).collect(toList());
 
 
-        studentService.add(new Student(
-                "getRaSing(fams)",
-                "getRang(names)",
-                "getRdomg(patronyms)",
-                new Date(),
-                "getReNber()",
-                groupList.get(1)));
-
-
             int humansCount = 25;
-/*
-        IntStream.rangeClosed(1, 8)
-                .forEach(System.out::println);*/
 
             for (int i = 0; i < humansCount; i++) {
 
-                Student student = generateStudent();
-                studentService.add(student);
-                student.setGroup(groupList.get(new Random().nextInt(groupList.size() - 1)));
-                studentService.update(student);
+                studentService.add(generateStudent(groupList));//todo группу не передавать, сделать статичным?
 
-                Teacher teacher = generateTeacher();
-                teacherService.add(teacher);
-                teacher.setGroups(new ArrayList<>(groupList));
-                teacherService.update(teacher);
-
+                teacherService.add(generateTeacher(groupList));
             }
 
     }
@@ -197,7 +178,7 @@ public class HumanServiceImpl implements HumanService {
     }
 
     //generateHuman+type Teacher or Student
-    private Student generateStudent(){
+    private Student generateStudent(List<Group> groupList){
         //передаем t или s
 
         // Object o = new Object();
@@ -228,7 +209,7 @@ public class HumanServiceImpl implements HumanService {
                         getRandomString(patronyms),
                         getRandomDate(),
                         getRandomPhoneNumber(),
-                        null);
+                        groupList.get(new Random().nextInt(groupList.size() - 1)));
             } else {
                 student =  new Student(
                         getRandomString(fams) + "а",
@@ -247,7 +228,7 @@ public class HumanServiceImpl implements HumanService {
     }
 
 
-    private Teacher generateTeacher(){
+    private Teacher generateTeacher(List<Group> groupList){
 
         Teacher teacher = null;
 
@@ -262,7 +243,7 @@ public class HumanServiceImpl implements HumanService {
                         getRandomString(patronyms),
                         getRandomDate(),
                         getRandomPhoneNumber(),
-                        null);
+                        groupList);
             } else {
                 teacher =  new Teacher(
                         getRandomString(fams) + "а",
@@ -270,7 +251,7 @@ public class HumanServiceImpl implements HumanService {
                         getRandomString(patronyms).replace("вич","вна"),
                         getRandomDate(),
                         getRandomPhoneNumber(),
-                        null);
+                        groupList);
             }
 
         } catch (ParseException parseException) {

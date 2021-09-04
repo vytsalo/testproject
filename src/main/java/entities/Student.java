@@ -10,7 +10,7 @@ public class Student extends Human implements Serializable {
 
     @Id
     @Column(name="student_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //identity - работает генерация в sql
     private Long id;
 
     //Группа, в которой учится студент
@@ -28,7 +28,7 @@ public class Student extends Human implements Serializable {
     * 3) criteria.setFetchMode("roles", FetchMode.EAGER);
     * best - настраивается по запросу(в критерии). Загружает дочерние сущности в том же запросе
      *  */
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     //@JoinColumn(name="fk_groups")//имя - любое присоединяемое todo БЫЛО
     //главное управляющее поле, все делается через него, а потом уже через группу
     @JoinTable(name = "student_groups",

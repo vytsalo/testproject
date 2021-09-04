@@ -47,7 +47,7 @@ public class Teacher extends Human implements Serializable {
         }
     }
 
-    public Teacher(String fam, String name, String otch, Date dateOfBirth, String phoneNumber, ArrayList<Group> groups) {
+    public Teacher(String fam, String name, String otch, Date dateOfBirth, String phoneNumber, List<Group> groups) {
         super(fam, name, otch, dateOfBirth, phoneNumber);
         this.groups = groups;
     }

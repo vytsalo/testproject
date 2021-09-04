@@ -5,11 +5,13 @@ import entities.Student;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.math.BigInteger;
 import java.util.List;
 
 @Repository
@@ -76,15 +78,12 @@ public class GroupDaoImpl implements EntitiesDao<Group> {
         return null;
     }
 
-/*
-    CriteriaQuery<Person> c = cb.createQuery(Person.class);
-    Root<Person> person = c.from(Person.class);
-person.fetch("address");
-c.select(person);*/
-
     public Group getStudentGroup(Long id){
-
-        em.createQuery("select group_id from \"student_groups\" where student_id = " + id);
-        return new Group();
+        try {
+            return (Group) em.createNativeQuery("select * from groups\n" +
+                    "where group_id = (select group_id from student_groups where student_id = " + id + ")", Group.class).getSingleResult();
+        } catch(NoResultException e){
+            return null;
+        }
     }
 }

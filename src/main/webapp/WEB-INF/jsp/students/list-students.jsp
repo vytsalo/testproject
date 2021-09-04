@@ -65,7 +65,7 @@
 --%>
                     <div class="center" >
 
-                        <div class = "table-action">
+                        <div class = "table-action" >
                             <a href = "/students/add" >
                                 <img src = "../images/plus_button3.png" />
                                 <br/>Добавить
@@ -130,15 +130,28 @@
                             <td><c:out value="${list.otch}"/></td>
                             <td><fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
                             <td><c:out value="${list.phoneNumber}"/></td>
-                            <td><a href = "" > <%--javascript:getGroup()--%>
+                            <td>
+
+                             <%--   <a href = "" > &lt;%&ndash;javascript:getGroup()&ndash;%&gt;
                                Группа
-                            </a>
-                            <%--    <a href = "../groups/update/${list.group.id}" >
+                            </a>--%>
+                                <a href = "../groups/update/${list.group.id}" >
                                     <c:out value="${list.group.title}"/>
-                                </a>--%>
+                                </a>
                             </td>
 
                             <td>
+
+
+                                    <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
+                                </br>
+                                <a href = "students/update/${list.id}">Редактировать</a> <%--Редактировать Изменить--%>
+                                    </br>
+                                <a href = "students/delete/${list.id}">Удалить</a>
+
+
+
+
                                 <!-- Модальное окно -->
                                 <div id="<c:out value="ex${list.id}"/>" class="modal">
                                     <p><c:out value="${list.fam} ${list.name} ${list.otch}"/></p>
@@ -147,12 +160,6 @@
                                     <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
                                     <p>Группа: <%--<c:out value="${list.group.title}"/>--%></p>
                                 </div>
-
-                                <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
-                                </br>
-                                <a href = "students/update/${list.id}">Редактировать</a>
-                                </br>
-                                <a href = "students/delete/${list.id}">Удалить</a>
                             </td>
 
 
