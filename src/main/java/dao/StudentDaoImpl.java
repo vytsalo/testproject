@@ -84,6 +84,8 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     @Override
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);
+        em.remove(student);
+   /*     Student student = em.find(Student.class, studentId);
         //todo entity manager remove without dependencies
         Group group = student.getGroup();
         student.setGroup(null);
@@ -92,7 +94,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
         group.setStudents(students);
 
         if (student != null) em.remove(student);
-        else throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");
+        else throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");*/
     }
 
 

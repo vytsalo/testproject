@@ -126,12 +126,13 @@ public class StudentController {
     }
 
     @GetMapping("/delete/{Id}")
-    public String deleteGroup(Model model, @PathVariable Long Id) {
-        //удаляем группу по ID
+    public String deleteStudent(
+            @PathVariable Long Id,
+            @RequestParam(value = "pageFrom", required = false, defaultValue = "1") int pageFrom) {
         studentService.delete(Id);
-        model.addAttribute("students", studentService.getList());
 
-        return "redirect:/students?page=1";//todo редиректить на ссылку pageFrom, откуда пришли
+        //ссылка на pageFrom, откуда пришли
+        return "redirect:/students?page=" + pageFrom;
     }
 
     //Контроллер для пересылки Ajax студентам

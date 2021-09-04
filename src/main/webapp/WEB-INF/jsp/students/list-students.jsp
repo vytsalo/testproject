@@ -35,6 +35,28 @@
                 $('#next-page').attr('href', 'students?page=' + (+pageNumber + 1));
                 $('#previous-page').attr('href', 'students?page=' + (+pageNumber - 1));
 
+
+/*
+
+                $('#student_option')//prepend
+                    .append('<a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a></br>')
+                    .append('<a href = "students/update/${list.id}">Редактировать</a></br>')
+                    .append('<a href = "students/delete/${list.id}">Удалить</a>')
+
+*/
+
+
+/*
+
+                <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
+            </br>
+                <a href = "students/update/${list.id}">Редактировать</a> <%--Редактировать Изменить--%>
+            </br>
+                <a href = "students/delete/${list.id}">Удалить</a>
+
+*/
+
+
             });
 
         </script>
@@ -140,17 +162,16 @@
                                 </a>
                             </td>
 
+
+
                             <td>
 
 
-                                    <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
+                                <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
                                 </br>
                                 <a href = "students/update/${list.id}">Редактировать</a> <%--Редактировать Изменить--%>
-                                    </br>
-                                <a href = "students/delete/${list.id}">Удалить</a>
-
-
-
+                                </br>
+                                <a href = "students/delete/${list.id}?pageFrom=${page}">Удалить</a>
 
                                 <!-- Модальное окно -->
                                 <div id="<c:out value="ex${list.id}"/>" class="modal">
@@ -160,6 +181,7 @@
                                     <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
                                     <p>Группа: <%--<c:out value="${list.group.title}"/>--%></p>
                                 </div>
+
                             </td>
 
 
