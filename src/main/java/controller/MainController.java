@@ -15,11 +15,6 @@ import service.HumanService;
 import java.io.IOException;
 import java.text.ParseException;
 
-// TODO MAKE A COMMON STYLE OF AUTH JSP PAGES.
-// TODO MAKE A TABLES WITH STYLES IN FORMS
-// TODO MAKE A TABLES WITH STYLES IN LISTS
-// TODO REPLACE ALL LINKS TO C:URL
-
 @Controller
 public class MainController {
 
@@ -45,17 +40,13 @@ public class MainController {
 
     @GetMapping("/init")
     public String init() throws ParseException, IOException {
-        //todo в классе UTILS сделать генерацию ФИО и имени
-        //todo сделать реальные группы
-
        humanService.initDB();
-
-        return "redirect:/";
+       return "redirect:/";
     }
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error, Model model) {
-        if (error == "") {
+        if ("".equals(error)) {//Objects.equals(
             model.addAttribute("errorMessage", "Неверный логин или пароль");
         }
         return "security/login";

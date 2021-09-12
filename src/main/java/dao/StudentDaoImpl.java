@@ -21,8 +21,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
 
     @Override
     public void add(Student student) {
-        em.persist(student);//todo merge
-        //em.flush();
+        em.persist(student);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     @Override
     public List<Student> getListWithPagination(int page, int size){
         //с сортировкой
-    /*    CriteriaBuilder cb = em.getCriteriaBuilder();
+  /*      CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Student> criteria = cb.createQuery(Student.class);
         Root<Student> root = criteria.from(Student.class);
         return em.createQuery(criteria.select(root)
@@ -43,21 +42,6 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
                 .setFirstResult(page)
                 .setMaxResults(size).getResultList();*/
 
-
-        /*faqQuestions = (FaqQuestions) session.get(FaqQuestions.class,
-                questionId);
-        Hibernate.initialize(faqQuestions.getFaqAnswers());
-        */
-
-/*
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery q = cb.createQuery(Order.class);
-        Root o = q.from(Order.class);
-        o.fetch("items", JoinType.INNER);
-        q.select(o);
-        q.where(cb.equal(o.get("id"), orderId));
-
-        Order order = (Order)this.em.createQuery(q).getSingleResult();*/
 
         CriteriaQuery<Student> criteriaQuery = em.getCriteriaBuilder().createQuery(Student.class);
         criteriaQuery.from(Student.class);
@@ -85,23 +69,16 @@ public class StudentDaoImpl implements EntitiesDao<Student>{
     public void delete(Long studentId){
         Student student = em.find(Student.class, studentId);
         em.remove(student);
-   /*     Student student = em.find(Student.class, studentId);
-        //todo entity manager remove without dependencies
-        Group group = student.getGroup();
-        student.setGroup(null);
-        ArrayList<Student> students = new ArrayList<>(group.getStudents());
-        students.remove(student);
-        group.setStudents(students);
-
-        if (student != null) em.remove(student);
-        else throw new EntityNotFoundException("Студент с ID = " + studentId + " не найден");*/
     }
 
-
+    ///поиск при нажатию на кнопку - модальное окно сделать
     //Поиск по тайтлу группы
     @Override
     public List<Student> searchByTitle(String str) {
-//todo refactor
+        //todo refactor
+        //todo entityManager saveAll(collection.of(Entities))
+        //todo Запуск через main, а не tomcat
+        //todo еще сократить конфиг
         //добавить разделители между словами " "
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);

@@ -23,7 +23,7 @@ body {
     float: left;
     color: black;
     text-align: center;
-    padding: 10px;
+    padding: 12px;
     text-decoration: none;
     font-size: 16px;
     line-height: 20px;
@@ -31,7 +31,7 @@ body {
 }
 
 .header a.logo {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -42,13 +42,13 @@ body {
 
 .header-right {
     float: right;
-    margin-right: 15%;
+    margin-right: 10%;
 
 }
 
 #eip-logo {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     vertical-align:middle;
 }
 
@@ -61,7 +61,7 @@ a.green{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     padding: 8px 16px;
-    margin: 15px auto;
+    margin: 10px auto;
     text-decoration: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 }

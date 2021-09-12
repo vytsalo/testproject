@@ -114,14 +114,14 @@ public class HumanServiceImpl implements HumanService {
        // return workbook;
     }
 
+//todo разделить интерфейсы, убрать entitiesDao, а сделать StudentDao
 
 
 
 
 
-
-
-
+    //todo галочки в списке для удаления
+    //todo оптимизировать запрос для назначения связей
 
 
 

@@ -35,28 +35,6 @@
                 $('#next-page').attr('href', 'students?page=' + (+pageNumber + 1));
                 $('#previous-page').attr('href', 'students?page=' + (+pageNumber - 1));
 
-
-/*
-
-                $('#student_option')//prepend
-                    .append('<a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a></br>')
-                    .append('<a href = "students/update/${list.id}">Редактировать</a></br>')
-                    .append('<a href = "students/delete/${list.id}">Удалить</a>')
-
-*/
-
-
-/*
-
-                <a href="<c:out value="#ex${list.id}"/>" rel="modal:open">Информация</a>
-            </br>
-                <a href = "students/update/${list.id}">Редактировать</a> <%--Редактировать Изменить--%>
-            </br>
-                <a href = "students/delete/${list.id}">Удалить</a>
-
-*/
-
-
             });
 
         </script>
@@ -123,7 +101,7 @@
                                     </a>
                                 </div>
 
-                         </div>
+                    </div>
                 </div>
 
                 <table class="list-table" >
@@ -179,7 +157,7 @@
                                     <p>Дата рождения:
                                         <fmt:formatDate value="${list.dateOfBirth}" pattern="dd.MM.yyyy"/></p>
                                     <p>Телефон: <c:out value="${list.phoneNumber}"/></p>
-                                    <p>Группа: <%--<c:out value="${list.group.title}"/>--%></p>
+                                    <p>Группа: <c:out value="${list.group.title}"/></p>
                                 </div>
 
                             </td>
@@ -191,8 +169,17 @@
                     </tbody>
                 </table>
 
+
+
+
+
+
+
+
             </c:otherwise>
     </c:choose>
+
+
 
         <div class="center">
             <div id = "pagination"></div>
