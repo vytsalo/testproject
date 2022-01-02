@@ -20,13 +20,11 @@ public abstract class Human{
     private String fam;
 
     @Column
-
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String name;
 
     @Column
-
     @NotNull(message = "Поле не может быть NULL")
     @Size(min = 2, max = 15, message = "Длина поля должна быть не менее 2, и не более 15 символов")
     private String otch;

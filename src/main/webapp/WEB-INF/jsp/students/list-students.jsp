@@ -85,7 +85,7 @@
                             <br/>
 
                             <div class = "table-action">
-                                <a href = "/students/export" >
+                                <a href = "${pageContext.request.contextPath}/students/export" >
                                     <img src = "../images/export.png" />
                                     <br/>Экспорт
                                 </a>

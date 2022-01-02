@@ -10,8 +10,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import service.EntitiesService;
+import service.FilesExporter;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +28,9 @@ public class StudentController {
 
     @Autowired
     private EntitiesService<Group> groupService;
+
+    @Autowired
+    private FilesExporter filesExporter;
 
     //todo переделать в модель энд вью
     @GetMapping//http://localhost:8081/students?page=1 так чтобы было
@@ -138,6 +144,7 @@ public class StudentController {
     //Контроллер для пересылки Ajax студентам
     @PostMapping(value = "/ajaxgroup", produces={"application/json; charset=UTF-8"})
     @ResponseBody
+            //todo убрать стринг оставить ентити
     public String processAjaxGroup(@RequestBody(required = false) String searchString) {
         if (searchString==null) searchString="";
 
@@ -167,6 +174,14 @@ public class StudentController {
         dataBinder.registerCustomEditor(Date.class, new DateEditor());
 
         dataBinder.registerCustomEditor(Group.class, new GroupEditor(groupService));
+    }
+
+    //todo export controller?
+    @GetMapping("/export")
+    @ResponseBody
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        List<Student> studentList = studentService.getList();
+        filesExporter.exportToExcel(studentList, response);
     }
 
 }

@@ -20,11 +20,20 @@
         <!-- какая разница между соурс и таргет -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <lombok.version>1.18.22</lombok.version>
     </properties>
 
     <!-- версии одинаковые сделать c одинаковым групайди -->
     <!-- Как можно ближе версии делать во избежании ошибок -->
     <dependencies>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
         <!-- SPRINGS -->
         <dependency>
             <groupId>org.springframework</groupId>
